@@ -616,7 +616,7 @@ const onDataLoaded = (data) => {
 
         let months = parseFloat(parseData("D8", space));
         console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
-        return (parseInt(handleAppliances(appliances)) + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options)) / (28.5 * space));
+        return (parseInt(handleAppliances(appliances)) + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
     }
 
     $("input")
@@ -689,5 +689,5 @@ const onDataLoaded = (data) => {
     });
 
 
-    $("#total").html(handleTotal());
+    $("#total").html("0");
 };
