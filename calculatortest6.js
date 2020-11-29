@@ -630,12 +630,16 @@ const onDataLoaded = (data) => {
             ClimaticMarkup = parseFloat(parseData("N160"));
 
         let months = parseFloat(parseData("D8", space));
-
+        console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
         return (handleAppliances(appliances) + handleConditioning(conditioning, ClimaticMarkup) + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
     }
 
     $("input")
         .change(function () {
+            space = +$("#space").val();
+            amountOfRooms = +$("#amountOfRooms").val();
+            amountOfBathrooms = +$("#amountOfBathrooms").val();
+            optionsBool.heatingFlooring = +$("#heatedFlooring").val();
             furnitureBool = +$("#furnitureBool").is(":checked");
             bathtub = +$("#bathroom").is(":checked");
             shower = +$("#shower").is(":checked");
@@ -685,6 +689,7 @@ const onDataLoaded = (data) => {
         } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
             $(this).siblings(".disabled").toggleClass("disabled");
         }
+        $("#total").html(handleTotal());
     });
 
     console.log(handleTotal());
