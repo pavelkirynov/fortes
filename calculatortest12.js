@@ -74,7 +74,7 @@ const onDataLoaded = (data) => {
                 if (sign === "<=") {
                     if (+comparableData <= +threshold) {
                         price = value;
-                        console.log(threshold + " " + value + " " + price + " " + comparableData);
+                        console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                         return price;
                     }
                 }
@@ -615,8 +615,8 @@ const onDataLoaded = (data) => {
             ClimaticMarkup = parseFloat(parseData("N160"));
 
         let months = parseFloat(parseData("D8", space));
-        //console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
-        return (parseInt(handleAppliances(appliances)) + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
+        console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
+        return (parseInt(handleAppliances(appliances) * 0.9) + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
     }
 
     $("input")
