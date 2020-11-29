@@ -1,34 +1,3 @@
-let space = $("#space").val(),
-    //style = "fusion",
-    amountOfRooms = $("#amountOfRooms").val(),
-    amountOfBathrooms = $("#amountOfBathrooms").val(),
-    furnitureBool = +$("#furnitureBool").is(":checked"),,
-    appliancesBoolTotal = +$("#AppliancesBoolo").is(":checked"),,
-    bathtub = +$("#bathtub").is(":checked"),
-    shower = +$("#shower").is(":checked"),
-    optionsBool = {
-        hygienicShower: 1,
-        floorScreed: +$("#floorscreed").is(":checked"),
-        heatedFlooring: +$("#heatedFlooring").val(),
-        denoising: +$("#noise").is(":checked"),
-        entranceDoors: +$("#doors").is(":checked"),
-        conditioning: 0,
-    },
-    ceilingBool = {
-        ceiling1: +$("#ceiling1").is(":checked"),
-        ceiling2: +$("#ceiling2").is(":checked"),
-        ceiling3: +$("#ceiling3").is(":checked"),
-    },
-    flooringBool = {
-        laminate: +$("#laminat").is(":checked"),
-        vinyl: +$("#vynil").is(":checked"),
-        parquet: +$("#parket").is(":checked"),
-    },
-    appliancesBool = {
-        standardGorenje: 1,
-        standardBosch: 0,
-        premiumMiele: 0,
-    };
 const onDataLoaded = (data) => {
     let sign = "",
         value = 0,
@@ -620,5 +589,4 @@ const onDataLoaded = (data) => {
         return sum;
     }
 
-    $("#data").html(handleAppliances());
 };
