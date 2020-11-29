@@ -630,81 +630,82 @@ const onDataLoaded = (data) => {
             document.cookie = cookieString;
         }
         $("#cookie-text").html(document.cookie);
-    
 
-    //console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
-    return (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
-}
 
-$("input")
-    .change(function () {
+        //console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
+        return (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
+    }
+
+    $("input")
+        .change(function () {
+            amountOfRooms = +$("#amountOfRooms").val();
+            amountOfBathrooms = +$("#amountOfBathrooms").val();
+            optionsBool.heatingFlooring = +$("#heatedFlooring").val();
+            furnitureBool = +$("#furnitureBool").is(":checked");
+            bathtub = +$("#bathtub").is(":checked");
+            shower = +$("#shower").is(":checked");
+            appliancesBoolTotal = +$("#appliancesBool").is(":checked");
+            optionsBool.floorScreed = +$("#floorscreed").is(":checked");
+
+            optionsBool.denoising = +$("#noise").is(":checked");
+            optionsBool.entranceDoors = +$("#doors").is(":checked");
+            optionsBool.conditioning = +$("#conditioning").is(":checked");
+            ceilingBool.ceiling1 = +$("#ceiling1").is(":checked");
+            ceilingBool.ceiling2 = +$("#ceiling2").is(":checked");
+            ceilingBool.ceiling3 = +$("#ceiling3").is(":checked");
+            flooringBool.laminate = +$("#laminat").is(":checked");
+            flooringBool.vinyl = +$("#vynil").is(":checked");
+            flooringBool.parquet = +$("#parket").is(":checked");
+            $("#total").html(Math.round(handleTotal()));
+        })
+        .trigger("change");
+    $("input:text").on("keydown", function (e) {
         space = +$("#space").val();
+        $("#total").html(Math.round(handleTotal()));
+    });
+    $("a.choice").on("click", function () {
+
+        $("#total").html(Math.round(handleTotal()));
+    });
+    $(".increment-field .increment").on("click", function (e) {
+        e.preventDefault();
+        $(this)
+            .siblings(".increment-input")
+            .val(
+                parseInt($(this).siblings(".increment-input").val()) +
+                parseInt($(this).val())
+            );
+
+        if ($(this).siblings(".increment-input").val() === "0") {
+            if ($(this).val() === "1") {
+                $(this).siblings($(".increment")).toggleClass("disabled");
+            } else {
+                $(this).toggleClass("disabled");
+            }
+        } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
+            $(this).siblings(".disabled").toggleClass("disabled");
+        }
         amountOfRooms = +$("#amountOfRooms").val();
         amountOfBathrooms = +$("#amountOfBathrooms").val();
-        optionsBool.heatingFlooring = +$("#heatedFlooring").val();
-        furnitureBool = +$("#furnitureBool").is(":checked");
-        bathtub = +$("#bathtub").is(":checked");
-        shower = +$("#shower").is(":checked");
-        appliancesBoolTotal = +$("#appliancesBool").is(":checked");
-        optionsBool.floorScreed = +$("#floorscreed").is(":checked");
-
-        optionsBool.denoising = +$("#noise").is(":checked");
-        optionsBool.entranceDoors = +$("#doors").is(":checked");
-        optionsBool.conditioning = +$("#conditioning").is(":checked");
-        ceilingBool.ceiling1 = +$("#ceiling1").is(":checked");
-        ceilingBool.ceiling2 = +$("#ceiling2").is(":checked");
-        ceilingBool.ceiling3 = +$("#ceiling3").is(":checked");
-        flooringBool.laminate = +$("#laminat").is(":checked");
-        flooringBool.vinyl = +$("#vynil").is(":checked");
-        flooringBool.parquet = +$("#parket").is(":checked");
+        optionsBool.heatedFlooring = +$("#heatedFlooring").val();
         $("#total").html(Math.round(handleTotal()));
-    })
-    .trigger("change");
-$("input:text").on("keydown", function (e) {
-    space = +$("#space").val();
-});
-$("a.choice").on("click", function () {
-    $("#total").html(Math.round(handleTotal()));
-});
-$(".increment-field .increment").on("click", function (e) {
-    e.preventDefault();
-    $(this)
-        .siblings(".increment-input")
-        .val(
-            parseInt($(this).siblings(".increment-input").val()) +
-            parseInt($(this).val())
-        );
-
-    if ($(this).siblings(".increment-input").val() === "0") {
-        if ($(this).val() === "1") {
-            $(this).siblings($(".increment")).toggleClass("disabled");
-        } else {
-            $(this).toggleClass("disabled");
+    });
+    $(".tab").on("click", function (e) {
+        number = parseInt($(this).attr("data-slider-index"));
+        if (number == 0) {
+            style = "cozy";
+        } else if (number == 1) {
+            style = "fusion";
+        } else if (number == 2) {
+            style = "japandi";
+        } else if (number == 3) {
+            style = "modern";
+        } else if (number == 4) {
+            style = "neoclassic";
         }
-    } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
-        $(this).siblings(".disabled").toggleClass("disabled");
-    }
-    amountOfRooms = +$("#amountOfRooms").val();
-    amountOfBathrooms = +$("#amountOfBathrooms").val();
-    optionsBool.heatingFlooring = +$("#heatedFlooring").val();
-    $("#total").html(Math.round(handleTotal()));
-});
-$(".tab").on("click", function (e) {
-    number = parseInt($(this).attr("data-slider-index"));
-    if (number == 0) {
-        style = "cozy";
-    } else if (number == 1) {
-        style = "fusion";
-    } else if (number == 2) {
-        style = "japandi";
-    } else if (number == 3) {
-        style = "modern";
-    } else if (number == 4) {
-        style = "neoclassic";
-    }
-    $("#total").html(Math.round(handleTotal()));
-});
+        $("#total").html(Math.round(handleTotal()));
+    });
 
 
-$("#total").html(0);
+    $("#total").html(0);
 };
