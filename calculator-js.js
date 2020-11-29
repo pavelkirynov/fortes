@@ -1,5 +1,4 @@
-console.log("do you see me?");
-const OnDataLoaded = (data) => {
+const onDataLoaded = (data) => {
     let sign = "",
         value = 0,
         formulaRaw = [],
@@ -15,7 +14,7 @@ const OnDataLoaded = (data) => {
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
-                console.log("e");
+                //console.log("e");
             }
             let formulaData = rawData.split("IF");
             //console.log(Fdata);
@@ -585,7 +584,7 @@ const OnDataLoaded = (data) => {
         let sum = 0;
         for (let key in element) {
             sum += +element[key];
-            console.log(key + " " + element[key]);
+            //console.log(key + " " + element[key]);
         }
         return sum;
     }
