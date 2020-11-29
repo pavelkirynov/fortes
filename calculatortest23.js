@@ -702,5 +702,5 @@ $(".tab").on("click", function (e) {
 });
 
 
-$("#total").html(handleTotal());
+$("#total").html(Math.round(handleTotal()));
 };
