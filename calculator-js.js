@@ -9,7 +9,7 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {
-        console.log(comparableData);
+        //console.log(comparableData);
         let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
