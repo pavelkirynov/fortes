@@ -74,13 +74,13 @@ const onDataLoaded = (data) => {
                 if (sign === "<=") {
                     if (+comparableData <= +threshold) {
                         price = value;
-                        //console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
+                        console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                         return price;
                     }
                 }
                 if (sign === ">=") {
                     if (+comparableData >= +threshold) {
-                        //console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
+                        console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                         price = value;
                     }
                 }
@@ -616,31 +616,12 @@ const onDataLoaded = (data) => {
             ClimaticMarkup = parseFloat(parseData("N160"));
 
         let months = parseFloat(parseData("D8", space));
-
-        let total = (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
-
-        let cookieArray = {};
-        let cookieString = "";
-        document.cookie = "";
-        cookieArray["_costPerMetre"] = total;
-        cookieArray["_summedPrice"] = total * space;
-        cookieArray["_space"] = space;
-        for (let key in cookieArray) {
-            cookieString = key + "=" + cookieArray[key] + ";";
-            document.cookie = cookieString;
-        }
-        $("#cookie-text").html(document.cookie);
-
-
         //console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
         return (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
     }
 
     $("input")
         .change(function () {
-            amountOfRooms = +$("#amountOfRooms").val();
-            amountOfBathrooms = +$("#amountOfBathrooms").val();
-            optionsBool.heatingFlooring = +$("#heatedFlooring").val();
             furnitureBool = +$("#furnitureBool").is(":checked");
             bathtub = +$("#bathtub").is(":checked");
             shower = +$("#shower").is(":checked");
@@ -661,10 +642,9 @@ const onDataLoaded = (data) => {
         .trigger("change");
     $("input:text").on("keydown", function (e) {
         space = +$("#space").val();
-        $("#total").html(Math.round(handleTotal()));
     });
     $("a.choice").on("click", function () {
-
+        console.log("pup");
         $("#total").html(Math.round(handleTotal()));
     });
     $(".increment-field .increment").on("click", function (e) {
@@ -687,7 +667,7 @@ const onDataLoaded = (data) => {
         }
         amountOfRooms = +$("#amountOfRooms").val();
         amountOfBathrooms = +$("#amountOfBathrooms").val();
-        optionsBool.heatedFlooring = +$("#heatedFlooring").val();
+        optionsBool.heatingFlooring = +$("#heatedFlooring").val();
         $("#total").html(Math.round(handleTotal()));
     });
     $(".tab").on("click", function (e) {
@@ -707,5 +687,5 @@ const onDataLoaded = (data) => {
     });
 
 
-    $("#total").html(Math.round(handleTotal()));
+    $("#total").html(handleTotal());
 };
