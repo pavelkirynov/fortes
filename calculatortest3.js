@@ -212,7 +212,7 @@ const onDataLoaded = (data) => {
         return optionsTotal;
     }
 
-    function handleConditioning(conditioning) {
+    function handleConditioning(conditioning, ClimaticMarkup) {
         return conditioning.conditioner * 1.05 * (1 + (ClimaticMarkup / 100));
     }
 
@@ -631,7 +631,7 @@ const onDataLoaded = (data) => {
 
         let months = parseFloat(parseData("D8", space));
 
-        return (handleAppliances(appliances) + handleConditioning(conditioning) + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+        return (handleAppliances(appliances) + handleConditioning(conditioning, ClimaticMarkup) + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
     }
 
     $("input")
