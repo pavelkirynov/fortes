@@ -1,4 +1,4 @@
-let appliancesBoolTotal = +$("#appliancesBool").is(":checked");
+let appliancesBoolTotal = 1;
     appliancesBool = {
         standardGorenje: 0,
         standardBosch: 0,
@@ -115,9 +115,9 @@ const onDataLoaded = (data) => {
         let i = 1;
         for (let nkey in appliances[key]) {
                 $(`#element${i}`).html(appliances[nabor1][nkey]);
+
             i++;
         }
         i = 1;
-        }
     }
 };
