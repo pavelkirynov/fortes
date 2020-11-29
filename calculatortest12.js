@@ -1,4 +1,5 @@
-let style = "fusion";
+let style = "cozy";
+$("#space").val(50);
 let space = +$("#space").val(),
     amountOfRooms = +$("#amountOfRooms").val(),
     amountOfBathrooms = +$("#amountOfBathrooms").val(),
@@ -614,7 +615,7 @@ const onDataLoaded = (data) => {
             ClimaticMarkup = parseFloat(parseData("N160"));
 
         let months = parseFloat(parseData("D8", space));
-        console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
+        //console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
         return (parseInt(handleAppliances(appliances)) + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
     }
 
