@@ -707,5 +707,5 @@ const onDataLoaded = (data) => {
     });
 
 
-    $("#total").html(0);
+    $("#total").html(Math.round(handleTotal()));
 };
