@@ -1,3 +1,70 @@
+let space = $("#space").val(),
+    //style = "fusion",
+    amountOfRooms = $("#amountOfRooms").val(),
+    amountOfBathrooms = $("#amountOfBathrooms").val(),
+    furnitureBool = +$("#furnitureBool").is(":checked"),
+    appliancesBoolTotal = +$("#AppliancesBoolo").is(":checked"),
+    bathtub = +$("#bathtub").is(":checked"),
+    shower = +$("#shower").is(":checked"),
+    optionsBool = {
+        hygienicShower: 1,
+        floorScreed: +$("#floorscreed").is(":checked"),
+        heatedFlooring: +$("#heatedFlooring").val(),
+        denoising: +$("#noise").is(":checked"),
+        entranceDoors: +$("#doors").is(":checked"),
+        conditioning: 0,
+    },
+    ceilingBool = {
+        ceiling1: +$("#ceiling1").is(":checked"),
+        ceiling2: +$("#ceiling2").is(":checked"),
+        ceiling3: +$("#ceiling3").is(":checked"),
+    },
+    flooringBool = {
+        laminate: +$("#laminat").is(":checked"),
+        vinyl: +$("#vynil").is(":checked"),
+        parquet: +$("#parket").is(":checked"),
+    },
+    appliancesBool = {
+        standardGorenje: 1,
+        standardBosch: 0,
+        premiumMiele: 0,
+    };
+    $(".choice").on("click", function () {
+    for (let key in appliancesBool) {
+    console.log(key);
+        appliancesBool[key] = 0;   
+    }
+    if ($(this).attr("data-appliances") == "gorenje") {
+    	console.log(appliancesBool.standardGorenje);
+           appliancesBool.standardGorenje = 1;
+    } else if ($(this).attr("data-appliances") == "bosch") {
+           appliancesBool.standardBosch = 1;
+    } else {
+           appliancesBool.premiumMiele = 1;   
+    }
+});
+  $("input").on("change", function () {
+  console.log(style);
+
+    	space = $("#space").val();
+    //style = "fusion",
+    amountOfRooms = $("#amountOfRooms").val();
+    amountOfBathrooms = $("#amountOfBathrooms").val();
+    furnitureBool = +$("#furnitureBool").is(":checked");
+    appliancesBoolTotal = +$("#AppliancesBoolo").is(":checked");
+    bathtub = +$("#bathtub").is(":checked");
+    shower = +$("#shower").is(":checked");
+    optionsBool.floorScreed = +$("#floorscreed").is(":checked");
+    optionsBool.floorScreed = +$("#heatedFlooring").is(":checked");
+    optionsBool.floorScreed = +$("#noise").is(":checked");
+    optionsBool.floorScreed = +$("#fdoors").is(":checked");
+    ceilingBool.ceiling1 = +$("#ceiling1").is(":checked");
+    ceilingBool.ceiling2 = +$("#ceiling2").is(":checked");
+    ceilingBool.ceiling3 = +$("#ceiling3").is(":checked");
+    flooringBool.laminate = +$("#laminat").is(":checked");
+    flooringBool.vinyl = +$("#vynil").is(":checked");
+    flooringBool.parquet = +$("#parket").is(":checked");
+  }
 const onDataLoaded = (data) => {
     let sign = "",
         value = 0,
@@ -588,5 +655,5 @@ const onDataLoaded = (data) => {
         }
         return sum;
     }
-
+$("#total").html(handleFurniture());
 };
