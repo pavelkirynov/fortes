@@ -112,7 +112,7 @@ const onDataLoaded = (data) => {
     }
     //console.log(months);
     //console.log(style);
-    function handleFurniture(furniture) {
+    function handleFurniture(furniture, FurnitureMarkup) {
         let element = "",
             kitchenTotal = 0,
             livingroomTotal = 0,
@@ -631,7 +631,7 @@ const onDataLoaded = (data) => {
 
         let months = parseFloat(parseData("D8", space));
 
-        return (handleAppliances(appliances) + handleConditioning(conditioning, ClimaticMarkup) + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+        return (handleAppliances(appliances) + handleConditioning(conditioning, ClimaticMarkup) + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
     }
 
     $("input")
@@ -665,7 +665,7 @@ const onDataLoaded = (data) => {
         $("#total").html(handleTotal());
     });
     $("a.choice").on("click", function () {
-        total = (handleAppliances() + handleConditioning() + handleFurniture() + ((handleMaterials() + handleWork()) * (1 + (AccessorriesMarkup / 100))) + handleOptions()) / (28.5 * space);
+        $("#total").html(handleTotal());
     });
     $(".increment-field .increment").on("click", function (e) {
         e.preventDefault();
