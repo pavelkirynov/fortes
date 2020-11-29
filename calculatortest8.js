@@ -1,19 +1,4 @@
 let style = "fusion";
-
-$(".tab").on("click", function (e) {
-    number = parseInt($(this).attr("data-slider-index"));
-    if (number == 0) {
-        style = "cozy";
-    } else if (number == 1) {
-        style = "fusion";
-    } else if (number == 2) {
-        style = "japandi";
-    } else if (number == 3) {
-        style = "modern";
-    } else if (number == 4) {
-        style = "neoclassic";
-    }
-});
 let space = +$("#space").val(),
     amountOfRooms = +$("#amountOfRooms").val(),
     amountOfBathrooms = +$("#amountOfBathrooms").val(),
@@ -631,7 +616,7 @@ const onDataLoaded = (data) => {
 
         let months = parseFloat(parseData("D8", space));
         console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
-        return (handleAppliances(appliances) + handleConditioning(conditioning, ClimaticMarkup) + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+        return (parseInt(handleAppliances(appliances)) + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options)) / (28.5 * space));
     }
 
     $("input")
@@ -687,8 +672,22 @@ const onDataLoaded = (data) => {
         optionsBool.heatingFlooring = +$("#heatedFlooring").val();
         $("#total").html(handleTotal());
     });
+    $(".tab").on("click", function (e) {
+        number = parseInt($(this).attr("data-slider-index"));
+        if (number == 0) {
+            style = "cozy";
+        } else if (number == 1) {
+            style = "fusion";
+        } else if (number == 2) {
+            style = "japandi";
+        } else if (number == 3) {
+            style = "modern";
+        } else if (number == 4) {
+            style = "neoclassic";
+        }
+        $("#total").html(handleTotal());
+    });
 
-    console.log(handleTotal());
 
     $("#total").html(handleTotal());
 };
