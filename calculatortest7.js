@@ -659,14 +659,7 @@ const onDataLoaded = (data) => {
         })
         .trigger("change");
     $("input:text").on("keydown", function (e) {
-        if (e.keyCode == 13) {
-            e.preventDefault();
-        }
         space = +$("#space").val();
-        amountOfRooms = +$("#amountOfRooms").val();
-        amountOfBathrooms = +$("#amountOfBathrooms").val();
-        optionsBool.heatingFlooring = +$("#heatedFlooring").val();
-        $("#total").html(handleTotal());
     });
     $("a.choice").on("click", function () {
         $("#total").html(handleTotal());
@@ -689,6 +682,9 @@ const onDataLoaded = (data) => {
         } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
             $(this).siblings(".disabled").toggleClass("disabled");
         }
+        amountOfRooms = +$("#amountOfRooms").val();
+        amountOfBathrooms = +$("#amountOfBathrooms").val();
+        optionsBool.heatingFlooring = +$("#heatedFlooring").val();
         $("#total").html(handleTotal());
     });
 
