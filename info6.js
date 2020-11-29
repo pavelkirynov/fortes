@@ -109,14 +109,15 @@ const onDataLoaded = (data) => {
                 delivery: parseFloat(parseData("A201")),
             },
         };
-        if (appliancesBoolTotal) {
+    if (!!appliancesBoolTotal) {
         if (!!appliancesBool.standardGorenje) {
-        let i = 1;
-        for (let nkey in appliances[nabor1]) {
-            $(`#element${i}`).html(appliances[nabor1][nkey]);
-            i++;
+            let element = appliances.nabor1;
+            let i = 1;
+            for (let key in element) {
+                $(`#element${i}`).html(element[key]);
+                i++;
+            }
+            i = 1;
         }
-        i = 1;
-    }
     }
 };
