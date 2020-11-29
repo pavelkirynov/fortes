@@ -7,7 +7,7 @@ let space = +$("#space").val(),
     bathtub = +$("#bathtub").is(":checked"),
     shower = +$("#shower").is(":checked"),
     optionsBool = {
-        hygienicShower: 1,
+        hygienicShower: 0,
         floorScreed: +$("#floorscreed").is(":checked"),
         heatedFlooring: +$("#heatedFlooring").val(),
         denoising: +$("#noise").is(":checked"),
@@ -32,7 +32,6 @@ let space = +$("#space").val(),
 const onDataLoaded = (data) => {
     let sign = "",
         value = 0,
-        formulaRaw = [],
         morethan = ">=",
         lessthan = "<=",
         equals = "=",
@@ -74,7 +73,7 @@ const onDataLoaded = (data) => {
                 if (sign === "<=") {
                     if (+comparableData <= +threshold) {
                         price = value;
-                        //console.log(threshold + " " + value + " " + price  + " " + comparableData);
+                        console.log(threshold + " " + value + " " + price + " " + comparableData);
                         return price;
                     }
                 }
@@ -640,14 +639,14 @@ const onDataLoaded = (data) => {
             flooringBool.laminate = +$("#laminat").is(":checked");
             flooringBool.vinyl = +$("#vynil").is(":checked");
             flooringBool.parquet = +$("#parket").is(":checked");
-            $("#total").html(handleTotal());
+            $("#total").html(Math.round(handleTotal()));
         })
         .trigger("change");
     $("input:text").on("keydown", function (e) {
         space = +$("#space").val();
     });
     $("a.choice").on("click", function () {
-        $("#total").html(handleTotal());
+        $("#total").html(Math.round(handleTotal()));
     });
     $(".increment-field .increment").on("click", function (e) {
         e.preventDefault();
@@ -670,7 +669,7 @@ const onDataLoaded = (data) => {
         amountOfRooms = +$("#amountOfRooms").val();
         amountOfBathrooms = +$("#amountOfBathrooms").val();
         optionsBool.heatingFlooring = +$("#heatedFlooring").val();
-        $("#total").html(handleTotal());
+        $("#total").html(Math.round(handleTotal()));
     });
     $(".tab").on("click", function (e) {
         number = parseInt($(this).attr("data-slider-index"));
@@ -685,7 +684,7 @@ const onDataLoaded = (data) => {
         } else if (number == 4) {
             style = "neoclassic";
         }
-        $("#total").html(handleTotal());
+        $("#total").html(Math.round(handleTotal()));
     });
 
 
