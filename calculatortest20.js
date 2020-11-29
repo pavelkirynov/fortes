@@ -622,6 +622,10 @@ const onDataLoaded = (data) => {
 
     $("input")
         .change(function () {
+            space = +$("#space").val();
+            amountOfRooms = +$("#amountOfRooms").val();
+            amountOfBathrooms = +$("#amountOfBathrooms").val();
+            optionsBool.heatedFlooring = +$("#heatedFlooring").val();
             furnitureBool = +$("#furnitureBool").is(":checked");
             bathtub = +$("#bathtub").is(":checked");
             shower = +$("#shower").is(":checked");
@@ -640,7 +644,7 @@ const onDataLoaded = (data) => {
             $("#total").html(Math.round(handleTotal()));
         })
         .trigger("change");
-    $("input:text").on("keydown", function (e) {
+    $("input:text").on("keypress", function (e) {
         space = +$("#space").val();
     });
     $("a.choice").on("click", function () {
@@ -665,9 +669,10 @@ const onDataLoaded = (data) => {
         } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
             $(this).siblings(".disabled").toggleClass("disabled");
         }
+        space = +$("#space").val();
         amountOfRooms = +$("#amountOfRooms").val();
         amountOfBathrooms = +$("#amountOfBathrooms").val();
-        optionsBool.heatingFlooring = +$("#heatedFlooring").val();
+        optionsBool.heatedFlooring = +$("#heatedFlooring").val();
         $("#total").html(Math.round(handleTotal()));
     });
     $(".tab").on("click", function (e) {
