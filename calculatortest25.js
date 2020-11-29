@@ -74,13 +74,13 @@ function parseData(range, comparableData) {
             if (sign === "<=") {
                 if (+comparableData <= +threshold) {
                     price = value;
-                    console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
+                    //console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                     return price;
                 }
             }
             if (sign === ">=") {
                 if (+comparableData >= +threshold) {
-                    console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
+                    //console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                     price = value;
                 }
             }
@@ -210,6 +210,9 @@ function handleConditioning(conditioning, ClimaticMarkup) {
 
 function handleAppliances(appliances) {
     let element = "";
+    if (!appliancesBoolTotal) {
+     return;   
+    }
     if (appliancesBool.standardGorenje) {
         element = appliances.nabor1;
     } else if (appliancesBool.standardBosch) {
@@ -682,8 +685,6 @@ $(".increment-field .increment").on("click", function (e) {
     amountOfBathrooms = +$("#amountOfBathrooms").val();
     optionsBool.heatedFlooring = +$("#heatedFlooring").val();
     $("#total").html(Math.round(handleTotal()));
-    let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
-document.getElementById("cookie-text").innerHTML = `${cookies._costPerMetre} and ${cookies._summedPrice} and ${cookies._space}`;
 });
 $(".tab").on("click", function (e) {
     number = parseInt($(this).attr("data-slider-index"));
@@ -714,7 +715,14 @@ $(".tab").on("click", function (e) {
       appliancesBool.standardBosch = 0;
       appliancesBool.premiumMiele = 1;
       appliancesBool.standardGorenje = 0;
-    }
+    } 
+      if (!appliancesBoolTotal) {
+          $(".borderActive").toggleClass("borderActive");
+          return;
+      } else if (appliancesBoolTotal || !($(".borderActive"))) {
+          $(".choice").first().toggleClass("borderActive");
+          appliancesBool.standardGorenje = 1;
+     }
       $("#total").html(Math.round(handleTotal()));
   });
 
