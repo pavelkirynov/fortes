@@ -674,6 +674,8 @@ const onDataLoaded = (data) => {
         amountOfBathrooms = +$("#amountOfBathrooms").val();
         optionsBool.heatedFlooring = +$("#heatedFlooring").val();
         $("#total").html(Math.round(handleTotal()));
+        let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
+document.getElementById("cookie-text").innerHTML = `${cookies._costPerMetre} and ${cookies._summedPrice} and ${cookies._space}`;
     });
     $(".tab").on("click", function (e) {
         number = parseInt($(this).attr("data-slider-index"));
