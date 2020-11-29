@@ -64,7 +64,7 @@ let space = $("#space").val(),
     flooringBool.laminate = +$("#laminat").is(":checked");
     flooringBool.vinyl = +$("#vynil").is(":checked");
     flooringBool.parquet = +$("#parket").is(":checked");
-  }
+  });
 const onDataLoaded = (data) => {
     let sign = "",
         value = 0,
