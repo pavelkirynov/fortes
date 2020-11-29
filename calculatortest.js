@@ -1,4 +1,5 @@
- $(".tab").on("click", function (e) {
+let style = "";
+$(".tab").on("click", function (e) {
      number = parseInt($(this).attr("data-slider-index"));
      if (number == 0) {
          style = "cozy";
@@ -12,6 +13,9 @@
          style = "neoclassic";
      }
  });
+if (style) {
+  style = "fusion";
+}
  let space = 50,
      amountOfRooms = 2,
      amountOfBathrooms = 2,
