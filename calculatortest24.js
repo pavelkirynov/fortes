@@ -26,7 +26,7 @@ flooringBool = {
     parquet: +$("#parket").is(":checked"),
 },
 appliancesBool = {
-    standardGorenje: 0,
+    standardGorenje: 1,
     standardBosch: 0,
     premiumMiele: 0,
 };
@@ -700,6 +700,24 @@ $(".tab").on("click", function (e) {
     }
     $("#total").html(Math.round(handleTotal()));
 });
+  $(".choice").on("click", function () {
+    console.log($(this).attr("data-appliances"));
+    if ($(this).attr("data-appliances") == "bosch") {
+      appliancesBool.standardBosch = 1;
+      appliancesBool.premiumMiele = 0;
+      appliancesBool.standardGorenje = 0;
+    } else if ($(this).attr("data-appliances") == "gorenje") {
+      appliancesBool.standardBosch = 0;
+      appliancesBool.premiumMiele = 0;
+      appliancesBool.standardGorenje = 1;
+    } else {
+      appliancesBool.standardBosch = 0;
+      appliancesBool.premiumMiele = 1;
+      appliancesBool.standardGorenje = 0;
+    }
+      $("#total").html(Math.round(handleTotal()));
+  });
+
 
 
 $("#total").html(Math.round(handleTotal()));
