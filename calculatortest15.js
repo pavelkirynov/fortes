@@ -620,7 +620,7 @@ const onDataLoaded = (data) => {
         let total = (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
 
         let cookieArray = {};
-        let cookieText = "";
+        let cookieString = "";
         document.cookie = "";
         cookieArray["_costPerMetre"] = total;
         cookieArray["_summedPrice"] = total * space;
@@ -630,7 +630,7 @@ const onDataLoaded = (data) => {
             document.cookie = cookieString;
         }
         $("#cookie-text").html(document.cookie);
-    }
+    
 
     //console.log(handleAppliances(appliances) + " " + handleConditioning(conditioning, ClimaticMarkup) + " " + handleFurniture(furniture, FurnitureMarkup) + " " + (handleMaterials(materials) + " " + handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space));
     return (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
