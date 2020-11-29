@@ -119,5 +119,4 @@ const onDataLoaded = (data) => {
           }
         }
       }
-    }
 };
