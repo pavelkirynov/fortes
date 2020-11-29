@@ -1,6 +1,6 @@
 let appliancesBoolTotal = 1;
     appliancesBool = {
-        standardGorenje: 0,
+        standardGorenje: 1,
         standardBosch: 0,
         premiumMiele: 0,
     };
