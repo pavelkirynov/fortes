@@ -716,14 +716,11 @@ $(".tab").on("click", function (e) {
       appliancesBool.premiumMiele = 1;
       appliancesBool.standardGorenje = 0;
     } 
+      $("#total").html(Math.round(handleTotal()));
       if (!appliancesBoolTotal) {
           $(".borderActive").toggleClass("borderActive");
           return;
-      } else if (appliancesBoolTotal || !($(".borderActive"))) {
-          $(".choice").first().toggleClass("borderActive");
-          appliancesBool.standardGorenje = 1;
-     }
-      $("#total").html(Math.round(handleTotal()));
+      }
   });
 
 
