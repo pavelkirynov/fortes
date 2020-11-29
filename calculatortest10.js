@@ -4,7 +4,7 @@ let space = +$("#space").val(),
     amountOfBathrooms = +$("#amountOfBathrooms").val(),
     furnitureBool = +$("#furnitureBool").is(":checked"),
     appliancesBoolTotal = +$("#appliancesBool").is(":checked"),
-    bathtub = +$("#bathroom").is(":checked"),
+    bathtub = +$("#bathtub").is(":checked"),
     shower = +$("#shower").is(":checked"),
     optionsBool = {
         hygienicShower: 1,
@@ -626,7 +626,7 @@ const onDataLoaded = (data) => {
             amountOfBathrooms = +$("#amountOfBathrooms").val();
             optionsBool.heatingFlooring = +$("#heatedFlooring").val();
             furnitureBool = +$("#furnitureBool").is(":checked");
-            bathtub = +$("#bathroom").is(":checked");
+            bathtub = +$("#bathtub").is(":checked");
             shower = +$("#shower").is(":checked");
             appliancesBoolTotal = +$("#appliancesBool").is(":checked");
             optionsBool.floorScreed = +$("#floorscreed").is(":checked");
@@ -689,5 +689,5 @@ const onDataLoaded = (data) => {
     });
 
 
-    $("#total").html("0");
+    $("#total").html(0);
 };
