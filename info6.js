@@ -112,7 +112,7 @@ const onDataLoaded = (data) => {
         if (appliancesBoolTotal) {
         if (!!appliancesBool.standardGorenje) {
         let i = 1;
-        for (let nkey in appliances[key]) {
+        for (let nkey in appliances[nabor1]) {
             $(`#element${i}`).html(appliances[nabor1][nkey]);
             i++;
         }
