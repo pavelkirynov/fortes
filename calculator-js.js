@@ -1,4 +1,4 @@
-const onDataLoaded = (data) => {
+const OnDataLoaded = (data) => {
     let sign = "",
         value = 0,
         formulaRaw = [],
