@@ -115,6 +115,7 @@ const onDataLoaded = (data) => {
                 let i = 1;
                 for (let key in element) {
                     $(`#element${i}`).html(element[key]);
+                    $(`#elementArt${i}`).html(parseFloat(parseData(`B${177+i}`)));
                     i++;
                 }
                 i = 1;
