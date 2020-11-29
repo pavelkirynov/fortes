@@ -111,12 +111,13 @@ const onDataLoaded = (data) => {
         };
     }
     if (appliancesBoolTotal) {
-      if (!!appliancesBool.standardGorenje) {
-        for (let i = 1; i < appliances.nabor1.length; i++) {
-          for (let key in appliances.nabor1) {
-            $(`#element${i}`).html(appliances.nabor1[key]);
-            $(`element${i}`).html(i);
-          }
+        if (!!appliancesBool.standardGorenje) {
+        let i = 1;
+        for (let nkey in appliances[key]) {
+                $(`#element${i}`).html(appliances[nabor1][nkey]);
+            i++;
         }
-      }
+        i = 1;
+        }
+    }
 };
