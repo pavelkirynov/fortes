@@ -207,6 +207,9 @@ function handleConditioning(conditioning, ClimaticMarkup) {
 
 function handleAppliances(appliances) {
     let element = "";
+    if (!appliancesBoolTotal) {
+        return;   
+    }
     if (appliancesBool.standardGorenje) {
         element = appliances.nabor1;
     } else if (appliancesBool.standardBosch) {
@@ -631,7 +634,7 @@ $("input")
     amountOfRooms = +$("#amountOfRooms").val();
     amountOfBathrooms = +$("#amountOfBathrooms").val();
     optionsBool.heatedFlooring = +$("#heatedFlooring").val();
-    furnitureBoolTotal = +$("#furnitureBool").is(":checked");
+    furnitureBool = +$("#furnitureBool").is(":checked");
     bathtub = +$("#bathtub").is(":checked");
     shower = +$("#shower").is(":checked");
     appliancesBoolTotal = +$("#appliancesBool").is(":checked");
