@@ -208,7 +208,7 @@ function handleConditioning(conditioning, ClimaticMarkup) {
 function handleAppliances(appliances) {
     let element = "";
     if (!appliancesBoolTotal) {
-        return;   
+        return 0;   
     }
     if (appliancesBool.standardGorenje) {
         element = appliances.nabor1;
