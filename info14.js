@@ -110,9 +110,9 @@ const onDataLoaded = (data) => {
             },
         };
     let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
-    let appliances = cookies._appliances;
+    let appliancesCookie = cookies._appliances;
     if (!!appliancesBoolTotal) {
-        if (appliances == "gorenje") {
+        if (appliancesCookie == "gorenje") {
             let element = appliances.nabor1;
             let i = 1;
             for (let key in element) {
@@ -121,7 +121,7 @@ const onDataLoaded = (data) => {
                 i++;
             }
             i = 1;
-        } else if (appliances == "bosch") {
+        } else if (appliancesCookie == "bosch") {
             let element = appliances.nabor2;
             let i = 1;
             for (let key in element) {
@@ -130,7 +130,7 @@ const onDataLoaded = (data) => {
                 i++;
             }
             i = 1;
-        } else if (appliances == "miele") {
+        } else if (appliancesCookie == "miele") {
             let element = appliances.nabor3;
             let i = 1;
             for (let key in element) {
