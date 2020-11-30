@@ -723,9 +723,7 @@ $("#total").html(Math.round(handleTotal()));
     if (!($(this).is(":checked"))) {
         return;       
     }
-    if (!($("choiceActiveBorder"))) {
-        $(".choice").first().toggleClass("choiceActive");
-        $(".choice").first().parent().toggleClass("choiceActiveBorder");
+    if (!(document.querySelector(".choiceActiveBorder"))) {
         appliancesBool.standardGorenje = 1;
         $("#total").html(Math.round(handleTotal()));
 }
