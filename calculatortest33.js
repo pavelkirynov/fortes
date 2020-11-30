@@ -696,9 +696,6 @@ if (number == 0) {
 $("#total").html(Math.round(handleTotal()));
 });
 $(".choice").on("click", function () {
-    if (!$("#appliancesBool").is("checked")) {
-        return;   
-    }
 appliancesCookie = $(this).attr("data-appliances");
 if ($(this).attr("data-appliances") == "bosch") {
   appliancesBool.standardBosch = 1;
