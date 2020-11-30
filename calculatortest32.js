@@ -631,7 +631,7 @@ $("input")
     amountOfRooms = +$("#amountOfRooms").val();
     amountOfBathrooms = +$("#amountOfBathrooms").val();
     optionsBool.heatedFlooring = +$("#heatedFlooring").val();
-    furnitureBool = +$("#furnitureBool").is(":checked");
+    furnitureBoolTotal = +$("#furnitureBool").is(":checked");
     bathtub = +$("#bathtub").is(":checked");
     shower = +$("#shower").is(":checked");
     appliancesBoolTotal = +$("#appliancesBool").is(":checked");
