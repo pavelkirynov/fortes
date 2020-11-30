@@ -697,7 +697,6 @@ $("#total").html(Math.round(handleTotal()));
 });
 $(".choice").on("click", function () {
     if (!$("#appliancesBool").is("checked")) {
-        appliancesBoolTotal = +$("#appliancesBool").is(":checked");
         return;   
     }
 appliancesCookie = $(this).attr("data-appliances");
