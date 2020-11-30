@@ -1,4 +1,5 @@
 let style = "cozy";
+let appliancesCookie = "";
 $("#space").val(50);
 let space = +$("#space").val(),
 amountOfRooms = +$("#amountOfRooms").val(),
@@ -695,7 +696,7 @@ if (number == 0) {
 $("#total").html(Math.round(handleTotal()));
 });
 $(".choice").on("click", function () {
-console.log($(this).attr("data-appliances"));
+appliancesCookie = $(this).attr("data-appliances");
 if ($(this).attr("data-appliances") == "bosch") {
   appliancesBool.standardBosch = 1;
   appliancesBool.premiumMiele = 0;
