@@ -109,16 +109,36 @@ const onDataLoaded = (data) => {
                 delivery: parseData("C201"),
             },
         };
-        if (!!appliancesBoolTotal) {
-            if (!!appliancesBool.standardGorenje) {
-                let element = appliances.nabor1;
-                let i = 1;
-                for (let key in element) {
-                    $(`#element${i}`).html(element[key]);
-                    $(`#elementArt${i}`).html(parseFloat(parseData(`B${163+i-1}`)));
-                    i++;
-                }
-                i = 1;
+    let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
+    let appliances = cookies._appliances;
+    if (!!appliancesBoolTotal) {
+        if (appliances == "gorenje") {
+            let element = appliances.nabor1;
+            let i = 1;
+            for (let key in element) {
+                $(`#element${i}`).html(element[key]);
+                $(`#elementArt${i}`).html(parseFloat(parseData(`B${163+i-1}`)));
+                i++;
             }
+            i = 1;
+        } else if (appliances == "bosch") {
+            let element = appliances.nabor2;
+            let i = 1;
+            for (let key in element) {
+                $(`#element${i}`).html(element[key]);
+                $(`#elementArt${i}`).html(parseFloat(parseData(`B${177+i-1}`)));
+                i++;
+            }
+            i = 1;
+        } else if (appliances == "miele") {
+            let element = appliances.nabor3;
+            let i = 1;
+            for (let key in element) {
+                $(`#element${i}`).html(element[key]);
+                $(`#elementArt${i}`).html(parseFloat(parseData(`B${192+i-1}`)));
+                i++;
+            }
+            i = 1;
         }
+    }
 };
