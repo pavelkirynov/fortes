@@ -623,7 +623,10 @@ ClimaticMarkup = parseFloat(parseData("N160"));
 
 let months = parseFloat(parseData("D8", space));
 //console.log(handleFurniture(furniture, FurnitureMarkup) + " " +handleWork(work, months) + " " + AccessorriesMarkup + " " + handleOptions(options) + " " + space);
-
+if (+$("#space").val() == 0) {
+    return 0;   
+}
+    
 return (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleConditioning(conditioning, ClimaticMarkup)) + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseInt(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
 }
 
@@ -714,10 +717,6 @@ appliancesBool.premiumMiele = 1;
 appliancesBool.standardGorenje = 0;
 } 
 $("#total").html(Math.round(handleTotal()));
-/*if (!appliancesBoolTotal) {
-  $(".borderActive").toggleClass("borderActive");
-  return;
-}*/
 });
   $("#appliancesBool").on("change", function () {
     if (!($(this).is(":checked"))) {
