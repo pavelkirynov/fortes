@@ -764,8 +764,6 @@
     style = "japandi";
     } else if (number == 3) {
     style = "modern";
-    } else if (number == 4) {
-    style = "neoclassic";
     }
     $("#total").html(Math.round(handleTotal()));
     });
