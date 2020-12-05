@@ -175,7 +175,7 @@
             element = options.japandi;
         }
 
-        optionsTotal = optionsBool.floorScreed * element.floorScreed * space + (amountOfBathrooms * element.hygienicShower * optionsBool.hygienicShower) + optionsBool.heatedFlooring * element.heatedFlooring + element.partitions * optionsBool.secondGypsumLayer * space + ((optionsBool.denoising + ceilingBool.ceiling3) * element.gypsumCeilingDenoising * space) + element.denoising * optionsBool.denoising * space + optionsBool.conditioning * element.conditioningSplit * space + optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage) + element.conditioner * (1 + 1 / parseData("S113")) * 1.05;
+        optionsTotal = optionsBool.floorScreed * element.floorScreed * space + (amountOfBathrooms * element.hygienicShower * optionsBool.hygienicShower) + optionsBool.heatedFlooring * element.heatedFlooring + /*element.partitions * optionsBool.secondGypsumLayer * space + */((optionsBool.denoising + ceilingBool.ceiling3) * element.gypsumCeilingDenoising * space) + element.denoising * optionsBool.denoising * space + optionsBool.conditioning * element.conditioningSplit * space + optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage) + element.conditioner * (1 + 1 / parseData("S113")) * 1.05;
         if ((optionsBool.denoising + ceilingBool.ceiling1 + ceilingBool.ceiling2) > 2) {
             optionsBool += element.tensionCeilingDenoising * space;
         }
