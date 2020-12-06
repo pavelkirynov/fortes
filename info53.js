@@ -115,13 +115,17 @@ const onDataLoaded = (data) => {
         if (appliancesCookie == "gorenje") {
             let element = appliances.gorenje;
             let i = 0;
+            let sum = 0;
             for (let key in element) {
                 $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
                 $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
                 $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
                 $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
+                sum += parseFloat(parseData("D"+ (161+i)));
                 i++;
             }
+            $applianceList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div>");
+            $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${sum} грн.</span>`);
             i = 0;
         } else if (appliancesCookie == "bosch") {
             let element = appliances.bosch;
