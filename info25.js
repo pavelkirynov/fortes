@@ -127,7 +127,7 @@ const onDataLoaded = (data) => {
                 i++;
             }
         }
-    }*/
+    }
         for (let i = 0; i < 6; i++) {
         let $container = $(".list-container");
         $container.append("<div class=\"division-block\"></div>");
