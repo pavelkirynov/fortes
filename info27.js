@@ -15,7 +15,7 @@ const onDataLoaded = (data) => {
 
     function parseData(range, comparableData) {
         //console.log(comparableData);
-        let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
+        /*let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
@@ -61,7 +61,7 @@ const onDataLoaded = (data) => {
             }
             //console.log(price);
             return price;
-        }
+        }*/
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
                 let appliances = {
@@ -107,7 +107,7 @@ const onDataLoaded = (data) => {
             let element = appliances.gorenje;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(`${parseData("F" + 161 + i)} ${parseData("E" + 161 + i)}`);
+                $(`#element${i+1}`).html(parseData(`F${161 + i}`)} + parseData(`E${161 + i}`));
                 i++;
             }
             i = 0;
@@ -115,7 +115,7 @@ const onDataLoaded = (data) => {
             let element = appliances.bosch;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(`${parseData("F" + 175 + i)} ${parseData("E" + 175 + i)}`);
+                $(`#element${i+1}`).html(parseData(`F${175 + i}`)} + parseData(`E${175 + i}`));
                 i++;
             }
             i = 0;
@@ -123,7 +123,7 @@ const onDataLoaded = (data) => {
             let element = appliances.miele;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(`${parseData("F" + 190 + i)} ${parseData("E" + 190 + i)}`);
+                $(`#element${i+1}`).html(parseData(`F${190 + i}`)} + parseData(`E${190 + i}`));
                 i++;
             }
         }
