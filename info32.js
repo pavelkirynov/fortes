@@ -108,7 +108,7 @@ const onDataLoaded = (data) => {
             let element = appliances.gorenje;
             let i = 0;
             for (let key in element) {
-                $appliances.append("<div class=\"option-block\"><div class=\"division-block\"><span class=\'name white\'>parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`)</span><span class=\'list-text white\'>parseFloat(parseData(`D${161+i}`))</span></div></div>");
+                $appliances.append("<div class=\"option-block\"><div class=\"division-block\"><span class=\'name white\'>parseData(\`F${161 + i}\`) parseData(\`E${161 + i}\`)</span><span class=\'list-text white\'>parseFloat(parseData(\`D${161+i}\`))</span></div></div>");
                 //$appliances.children(".division-block").last().append("<span class=\'name white\'>parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`)</span><span class=\'list-text white\'>parseFloat(parseData(`D${161+i}`))</span>");
                 //$(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
                 //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
