@@ -103,12 +103,15 @@ const onDataLoaded = (data) => {
     let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
     if (!!appliancesBoolTotal) {
+        let $appliances = $("#appliancesList");
         if (appliancesCookie == "gorenje") {
             let element = appliances.gorenje;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
-                $(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
+                $appliances.append("<div class=\"option-block\"><div class=\"division-block\"></div></div>");
+                $appliances.children(".division-block").last().append("<span class=\'name white\'>parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`)</span><span class=\'list-text white\'>parseFloat(parseData(`D${161+i}`)) + " грн."</span>");
+                //$(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
+                //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
                 i++;
             }
             i = 0;
