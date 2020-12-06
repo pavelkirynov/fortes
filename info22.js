@@ -70,45 +70,6 @@ const onDataLoaded = (data) => {
         }*/
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
-        let appliances = {
-            nabor1: {
-                fridge: parseData("C163"),
-                oven: parseData("C164"),
-                varochnayaPanel: parseData("C165"),
-                microwave: parseData("C166"),
-                vytyazhka: parseData("C167"),
-                washingMachine: parseData("C168"),
-                dishwasher: parseData("C169"),
-                boiler: parseData("C170"),
-                TV: parseData("C171"),
-                delivery: parseData("C172"),
-            },
-            nabor2: {
-                fridge: parseData("C177"),
-                oven: parseData("C178"),
-                varochnayaPanel: parseData("C179"),
-                microwave: parseData("C180"),
-                vytyazhka: parseData("C181"),
-                washingMachine: parseData("C182"),
-                sushylnaMachina: parseData("C183"),
-                dishwasher: parseData("C184"),
-                boiler: parseData("C185"),
-                TV: parseData("C186"),
-                delivery: parseData("C187"),
-            },
-            nabor3: {
-                fridge: parseData("C192"),
-                oven: parseData("C193"),
-                varochnayaPanel: parseData("C194"),
-                vytyazhka: parseData("C195"),
-                washingMachine: parseData("C196"),
-                sushylnaMachina: parseData("C197"),
-                dishwasher: parseData("C198"),
-                boiler: parseData("C199"),
-                TV: parseData("C200"),
-                delivery: parseData("C201"),
-            },
-        };
     /*let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
     if (!!appliancesBoolTotal) {
