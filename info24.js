@@ -64,36 +64,68 @@ const onDataLoaded = (data) => {
         }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
-    /*let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
+                let appliances = {
+                gorenje: {
+                    fridge: parseData("D161"),
+                    oven: parseData("D162"),
+                    varochnayaPanel: parseData("D163"),
+                    microwave: parseData("D164"),
+                    vytyazhka: parseData("D165"),
+                    washingMachine: parseData("D166"),
+                    dishwasher: parseData("D167"),
+                    boiler: parseData("D168"),
+                    TV: parseData("D169"),
+                },
+                bosch: {
+                    fridge: parseData("D175"),
+                    oven: parseData("D176"),
+                    varochnayaPanel: parseData("D177"),
+                    microwave: parseData("D178"),
+                    vytyazhka: parseData("D179"),
+                    washingMachine: parseData("D180"),
+                    sushylnaMachina: parseData("D181"),
+                    dishwasher: parseData("D182"),
+                    boiler: parseData("D183"),
+                    TV: parseData("D184"),
+                },
+                miele: {
+                    fridge: parseData("D190"),
+                    oven: parseData("D191"),
+                    varochnayaPanel: parseData("D192"),
+                    vytyazhka: parseData("D193"),
+                    washingMachine: parseData("D194"),
+                    sushylnaMachina: parseData("D195"),
+                    dishwasher: parseData("D196"),
+                    boiler: parseData("D197"),
+                    TV: parseData("D198"),
+                },
+            };
+    let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
     if (!!appliancesBoolTotal) {
         if (appliancesCookie == "gorenje") {
-            let element = appliances.nabor1;
-            let i = 1;
+            let element = appliances.gorenje;
+            let i = 0;
             for (let key in element) {
-                $(`#element${i}`).html(element[key]);
-                $(`#elementArt${i}`).html(parseFloat(parseData(`B${163+i-1}`)));
+                $(`#element${i}`).html(`${parseData("F" + 161 + i)} ${parseData("E" + 161 + i)}`);
                 i++;
             }
-            i = 1;
+            i = 0;
         } else if (appliancesCookie == "bosch") {
-            let element = appliances.nabor2;
-            let i = 1;
+            let element = appliances.bosch;
+            let i = 0;
             for (let key in element) {
-                $(`#element${i}`).html(element[key]);
-                $(`#elementArt${i}`).html(parseFloat(parseData(`B${177+i-1}`)));
+                $(`#element${i}`).html(`${parseData("F" + 175 + i)} ${parseData("E" + 175 + i)}`);
                 i++;
             }
-            i = 1;
+            i = 0;
         } else if (appliancesCookie == "miele") {
-            let element = appliances.nabor3;
-            let i = 1;
+            let element = appliances.miele;
+            let i = 0;
             for (let key in element) {
-                $(`#element${i}`).html(element[key]);
-                $(`#elementArt${i}`).html(parseFloat(parseData(`B${192+i-1}`)));
+                $(`#element${i}`).html(`${parseData("F" + 190 + i)} ${parseData("E" + 190 + i)}`);
                 i++;
             }
-            i = 1;
         }
     }*/
         for (let i = 0; i < 6; i++) {
