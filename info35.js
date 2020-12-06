@@ -108,8 +108,8 @@ const onDataLoaded = (data) => {
             let element = appliances.gorenje;
             let i = 0;
             for (let key in element) {
-                $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"><span class=\'name white\'>parseData(`F${161 + i}`) parseData(`E${161 + i}`)</span><span class=\'list-text white\'>parseFloat(parseData(`D${161+i}`))</span></div></div>");
-                //$appliances.children(".division-block").last().append("<span class=\'name white\'>parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`)</span><span class=\'list-text white\'>parseFloat(parseData(`D${161+i}`))</span>");
+                $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div></div>");
+                $appliances.children(".option-block").last().append("<span class=\'name white\'>parseData(`F${161 + i}`) parseData(`E${161 + i}`)</span><span class=\'list-text white\'>parseFloat(parseData(`D${161+i}`))</span>");
                 //$(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
                 //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
                 i++;
@@ -133,11 +133,13 @@ const onDataLoaded = (data) => {
                 i++;
             }
         }
+    } else {
+        $(".comfy-section").toggle(false);
     }
-        for (let i = 0; i < 6; i++) {
+    /*    for (let i = 0; i < 6; i++) {
         let $container = $(".list-container");
         $container.append("<div class=\"division-block\"></div>");
         $container.append("<div class=\"option-block\"></div>");
         $container.last(".list-option.container").append(`<span class=\"name\">${parseData("F"+(72+i))}, ${parseData("G"+(72+i))}</span><span class=\"list-text\">${parseData("H"+(72+i))} грн.</span>`);
-    }
+    }*/
 };
