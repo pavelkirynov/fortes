@@ -156,7 +156,7 @@ const onDataLoaded = (data) => {
     let kitchenMontage = parseFloat(parseData(`${styleLetter + 121}`));
     let kitchenDelivery = parseFloat(parseData(`${styleLetter + 122}`));
     let kitchenPrice = parseFloat(parseData(`${styleLetter + 120}`));
-    let kitchenTotal = kitchenMontage + kitchenPrice + kitchenTotal;
+    let kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
     $("#kitchenPrice").html(kitchenPrice + "грн.");
     $("#kitchenMontage").html(kitchenMontage + "грн.");
     $("#kitchenDelivery").html(kitchenDelivery + "грн.");
