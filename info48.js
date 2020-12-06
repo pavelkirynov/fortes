@@ -103,7 +103,7 @@ const onDataLoaded = (data) => {
     let appliancesCookie = cookies._appliances;
     let appliancesBoolTotal = +cookies._appliancesBoolTotal;
     let furnitureBool = +cookies._furnitureBool;
-    let stlye = cookies._style;
+    let style = cookies._style;
     
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
