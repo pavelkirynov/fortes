@@ -141,7 +141,7 @@ const onDataLoaded = (data) => {
     if (!furnitureBool) {
         $("#kitchenSection").css("display", "none");   
     }
-    let styleLetter = "J";jlnpr
+    let styleLetter = "J";
     if (style == "cozy") {
         styleLetter = "J";
     } else if (style == "japandi") {
@@ -153,9 +153,9 @@ const onDataLoaded = (data) => {
     } else if (style == "neoclassic") {
         styleLetter = "R";
     }
-    let kitchenMontage = parseFloat(parseData(styleLetter + 121));
-    let kitchenDelivery = parseFloat(parseData(styleLetter + 122));
-    let kitchenPrice = parseFloat(parseData(styleLetter + 120));
+    let kitchenMontage = parseFloat(parseData(`${styleLetter + 121}`));
+    let kitchenDelivery = parseFloat(parseData(`${styleLetter + 122}`));
+    let kitchenPrice = parseFloat(parseData(`${styleLetter + 120}`));
     let kitchenTotal = kitchenMontage + kitchenPrice + kitchenTotal;
     $("#kitchenPrice").html(kitchenPrice + "грн.");
     $("#kitchenMontage").html(kitchenMontage + "грн.");
