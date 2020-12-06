@@ -141,4 +141,11 @@ const onDataLoaded = (data) => {
             i = 1;
         }
     }
+        for (let i = 0; i < 6; i++) {
+        let $container = $(".list-container").first();
+        let $con
+        $container.append("<div class=\"division-block\"></div>");
+        $container.append("<div class=\"option-block\"></div>");
+        $container.last(".list-option.container").append(`<span class=\"name\">${parseData("F"+(72+i))}, ${parseData("G"+(72+i))}</span><span class=\"list-text\">${parseData("H"+(72+i))} грн.</span>`);
+    }
 };
