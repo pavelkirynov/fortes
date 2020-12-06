@@ -102,6 +102,9 @@ const onDataLoaded = (data) => {
             };
     let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
+    if (!appliancesBoolTotal) {
+        $(".comfy-section").css("display", "none");
+    }
     if (!!appliancesBoolTotal) {
         let $appliances = $("#appliancesList");
         if (appliancesCookie == "gorenje") {
@@ -137,8 +140,6 @@ const onDataLoaded = (data) => {
                 i++;
             }
         }
-    } else {
-        $(".comfy-section").toggle(false);
     }
     /*    for (let i = 0; i < 6; i++) {
         let $container = $(".list-container");
