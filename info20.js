@@ -15,7 +15,7 @@ const onDataLoaded = (data) => {
 
     function parseData(range, comparableData) {
         //console.log(comparableData);
-        /*let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
+        let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
@@ -58,15 +58,15 @@ const onDataLoaded = (data) => {
                         price = value;
                     }
                 }
-                console.log(formulaRaw);
+                /*console.log(formulaRaw);
                 console.log(formulaRaw[0][2] + " test");
                 value = formulaRaw[0][3];
                 sign = formulaRaw[0][2];
-                //formulaRaw.splice(0, formulaRaw.length);
+                //formulaRaw.splice(0, formulaRaw.length);*/
                 //return price;
             }
             //console.log(price);
-            return price;*/
+            return price;
         }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
@@ -142,8 +142,7 @@ const onDataLoaded = (data) => {
         }
     }*/
         for (let i = 0; i < 6; i++) {
-        let $container = $(".list-container").first();
-        let $con
+        let $container = $(".list-container");
         $container.append("<div class=\"division-block\"></div>");
         $container.append("<div class=\"option-block\"></div>");
         $container.last(".list-option.container").append(`<span class=\"name\">${parseData("F"+(72+i))}, ${parseData("G"+(72+i))}</span><span class=\"list-text\">${parseData("H"+(72+i))} грн.</span>`);
