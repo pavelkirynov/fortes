@@ -1,5 +1,4 @@
-let appliancesBoolTotal = 1;
-    appliancesBool = {
+let appliancesBool = {
         standardGorenje: 1,
         standardBosch: 0,
         premiumMiele: 0,
@@ -103,6 +102,9 @@ const onDataLoaded = (data) => {
     let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
     let appliancesBoolTotal = +cookies._appliancesBoolTotal;
+    let furnitureBool = +cookies._furnitureBool;
+    let stlye = cookies._style;
+    
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
     }
@@ -114,8 +116,6 @@ const onDataLoaded = (data) => {
             for (let key in element) {
                 $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
                 $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
-                //$(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
-                //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
                 i++;
             }
             i = 0;
@@ -125,8 +125,6 @@ const onDataLoaded = (data) => {
             for (let key in element) {
                 $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
                 $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (175 + i))} ${parseData("E" + (175 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (175+i)))} грн.</span>`);
-                //$(`#element${i+1}`).html(parseData(`F${175 + i}`) + " " + parseData(`E${175 + i}`));
-                //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${175+i}`)) + " грн.");
                 i++;
             }
             i = 0;
@@ -136,12 +134,33 @@ const onDataLoaded = (data) => {
             for (let key in element) {
                 $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
                 $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (190 + i))} ${parseData("E" + (190 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (190+i)))} грн.</span>`);
-                //$(`#element${i+1}`).html(parseData(`F${190 + i}`) + " " + parseData(`E${190 + i}`));
-                //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${190+i}`)) + " грн.");
                 i++;
             }
         }
     }
+    if (!furnitureBool) {
+        $("#kitchenSection").css("display", "none");   
+    }
+    let styleLetter = "J";jlnpr
+    if (style == "cozy") {
+        styleLetter = "J";
+    } else if (style == "japandi") {
+        styleLetter = "L";
+    } else if (style == "fusion") {
+        styleLetter = "N";
+    } else if (style == "modern") {
+        styleLetter = "P";
+    } else if (style == "neoclassic") {
+        styleLetter = "R";
+    }
+    let kitchenMontage = parseFloat(parseData(styleLetter + 121));
+    let kitchenDelivery = parseFloat(parseData(styleLetter + 122));
+    let kitchenPrice = parseFloat(parseData(styleLetter + 120));
+    let kitchenTotal = kitchenMontage + kitchenPrice + kitchenTotal;
+    $("#kitchenPrice").html(kitchenPrice + "грн.");
+    $("#kitchenMontage").html(kitchenMontage + "грн.");
+    $("#kitchenDelivery").html(kitchenDelivery + "грн.");
+    $("#kitchenTotal").html(kitchenTotal + "грн.");
     /*    for (let i = 0; i < 6; i++) {
         let $container = $(".list-container");
         $container.append("<div class=\"division-block\"></div>");
