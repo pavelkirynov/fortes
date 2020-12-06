@@ -107,7 +107,8 @@ const onDataLoaded = (data) => {
             let element = appliances.gorenje;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(parseData(`F${161 + i}`) + parseData(`E${161 + i}`));
+                $(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
+                $(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
                 i++;
             }
             i = 0;
@@ -115,7 +116,8 @@ const onDataLoaded = (data) => {
             let element = appliances.bosch;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(parseData(`F${175 + i}`) + parseData(`E${175 + i}`));
+                $(`#element${i+1}`).html(parseData(`F${175 + i}`) + " " + parseData(`E${175 + i}`));
+                $(`#elementArt${i+1}`).html(parseFloat(parseData(`D${175+i}`)) + " грн.");
                 i++;
             }
             i = 0;
@@ -123,7 +125,8 @@ const onDataLoaded = (data) => {
             let element = appliances.miele;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(parseData(`F${190 + i}`) + parseData(`E${190 + i}`));
+                $(`#element${i+1}`).html(parseData(`F${190 + i}`) + " " + parseData(`E${190 + i}`));
+                $(`#elementArt${i+1}`).html(parseFloat(parseData(`D${190+i}`)) + " грн.");
                 i++;
             }
         }
