@@ -124,8 +124,8 @@ const onDataLoaded = (data) => {
                 sum += parseFloat(parseData("D"+ (161+i)));
                 i++;
             }
-            $applianceList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div>");
-            $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${sum} грн.</span>`);
+            $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div>");
+            $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${sum} грн.</span>`);
             i = 0;
         } else if (appliancesCookie == "bosch") {
             let element = appliances.bosch;
