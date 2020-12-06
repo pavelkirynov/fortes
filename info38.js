@@ -109,7 +109,7 @@ const onDataLoaded = (data) => {
             let i = 0;
             for (let key in element) {
                 $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
-                $appliances.children(".option-block").last().append(`<span class=\'name white\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
+                $appliances.children(".list-option-container").last().append(`<span class=\'name white\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
                 //$(`#element${i+1}`).html(parseData(`F${161 + i}`) + " " + parseData(`E${161 + i}`));
                 //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${161+i}`)) + " грн.");
                 i++;
@@ -119,8 +119,10 @@ const onDataLoaded = (data) => {
             let element = appliances.bosch;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(parseData(`F${175 + i}`) + " " + parseData(`E${175 + i}`));
-                $(`#elementArt${i+1}`).html(parseFloat(parseData(`D${175+i}`)) + " грн.");
+                $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
+                $appliances.children(".list-option-container").last().append(`<span class=\'name white\'>${parseData("F" + (175 + i))} ${parseData("E" + (175 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (175+i)))} грн.</span>`);
+                //$(`#element${i+1}`).html(parseData(`F${175 + i}`) + " " + parseData(`E${175 + i}`));
+                //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${175+i}`)) + " грн.");
                 i++;
             }
             i = 0;
@@ -128,8 +130,10 @@ const onDataLoaded = (data) => {
             let element = appliances.miele;
             let i = 0;
             for (let key in element) {
-                $(`#element${i+1}`).html(parseData(`F${190 + i}`) + " " + parseData(`E${190 + i}`));
-                $(`#elementArt${i+1}`).html(parseFloat(parseData(`D${190+i}`)) + " грн.");
+                $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
+                $appliances.children(".list-option-container").last().append(`<span class=\'name white\'>${parseData("F" + (190 + i))} ${parseData("E" + (190 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (190+i)))} грн.</span>`);
+                //$(`#element${i+1}`).html(parseData(`F${190 + i}`) + " " + parseData(`E${190 + i}`));
+                //$(`#elementArt${i+1}`).html(parseFloat(parseData(`D${190+i}`)) + " грн.");
                 i++;
             }
         }
