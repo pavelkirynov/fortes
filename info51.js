@@ -157,10 +157,10 @@ const onDataLoaded = (data) => {
     let kitchenDelivery = parseFloat(parseData(`${styleLetter + 122}`));
     let kitchenPrice = parseFloat(parseData(`${styleLetter + 120}`));
     let kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
-    $("#kitchenPrice").html(kitchenPrice + "грн.");
-    $("#kitchenMontage").html(kitchenMontage + "грн.");
-    $("#kitchenDelivery").html(kitchenDelivery + "грн.");
-    $("#kitchenTotal").html(kitchenTotal + "грн.");
+    $("#kitchenPrice").html(kitchenPrice + " грн.");
+    $("#kitchenMontage").html(kitchenMontage + " грн.");
+    $("#kitchenDelivery").html(kitchenDelivery + " грн.");
+    $("#kitchenTotal").html(kitchenTotal + " грн");
     /*    for (let i = 0; i < 6; i++) {
         let $container = $(".list-container");
         $container.append("<div class=\"division-block\"></div>");
