@@ -101,6 +101,9 @@ const onDataLoaded = (data) => {
             };
     let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
+    if (!appliancesCookie) {
+            appliancesCookie = "gorenje";
+    }
     let appliancesBoolTotal = +cookies._appliancesBoolTotal;
     let furnitureBool = +cookies._furnitureBool;
     let style = cookies._style;
@@ -174,7 +177,8 @@ const onDataLoaded = (data) => {
     $("#kitchenPrice").html(kitchenPrice + " грн.");
     $("#kitchenMontage").html(kitchenMontage + " грн.");
     $("#kitchenDelivery").html(kitchenDelivery + " грн.");
-    $("#kitchenTotal").html(kitchenTotal + " грн");
+    $("#kitchenTotal, #kitchenTotalPrice").html(kitchenTotal + " грн");
+    $("#kitchenTotalPriceDiscount").html(kitchenTotal * 0.9);
     /*    for (let i = 0; i < 6; i++) {
         let $container = $(".list-container");
         $container.append("<div class=\"division-block\"></div>");
