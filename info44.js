@@ -102,6 +102,7 @@ const onDataLoaded = (data) => {
             };
     let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
     let appliancesCookie = cookies._appliances;
+    let appliancesBoolTotal = cookies._appliancesBoolTotal;
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
     }
