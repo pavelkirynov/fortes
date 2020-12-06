@@ -15,7 +15,7 @@ const onDataLoaded = (data) => {
 
     function parseData(range, comparableData) {
         //console.log(comparableData);
-        /*let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
+        let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
@@ -48,26 +48,20 @@ const onDataLoaded = (data) => {
                 if (sign === "<=") {
                     if (+comparableData <= +threshold) {
                         price = value;
-                        console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                         return price;
                     }
                 }
                 if (sign === ">=") {
                     if (+comparableData >= +threshold) {
-                        console.log("threshold " + threshold + " sign " + sign + " value " + value + " price " + price + " data " + comparableData);
                         price = value;
                     }
                 }
-                console.log(formulaRaw);
-                console.log(formulaRaw[0][2] + " test");
-                value = formulaRaw[0][3];
-                sign = formulaRaw[0][2];
                 //formulaRaw.splice(0, formulaRaw.length);
                 //return price;
             }
             //console.log(price);
             return price;
-        }*/
+        }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
     /*let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({...accumulator,[key.trim()]: decodeURIComponent(value),}),{});
