@@ -107,15 +107,19 @@ const onDataLoaded = (data) => {
     
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
+        $("#appliancesListTotal").css("display", "none");
     }
     if (!!appliancesBoolTotal) {
         let $appliances = $("#appliancesList");
+        let $appliancesList = $("#appliancesListTotal");
         if (appliancesCookie == "gorenje") {
             let element = appliances.gorenje;
             let i = 0;
             for (let key in element) {
                 $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
                 $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text white\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
+                $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+                $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${parseFloat(parseData("D"+ (161+i)))} грн.</span>`);
                 i++;
             }
             i = 0;
