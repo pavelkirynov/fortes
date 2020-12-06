@@ -14,42 +14,7 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {
-        let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
-        if (rawData.includes("=IF")) {
-            while (rawData[rawData.length - 1] == ")") {
-                rawData = rawData.substring(0, rawData.length - 1);
-            }
-            let formulaData = rawData.split("IF");
-            formulaData = formulaData.map(item => item.split(";"));
-            for (let i = 1; i < formulaData.length; i++) {
-                value = parseFloat(formulaData[i][1]);
-
-                let item = formulaData[i][0].slice(1, formulaData[i][0].length).split("=");
-                threshold = formulaData[i][0].slice(1, formulaData[i][0].length).split("=")[1];
-                if (item[0].indexOf(">") > -1) {
-                    sign = morethan;
-                } else if (item[0].indexOf("<") > -1) {
-                    sign = lessthan;
-                } else {
-                    sign = equals;
-                }
-                if (!price) {
-                    price = value;
-                }
-                if (sign === "<=") {
-                    if (+comparableData <= +threshold) {
-                        price = value;
-                        return price;
-                    }
-                }
-                if (sign === ">=") {
-                    if (+comparableData >= +threshold) {
-                        price = value;
-                    }
-                }
-            }
-            return price;
-        }
+        //let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
         let appliances = {
