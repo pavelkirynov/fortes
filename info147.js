@@ -121,13 +121,13 @@ const onDataLoaded = (data) => {
         letter,
         letterModel,
         ceiling = cookies._ceiling,
-        hygienicShower = cookies._hygienicShower,
-        secondGypsumLayer = cookies._secondGypsumLayer,
-        floorScreed = cookies._floorScreed,
-        heatedFlooring = cookies._heatedFlooring,
-        denosiing = cookies._denosiing,
-        entranceDoors = cookies._entranceDoors,
-        conditioning = cookies._conditioning,
+        hygienicShower = +cookies._hygienicShower,
+        secondGypsumLayer = +cookies._secondGypsumLayer,
+        floorScreed = +cookies._floorScreed,
+        heatedFlooring = +cookies._heatedFlooring,
+        denoising = +cookies._denoising,
+        entranceDoors = +cookies._entranceDoors,
+        conditioning = +cookies._conditioning,
         flooring = cookies._flooring,
         workSum = 0;
         
@@ -223,7 +223,7 @@ const onDataLoaded = (data) => {
             appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space*100, parseData("G94"));                      
         }
         function appendWorkOption(name, manufacturer, amount, price) {
-            if ((amount == 0) || (amount == undefined) || (price == 0)) {
+            if ((amount == 0) || (amount == undefined) || (price == 0) || (!price)) {
                 return;       
             }
             let $work = $("#workList");
