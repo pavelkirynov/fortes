@@ -109,7 +109,7 @@ const onDataLoaded = (data) => {
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
         furnitureBool = +cookies._furnitureBool,
         style = cookies._style,
-        space = cookies._space,
+        space = +cookies._space,
         bath = cookies._bath,
         shower = cookies._shower,
         amountOfRooms = cookies._amountOfRooms,
@@ -149,7 +149,10 @@ const onDataLoaded = (data) => {
             mouldings = 1;
         }
         console.log(flooring+" " + ceiling);
-        let water = parseFloat(parseData(`${letter+42}`, space)) * space, canalisation = parseFloat(parseData(`${letter+43}`, space)) * space, vents = parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms), electricity = parseFloat(parseData(`${letter+45}`, space)) * space);
+        let water = parseFloat(parseData(`${letter+42}`, space)) * space,
+            canalisation = parseFloat(parseData(`${letter+43}`, space)) * space,
+            vents = parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms),
+            electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
         
         appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
         appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
