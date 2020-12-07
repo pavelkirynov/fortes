@@ -143,7 +143,7 @@ const onDataLoaded = (data) => {
             letter = "Q";    
             letterModel = "E";
         }
-        let flooringNum, ceilingNum, flooringNum2, mouldings, laminat = 0, parket = 0, vynil = 0;
+        let flooringNum, ceilingNum, flooringNum2, mouldings, laminat = 0, parket = 0, vynil = 0, gapless = 0, stretch = 0, gypsum = 0;
         if (flooring == "laminat") {
             flooringNum = "60";
             flooringNum2 = "91";
@@ -220,7 +220,13 @@ const onDataLoaded = (data) => {
         
         workSum = Math.round(workSum * (1 + parseFloat(parseData("S99").replace(/,/g, '.')/100)));
         
-        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+102}`, space)), parseData("G102"));
+        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, space * parseFloat(parseData(`${letter+102}`, space)), parseData("G102"));
+        appendOptionsOption(parseData("F103"), parseData(letterModel + "103"), +hygienicShower * parseFloat(amountOfBathrooms), +hygienicShower * parseFloat(parseData(`${letter+103}`, space)), parseData("G103"));
+        appendOptionsOption(parseData("F104"), parseData(letterModel + "104"), +heatedFlooring, +heatedFlooring * parseFloat(parseData(`${letter+104}`, space)), parseData("G104"));
+        appendOptionsOption(parseData("F105"), parseData(letterModel + "105"), +secondGypsumLayer, space * parseFloat(parseData(`${letter+105}`, space)), parseData("G105"));
+        appendOptionsOption(parseData("F106"), parseData(letterModel + "106"), +denoising + mouldings, (+denoising + mouldings) * space * parseFloat(parseData(`${letter+106}`, space)), parseData("G106"));
+        appendOptionsOption(parseData("F107"), parseData(letterModel + "107"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+107}`, space)), parseData("G107"));
+        appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+108}`, space)), parseData("G108"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
@@ -242,7 +248,7 @@ const onDataLoaded = (data) => {
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
     }
         function appendMaterialsOption(name, manufacturer, amount, price, dim) {
-            if ((amount == 0) || (amount == undefined) || !(price)) {
+            if ((amount == 0) || (!amount) || !(price)) {
                 return;       
             }
             let $materials = $("#materialsList");
