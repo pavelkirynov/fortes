@@ -13,7 +13,7 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {
-        if (data.feed.entry.find((entry) => entry.title.$t == range) == undefined) {
+        if (!(data.feed.entry.find((entry) => entry.title.$t == range).content) || !(data.feed.entry.find((entry) => entry.title.$t == range).gs$cell)) {
                 return "";       
         }
             
