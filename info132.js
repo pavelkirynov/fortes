@@ -184,6 +184,17 @@ const onDataLoaded = (data) => {
         appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66*space, parseFloat(parseData(`${letter+75}`, space)), parseData("G75"));
         appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59*space, parseFloat(parseData(`${letter+76}`, space)), parseData("G76"));
         appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)), parseData("G77"));
+        appendMaterialsOption(parseData("F79"), parseData(letterModel + "79"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+79}`, space)), parseData("G79"));
+        appendMaterialsOption(parseData("F80"), parseData(letterModel + "80"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+80}`, space)), parseData("G80"));
+        appendMaterialsOption(parseData("F81"), parseData(letterModel + "81"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+81}`, space)), parseData("G81"));
+        appendMaterialsOption(parseData("F82"), parseData(letterModel + "82"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+82}`, space)), parseData("G82"));
+        appendMaterialsOption(parseData("F83"), parseData(letterModel + "83"), parseFLoat(bath), parseFloat(parseData(`${letter+83}`, space)), parseData("G83"));
+        appendMaterialsOption(parseData("F84"), parseData(letterModel + "84"), parseFloat(shower), parseFloat(parseData(`${letter+84}`, space)), parseData("G84"));
+        appendMaterialsOption(parseData("F85"), parseData(letterModel + "85"), shower, parseFloat(parseData(`${letter+85}`, space)), parseData("G85"));
+        appendMaterialsOption(parseData("F86"), parseData(letterModel + "86"), parseFloat(bath)+parseFloat(shower), parseFloat(parseData(`${letter+86}`, space)), parseData("G86"));
+        appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
+        appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
+        appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));
     
         function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
