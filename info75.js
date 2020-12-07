@@ -13,7 +13,8 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {    
-        if (rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue.includes("=IF")) {
+        if (isFinite(data.feed.entry.find((entry) => entry.title.$t == range).content.$t)) {
+                if (rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue.includes("=IF")) {
             let rawData = rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
@@ -62,6 +63,7 @@ const onDataLoaded = (data) => {
         }
             if (!(data.feed.entry.find((entry) => entry.title.$t == range).content)) {
                 return "";       
+        }       
         }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
