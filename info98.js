@@ -148,32 +148,32 @@ const onDataLoaded = (data) => {
             mouldings = 1;
         }
         console.log(flooring+" " + ceiling);
-        appendWorkOption(parseData("F42") + " " + parseData("G42"), 1, parseFloat(parseData(`${letter+42}`, space)) * space);
-        appendWorkOption(parseData("F43") + " " + parseData("G43"), 1, parseFloat(parseData(`${letter+43}`, space)) * space);
-        appendWorkOption(parseData("F44") + " " + parseData("G44"), amountOfBathrooms, parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms));
-        appendWorkOption(parseData("F45") + " " + parseData("G45"), 1, parseFloat(parseData(`${letter+45}`, space)) * space);
-        appendWorkOption(parseData("F46") + " " + parseData("G46"), bath, parseFloat(parseData(`${letter + 46}`, space)));
-        appendWorkOption(parseData("F47") + " " + parseData("G47"), shower, parseFloat(parseData(`${letter + 47}`, space)));
-        appendWorkOption(parseData("F48") + " " + parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
-        appendWorkOption(parseData("F49") + " " + parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
-        appendWorkOption(parseData("F50") + " " + parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)) * (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)));
-        appendWorkOption(parseData("F52") + " " + parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`, space)) * space);
-        appendWorkOption(parseData("F54") + " " + parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
-        appendWorkOption(parseData("F53") + " " + parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * space);        
-        appendWorkOption(parseData("F"+ceilingNum) + " " + parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
-        appendWorkOption(parseData("F" + flooringNum) + " " + parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
+        appendWorkOption(parseData("F42"), parseData("G42"), 1, parseFloat(parseData(`${letter+42}`, space)) * space);
+        appendWorkOption(parseData("F43"), parseData("G43"), 1, parseFloat(parseData(`${letter+43}`, space)) * space);
+        appendWorkOption(parseData("F44"), parseData("G44"), amountOfBathrooms, parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms));
+        appendWorkOption(parseData("F45"), parseData("G45"), 1, parseFloat(parseData(`${letter+45}`, space)) * space);
+        appendWorkOption(parseData("F46"), parseData("G46"), bath, parseFloat(parseData(`${letter + 46}`, space)));
+        appendWorkOption(parseData("F47"), parseData("G47"), shower, parseFloat(parseData(`${letter + 47}`, space)));
+        appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
+        appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
+        appendWorkOption(parseData("F50"), parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)) * (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)));
+        appendWorkOption(parseData("F52"), parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`, space)) * space);
+        appendWorkOption(parseData("F54"), parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
+        appendWorkOption(parseData("F53"), parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * space);        
+        appendWorkOption(parseData("F"+ceilingNum), parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
+        appendWorkOption(parseData("F" + flooringNum), parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
     
-        function appendWorkOption(name, amount, price) {
+        function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
                 return;       
             }
             let $work = $("#workList");
             $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-            /*if (!manufacturer) {
-               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
+            if (!manufacturer) {
+               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
                     return;
-            }*/
-            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
+            }
+            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
     }
     
     if (!appliancesBoolTotal) {
