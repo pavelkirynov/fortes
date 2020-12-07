@@ -111,8 +111,11 @@ const onDataLoaded = (data) => {
         bath = cookies._bath,
         shower = cookies._shower,
         amountOfRooms = cookies._amountOfRooms,
-        amountOfBathrooms = cookies._amountOfBathrooms;
-        letter;
+        amountOfBathrooms = cookies._amountOfBathrooms,
+        letter,
+        ceiling = cookies._ceiling,
+        flooring = cookies._flooring;
+        
         if (style == "cozy") {
             letter = "I";
         } else if (style == "japandi") {
@@ -128,14 +131,16 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F43") + ", " + parseData("G43"), 1, parseFloat(parseData(letter+43)) * space);
         appendWorkOption(parseData("F44") + ", " + parseData("G44"), amountOfBathrooms, parseFloat(parseData(letter+44)) * space * amountOfBathrooms);
         appendWorkOption(parseData("F45") + ", " + parseData("G45"), 1, parseFloat(parseData(letter+45)) * space);
-        appendWorkOption(parseData("F46") + ", " + parseData("G46"), 1, parseFloat(parseData(letter+46)) * space);
-        appendWorkOption(parseData("F47") + ", " + parseData("G47"), 1, parseFloat(parseData(letter+47)) * space);
+        appendWorkOption(parseData("F46") + ", " + parseData("G46"), bath, parseFloat(parseData(letter+46)));
+        appendWorkOption(parseData("F47") + ", " + parseData("G47"), shower, parseFloat(parseData(letter+47)));
         appendWorkOption(parseData("F48") + ", " + parseData("G48"), 1, parseFloat(parseData(letter+48)) * space);
         appendWorkOption(parseData("F49") + ", " + parseData("G49"), amountOfBathrooms, parseFloat(parseData(letter+49)) * space);
         appendWorkOption(parseData("F50") + ", " + parseData("G50"), amountOfBathrooms+amountOfRooms, parseFloat(parseData(letter+50)) * (amountOfRooms+amountOfBathrooms));
         
         
+        
     function appendWorkOption(name, amount, price) {
+            if ((amount == 0) || (amount == undefined))
             let $work = $("#workList");
             $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
