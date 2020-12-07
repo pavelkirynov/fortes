@@ -155,13 +155,13 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F46") + " " + parseData("G46"), bath, parseFloat(parseData(`${letter + 46}`, space)));
         appendWorkOption(parseData("F47") + " " + parseData("G47"), shower, parseFloat(parseData(`${letter + 47}`, space)));
         appendWorkOption(parseData("F48") + " " + parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
-        appendWorkOption(parseData("F49") + " " + parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`)) * space);
+        appendWorkOption(parseData("F49") + " " + parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
         appendWorkOption(parseData("F50") + " " + parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)) * (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)));
-        appendWorkOption(parseData("F52") + " " + parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`)) * space);
+        appendWorkOption(parseData("F52") + " " + parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`, space)) * space);
         appendWorkOption(parseData("F54") + " " + parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
-        appendWorkOption(parseData("F53") + " " + parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`)) * space);        
-        appendWorkOption(parseData("F"+ceilingNum) + " " + parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum)) * space);
-        appendWorkOption(parseData("F" + flooringNum) + " " + parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum)) * space);
+        appendWorkOption(parseData("F53") + " " + parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * space);        
+        appendWorkOption(parseData("F"+ceilingNum) + " " + parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
+        appendWorkOption(parseData("F" + flooringNum) + " " + parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
     
         function appendWorkOption(name, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
