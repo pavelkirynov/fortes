@@ -13,6 +13,10 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {
+        if ((data.feed.entry.find((entry) => entry.title.$t == range).gs$cell == undefined) || (data.feed.entry.find((entry) => entry.title.$t == range).content == undefined)) {
+                return "";       
+        }
+            
         let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
@@ -59,9 +63,6 @@ const onDataLoaded = (data) => {
             }
             //console.log(price);
             return parseFloat(price);
-        }
-        if (data.feed.entry.find((entry) => entry.title.$t == range).content == undefined) {
-           return "";       
         }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
@@ -132,12 +133,12 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F42") + ", " + parseData("G42"), 1, parseData(letter+42, space) * space);
         appendWorkOption(parseData("F43") + ", " + parseData("G43"), 1, parseData(letter+43, space) * space);
         appendWorkOption(parseData("F44") + ", " + parseData("G44"), amountOfBathrooms, parseData(letter+44, space) * space * amountOfBathrooms);
-        appendWorkOption(parseData("F45") + ", " + parseData("G45"), 1, parseData(letter+45, space) * space);
+        appendWorkOption(parseData("F45") + ", " + parseData("G45"), 1, parseFloat(parseData(letter+45, space)) * space);
         appendWorkOption(parseData("F46") + ", " + parseData("G46"), bath, parseData(letter+46, space));
         appendWorkOption(parseData("F47") + ", " + parseData("G47"), shower, parseData(letter+47, space));
         appendWorkOption(parseData("F48") + ", " + parseData("G48"), 1, parseData(letter+48, space) * space);
         appendWorkOption(parseData("F49") + ", " + parseData("G49"), amountOfBathrooms, parseData(letter+49) * space);
-        appendWorkOption(parseData("F50") + ", " + parseData("G50"), amountOfBathrooms+amountOfRooms, parseData(letter+50) * (amountOfRooms+amountOfBathrooms));
+        appendWorkOption(parseData("F50") + ", " + parseData("G50"), amountOfBathrooms+amountOfRooms, parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
         
         
         
