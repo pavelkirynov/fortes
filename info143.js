@@ -61,8 +61,12 @@ const onDataLoaded = (data) => {
                 //formulaRaw.splice(0, formulaRaw.length);
             }
             //console.log(price);
-            return parseFloat(price);
+            return parseFloat(price.replace(/,/g, '.'));
         }
+            if (isFinite(data.feed.entry.find((entry) => entry.title.$t == range).content.$t)) {
+                        return parseFloat(data.feed.entry.find((entry) => entry.title.$t == range).content.$t.replace(/,/g, '.'));
+                }
+                
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
                 let appliances = {
