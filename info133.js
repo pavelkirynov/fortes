@@ -188,7 +188,7 @@ const onDataLoaded = (data) => {
         appendMaterialsOption(parseData("F80"), parseData(letterModel + "80"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+80}`, space)), parseData("G80"));
         appendMaterialsOption(parseData("F81"), parseData(letterModel + "81"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+81}`, space)), parseData("G81"));
         appendMaterialsOption(parseData("F82"), parseData(letterModel + "82"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+82}`, space)), parseData("G82"));
-        appendMaterialsOption(parseData("F83"), parseData(letterModel + "83"), parseFLoat(bath), parseFloat(parseData(`${letter+83}`, space)), parseData("G83"));
+        appendMaterialsOption(parseData("F83"), parseData(letterModel + "83"), parseFloat(bath), parseFloat(parseData(`${letter+83}`, space)), parseData("G83"));
         appendMaterialsOption(parseData("F84"), parseData(letterModel + "84"), parseFloat(shower), parseFloat(parseData(`${letter+84}`, space)), parseData("G84"));
         appendMaterialsOption(parseData("F85"), parseData(letterModel + "85"), shower, parseFloat(parseData(`${letter+85}`, space)), parseData("G85"));
         appendMaterialsOption(parseData("F86"), parseData(letterModel + "86"), parseFloat(bath)+parseFloat(shower), parseFloat(parseData(`${letter+86}`, space)), parseData("G86"));
