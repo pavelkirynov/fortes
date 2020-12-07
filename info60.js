@@ -107,6 +107,28 @@ const onDataLoaded = (data) => {
     let appliancesBoolTotal = +cookies._appliancesBoolTotal;
     let furnitureBool = +cookies._furnitureBool;
     let style = cookies._style;
+    let space = cookies._space;
+    let amountOfRooms = cookies._amountOfRooms;
+    let amountOfBathrooms = cookies._amountOfBathrooms;
+    let letter;
+        if (style == "cozy") {ikmoq
+            letter = "I";
+        } else if (style == "japandi") {
+            letter = "K";  
+        } else if (style == "fusion") {
+            letter = "M";       
+        } else if (style == "modern") {
+            letter = "O";      
+        } else if (style == "neoclassic") {
+            letter = "Q";       
+        }
+         appendWorkOption(parseData("F42") + " " + parseData("G42"), 1, parseFloat(parseData(letter+42)) * space);       
+        
+    function appendWorkOption(name, amount, price) {
+            let $work = $("#workList");
+            $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
+    }
     
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
