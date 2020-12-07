@@ -63,10 +63,6 @@ const onDataLoaded = (data) => {
             //console.log(price);
             return parseFloat(price);
         }
-            if (isFinite(data.feed.entry.find((entry) => entry.title.$t == range).content.$t)) {
-                        return parseFloat(data.feed.entry.find((entry) => entry.title.$t == range).content.$t.replace(/,/g, '.'));
-                }
-                
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
                 let appliances = {
@@ -220,8 +216,14 @@ const onDataLoaded = (data) => {
         if (furnitureBool) {
             appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space*100, parseData("G94"));                      
         }
-        appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
-        appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
+        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), floorScreed, floorScreed * parseFloat(parseData(letterModel + "102")), parseData("G102"));
+        //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        
+        //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        //appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
         function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0) || (!price)) {
                 return;       
