@@ -121,6 +121,13 @@ const onDataLoaded = (data) => {
         letter,
         letterModel,
         ceiling = cookies._ceiling,
+        hygienicShower = cookies._hygienicShower,
+        secondGypsumLayer = cookies._secondGypsumLayer,
+        floorScreed = cookies._floorScreed,
+        heatedFlooring = cookies._heatedFlooring,
+        denosiing = cookies._denosiing,
+        entranceDoors = cookies._entranceDoors,
+        conditioning = cookies._conditioning,
         flooring = cookies._flooring,
         workSum = 0;
         
@@ -205,6 +212,8 @@ const onDataLoaded = (data) => {
         appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
         appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
         appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));
+        appendMaterialsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        appendMaterialsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
         if (space < 100) {
             appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), parseData("G91"));           
         } else {
