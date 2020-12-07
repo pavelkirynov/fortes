@@ -111,7 +111,7 @@ const onDataLoaded = (data) => {
     let amountOfRooms = cookies._amountOfRooms;
     let amountOfBathrooms = cookies._amountOfBathrooms;
     let letter;
-        if (style == "cozy") {ikmoq
+        if (style == "cozy") {
             letter = "I";
         } else if (style == "japandi") {
             letter = "K";  
