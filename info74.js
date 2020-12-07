@@ -13,8 +13,8 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {    
-        let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
-        if (rawData.includes("=IF")) {
+        if (rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue.includes("=IF")) {
+            let rawData = rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
                 //console.log("e");
