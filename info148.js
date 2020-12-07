@@ -124,10 +124,10 @@ const onDataLoaded = (data) => {
         hygienicShower = +cookies._hygienicShower,
         secondGypsumLayer = +cookies._secondGypsumLayer,
         floorScreed = +cookies._floorScreed,
-        heatedFlooring = +cookies._heatedFlooring,
-        denoising = +cookies._denoising,
-        entranceDoors = +cookies._entranceDoors,
-        conditioning = +cookies._conditioning,
+        heatedFlooring = cookies._heatedFlooring,
+        denoising = cookies._denoising,
+        entranceDoors = cookies._entranceDoors,
+        conditioning = cookies._conditioning,
         flooring = cookies._flooring,
         workSum = 0;
         
@@ -212,8 +212,6 @@ const onDataLoaded = (data) => {
         appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
         appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
         appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));
-        appendMaterialsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
-        appendMaterialsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
         if (space < 100) {
             appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), parseData("G91"));           
         } else {
@@ -222,6 +220,8 @@ const onDataLoaded = (data) => {
         if (furnitureBool) {
             appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space*100, parseData("G94"));                      
         }
+        appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
+        appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
         function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0) || (!price)) {
                 return;       
@@ -241,6 +241,19 @@ const onDataLoaded = (data) => {
             }
             let $materials = $("#materialsList");
             workSum += price * amount;
+            $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
+                if (!manufacturer) {
+                        $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
+                        return;
+                }
+            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
+    }
+        function appendOptionsOption(name, manufacturer, amount, price, dim) {
+            if ((amount == 0) || (amount == undefined) || (price == 0)) {
+                return;       
+            }
+            let $materials = $("#materialsList");
+            workSum += price;
             $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
                 if (!manufacturer) {
                         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
