@@ -161,7 +161,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F54") + " " + parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
         appendWorkOption(parseData("F53") + " " + parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`)) * space);        
         appendWorkOption(parseData("F"+ceilingNum) + " " + parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum)) * space);
-        appendWorkOption(parseData("F" + flooringNum) + " " + parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum) * space);
+        appendWorkOption(parseData("F" + flooringNum) + " " + parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum)) * space);
     
         function appendWorkOption(name, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
