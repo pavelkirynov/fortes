@@ -236,7 +236,7 @@ const onDataLoaded = (data) => {
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
     }
         function appendMaterialsOption(name, manufacturer, amount, price, dim) {
-            if ((amount == 0) || (amount == undefined) || (price == 0)) {
+            if ((amount == 0) || (amount == undefined) || !(price)) {
                 return;       
             }
             let $materials = $("#materialsList");
