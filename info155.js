@@ -119,7 +119,7 @@ const onDataLoaded = (data) => {
         ceiling = cookies._ceiling,
         hygienicShower = +cookies._hygienicShower,
         secondGypsumLayer = +cookies._secondGypsumLayer,
-        floorScreed = +cookies._floorScreed,
+        floorScreed = cookies._floorScreed,
         heatedFlooring = cookies._heatedFlooring,
         denoising = cookies._denoising,
         entranceDoors = cookies._entranceDoors,
@@ -217,7 +217,7 @@ const onDataLoaded = (data) => {
         if (furnitureBool) {
             appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space*100, parseData("G94"));                      
         }
-        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), parseFloat(floorScreed), parseFloat(floorScreed) * parseFloat(parseData(letterModel + "102")), parseData("G102"));
+        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), floorScreed, floorScreed * parseFloat(parseData(letterModel + "102")), parseData("G102"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
