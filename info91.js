@@ -157,7 +157,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F49") + " " + parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`)) * space);
         appendWorkOption(parseData("F50") + " " + parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)) * (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)));
         appendWorkOption(parseData("F52") + " " + parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`)) * space);
-        appendWorkOption(parseData("F54") + " " + parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)) * space);
+        appendWorkOption(parseData("F54") + " " + parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
         if (mouldings) {
             appendWorkOption(parseData("F53") + " " + parseData("G53"), 1, parseFloat(parseData(`${letter + 53}`)));        
         }
