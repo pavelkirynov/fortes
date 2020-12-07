@@ -170,7 +170,7 @@ const onDataLoaded = (data) => {
             let $work = $("#workList");
             $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
             if (!manufacturer) {
-               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
+               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
                     return;
             }
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
