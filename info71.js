@@ -138,7 +138,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F47"), parseData("G47"), shower, parseData(letter+47, space));
         appendWorkOption(parseData("F48"), parseData("G48"), 1, parseData(letter+48, space) * space);
         appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseData(letter+49) * space);
-        appendWorkOption(parseData("F50"), parseData("G50"), amountOfBathrooms+amountOfRooms, parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
+        appendWorkOption(parseData("F50"), parseData("G50"), parseFloat(amountOfBathrooms)+parseFloat(amountOfRooms), parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
         
         
         
