@@ -185,7 +185,7 @@ const onDataLoaded = (data) => {
         appendMaterialsOption(parseData("F76"), `parseData(${letterModel}76)`, 0.59*space, parseFloat(parseData(`${letter+76}`, space)));
         appendMaterialsOption(parseData("F77"), `parseData(${letterModel}77)`, parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)));
     
-        function appendWorkOption(name, dim, amount, price) {
+        function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
                 return;       
             }
@@ -198,7 +198,7 @@ const onDataLoaded = (data) => {
             }            
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
     }
-        function appendMaterialsOption(name, manufacturer, amount, price) {
+        function appendMaterialsOption(name, dim, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
                 return;       
             }
@@ -209,7 +209,7 @@ const onDataLoaded = (data) => {
                $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
                     return;
             }            
-            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
+            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${dim}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
     }
         //$("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         //$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
