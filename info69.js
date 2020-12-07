@@ -130,25 +130,29 @@ const onDataLoaded = (data) => {
         } else if (style == "neoclassic") {
             letter = "Q";       
         }
-        appendWorkOption(parseData("F42") + ", " + parseData("G42"), 1, parseData(letter+42, space) * space);
-        appendWorkOption(parseData("F43") + ", " + parseData("G43"), 1, parseData(letter+43, space) * space);
-        appendWorkOption(parseData("F44") + ", " + parseData("G44"), amountOfBathrooms, parseData(letter+44, space) * space * amountOfBathrooms);
-        appendWorkOption(parseData("F45") + ", " + parseData("G45"), 1, parseFloat(parseData(letter+45, space)) * space);
-        appendWorkOption(parseData("F46") + ", " + parseData("G46"), bath, parseData(letter+46, space));
-        appendWorkOption(parseData("F47") + ", " + parseData("G47"), shower, parseData(letter+47, space));
-        appendWorkOption(parseData("F48") + ", " + parseData("G48"), 1, parseData(letter+48, space) * space);
-        appendWorkOption(parseData("F49") + ", " + parseData("G49"), amountOfBathrooms, parseData(letter+49) * space);
-        appendWorkOption(parseData("F50") + ", " + parseData("G50"), amountOfBathrooms+amountOfRooms, parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
+        appendWorkOption(parseData("F42"), parseData("G42"), 1, parseData(letter+42, space) * space);
+        appendWorkOption(parseData("F43"), parseData("G43"), 1, parseData(letter+43, space) * space);
+        appendWorkOption(parseData("F44"), parseData("G44"), amountOfBathrooms, parseData(letter+44, space) * space * amountOfBathrooms);
+        appendWorkOption(parseData("F45"), parseData("G45"), 1, parseFloat(parseData(letter+45, space)) * space);
+        appendWorkOption(parseData("F46"), parseData("G46"), bath, parseData(letter+46, space));
+        appendWorkOption(parseData("F47"), parseData("G47"), shower, parseData(letter+47, space));
+        appendWorkOption(parseData("F48"), parseData("G48"), 1, parseData(letter+48, space) * space);
+        appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseData(letter+49) * space);
+        appendWorkOption(parseData("F50"), parseData("G50"), amountOfBathrooms+amountOfRooms, parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
         
         
         
-    function appendWorkOption(name, amount, price) {
+    function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined)) {
                 return;       
             }
             let $work = $("#workList");
             $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
+            if (!manufacturer) {
+               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
+                    return;
+            }
+            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
     }
     
     if (!appliancesBoolTotal) {
