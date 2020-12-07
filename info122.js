@@ -115,20 +115,26 @@ const onDataLoaded = (data) => {
         amountOfRooms = cookies._amountOfRooms,
         amountOfBathrooms = cookies._amountOfBathrooms,
         letter,
+        letterModel,
         ceiling = cookies._ceiling,
         flooring = cookies._flooring,
         workSum = 0;
         
         if (style == "cozy") {
             letter = "I";
+            letterModel = "A";
         } else if (style == "japandi") {
             letter = "K";  
+            letterModel = "B";
         } else if (style == "fusion") {
-            letter = "M";       
+            letter = "M";      
+            letterModel = "C";
         } else if (style == "modern") {
-            letter = "O";      
+            letter = "O";  
+            letterModel = "D";
         } else if (style == "neoclassic") {
-            letter = "Q";       
+            letter = "Q";    
+            letterModel = "E";
         }
         let flooringNum, ceilingNum, mouldings;
         if (flooring == "laminat") {
@@ -158,8 +164,8 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
         appendWorkOption(parseData("F44"), parseData("G44"), amountOfBathrooms, vents);
         appendWorkOption(parseData("F45"), parseData("G45"), 1, parseFloat(electricity));
-        appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
-        appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
+        //appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
+        //appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
         appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
         appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
         appendWorkOption(parseData("F50"), parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)) * (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)));
@@ -180,14 +186,14 @@ const onDataLoaded = (data) => {
             workSum += parseFloat(price);
             $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
             if (!manufacturer) {
-               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
+               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount} шт.</span>`);
                     return;
             }            
-            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
+            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount-work\'>${amount} шт.</span>`);
     }
-        $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-        $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
-    
+        //$("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
+        //$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
+    /*<span class=\'list-text work\'>${price} грн.</span>*/
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
         $("#appliancesListTotal").css("display", "none");
@@ -251,6 +257,21 @@ const onDataLoaded = (data) => {
     } else if (style == "neoclassic") {
         styleLetter = "R";
     }
+      let furnitureSum = 0;
+      function appendFurnitureOption(name, manufacturer, amount, price) {
+            if ((amount == 0) || (amount == undefined) || (price == 0)) {
+                return;       
+            }
+            let $furniture = $("#furitureList");
+            furnitureSum += parseFloat(price);
+            $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+            if (!manufacturer) {
+               $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
+                    return;
+            }            
+            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount-work\'>${amount} шт.</span><span class=\'list-text work\'>${price} грн.</span>`);
+    }
+        
     let kitchenMontage = parseFloat(parseData(`${styleLetter + 121}`));
     let kitchenDelivery = parseFloat(parseData(`${styleLetter + 122}`));
     let kitchenPrice = parseFloat(parseData(`${styleLetter + 120}`));
