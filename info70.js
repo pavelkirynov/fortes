@@ -109,12 +109,12 @@ const onDataLoaded = (data) => {
     }
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
         furnitureBool = +cookies._furnitureBool,
-        style = cookies._style,
-        space = cookies._space,
-        bath = cookies._bath,
-        shower = cookies._shower,
-        amountOfRooms = cookies._amountOfRooms,
-        amountOfBathrooms = cookies._amountOfBathrooms,
+        style = +cookies._style,
+        space = +cookies._space,
+        bath = +cookies._bath,
+        shower = +cookies._shower,
+        amountOfRooms = +cookies._amountOfRooms,
+        amountOfBathrooms = +cookies._amountOfBathrooms,
         letter,
         ceiling = cookies._ceiling,
         flooring = cookies._flooring;
