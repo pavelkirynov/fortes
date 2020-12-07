@@ -252,7 +252,7 @@ const onDataLoaded = (data) => {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
         function appendOptionsOption(name, manufacturer, amount, price, dim) {
-            if ((amount == undefined) || (price == 0) || (amount == 0)) {
+            if ((amount == undefined) || !(price) || (amount == 0)) {
                 return;       
             }
             let $materials = $("#materialsList");
@@ -262,6 +262,7 @@ const onDataLoaded = (data) => {
                         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
                         return;
                 }
+                console.log(price);
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
         $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
