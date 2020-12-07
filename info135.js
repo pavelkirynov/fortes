@@ -136,13 +136,19 @@ const onDataLoaded = (data) => {
             letter = "Q";    
             letterModel = "E";
         }
-        let flooringNum, ceilingNum, mouldings;
+        let flooringNum, ceilingNum, flooringNum2, mouldings, laminat = 0, parket = 0, vynil = 0;
         if (flooring == "laminat") {
             flooringNum = "60";
+            flooringNum2 = "91";
+            laminat = 1;
         } else if (flooring == "vynil") {
             flooringNum = "61";
+            vynil = 1;
+            flooringNum2 = "92";
         } else if (flooring == "parket") {
             flooringNum = "62";
+            parket = 1;
+            flooringNum2 = "93";
         }
         if (ceiling == "stretch ceiling") {
             ceilingNum = "56";
@@ -179,7 +185,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));
         
         appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), parseData("G72"));
-        appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 11, parseFloat(parseData(`${letter+73}`, space)), parseData("G73"));
+        appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 35, parseFloat(parseData(`${letter+73}`, space)), parseData("G73"));
         appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66*space, parseFloat(parseData(`${letter+74}`, space)), parseData("G74"));
         appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66*space, parseFloat(parseData(`${letter+75}`, space)), parseData("G75"));
         appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59*space, parseFloat(parseData(`${letter+76}`, space)), parseData("G76"));
@@ -195,7 +201,14 @@ const onDataLoaded = (data) => {
         appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
         appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
         appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));
-    
+        if (space < 100) {
+            appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), parseData("G91"));           
+        } else {
+            appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 10), parseFloat(parseData(`${letter+flooringNum2}`, space)), parseData("G91"));                  
+        }
+        if (furnitureBool) {
+            appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space*100, parseData("G94"));                      
+        }
         function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
                 return;       
