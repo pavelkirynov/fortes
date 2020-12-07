@@ -178,12 +178,12 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum)/100)*1.56));
         appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));
         
-        appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)));
-        appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 11, parseFloat(parseData(`${letter+73}`, space)));
-        appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66*space, parseFloat(parseData(`${letter+74}`, space)));
-        appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66*space, parseFloat(parseData(`${letter+75}`, space)));
-        appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59*space, parseFloat(parseData(`${letter+76}`, space)));
-        appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)));
+        appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), parseData("G72"));
+        appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 11, parseFloat(parseData(`${letter+73}`, space)), parseData("G73"));
+        appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66*space, parseFloat(parseData(`${letter+74}`, space)), parseData("G74"));
+        appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66*space, parseFloat(parseData(`${letter+75}`, space)), parseData("G75"));
+        appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59*space, parseFloat(parseData(`${letter+76}`, space)), parseData("G76"));
+        appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)), parseData("G77"));
     
         function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
@@ -198,14 +198,14 @@ const onDataLoaded = (data) => {
             }            
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
     }
-        function appendMaterialsOption(name, dim, amount, price) {
+        function appendMaterialsOption(name, manufacturer, amount, price, dim) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
                 return;       
             }
             let $materials = $("#materialsList");
             workSum += price * amount;
             $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");        
-            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${dim}</span><span class=\'list-text amount-work\'>${amount} шт.</span>`);
+            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
         //$("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         //$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
