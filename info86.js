@@ -14,7 +14,7 @@ const onDataLoaded = (data) => {
 
     function parseData(range, comparableData) {
         if (!data.feed.entry.find((entry) => entry.title.$t == range)) {
-                return "test";       
+                return "";       
         }
             
         let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
@@ -108,12 +108,12 @@ const onDataLoaded = (data) => {
     }
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
         furnitureBool = +cookies._furnitureBool,
-        style = +cookies._style,
-        space = +cookies._space,
-        bath = +cookies._bath,
-        shower = +cookies._shower,
-        amountOfRooms = +cookies._amountOfRooms,
-        amountOfBathrooms = +cookies._amountOfBathrooms,
+        style = cookies._style,
+        space = cookies._space,
+        bath = cookies._bath,
+        shower = cookies._shower,
+        amountOfRooms = cookies._amountOfRooms,
+        amountOfBathrooms = cookies._amountOfBathrooms,
         letter,
         ceiling = cookies._ceiling,
         flooring = cookies._flooring;
