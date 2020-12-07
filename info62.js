@@ -104,13 +104,15 @@ const onDataLoaded = (data) => {
     if (!appliancesCookie) {
             appliancesCookie = "gorenje";
     }
-    let appliancesBoolTotal = +cookies._appliancesBoolTotal;
-    let furnitureBool = +cookies._furnitureBool;
-    let style = cookies._style;
-    let space = cookies._space;
-    let amountOfRooms = cookies._amountOfRooms;
-    let amountOfBathrooms = cookies._amountOfBathrooms;
-    let letter;
+    let appliancesBoolTotal = +cookies._appliancesBoolTotal,
+        furnitureBool = +cookies._furnitureBool,
+        style = cookies._style,
+        space = cookies._space,
+        bath = cookies._bath,
+        shower = cookies._shower,
+        amountOfRooms = cookies._amountOfRooms,
+        amountOfBathrooms = cookies._amountOfBathrooms;
+        letter;
         if (style == "cozy") {
             letter = "I";
         } else if (style == "japandi") {
@@ -126,9 +128,12 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F43") + ", " + parseData("G43"), 1, parseFloat(parseData(letter+43)) * space);
         appendWorkOption(parseData("F44") + ", " + parseData("G44"), amountOfBathrooms, parseFloat(parseData(letter+44)) * space * amountOfBathrooms);
         appendWorkOption(parseData("F45") + ", " + parseData("G45"), 1, parseFloat(parseData(letter+45)) * space);
+        appendWorkOption(parseData("F46") + ", " + parseData("G46"), 1, parseFloat(parseData(letter+46)) * space);
+        appendWorkOption(parseData("F47") + ", " + parseData("G47"), 1, parseFloat(parseData(letter+47)) * space);
         appendWorkOption(parseData("F48") + ", " + parseData("G48"), 1, parseFloat(parseData(letter+48)) * space);
         appendWorkOption(parseData("F49") + ", " + parseData("G49"), amountOfBathrooms, parseFloat(parseData(letter+49)) * space);
         appendWorkOption(parseData("F50") + ", " + parseData("G50"), amountOfBathrooms+amountOfRooms, parseFloat(parseData(letter+50)) * (amountOfRooms+amountOfBathrooms));
+        
         
     function appendWorkOption(name, amount, price) {
             let $work = $("#workList");
