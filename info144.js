@@ -45,7 +45,7 @@ const onDataLoaded = (data) => {
                 }
                 //console.log(sign);
                 if (!price) {
-                    price = value;
+                    price = value.replace(/,/g, '.');
                 }
                 if (sign === "<=") {
                     if (+comparableData <= +threshold) {
@@ -61,7 +61,7 @@ const onDataLoaded = (data) => {
                 //formulaRaw.splice(0, formulaRaw.length);
             }
             //console.log(price);
-            return parseFloat(price.replace(/,/g, '.'));
+            return parseFloat(price);
         }
             if (isFinite(data.feed.entry.find((entry) => entry.title.$t == range).content.$t)) {
                         return parseFloat(data.feed.entry.find((entry) => entry.title.$t == range).content.$t.replace(/,/g, '.'));
