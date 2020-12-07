@@ -217,7 +217,10 @@ const onDataLoaded = (data) => {
         if (furnitureBool) {
             appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space*100, parseData("G94"));                      
         }
-        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, +floorScreed * +parseData(`${letter+102}`, space), parseData("G102"));
+        
+        workSum = Math.round(workSum * (1 + parseFloat(parseData("S99").replace(/,/g, '.')/100)));
+        
+        appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+102}`, space)), parseData("G102"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
         //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
@@ -251,6 +254,7 @@ const onDataLoaded = (data) => {
                 }
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
+
         function appendOptionsOption(name, manufacturer, amount, price, dim) {
             if ((amount == undefined) || !(price) || (amount == 0)) {
                 return;       
@@ -266,7 +270,7 @@ const onDataLoaded = (data) => {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
         $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-        workSum = Math.round(workSum * (1 + parseFloat(parseData("S99").replace(/,/g, '.')/100)));
+        
         $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
     /*<span class=\'list-text work\'>${price} грн.</span><span class=\'list-text amount-work\'>${amount} шт.</span>*/
     if (!appliancesBoolTotal) {
