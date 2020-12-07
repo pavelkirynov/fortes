@@ -45,7 +45,7 @@ const onDataLoaded = (data) => {
                 }
                 //console.log(sign);
                 if (!price) {
-                    price = value.replace(/,/g, '.');
+                    price = value;
                 }
                 if (sign === "<=") {
                     if (+comparableData <= +threshold) {
