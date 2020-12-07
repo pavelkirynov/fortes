@@ -147,6 +147,7 @@ const onDataLoaded = (data) => {
             ceilingNum = 58;
             mouldings = 1;
         }
+        console.log(flooring+" " + ceiling);
         appendWorkOption(parseData("F42") + " " + parseData("G42"), 1, parseFloat(parseData(`${letter+42}`, space)) * space);
         appendWorkOption(parseData("F43") + " " + parseData("G43"), 1, parseFloat(parseData(`${letter+43}`, space)) * space);
         appendWorkOption(parseData("F44") + " " + parseData("G44"), amountOfBathrooms, parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms));
@@ -159,8 +160,8 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F52") + " " + parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`)) * space);
         appendWorkOption(parseData("F54") + " " + parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
             appendWorkOption(parseData("F53") + " " + parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`)) * space);        
-        appendWorkOption(parseData("F" + ceilingNum) + " " + parseData("G" + ceilingNum), 1, parseFloat(parseData(`${letter + ceilingNum}`)) * space);
-        appendWorkOption(parseData("F" + flooringNum) + " " + parseData("G" + flooringNum), 1, parseFloat(parseData(`${letter + flooringNum}`)) * space);
+        appendWorkOption(parseData(`F${ceilingNum}`) + " " + parseData(`G${ceilingNum}`), 1, parseFloat(parseData(`${letter}${ceilingNum}`)) * space);
+        appendWorkOption(parseData(`F${flooringNum}`) + " " + parseData(`G${flooringNum}`), 1, parseFloat(parseData(`${letter}${flooringNum}`)) * space);
     
         function appendWorkOption(name, amount, price) {
             if ((amount == 0) || (amount == undefined) || (price == 0)) {
