@@ -173,7 +173,7 @@ const onDataLoaded = (data) => {
                $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
                     return;
             }*/
-            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
+            $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount-work\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
     }
     
     if (!appliancesBoolTotal) {
