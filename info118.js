@@ -166,7 +166,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F"+ceilingNum), parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
         appendWorkOption(parseData("F" + flooringNum), parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
         appendWorkOption(parseData("F64"), parseData("G64"), 1, parseFloat(parseData(`${letter + 64}`, space)) * space);
-        appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum)/100)*1.56));
+        appendWorkOption(parseData("F66"), 0, 1, (parseFloat(workSum)/100)*1.56);
         appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));
     
         function appendWorkOption(name, manufacturer, amount, price) {
