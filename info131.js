@@ -204,7 +204,7 @@ const onDataLoaded = (data) => {
             }
             let $materials = $("#materialsList");
             workSum += price * amount;
-            $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");        
+            $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");        
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
         //$("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
