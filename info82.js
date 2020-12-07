@@ -129,7 +129,7 @@ const onDataLoaded = (data) => {
         } else if (style == "neoclassic") {
             letter = "Q";       
         }
-        /*appendWorkOption(parseData("F42"), parseData("G42"), 1, parseFloat(parseData(`${letter+42}`, space)) * space);
+        appendWorkOption(parseData("F42"), parseData("G42"), 1, parseFloat(parseData(`${letter+42}`, space)) * space);
         appendWorkOption(parseData("F43"), parseData("G43"), 1, parseFloat(parseData(`${letter+43}`, space)) * space);
         appendWorkOption(parseData("F44"), parseData("G44"), amountOfBathrooms, parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms));
         appendWorkOption(parseData("F45"), parseData("G45"), 1, parseFloat(parseData(`${letter+45}`, space)) * space);
@@ -137,9 +137,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F47"), parseData("G47"), shower, parseFloat(parseData(`${letter+47}`, space));
         appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter+48}`, space)) * space);
         appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter+49}`)) * space);
-        appendWorkOption(parseData("F50"), parseData("G50"), amountOfBathrooms+amountOfRooms, parseFloat(parseData(`${letter+50}`)) * parseFloat((amountOfRooms + amountOfBathrooms)));*/
-        
-        
+        appendWorkOption(parseData("F50"), parseData("G50"), amountOfBathrooms+amountOfRooms, parseFloat(parseData(`${letter+50}`)) * parseFloat((amountOfRooms + amountOfBathrooms)));
         
     function appendWorkOption(name, manufacturer, amount, price) {
             if ((amount == 0) || (amount == undefined)) {
