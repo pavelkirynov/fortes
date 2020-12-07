@@ -140,7 +140,9 @@ const onDataLoaded = (data) => {
         
         
     function appendWorkOption(name, amount, price) {
-            if ((amount == 0) || (amount == undefined))
+            if ((amount == 0) || (amount == undefined)) {
+                return;       
+            }
             let $work = $("#workList");
             $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text work\'>${price} грн.</span>`);
