@@ -12,11 +12,7 @@ const onDataLoaded = (data) => {
         price = 0,
         threshold = 0;
 
-    function parseData(range, comparableData) {
-        if (!(data.feed.entry.find((entry) => entry.title.$t == range).content) || !(data.feed.entry.find((entry) => entry.title.$t == range).gs$cell)) {
-                return "";       
-        }
-            
+    function parseData(range, comparableData) {    
         let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
@@ -63,6 +59,9 @@ const onDataLoaded = (data) => {
             }
             //console.log(price);
             return parseFloat(price);
+        }
+            if (!(data.feed.entry.find((entry) => entry.title.$t == range).content)) {
+                return "";       
         }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
