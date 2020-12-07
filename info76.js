@@ -12,10 +12,13 @@ const onDataLoaded = (data) => {
         price = 0,
         threshold = 0;
 
-    function parseData(range, comparableData) {    
-        if (isFinite(data.feed.entry.find((entry) => entry.title.$t == range).content.$t)) {
-                if (rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue.includes("=IF")) {
-            let rawData = rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
+    function parseData(range, comparableData) {
+        if (data.feed.entry.find((entry) => entry.title.$t == range) == undefined) {
+                return "";       
+        }
+            
+        let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
+        if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
                 //console.log("e");
@@ -60,10 +63,6 @@ const onDataLoaded = (data) => {
             }
             //console.log(price);
             return parseFloat(price);
-        }
-            if (!(data.feed.entry.find((entry) => entry.title.$t == range).content)) {
-                return "";       
-        }       
         }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
@@ -139,7 +138,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F47"), parseData("G47"), shower, parseData(letter+47, space));
         appendWorkOption(parseData("F48"), parseData("G48"), 1, parseData(letter+48, space) * space);
         appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseData(letter+49) * space);
-        appendWorkOption(parseData("F50"), parseData("G50"), parseFloat(amountOfBathrooms)+parseFloat(amountOfRooms), parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
+        appendWorkOption(parseData("F50"), parseData("G50"), amountOfBathrooms+amountOfRooms, parseData(letter+50) * (amountOfRooms + amountOfBathrooms));
         
         
         
