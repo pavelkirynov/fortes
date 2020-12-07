@@ -154,7 +154,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
         appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
         appendWorkOption(parseData("F44"), parseData("G44"), amountOfBathrooms, vents);
-        appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);
+        appendWorkOption(parseData("F45"), parseData("G45"), 1, parseFloat(electricity));
         appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
         appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
         appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
@@ -166,7 +166,7 @@ const onDataLoaded = (data) => {
         appendWorkOption(parseData("F"+ceilingNum), parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
         appendWorkOption(parseData("F" + flooringNum), parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
         appendWorkOption(parseData("F64"), parseData("G64"), 1, parseFloat(parseData(`${letter + 64}`, space)) * space);
-        appendWorkOption(parseData("F66"), 0, 1, (parseFloat(workSum)/100)*1.56);
+        appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum)/100)*1.56));
         appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));
     
         function appendWorkOption(name, manufacturer, amount, price) {
