@@ -13,8 +13,8 @@ const onDataLoaded = (data) => {
         threshold = 0;
 
     function parseData(range, comparableData) {
-        if (data.feed.entry.find((entry) => entry.title.$t == range) == undefined) {
-                return "";       
+        if (!data.feed.entry.find((entry) => entry.title.$t == range)) {
+                return "test";       
         }
             
         let rawData = data.feed.entry.find((entry) => entry.title.$t == range).gs$cell.inputValue;
@@ -59,7 +59,6 @@ const onDataLoaded = (data) => {
                     }
                 }
                 //formulaRaw.splice(0, formulaRaw.length);
-                //return price;
             }
             //console.log(price);
             return parseFloat(price);
