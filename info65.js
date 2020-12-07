@@ -61,6 +61,9 @@ const onDataLoaded = (data) => {
             //console.log(price);
             return price;
         }*/
+        if (data.feed.entry.find((entry) => entry.title.$t == range).content == undefined) {
+           return "";       
+        }
         return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
     }
                 let appliances = {
