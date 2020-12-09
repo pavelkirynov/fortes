@@ -264,6 +264,11 @@ const onDataLoaded = (data) => {
     appendFurnitureOption(parseData("F145"), parseData(letterModel + "145"), 2, parseFloat(parseData(`${letter+145}`, space)), parseData("G145"));
     appendFurnitureOption(parseData("F146"), parseData(letterModel + "146"), 1, parseFloat(parseData(`${letter+146}`, space)), parseData("G146"));
     appendFurnitureOption(parseData("F147"), parseData(letterModel + "147"), 1, parseFloat(parseData(`${letter+147}`, space)), parseData("G147"));
+    appendFurnitureOption(parseData("F149"), parseData(letterModel + "149"), amountOfBathrooms, parseFloat(parseData(`${letter+149}`, space)), parseData("G149"));
+    appendFurnitureOption(parseData("F150"), parseData(letterModel + "150"), amountOfBathrooms, parseFloat(parseData(`${letter+150}`, space)), parseData("G150"));
+    appendFurnitureOption(parseData("F151"), parseData(letterModel + "151"), amountOfBathrooms, parseFloat(parseData(`${letter+151}`, space)), parseData("G151"));
+    appendFurnitureOption(parseData("F152"), parseData(letterModel + "152"), 1, parseFloat(parseData(`${letter+152}`, space)), parseData("G152"));
+    appendFurnitureOption(parseData("F153"), parseData(letterModel + "153"), amountOfBathrooms-1, parseFloat(parseData(`${letter+153}`, space)), parseData("G153"));
         
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
     //appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
