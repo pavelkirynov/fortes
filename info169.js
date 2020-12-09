@@ -299,7 +299,7 @@ const onDataLoaded = (data) => {
             return;
         }
         let $furniture = $("#furnitureList");
-        furnitureSum += price * amount;
+        furnitureSum += price * (1 + parseFloat(parseData("S157")/100)) * amount;
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
