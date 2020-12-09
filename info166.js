@@ -302,10 +302,15 @@ const onDataLoaded = (data) => {
         furnitureSum += price * amount;
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
-            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
+            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount} ${dim} </span><span class=\'list-text\'>${Math.round(price * (1 + 1/parseFloat(parseData("S157"))))} грн.</span>`);
             return;
+        } else if (!dim) {
+            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * (1 + 1/parseFloat(parseData("S157"))))} грн.</span>`);
+            return;
+        } else if (!(dim) && !(manufacturer)) {
+            $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text amount\'>${amount}</span><span class=\'list-text\'>${Math.round(price * (1 + 1/parseFloat(parseData("S157"))))} грн.</span>`);       
         }
-        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${price * (1 + 1/parseFloat(parseData("S157")))} грн.</span>`);
+        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * (1 + 1/parseFloat(parseData("S157"))))} грн.</span>`);
     }
 
     function appendOptionsOption(name, manufacturer, amount, price, dim) {
