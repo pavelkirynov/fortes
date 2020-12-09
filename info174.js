@@ -345,6 +345,7 @@ const onDataLoaded = (data) => {
     $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 
     $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
+    $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
     /*<span class=\'list-text work\'>${price} грн.</span><span class=\'list-text amount-work\'>${amount} шт.</span>*/
     if (!appliancesBoolTotal) {
         $(".comfy-section").css("display", "none");
