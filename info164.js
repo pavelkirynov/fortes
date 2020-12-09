@@ -242,6 +242,13 @@ const onDataLoaded = (data) => {
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));    
         
     appendFurnitureOption(parseData("F120"), parseData(letterModel + "120"), 1, parseFloat(parseData(`${letter+120}`, space)));
+    appendFurnitureOption(parseData("F121"), parseData(letterModel + "121"), 1, parseFloat(parseData(`${letter+121}`, space)));
+    appendFurnitureOption(parseData("F122"), parseData(letterModel + "122"), 1, parseFloat(parseData(`${letter+122}`, space)));
+    appendFurnitureOption(parseData("F123"), parseData(letterModel + "123"), 1, parseFloat(parseData(`${letter+123}`, space)));
+    appendFurnitureOption(parseData("F124"), parseData(letterModel + "124"), 1, parseFloat(parseData(`${letter+124}`, space)));
+    appendFurnitureOption(parseData("F125"), parseData(letterModel + "125"), 1, parseFloat(parseData(`${letter+125}`, space)));
+    appendFurnitureOption(parseData("F126"), parseData(letterModel + "126"), 4, parseFloat(parseData(`${letter+126}`, space)));
+    appendFurnitureOption(parseData("F127"), parseData(letterModel + "127"), 1, parseFloat(parseData(`${letter+127}`, space)));
         
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
     //appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
@@ -293,12 +300,12 @@ const onDataLoaded = (data) => {
         }
         let $furniture = $("#furnitureList");
         furnitureSum += price * amount;
-        $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
+        $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
             return;
         }
-        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${price * parseFloat(parseData("S157"))}</span>`);
+        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${price * (1 + 1/parseFloat(parseData("S157")))} грн.</span>`);
     }
 
     function appendOptionsOption(name, manufacturer, amount, price, dim) {
