@@ -129,7 +129,8 @@ const onDataLoaded = (data) => {
         conditioning = cookies._conditioning,
         flooring = cookies._flooring,
         workSum = 0,
-        furnitureSum = 0;
+        furnitureSum = 0,
+        $furniture = $("#furnitureList");
 
     if (style == "cozy") {
         letter = "I";
@@ -242,13 +243,18 @@ const onDataLoaded = (data) => {
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));    
         
     appendFurnitureOption(parseData("F120"), parseData(letterModel + "120"), 1, parseFloat(parseData(`${letter+120}`, space)), parseData("G120"));
-    //appendFurnitureOption(parseData("F121"), parseData(letterModel + "121"), 1, parseFloat(parseData(`${letter+121}`, space)), parseData("G121"));
-    //appendFurnitureOption(parseData("F122"), parseData(letterModel + "122"), 1, parseFloat(parseData(`${letter+122}`, space)), parseData("G122"));
+    appendFurnitureOption(parseData("F121"), parseData(letterModel + "121"), 1, parseFloat(parseData(`${letter+121}`, space)), parseData("G121"));
+    appendFurnitureOption(parseData("F122"), parseData(letterModel + "122"), 1, parseFloat(parseData(`${letter+122}`, space)), parseData("G122"));
     appendFurnitureOption(parseData("F123"), parseData(letterModel + "123"), 1, parseFloat(parseData(`${letter+123}`, space)), parseData("G123"));
     appendFurnitureOption(parseData("F124"), parseData(letterModel + "124"), 1, parseFloat(parseData(`${letter+124}`, space)), parseData("G124"));
     appendFurnitureOption(parseData("F125"), parseData(letterModel + "125"), 1, parseFloat(parseData(`${letter+125}`, space)), parseData("G125"));
     appendFurnitureOption(parseData("F126"), parseData(letterModel + "126"), 4, parseFloat(parseData(`${letter+126}`, space)), parseData("G126"));
     appendFurnitureOption(parseData("F127"), parseData(letterModel + "127"), 1, parseFloat(parseData(`${letter+127}`, space)), parseData("G127"));
+    
+    $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
+    $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small\">Кухня</h4><div class=\"list-option-container\"></div>`);
+    $("#furnitureList .list-option-container").last().append(`<span class=\'notation heading-name\'>Всього по меблях:</span><span class=\'notation amount\'>${furnitureSum} грн.</span>`);
+    
     appendFurnitureOption(parseData("F131"), parseData(letterModel + "131"), 1, parseFloat(parseData(`${letter+131}`, space)), parseData("G131"));
     appendFurnitureOption(parseData("F132"), parseData(letterModel + "132"), 1, parseFloat(parseData(`${letter+132}`, space)), parseData("G132"));
     appendFurnitureOption(parseData("F134"), parseData(letterModel + "134"), amountOfRooms - 1, parseFloat(parseData(`${letter+134}`, space)), parseData("G134"));
@@ -318,7 +324,6 @@ const onDataLoaded = (data) => {
         if ((amount == 0) || (!amount) || !(price)) {
             return;
         }
-        let $furniture = $("#furnitureList");
         furnitureSum += price * (1 + parseFloat(parseData("S157")/100)) * amount;
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
@@ -343,8 +348,8 @@ const onDataLoaded = (data) => {
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
     }
     $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-
     $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
+    $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
     /*<span class=\'list-text work\'>${price} грн.</span><span class=\'list-text amount-work\'>${amount} шт.</span>*/
     if (!appliancesBoolTotal) {
