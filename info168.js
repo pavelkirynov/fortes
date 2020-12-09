@@ -241,14 +241,14 @@ const onDataLoaded = (data) => {
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));    
         
-    appendFurnitureOption(parseData("F120"), parseData("G120"), 1, parseFloat(parseData(`${letter+120}`, space)));
-    appendFurnitureOption(parseData("F121"), parseData("G121"), 1, parseFloat(parseData(`${letter+121}`, space)));
-    appendFurnitureOption(parseData("F122"), parseData("G122"), 1, parseFloat(parseData(`${letter+122}`, space)));
-    appendFurnitureOption(parseData("F123"), parseData("G123"), 1, parseFloat(parseData(`${letter+123}`, space)));
-    appendFurnitureOption(parseData("F124"), parseData("G124"), 1, parseFloat(parseData(`${letter+124}`, space)));
-    appendFurnitureOption(parseData("F125"), parseData("G125"), 1, parseFloat(parseData(`${letter+125}`, space)));
-    appendFurnitureOption(parseData("F126"), parseData("G126"), 4, parseFloat(parseData(`${letter+126}`, space)));
-    appendFurnitureOption(parseData("F127"), parseData("G127"), 1, parseFloat(parseData(`${letter+127}`, space)));
+    appendFurnitureOption(parseData("F120"), parseData(letterModel + "120"), 1, parseFloat(parseData(`${letter+120}`, space)), parseData("G120"));
+    appendFurnitureOption(parseData("F121"), parseData(letterModel + "121"), 1, parseFloat(parseData(`${letter+121}`, space)), parseData("G121"));
+    appendFurnitureOption(parseData("F122"), parseData(letterModel + "122"), 1, parseFloat(parseData(`${letter+122}`, space)), parseData("G122"));
+    appendFurnitureOption(parseData("F123"), parseData(letterModel + "123"), 1, parseFloat(parseData(`${letter+123}`, space)), parseData("G123"));
+    appendFurnitureOption(parseData("F124"), parseData(letterModel + "124"), 1, parseFloat(parseData(`${letter+124}`, space)), parseData("G124"));
+    appendFurnitureOption(parseData("F125"), parseData(letterModel + "125"), 1, parseFloat(parseData(`${letter+125}`, space)), parseData("G125"));
+    appendFurnitureOption(parseData("F126"), parseData(letterModel + "126"), 4, parseFloat(parseData(`${letter+126}`, space)), parseData("G126"));
+    appendFurnitureOption(parseData("F127"), parseData(letterModel + "127"), 1, parseFloat(parseData(`${letter+127}`, space)), parseData("G127"));
         
     //appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
     //appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
@@ -305,7 +305,7 @@ const onDataLoaded = (data) => {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
             return;
         }
-        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * (1 + 1/parseFloat(parseData("S157"))))} грн.</span>`);
+        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * (1 + parseFloat(parseData("S157")/100)))} грн.</span>`);
     }
 
     function appendOptionsOption(name, manufacturer, amount, price, dim) {
