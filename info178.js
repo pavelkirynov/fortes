@@ -230,7 +230,7 @@ if (furnitureBool) {
     appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space * 100, parseData("G94"));
 }
 
-workSum = Math.round(workSum * (1 + parseFloat(parseData("S99").replace(/,/g, '.') / 100)));
+workSum = Math.round(workSum * (1 + parseFloat(parseData("S99") / 100)));
 
 appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, space * parseFloat(parseData(`${letter+102}`, space)));
 appendOptionsOption(parseData("F103"), parseData(letterModel + "103"), +hygienicShower * parseFloat(amountOfBathrooms), +hygienicShower * parseFloat(parseData(`${letter+103}`, space)));
