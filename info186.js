@@ -293,8 +293,11 @@ appendFurnitureOption(parseData("F151"), parseData(letterModel + "151"), amountO
 appendFurnitureOption(parseData("F152"), parseData(letterModel + "152"), 1, parseFloat(parseData(`${letter+152}`, space)), parseData("G152"));
 appendFurnitureOption(parseData("F153"), parseData(letterModel + "153"), amountOfBathrooms - 1, parseFloat(parseData(`${letter+153}`, space)), parseData("G153"));
 
-//appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+109}`)) * parseFloat(entranceDoors), parseData("G109"));
-//appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), parseFloat(entranceDoors), parseFloat(parseData(`${letter+110}`)) * parseFloat(entranceDoors), parseData("G110"));
+furnitureSum = furnitureSum * 1.03 * (1+(parseData("S157")/100));     
+
+$("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
+$("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
+    
 function appendWorkOption(name, manufacturer, amount, price) {
     if ((amount == 0) || (amount == undefined) || (price == 0) || (!price)) {
         return;
@@ -338,6 +341,7 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
 }
 
 function appendFurnitureOption(name, manufacturer, amount, price, dim) {
+    
     if ((amount == 0) || (!amount) || !(price)) {
         return;
     }
@@ -347,6 +351,7 @@ function appendFurnitureOption(name, manufacturer, amount, price, dim) {
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
         return;
     }
+    console.log(price*amount + " " + name +" "+ furnitureSum);
     $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * (1 + parseFloat(parseData("S157")/100)))} грн.</span>`);
 }
 
@@ -366,8 +371,6 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
 }
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
-$("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-$("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
 /*<span class=\'list-text work\'>${price} грн.</span><span class=\'list-text amount-work\'>${amount} шт.</span>*/
 if (!appliancesBoolTotal) {
     $(".comfy-section").css("display", "none");
