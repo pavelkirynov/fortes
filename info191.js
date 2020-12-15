@@ -301,9 +301,10 @@ appendFurnitureOption(parseData("F152"), parseData(letterModel + "152"), 1, pars
 }
 appendFurnitureOption(parseData("F153"), parseData(letterModel + "153"), amountOfRooms - 1, parseFloat(parseData(`${letter+153}`, space)), parseData("G153"));
 
-furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157")/100)));     
+
 $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
+furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157")/100)));     
     
 function appendWorkOption(name, manufacturer, amount, price) {
     if ((amount == 0) || (amount == undefined) || (price == 0) || (!price)) {
