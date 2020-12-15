@@ -257,14 +257,14 @@ if (furnitureBool) {
     appendFurnitureOption(parseData("F126"), parseData(letterModel + "126"), 4, parseFloat(parseData(`${letter+126}`, space)), parseData("G126"));
     appendFurnitureOption(parseData("F127"), parseData(letterModel + "127"), 1, parseFloat(parseData(`${letter+127}`, space)), parseData("G127"));
     
-    $("#furnitureList").append("<div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div>");
+    $("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
     $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Вітальня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
     appendFurnitureOption(parseData("F131"), parseData(letterModel + "131"), 1, parseFloat(parseData(`${letter+131}`, space)), parseData("G131"));
     appendFurnitureOption(parseData("F132"), parseData(letterModel + "132"), 1, parseFloat(parseData(`${letter+132}`, space)), parseData("G132"));
 }
 
     
-$("#furnitureList").append("<div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div>");
+$("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Спальня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
 appendFurnitureOption(parseData("F134"), parseData(letterModel + "134"), 1, parseFloat(parseData(`${letter+134}`, space)), parseData("G134"));
@@ -276,7 +276,7 @@ if (furnitureBool) {
     appendFurnitureOption(parseData("F139"), parseData(letterModel + "139"), 1, parseFloat(parseData(`${letter+139}`, space)), parseData("G139"));
 }
     
-$("#furnitureList").append("<div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div>");
+$("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Світильники</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
     
 if (furnitureBool) {
@@ -289,7 +289,7 @@ if (furnitureBool) {
 appendFurnitureOption(parseData("F143"), parseData(letterModel + "143"), 2, parseFloat(parseData(`${letter+143}`, space)), parseData("G143"));
 appendFurnitureOption(parseData("F145"), parseData(letterModel + "145"), 2, parseFloat(parseData(`${letter+145}`, space)), parseData("G145"));
     
-$("#furnitureList").append("<div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div>");
+$("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Декор</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
     
     
