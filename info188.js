@@ -301,8 +301,7 @@ appendFurnitureOption(parseData("F152"), parseData(letterModel + "152"), 1, pars
 }
 appendFurnitureOption(parseData("F153"), parseData(letterModel + "153"), amountOfRooms - 1, parseFloat(parseData(`${letter+153}`, space)), parseData("G153"));
 
-furnitureSum = furnitureSum * 1.03 * (1+(parseData("S157")/100));     
-
+furnitureSum = furnitureSum + (furnitureSum * 1.03 * (1 + (parseData("S157")/100)));     
 $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
     
@@ -360,7 +359,7 @@ function appendFurnitureOption(name, manufacturer, amount, price, dim) {
         return;
     }
     console.log(price*amount + " " + name +" "+ furnitureSum);
-    $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * (1 + parseFloat(parseData("S157")/100)))} грн.</span>`);
+    $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * amount * (1 + parseFloat(parseData("S157")/100)))} грн.</span>`);
 }
 
 function appendOptionsOption(name, manufacturer, amount, price, dim) {
