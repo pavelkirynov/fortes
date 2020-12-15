@@ -268,7 +268,7 @@ $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-
 
 appendFurnitureOption(parseData("F134"), parseData(letterModel + "134"), 1, parseFloat(parseData(`${letter+134}`, space)), parseData("G134"));
 appendFurnitureOption(parseData("F135"), parseData(letterModel + "135"), 1, parseFloat(parseData(`${letter+135}`, space)), parseData("G135"));
-appendFurnitureOption(parseData("F136"), parseData(letterModel + "136"), amountOfRooms, parseFloat(parseData(`${letter+136}`, space)), parseData("G136"));
+appendFurnitureOption(parseData("F136"), parseData(letterModel + "136"), 2, parseFloat(parseData(`${letter+136}`, space)), parseData("G136"));
 if (furnitureBool) {
     appendFurnitureOption(parseData("F137"), parseData(letterModel + "137"), 1, parseFloat(parseData(`${letter+137}`, space)), parseData("G137"));
     appendFurnitureOption(parseData("F138"), parseData(letterModel + "138"), 1, parseFloat(parseData(`${letter+138}`, space)), parseData("G138"));
@@ -280,7 +280,7 @@ $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-
     
 if (furnitureBool) {
     appendFurnitureOption(parseData("F141"), parseData(letterModel + "141"), Math.round(space * 0.48), parseFloat(parseData(`${letter+141}`, space)), parseData("G141"));
-    appendFurnitureOption(parseData("F142"), parseData(letterModel + "142"), amountOfBathrooms - 1, parseFloat(parseData(`${letter+142}`, space)), parseData("G142"));
+    appendFurnitureOption(parseData("F142"), parseData(letterModel + "142"), 1, parseFloat(parseData(`${letter+142}`, space)), parseData("G142"));
     appendFurnitureOption(parseData("F144"), parseData(letterModel + "144"), 1, parseFloat(parseData(`${letter+144}`, space)), parseData("G144"));
     appendFurnitureOption(parseData("F146"), parseData(letterModel + "146"), 1, parseFloat(parseData(`${letter+146}`, space)), parseData("G146"));
     appendFurnitureOption(parseData("F147"), parseData(letterModel + "147"), 1, parseFloat(parseData(`${letter+147}`, space)), parseData("G147"));
