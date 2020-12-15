@@ -245,6 +245,7 @@ if (furnitureBool) {
     $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Кухня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
     
     appendFurnitureOption(parseData("F120"), parseData(letterModel + "120"), 1, parseFloat(parseData(`${letter+120}`, space)), parseData("G120"));
+    furnitrueSum += Math.round( parseFloat(parseData(`${letter+122}`, space) * (1 +( parseData("S157")/100)))) + Math.round(parseFloat(parseData(`${letter+121}`, space) * (1 +( parseData("S157")/100))));
     $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div></div>");
     $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F121")}</span><span class=\'list-text amount\'>1</span><span class=\'list-text\'>${Math.round(parseFloat(parseData(`${letter+121}`, space) * (1 +( parseData("S157")/100)))) } грн.</span>`);
     $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div></div>");
