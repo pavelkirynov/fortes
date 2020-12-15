@@ -266,8 +266,8 @@ if (furnitureBool) {
 $("#furnitureList").append("<div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div>");
 $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Спальня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
-appendFurnitureOption(parseData("F134"), parseData(letterModel + "134"), amountOfRooms - 1, parseFloat(parseData(`${letter+134}`, space)), parseData("G134"));
-appendFurnitureOption(parseData("F135"), parseData(letterModel + "135"), amountOfRooms - 1, parseFloat(parseData(`${letter+135}`, space)), parseData("G135"));
+appendFurnitureOption(parseData("F134"), parseData(letterModel + "134"), 1, parseFloat(parseData(`${letter+134}`, space)), parseData("G134"));
+appendFurnitureOption(parseData("F135"), parseData(letterModel + "135"), 1, parseFloat(parseData(`${letter+135}`, space)), parseData("G135"));
 appendFurnitureOption(parseData("F136"), parseData(letterModel + "136"), amountOfRooms, parseFloat(parseData(`${letter+136}`, space)), parseData("G136"));
 if (furnitureBool) {
     appendFurnitureOption(parseData("F137"), parseData(letterModel + "137"), 1, parseFloat(parseData(`${letter+137}`, space)), parseData("G137"));
@@ -301,7 +301,7 @@ appendFurnitureOption(parseData("F152"), parseData(letterModel + "152"), 1, pars
 }
 appendFurnitureOption(parseData("F153"), parseData(letterModel + "153"), amountOfRooms - 1, parseFloat(parseData(`${letter+153}`, space)), parseData("G153"));
 
-furnitureSum = furnitureSum + (furnitureSum * 1.03 * (1 + (parseData("S157")/100)));     
+furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157")/100)));     
 $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${furnitureSum} грн.</span>`);
     
