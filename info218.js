@@ -395,7 +395,7 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
 
     
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-$("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
+$("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
 if (!appliancesBoolTotal) {
     $(".comfy-section").css("display", "none");
     $("#appliancesListTotal").css("display", "none");
@@ -403,7 +403,7 @@ if (!appliancesBoolTotal) {
 if (!!appliancesBoolTotal) {
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
-    let sum = 0;
+    var sum = 0;
     if (appliancesCookie == "gorenje") {
         let element = appliances.gorenje;
         let i = 0;
@@ -470,4 +470,5 @@ $("#kitchenMontage").html(kitchenMontage + " грн.");
 $("#kitchenDelivery").html(kitchenDelivery + " грн.");
 $("#kitchenTotal, #kitchenTotalPrice").html(kitchenTotal + " грн");
 $("#kitchenTotalPriceDiscount").html(kitchenTotal * 0.9);
+    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum));
 };
