@@ -325,6 +325,7 @@ function appendMaterialsOption(name, manufacturer, amount, price, dim) {
     if (dim == null) {
         $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
+        return;
     }
     if ((amount == 0) || (!amount) || !(price)) {
         return;
