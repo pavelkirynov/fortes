@@ -349,7 +349,7 @@ appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScr
 appendOptionsOption(parseData("F113"), parseData(letterModel + "113"), +conditioning, +conditioning * parseFloat(parseData(`${letter+113}`, space)) * (1 + parseFloat(parseData("S113")/100)));
     
 $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
+$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
 
 function appendOptionsOption(name, manufacturer, amount, price) {
     if ((amount == 0) || (!amount) || !(price)) {
@@ -471,5 +471,5 @@ $("#kitchenMontage").html(kitchenMontage + " грн.");
 $("#kitchenDelivery").html(kitchenDelivery + " грн.");
 $("#kitchenTotal, #kitchenTotalPrice").html(kitchenTotal + " грн");
 $("#kitchenTotalPriceDiscount").html(kitchenTotal * 0.9);
-    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum + " грн."));
+    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum) + " грн.");
 };
