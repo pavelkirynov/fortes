@@ -182,18 +182,18 @@ if (ceiling == "stretch ceiling") {
 console.log(flooring + " " + ceiling);
 let water = parseFloat(parseData(`${letter+42}`, space)) * space,
     canalisation = parseFloat(parseData(`${letter+43}`, space)) * space,
-    vents = parseFloat(parseData(`${letter+44}`, space)) * space * parseFloat(amountOfBathrooms),
+    vents = parseFloat(parseData(`${letter+44}`, space)) * space,
     electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
 
 appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
 appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
-appendWorkOption(parseData("F44"), parseData("G44"), amountOfBathrooms, vents);
-appendWorkOption(parseData("F45"), parseData("G45"), 1, parseFloat(electricity));
+appendWorkOption(parseData("F44"), parseData("G44"), parseFoat(amountOfBathrooms), vents);
+appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);
 //appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
 //appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
 appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
 appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
-appendWorkOption(parseData("F50"), parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)) * (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)));
+appendWorkOption(parseData("F50"), parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)));
 appendWorkOption(parseData("F52"), parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`, space)) * space);
 appendWorkOption(parseData("G51"), parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
 appendWorkOption(parseData("G51"), parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * 140);
@@ -209,10 +209,10 @@ appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66 * sp
 appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66 * space, parseFloat(parseData(`${letter+75}`, space)), null);
 appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59 * space, parseFloat(parseData(`${letter+76}`, space)), null);
 appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)), null);
-appendMaterialsOption(parseData("F79"), parseData(letterModel + "79"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+79}`, space)), parseData("G79"));
-appendMaterialsOption(parseData("F80"), parseData(letterModel + "80"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+80}`, space)), parseData("G80"));
-appendMaterialsOption(parseData("F81"), parseData(letterModel + "81"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+81}`, space)), parseData("G81"));
-appendMaterialsOption(parseData("F82"), parseData(letterModel + "82"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+82}`, space)), parseData("G82"));
+appendMaterialsOption(parseData("F79"), parseData(letterModel + "79"), 1, parseFloat(parseData(`${letter+79}`, space)), parseData("G79"));
+appendMaterialsOption(parseData("F80"), parseData(letterModel + "80"), 1, parseFloat(parseData(`${letter+80}`, space)), parseData("G80"));
+appendMaterialsOption(parseData("F81"), parseData(letterModel + "81"), 1, parseFloat(parseData(`${letter+81}`, space)), parseData("G81"));
+appendMaterialsOption(parseData("F82"), parseData(letterModel + "82"), 1, parseFloat(parseData(`${letter+82}`, space)), parseData("G82"));
 appendMaterialsOption(parseData("F83"), parseData(letterModel + "83"), parseFloat(bath), parseFloat(parseData(`${letter+83}`, space)), parseData("G83"));
 appendMaterialsOption(parseData("F84"), parseData(letterModel + "84"), parseFloat(shower), parseFloat(parseData(`${letter+84}`, space)), parseData("G84"));
 appendMaterialsOption(parseData("F85"), parseData(letterModel + "85"), shower, parseFloat(parseData(`${letter+85}`, space)), parseData("G85"));
