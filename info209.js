@@ -351,7 +351,7 @@ function appendOptionsOption(name, manufacturer, amount, price) {
     let $workList = $("#workList");
     workSum += price * amount;
     console.log(price*amount + " " + name +" "+ workSum);
-    $workList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
+    $workList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
     if (!manufacturer) {
         $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
         return;
