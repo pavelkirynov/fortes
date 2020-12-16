@@ -203,12 +203,12 @@ appendWorkOption(parseData("F64"), parseData("G64"), 1, parseFloat(parseData(`${
 appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum) / 100) * 1.56));
 appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));
 
-appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), parseData("G72"));
-appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 35, parseFloat(parseData(`${letter+73}`, space)), parseData("G73"));
-appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66 * space, parseFloat(parseData(`${letter+74}`, space)), parseData("G74"));
-appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66 * space, parseFloat(parseData(`${letter+75}`, space)), parseData("G75"));
-appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59 * space, parseFloat(parseData(`${letter+76}`, space)), parseData("G76"));
-appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)), parseData("G77"));
+appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), null);
+appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 35, parseFloat(parseData(`${letter+73}`, space)), null);
+appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66 * space, parseFloat(parseData(`${letter+74}`, space)), null);
+appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66 * space, parseFloat(parseData(`${letter+75}`, space)), null);
+appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59 * space, parseFloat(parseData(`${letter+76}`, space)), null);
+appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)), null);
 appendMaterialsOption(parseData("F79"), parseData(letterModel + "79"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+79}`, space)), parseData("G79"));
 appendMaterialsOption(parseData("F80"), parseData(letterModel + "80"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+80}`, space)), parseData("G80"));
 appendMaterialsOption(parseData("F81"), parseData(letterModel + "81"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+81}`, space)), parseData("G81"));
@@ -220,14 +220,13 @@ appendMaterialsOption(parseData("F86"), parseData(letterModel + "86"), parseFloa
 appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
 appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
 appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));
-console.log(floorScreed + " test " + +floorScreed);
 if (space < 100) {
-    appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), parseData("G91"));
+    appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
 } else {
-    appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 10), parseFloat(parseData(`${letter+flooringNum2}`, space)), parseData("G91"));
+    appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 10), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
 }
 if (furnitureBool) {
-    appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space * 100, parseData("G94"));
+    appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space * 100, null);
 }
 
 workSum = Math.round(workSum * (1 + parseFloat(parseData("S99") / 100)));
@@ -314,18 +313,23 @@ function appendWorkOption(name, manufacturer, amount, price) {
     let $work = $("#workList");
     workSum += parseFloat(price);
     $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-    if (!manufacturer) {
+    /*if (!manufacturer) {
         $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
         return;
-    }
+    }*/
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
 }
 
 function appendMaterialsOption(name, manufacturer, amount, price, dim) {
+    let $materials = $("#materialsList");
+    if (dim == null) {
+        $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
+        $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
+    }
     if ((amount == 0) || (!amount) || !(price)) {
         return;
     }
-    let $materials = $("#materialsList");
+    
     workSum += price * amount;
     $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
     if (!manufacturer) {
@@ -378,9 +382,9 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     console.log(price);
     $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
+    
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
-/*<span class=\'list-text work\'>${price} грн.</span><span class=\'list-text amount-work\'>${amount} шт.</span>*/
 if (!appliancesBoolTotal) {
     $(".comfy-section").css("display", "none");
     $("#appliancesListTotal").css("display", "none");
