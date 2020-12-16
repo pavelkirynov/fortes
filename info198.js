@@ -311,7 +311,8 @@ function appendWorkOption(name, manufacturer, amount, price) {
         return;
     }
     let $work = $("#workList");
-    workSum += parseFloat(price);
+    workSum += price * amount;
+    console.log(price*amount + " " + name +" "+ workSum);
     $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
     /*if (!manufacturer) {
         $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
@@ -323,6 +324,8 @@ function appendWorkOption(name, manufacturer, amount, price) {
 function appendMaterialsOption(name, manufacturer, amount, price, dim) {
     let $materials = $("#materialsList");
     if (dim == null) {
+        workSum += price * amount;
+        console.log(price*amount + " " + name +" "+ workSum);
         $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
         return;
