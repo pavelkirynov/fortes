@@ -337,6 +337,7 @@ function appendMaterialsOption(name, manufacturer, amount, price, dim) {
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
         return;
     }
+    console.log(price*amount + " " + name +" "+ workSum);
     $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
 
@@ -365,7 +366,6 @@ function appendFurnitureOption(name, manufacturer, amount, price, dim) {
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
         return;
     }
-    console.log(price*amount + " " + name +" "+ furnitureSum);
     $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Math.round(price * amount * (1 + parseFloat(parseData("S157")/100)))} грн.</span>`);
 }
 
@@ -380,7 +380,6 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
         return;
     }
-    console.log(price);
     $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
     
