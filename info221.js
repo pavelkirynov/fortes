@@ -243,9 +243,9 @@ if (furnitureBool) {
     appendFurnitureOption(parseData("F120"), parseData(letterModel + "120"), 1, parseFloat(parseData(`${letter+120}`, space)), parseData("G120"));
     furnitureSum += Math.round( parseFloat(parseData(`${letter+122}`, space) * (1 +( parseData("S157")/100)))) + Math.round(parseFloat(parseData(`${letter+121}`, space) * (1 +( parseData("S157")/100))));
     $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div></div>");
-    $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F121")}</span><span class=\'list-text amount\'>1</span><span class=\'list-text\'>${Math.round(parseFloat(parseData(`${letter+121}`, space) * (1 +( parseData("S157")/100)))) } грн.</span>`);
+    $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F121")}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Math.round(parseFloat(parseData(`${letter+121}`, space) * (1 +( parseData("S157")/100)))) } грн.</span>`);
     $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div></div>");
-    $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F122")}</span><span class=\'list-text amount\'>1</span><span class=\'list-text\'>${Math.round( parseFloat(parseData(`${letter+122}`, space) * (1 +( parseData("S157")/100)))) } грн.</span>`);
+    $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F122")}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Math.round( parseFloat(parseData(`${letter+122}`, space) * (1 +( parseData("S157")/100)))) } грн.</span>`);
     
     appendFurnitureOption(parseData("F123"), parseData(letterModel + "123"), 1, parseFloat(parseData(`${letter+123}`, space)), parseData("G123"));
     appendFurnitureOption(parseData("F124"), parseData(letterModel + "124"), 1, parseFloat(parseData(`${letter+124}`, space)), parseData("G124"));
@@ -471,5 +471,5 @@ $("#kitchenMontage").html(kitchenMontage + " грн.");
 $("#kitchenDelivery").html(kitchenDelivery + " грн.");
 $("#kitchenTotal, #kitchenTotalPrice").html(kitchenTotal + " грн");
 $("#kitchenTotalPriceDiscount").html(kitchenTotal * 0.9);
-    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum) + " грн.");
+    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum) + " грн. *");
 };
