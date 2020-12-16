@@ -133,6 +133,7 @@ let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     workSum = 0,
     furnitureSum = 0,
     $furniture = $("#furnitureList");
+    console.log(floorScreed+ " " +denoising+ " " +hygienicShower+ " " +secondGypsumLayer+ " " +heatedFlooring+ " " +entranceDoors+ " " +conditioning);
 
 if (style == "cozy") {
     letter = "I";
