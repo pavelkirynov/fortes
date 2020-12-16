@@ -205,7 +205,7 @@ appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum) / 100) 
 appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));
 
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
-$("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
+$("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
     
 appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), null);
 appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 35, parseFloat(parseData(`${letter+73}`, space)), null);
@@ -348,15 +348,15 @@ function appendOptionsOption(name, manufacturer, amount, price) {
     if ((amount == 0) || (!amount) || !(price)) {
         return;
     }
-    let $materials = $("#materialsList");
+    let $materials = $("#workList");
     workSum += price * amount;
     console.log(price*amount + " " + name +" "+ workSum);
     $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
     if (!manufacturer) {
-        $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
+        $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
         return;
     }
-    $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} шт.</span>`);
+    $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} шт.</span>`);
 }
 
 function appendFurnitureOption(name, manufacturer, amount, price, dim) {
