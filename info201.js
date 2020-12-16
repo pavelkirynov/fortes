@@ -195,8 +195,8 @@ appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${
 appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
 appendWorkOption(parseData("F50"), parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)));
 appendWorkOption(parseData("F52"), parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`, space)) * space);
-appendWorkOption(parseData("G51"), parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
-appendWorkOption(parseData("G51"), parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * 140);
+appendWorkOption(parseData("F54"), parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
+appendWorkOption(parseData("F53"), parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * 140);
 appendWorkOption(parseData("F" + ceilingNum), parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
 appendWorkOption(parseData("F" + flooringNum), parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
 appendWorkOption(parseData("F64"), parseData("G64"), 1, parseFloat(parseData(`${letter + 64}`, space)) * space);
@@ -231,13 +231,6 @@ if (furnitureBool) {
 
 workSum = Math.round(workSum * (1 + parseFloat(parseData("S99") / 100)));
 
-appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, space * parseFloat(parseData(`${letter+102}`, space)));
-appendOptionsOption(parseData("F103"), parseData(letterModel + "103"), +hygienicShower * parseFloat(amountOfBathrooms), +hygienicShower * parseFloat(parseData(`${letter+103}`, space)));
-appendOptionsOption(parseData("F104"), parseData(letterModel + "104"), +heatedFlooring, +heatedFlooring * parseFloat(parseData(`${letter+104}`, space)));
-appendOptionsOption(parseData("F105"), parseData(letterModel + "105"), +secondGypsumLayer, space * parseFloat(parseData(`${letter+105}`, space)));
-appendOptionsOption(parseData("F106"), parseData(letterModel + "106"), +denoising + mouldings, (+denoising + mouldings) * space * parseFloat(parseData(`${letter+106}`, space)));
-appendOptionsOption(parseData("F107"), parseData(letterModel + "107"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+107}`, space)));
-appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+108}`, space)));
     
 if (furnitureBool) {
     $("#furnitureList").append("</div><div class=\"list-option-container\"></div>");
@@ -307,17 +300,12 @@ $("#furnitureList .list-option-container").last().append(`<span class=\'name sum
 furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157")/100)));     
     
 function appendWorkOption(name, manufacturer, amount, price) {
-    if ((amount == 0) || (amount == undefined) || (price == 0) || (!price)) {
+    if ((amount == 0) || (amount == undefined) || (price == 0) || !(price)) {
         return;
     }
     let $work = $("#workList");
     workSum += price * amount;
-    console.log(price*amount + " " + name +" "+ workSum);
     $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-    /*if (!manufacturer) {
-        $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-        return;
-    }*/
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
 }
 
@@ -325,7 +313,6 @@ function appendMaterialsOption(name, manufacturer, amount, price, dim) {
     let $materials = $("#materialsList");
     if (dim == null) {
         workSum += price * amount;
-        console.log(price*amount + " " + name +" "+ workSum);
         $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
         return;
@@ -343,19 +330,28 @@ function appendMaterialsOption(name, manufacturer, amount, price, dim) {
     console.log(price*amount + " " + name +" "+ workSum);
     $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
+    
+appendOptionsOption(parseData("F102"), parseData(letterModel + "102"), +floorScreed, space * parseFloat(parseData(`${letter+102}`, space)));
+appendOptionsOption(parseData("F103"), parseData(letterModel + "103"), +hygienicShower * parseFloat(amountOfBathrooms), +hygienicShower * parseFloat(parseData(`${letter+103}`, space)));
+appendOptionsOption(parseData("F104"), parseData(letterModel + "104"), +heatedFlooring, +heatedFlooring * parseFloat(parseData(`${letter+104}`, space)));
+appendOptionsOption(parseData("F105"), parseData(letterModel + "105"), +secondGypsumLayer, space * parseFloat(parseData(`${letter+105}`, space)));
+appendOptionsOption(parseData("F106"), parseData(letterModel + "106"), +denoising + mouldings, (+denoising + mouldings) * space * parseFloat(parseData(`${letter+106}`, space)));
+appendOptionsOption(parseData("F107"), parseData(letterModel + "107"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+107}`, space)));
+appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+108}`, space)));
 
-function appendOptionsOption(name, manufacturer, amount, price, dim) {
+function appendOptionsOption(name, manufacturer, amount, price) {
     if ((amount == 0) || (!amount) || !(price)) {
         return;
     }
     let $materials = $("#materialsList");
     workSum += price * amount;
+    console.log(price*amount + " " + name +" "+ workSum);
     $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
     if (!manufacturer) {
         $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
         return;
     }
-    $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
+    $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} шт.</span>`);
 }
 
 function appendFurnitureOption(name, manufacturer, amount, price, dim) {
