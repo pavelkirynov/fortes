@@ -442,6 +442,7 @@ if (!!appliancesBoolTotal) {
     }
     $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${sum} грн.</span>`);
+    $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${Math.round(sum * 0.9)} грн.</span>`);
     i = 0;
 }
 if (!furnitureBool) {
@@ -470,5 +471,5 @@ $("#kitchenMontage").html(kitchenMontage + " грн.");
 $("#kitchenDelivery").html(kitchenDelivery + " грн.");
 $("#kitchenTotal, #kitchenTotalPrice").html(kitchenTotal + " грн");
 $("#kitchenTotalPriceDiscount").html(kitchenTotal * 0.9);
-    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum));
+    $("#totalPriceTotal").html(Math.round(furnitureSum + workSum + sum + " грн."));
 };
