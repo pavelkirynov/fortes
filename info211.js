@@ -373,18 +373,19 @@ function appendFurnitureOption(name, manufacturer, amount, price, dim) {
 }
 
 function appendOptionsOption(name, manufacturer, amount, price, dim) {
-    if ((amount == undefined) || !(price) || (amount == 0)) {
+    if ((amount == 0) || (!amount) || !(price)) {
         return;
     }
-    let $materials = $("#materialsList");
-    workSum += price;
+    let $materials = $("#workList");
+    workSum += price * amount;
     $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
     if (!manufacturer) {
-        $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
+        $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
         return;
     }
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
+
     
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${workSum} грн.</span>`);
