@@ -187,7 +187,7 @@ let water = parseFloat(parseData(`${letter+42}`, space)) * space,
 
 appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
 appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
-appendWorkOption(parseData("F44"), parseData("G44"), parseFoat(amountOfBathrooms), vents);
+appendWorkOption(parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), vents);
 appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);
 //appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
 //appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
