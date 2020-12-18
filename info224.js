@@ -137,7 +137,7 @@ let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     if (style == "neoclassic") {
         $("#styleSpec").html("Neo Classic"); 
     } else {
-        $("#styleSpec").html(style[0].toUpperCase() + style.slice(1, string.length));    
+        $("#styleSpec").html(style[0].toUpperCase() + style.slice(1, style.length));    
     }
 
 if (style == "cozy") {
