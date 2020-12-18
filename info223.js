@@ -134,7 +134,7 @@ let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     furnitureSum = 0,
     $furniture = $("#furnitureList");
     console.log(floorScreed+ " " +denoising+ " " +hygienicShower+ " " +secondGypsumLayer+ " " +heatedFlooring+ " " +entranceDoors+ " " +conditioning);
-    if (style = "neoclassic") {
+    if (style == "neoclassic") {
         $("#styleSpec").html("Neo Classic"); 
     } else {
         $("#styleSpec").html(style[0].toUpperCase() + style.slice(1, string.length));    
@@ -467,9 +467,9 @@ if (style == "cozy") {
 }
 
 
-let kitchenMontage = parseFloat(parseData(`${styleLetter + 121}`));
-let kitchenDelivery = parseFloat(parseData(`${styleLetter + 122}`));
-let kitchenPrice = parseFloat(parseData(`${styleLetter + 120}`));
+let kitchenMontage = parseFloat(parseData(`${letter + 121}`));
+let kitchenDelivery = parseFloat(parseData(`${letter + 122}`));
+let kitchenPrice = parseFloat(parseData(`${letter + 120}`));
 let kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
 $("#kitchenPrice").html(kitchenPrice + " грн.");
 $("#kitchenMontage").html(kitchenMontage + " грн.");
