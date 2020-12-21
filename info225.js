@@ -134,6 +134,7 @@ let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     furnitureSum = 0,
     $furniture = $("#furnitureList");
     console.log(floorScreed+ " " +denoising+ " " +hygienicShower+ " " +secondGypsumLayer+ " " +heatedFlooring+ " " +entranceDoors+ " " +conditioning);
+  	console.log(style);
     if (style == "neoclassic") {
         $("#styleSpec").html("Neo Classic"); 
     } else {
