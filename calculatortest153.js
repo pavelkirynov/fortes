@@ -172,7 +172,7 @@
             } else if (space >= 100) {
                 laminateAmount = vinylAmount = parquetAmount = space - (amountOfBathrooms * 10);
             }
-            flooringTotal = element.laminate * laminateAmount * flooringBool.laminate + element.quartzvinyl * vinylAmount * flooringBool.vinyl + flooringBool.parquet * parquetAmount * flooringBool.parquet;
+            flooringTotal = element.laminate * laminateAmount * flooringBool.laminate + element.quartzvinyl * vinylAmount * flooringBool.vinyl + element.parquet * parquetAmount * flooringBool.parquet;
             console.log("materials " + flooringTotal);
             materialsTotal = generalTotal + bathroomTotal + flooringTotal + space * 100 * furnitureBool;
             return (materialsTotal);
