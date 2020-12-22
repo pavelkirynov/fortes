@@ -109,7 +109,9 @@
             lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)*furnitureBool + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
             decorationsTotal = element.jalousie * furnitureBool + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal)*(1 + (parseData("S157") / 100));
-            furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;
+            if (furnitureBool) {
+                furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;   
+            }
             console.log(kitchenTotal + " " + livingroomTotal + " " + bedroomTotal  + " " + lightingTotal  + " " + decorationsTotal);
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${Math.round(furnitureTotal / (28.5 * space))}$/м²</span>`);
             return furnitureTotal;
@@ -747,7 +749,7 @@
                 ClimaticMarkup = parseData("S113");
             let months = parseFloat(parseData("G8", space));
 
-            console.log(parseInt(handleFurniture(furniture, FurnitureMarkup)) / (28.5 * space) + " " + parseFloat(handleMaterials(materials)) * (1 + (AccessorriesMarkup / 100)) / (28.5 * space) + " " + handleWork(work, months) * (1 + (AccessorriesMarkup / 100)) / (28.5 * space) + " " + parseInt(handleOptions(options))) / (28.5 * space);
+            console.log(parseInt(handleFurniture(furniture, FurnitureMarkup)) / (28.5 * space) + " " + handleMaterials(materials) / (28.5 * space) + " " + handleWork(work, months) * (1 + (AccessorriesMarkup / 100)) / (28.5 * space) + " " + parseInt(handleOptions(options))) / (28.5 * space);
             let result = (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseFloat(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
             return result;
         }
