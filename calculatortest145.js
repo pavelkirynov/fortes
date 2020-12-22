@@ -253,7 +253,7 @@
             $(".choice[data-appliances='bosch']").children(".grey").html(`${Math.round(boschPrice/(space*28.5))}$/м²`);
             $(".choice[data-appliances='miele']").children(".grey").html(`${Math.round(mielePrice/(space*28.5))}$/м²`);
             sum += i * parseFloat(parseData("G36"));
-            return sum;
+            return sum * appliancesBoolTotal;
         }
 
         function handleTotal() {
