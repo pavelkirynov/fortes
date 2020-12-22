@@ -751,6 +751,8 @@
             let months = parseFloat(parseData("G8", space));
             let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
             console.log(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))));
+            console.log(handleAppliances(appliances)*0.9/(28.5*50));
+            console.log(handleOptions(options)/(space(28.5));
             return result;
         }
 
