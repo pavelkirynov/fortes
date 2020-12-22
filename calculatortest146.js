@@ -750,8 +750,7 @@
                 ClimaticMarkup = parseData("S113");
             let months = parseFloat(parseData("G8", space));
             let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
-console.log(result);
-            console.log(handleFurniture(furniture, FurnitureMarkup) + " " + handleMaterials(materials) + " " + handleWork(work, months) + " " + handleOptions(options) + " " + handleAppliances(appliances));
+            console.log(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))));
             return result;
         }
 
