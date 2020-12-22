@@ -140,8 +140,8 @@
             flooringTotal = (element.laminate * flooringBool.laminate + element.vinyl * flooringBool.vinyl + element.parquet * flooringBool.parquet) * space;
             paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
             plinthTotal = (element.plinth + element.plinthHidden) * space;
-            let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) * 1.022 + ((space * 100) + (months * 2 * 1200) + 3000);
-            console.log("WORK " + workTotal);
+            let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) + (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) * 0.022 + ((space * 100) + (months * 2 * 1200) + 3000);
+            console.log("WORK " + workTotal/(28.5*50));
             return workTotal;
         }
 
