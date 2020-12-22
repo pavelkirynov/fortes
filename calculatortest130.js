@@ -112,9 +112,6 @@
             furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;
             console.log(kitchenTotal + " " + livingroomTotal + " " + bedroomTotal  + " " + lightingTotal  + " " + decorationsTotal);
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${Math.round(furnitureTotal / (28.5 * space))}$/м²</span>`);
-            if (!furnitureBool) {
-                return 0;
-            }
             return furnitureTotal;
         }
 
