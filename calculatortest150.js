@@ -227,11 +227,13 @@
             }
             let sum = 0,
                 i = 1;
-            for (let key in element) {
+            if (appliancesBoolTotal) {
+                            for (let key in element) {
                 sum += +element[key];
                 i++;
             }
             i = 1;
+            }
             let gorenjePrice = 0,
                 boschPrice = 0,
                 mielePrice = 0;
@@ -253,7 +255,7 @@
             $(".choice[data-appliances='bosch']").children(".grey").html(`${Math.round(boschPrice/(space*28.5))}$/м²`);
             $(".choice[data-appliances='miele']").children(".grey").html(`${Math.round(mielePrice/(space*28.5))}$/м²`);
             sum += i * parseFloat(parseData("G36"));
-            return sum * appliancesBoolTotal;
+            return (sum * appliancesBoolTotal);
         }
 
         function handleTotal() {
