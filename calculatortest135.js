@@ -141,6 +141,7 @@
             paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
             plinthTotal = (element.plinth + element.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) * 1.022 + ((space * 100) + (months * 2 * 1200) + 3000);
+            console.log((generalTotal + " " + ceilingTotal + " " + flooringTotal + " " + paintingTotal + " " + plinthTotal) * 1.022 + " " + (space * 100)+(months * 2 * 1200) + 3000));
 
             return workTotal;
         }
@@ -749,7 +750,7 @@
                 ClimaticMarkup = parseData("S113");
             let months = parseFloat(parseData("G8", space));
 
-            console.log(parseInt(handleFurniture(furniture, FurnitureMarkup)) / (28.5 * space) + " MATERIALS " + handleMaterials(materials) / (28.5 * space) + " " + handleWork(work, months) / (28.5 * space) + " " + parseInt(handleOptions(options))) / (28.5 * space);
+            console.log(parseInt(handleFurniture(furniture, FurnitureMarkup)) / (28.5 * space) + " " + handleMaterials(materials) / (28.5 * space) + " WORK " + handleWork(work, months) / (28.5 * space) + " " + parseInt(handleOptions(options))) / (28.5 * space);
             let result = (parseInt(handleAppliances(appliances)) * 0.9 + parseInt(handleFurniture(furniture, FurnitureMarkup)) + parseFloat(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100)))) + parseInt(handleOptions(options))) / (28.5 * space);
             return result;
         }
