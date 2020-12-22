@@ -171,6 +171,7 @@
                 laminateAmount = vinylAmount = parquetAmount = space - (amountOfBathrooms * 10);
             }
             flooringTotal = element.laminate * laminateAmount * flooringBool.laminate + element.quartzvinyl * vinylAmount * flooringBool.vinyl + flooringBool.parquet * parquetAmount * flooringBool.parquet;
+            console.log(generalTotal +" "+ bathroomTotal +" "+ flooringTotal);
             materialsTotal = generalTotal + bathroomTotal + flooringTotal + parseFloat(parseData("I94") * 100) * furnitureBool;
             return (materialsTotal * (1 + parseData("S99") / 100));
         }
