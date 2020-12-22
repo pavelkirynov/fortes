@@ -142,7 +142,7 @@
             paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
             plinthTotal = (element.plinth + element.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal);
-            console.log("parket", flooringTotal);
+            console.log("work ", flooringTotal);
             workTotal += workTotal * 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000) + mainWorks;
             return workTotal;
         }
@@ -173,6 +173,7 @@
                 laminateAmount = vinylAmount = parquetAmount = space - (amountOfBathrooms * 10);
             }
             flooringTotal = element.laminate * laminateAmount * flooringBool.laminate + element.quartzvinyl * vinylAmount * flooringBool.vinyl + flooringBool.parquet * parquetAmount * flooringBool.parquet;
+            console.log("materials " + flooringTotal);
             materialsTotal = generalTotal + bathroomTotal + flooringTotal + space * 100 * furnitureBool;
             return (materialsTotal);
         }
