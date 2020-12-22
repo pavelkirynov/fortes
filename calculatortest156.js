@@ -204,7 +204,7 @@
                 conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space;
             }
             let entranceDoors = optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage);
-            console.log(optionsBool.entranceDoors + " " + element.entranceDoor + " " element.entranceDoorMontage);
+            console.log(optionsBool.entranceDoors + " " + element.entranceDoor + " " + element.entranceDoorMontage);
             $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
             $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
             //$("#conditioning").siblings(".label").html(`Кондиціювання <span class=\"grey\">+${Math.round((element.conditioningSplit * space + element.conditioner * (1 + 1 / parseData("S113")) * 1.05) / (space * 28.5 * 2))}$/м²</span>`);
