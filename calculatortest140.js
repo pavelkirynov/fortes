@@ -141,6 +141,7 @@
             paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
             plinthTotal = (element.plinth + element.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) + (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) * 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000);
+            console.log(generalTotal +" " + ceilingTotal +" " + flooringTotal +" " + paintingTotal +" " + plinthTotal +" " + (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal) * 0.022 +" " + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000));
             console.log("WORK " + workTotal/(28.5*50));
             return workTotal;
         }
