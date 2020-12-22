@@ -123,7 +123,8 @@
                 paintingTotal = 0,
                 flooringTotal = 0,
                 plinthTotal = 0,
-                generalTotal = 0;
+                generalTotal = 0,
+                mainWorks = 0;
             if (style == "modern") {
                 element = work.modern;
             } else if (style == "fusion") {
@@ -135,13 +136,14 @@
             } else if (style == "neoclassic") {
                 element = work.neoclassic;
             }
-            generalTotal = (element.electricity + element.waterSupply + element.canalisation + (element.ventilation * amountOfBathrooms)) * space + (element.kafel * amountOfBathrooms * space) + (element.bathtub * bathtub) + (element.shower * shower) + element.gypsumMontage * space + element.doorInstallation * (amountOfBathrooms + amountOfRooms);
+            mainWorks = (element.electricity + element.waterSupply + element.canalisation + (element.ventilation * amountOfBathrooms)) * space;
+            generalTotal = (element.kafel * amountOfBathrooms * space) + (element.bathtub * bathtub) + (element.shower * shower) + element.gypsumMontage * space + element.doorInstallation * (amountOfBathrooms + amountOfRooms);
             ceilingTotal = (element.ceiling1 * ceilingBool.ceiling1 + element.ceiling2 * ceilingBool.ceiling2 + element.ceiling3 * ceilingBool.ceiling3) * space;
             flooringTotal = (element.laminate * flooringBool.laminate + element.vinyl * flooringBool.vinyl + element.parquet * flooringBool.parquet) * space;
             paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
             plinthTotal = (element.plinth + element.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal);
-            workTotal = (workTotal - ((element.electricity + element.waterSupply + element.canalisation + (element.ventilation * amountOfBathrooms)) * space))* 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000);
+            workTotal += workTotal * 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000) + mainWorks;
             return workTotal;
         }
 
