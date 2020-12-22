@@ -103,11 +103,11 @@
             } else if (style == "neoclassic") {
                 element = furniture.neoclassic;
             }
-            kitchenTotal = element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture;
-            livingroomTotal = element.sofa + element.livingroomChair;
-            bedroomTotal = element.bed + element.matress + element.cupboard + element.bedChair + element.mirror + element.shelves * 2;
-            lightingTotal = (element.spotlight * (0.48 * space)) + element.chandelier + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight + element.kitchenCeilingLight * 2 + element.bedsideLight * 2;
-            decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
+            kitchenTotal = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) * furnitureBool;
+            livingroomTotal = (element.sofa + element.livingroomChair) * furnitureBool;
+            bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) * furnitureBool + element.shelves * 2;
+            lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)*furnitureBool + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
+            decorationsTotal = element.jalousie * furnitureBool + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal)*(1 + (parseData("S157") / 100));
             furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;
             console.log(kitchenTotal + " " + livingroomTotal + " " + bedroomTotal  + " " + lightingTotal  + " " + decorationsTotal);
