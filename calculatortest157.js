@@ -142,7 +142,6 @@
             paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
             plinthTotal = (element.plinth + element.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal);
-            console.log("work ", flooringTotal);
             workTotal += workTotal * 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000) + mainWorks;
             return workTotal;
         }
@@ -173,7 +172,6 @@
                 laminateAmount = vinylAmount = parquetAmount = space - (amountOfBathrooms * 10);
             }
             flooringTotal = element.laminate * laminateAmount * flooringBool.laminate + element.quartzvinyl * vinylAmount * flooringBool.vinyl + element.parquet * parquetAmount * flooringBool.parquet;
-            console.log("materials " + flooringTotal);
             materialsTotal = generalTotal + bathroomTotal + flooringTotal + space * 100 * furnitureBool;
             return (materialsTotal);
         }
@@ -208,7 +206,7 @@
             $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
             $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
             //$("#conditioning").siblings(".label").html(`Кондиціювання <span class=\"grey\">+${Math.round((element.conditioningSplit * space + element.conditioner * (1 + 1 / parseData("S113")) * 1.05) / (space * 28.5 * 2))}$/м²</span>`);
-            $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${Math.round((element.entranceDoor + element.entranceDoorMontage) / (space * 28.5))}$/м²</span>`);
+            $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${Math.round((element.entranceDoor) / (space * 28.5))}$/м²</span>`);
             $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${Math.round(element.partitions / (28.5))}$/м²</span>`);
             $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${Math.round((amountOfBathrooms * element.hygienicShower) / (space * 28.5))}$/м²</span>`);
             optionsTotal = floorScreed + shower + heatedFlooring + secondGypsumLayer + denoising1 + denoising2 + conditioning + entranceDoors;
