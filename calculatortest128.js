@@ -109,7 +109,7 @@
             lightingTotal = (element.spotlight * (0.48 * space)) + element.chandelier + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight + element.kitchenCeilingLight * 2 + element.bedsideLight * 2;
             decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal)*(1 + (parseData("S157") / 100));
-            furnitureTotal *= 1.03;
+            furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;
             console.log(kitchenTotal + " " + livingroomTotal + " " + bedroomTotal  + " " + lightingTotal  + " " + decorationsTotal);
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${Math.round(furnitureTotal / (28.5 * space))}$/м²</span>`);
             if (!furnitureBool) {
