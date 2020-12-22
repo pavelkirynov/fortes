@@ -112,7 +112,6 @@
             if (furnitureBool) {
                 furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;   
             }
-            console.log(kitchenTotal + " " + livingroomTotal + " " + bedroomTotal  + " " + lightingTotal  + " " + decorationsTotal);
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${Math.round(furnitureTotal / (28.5 * space))}$/м²</span>`);
             return furnitureTotal;
         }
@@ -751,6 +750,8 @@
                 ClimaticMarkup = parseData("S113");
             let months = parseFloat(parseData("G8", space));
             let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+console.log(result);
+            console.log(handleFurniture(furniture, FurnitureMarkup) + " " + handleMaterials(materials) + " " + handleWork(work, months) + " " + handleOptions(options) + " " + handleAppliances(appliances));
             return result;
         }
 
