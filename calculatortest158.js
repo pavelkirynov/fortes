@@ -766,17 +766,14 @@
             optionsBool.hygienicShower = +$("#hygienicShower").is(":checked");
             optionsBool.secondGypsumLayer = +$("#secondGypsumLayer").is(":checked");
             optionsBool.heatedFlooring = +$("#heatedFlooring").val();
-            optionsBool.conditioning = +$("#conditioning").val();
             furnitureBool = +$("#furnitureBool").is(":checked");
             bathtub = +$("#bathtub").is(":checked");
             shower = +$("#shower").is(":checked");
             appliancesBoolTotal = +$("#appliancesBool").is(":checked");
-
             optionsBool.floorScreed = +$("#floorscreed").is(":checked");
-
             optionsBool.denoising = +$("#noise").is(":checked");
             optionsBool.entranceDoors = +$("#doors").is(":checked");
-            optionsBool.conditioning = +$("#conditioning").is(":checked");
+            optionsBool.conditioning = +$("#conditioning").val();
             ceilingBool.ceiling1 = +$("#ceiling1").is(":checked");
             ceilingBool.ceiling2 = +$("#ceiling2").is(":checked");
             ceilingBool.ceiling3 = +$("#ceiling3").is(":checked");
