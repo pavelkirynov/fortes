@@ -213,11 +213,7 @@
             $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${((element.entranceDoor) / (space * 28.5)).toFixed(2)}$/м²</span>`);
             $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${(element.partitions / (28.5)).toFixed(2)}$/м²</span>`);
             $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${((amountOfBathrooms * element.hygienicShower) / (space * 28.5)).toFixed(2)}$/м²</span>`);
-            optionsTotal = floorScreed + shower + heatedFlooring + secondGypsumLayer + denoising1 + denoising2 + conditioning + entranceDoors;
-
-            if ((optionsBool.denoising + ceilingBool.ceiling1 + ceilingBool.ceiling2) > 2) {
-                optionsTotal += element.tensionCeilingDenoising * space;
-            }
+            optionsTotal = floorScreed + shower + heatedFlooring + secondGypsumLayer + denoising1 + denoising2 + denoising3 + conditioning + entranceDoors;
             return optionsTotal;
         }
 
