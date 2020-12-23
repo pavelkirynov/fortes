@@ -930,5 +930,5 @@
         });
 
         $("#total").html(Math.round(handleTotal()));
-        $("#totalWhole").html(Math.round(handleTotal()* space));
+        $("#totalWhole").html(Math.round(handleTotal() * 50));
     };
