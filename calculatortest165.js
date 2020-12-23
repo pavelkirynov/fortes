@@ -828,7 +828,7 @@
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
         });
         $("#calculate").on("click", function () {
-            let slideNumber = $(".slider-tab.w--current").data("slider-index");
+            let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
             if (slideNumber == 0) {
                 style = "cozy";
             } else if (slideNumber == 2) {
@@ -843,7 +843,8 @@
             $(".calculator-tab").removeClass("w--current");
             $(`.calculator-tab[data-slider-index='${slideNumber}']`).addClass("w--current");
             $("#total").html(handleTotal().toFixed(2));
-            $("#totalWhole").html(handleTotal() * space * 28.5);
+            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $(".calculator-slider-side").slick("slickGoTo", slideNumber);
         });
         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
