@@ -844,7 +844,8 @@
             $(`.calculator-tab[data-slider-index='${slideNumber}']`).addClass("w--current");
             $("#total").html(handleTotal().toFixed(2));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
-            $(".calculator-slider-side").slick("slickGoTo", slideNumber);
+            let slider = $(".calculator-slider-side");
+            slider[0].slick.slickGoTo(slideNumber);
         });
         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
