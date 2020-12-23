@@ -848,18 +848,20 @@
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
             $(".calculator-slide." + style).toggle(true);
+            $(".calculator-slider-option.active").removeClass("active");
+            $(".calculator-slider-option:eq(0)").addClass("active");
         });
         $("#calculateCozy").on("click", function () {
             style = "cozy";
             $(".calculator-tab").removeClass("w--current");
-            $(".calculator-tab[data-slider-index='0']").addClass("w--current");
+            $(".calculator-tab:eq(0)").addClass("w--current");
             $("#total").html(handleTotal().toFixed(2));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main, .calculator-slide.cozy").toggle(true);
             $(".calculator-slider-option.active").removeClass("active");
-            $(".calculator-slider-option[data-slider-index='0']").addClass("active");
+            $(".calculator-slider-option:eq(0)").addClass("active");
         });
         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
