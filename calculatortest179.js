@@ -853,6 +853,10 @@
         });
         $("#calculateCozy").on("click", function () {
             style = "cozy";
+            $("calculator-tab.w--current").removeClass("w--current");
+            $(".wrap-border.calculator-tab .custom-style").css("color", "black");
+            $(".wrap-border.calculator-tab .custom-style").css("background", "white");
+            $("calculator-tab:eq(0)").addClass("w--current");
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab:eq(0)").addClass("w--current");
             $("#total").html(handleTotal().toFixed(2));
