@@ -775,11 +775,6 @@
             flooringBool.laminate = +$("#laminat").is(":checked");
             flooringBool.vinyl = +$("#vynil").is(":checked");
             flooringBool.parquet = +$("#parket").is(":checked");
-            if (amountOfRooms == 0) {
-                $("#total").html(0);
-                $("#totalWhole").html(0);
-                return;
-            }
             $("#total").html(Math.round(handleTotal()));
             $("#totalWhole").html(Math.round(handleTotal() * space));
         });
@@ -825,6 +820,11 @@
             amountOfBathrooms = +$("#amountOfBathrooms").val();
             optionsBool.heatedFlooring = +$("#heatedFlooring").val();
             optionsBool.conditioning = +$("#conditioning").val();
+            if (amountOfRooms == 0) {
+                $("#total").html(0);
+                $("#totalWhole").html(0);
+                return;
+            }
             $("#total").html(Math.round(handleTotal()));
             $("#totalWhole").html(Math.round(handleTotal() * space));
         });
