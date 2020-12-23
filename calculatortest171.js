@@ -849,6 +849,16 @@
             $(".calculator-slide.main").toggle(true);
             $(".calculator-slide." + style).toggle(true);
         });
+        $("#calculateCozy").on("click", function () {
+            style = "cozy";
+            $(".calculator-tab").removeClass("w--current");
+            $(".calculator-tab[data-slider-index='0']").addClass("w--current");
+            $("#total").html(handleTotal().toFixed(2));
+            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $(".calculator-slide").toggle(false);
+            $(".calculator-slide.main").toggle(true);
+            $(".calculator-slide.cozy").toggle(true);
+        });
         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
                 return 0;
