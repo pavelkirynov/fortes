@@ -856,10 +856,10 @@
             $("#total").html(handleTotal().toFixed(2));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
             $(".calculator-slide").toggle(false);
-            $(".calculator-slide.main[data-slick-index='0'], .calculator-slide.cozy").toggle(true);
+            $(".calculator-slide.main, .calculator-slide.cozy").toggle(true);
+            $("calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slider-option.active").removeClass("active");
             $(".calculator-slider-option[data-slider-index='0']").addClass("active");
-            
         });
         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
