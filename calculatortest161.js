@@ -202,6 +202,7 @@
             if ((optionsBool.denoising + ceilingBool.ceiling1 + ceilingBool.ceiling2 ) > 1) {
                 denoising2 = element.tensionCeilingDenoising * space;
             }
+            let denoising3 = element.denoising * optionsBool.denoising * space;
             let conditioning = 0;
             if (optionsBool.conditioning) {
                 conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space;
