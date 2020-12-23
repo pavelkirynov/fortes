@@ -1,6 +1,6 @@
     let style = "cozy";
     let appliancesCookie = "";
-    $("#space").val(50);
+    $("#space").val(30);
     let space = +$("#space").val(),
         amountOfRooms = +$("#amountOfRooms").val(),
         amountOfBathrooms = +$("#amountOfBathrooms").val(),
@@ -779,6 +779,10 @@
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
         });
         $("input:text").on("input", function (e) {
+            $(this).val($(this).val().match(/\d*\.?\d+/));
+            if (parseInt($(this).val()) < 30) {
+                $(this).val(30);   
+            }
             space = +$("#space").val();
         });
         $(".increment-field .increment").on("click", function (e) {
@@ -842,7 +846,7 @@
             }
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass("w--current");
-            $("#total").html(handleTotal().toFixed(2));
+            $("#total").html(Math.round(handleTotal()));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
@@ -859,7 +863,7 @@
             $("calculator-tab:eq(0)").addClass("w--current");
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab:eq(0)").addClass("w--current");
-            $("#total").html(handleTotal().toFixed(2));
+            $("#total").html(Math.round(handleTotal()));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
