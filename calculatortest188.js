@@ -790,7 +790,7 @@
             }
         });
         $("#space").on("focusout", function (e) {
-            if (parseInt($(this).val()) < 30) {
+            if ((parseInt($(this).val()) < 30) || (!$(this).val())) {
                 $(this).val(30);   
             }
             space = +$("#space").val();
@@ -821,7 +821,7 @@
             optionsBool.heatedFlooring = +$("#heatedFlooring").val();
             optionsBool.conditioning = +$("#conditioning").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()* space));
+            $("#totalWhole").html(Math.round(handleTotal() * space));
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).attr("data-slider-index"));
@@ -841,7 +841,7 @@
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()* space));
+            $("#totalWhole").html(Math.round(handleTotal() * space));
         });
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
