@@ -795,7 +795,7 @@
             }
             space = +$("#space").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space));
+            $("#totalWhole").html(Math.round(handleTotal() * 30));
         });
         $(".increment-field .increment").on("click", function (e) {
             e.preventDefault();
