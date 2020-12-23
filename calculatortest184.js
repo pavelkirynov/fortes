@@ -778,12 +778,24 @@
             $("#total").html(Math.round(handleTotal()));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
         });
-        $("input:text").on("input", function (e) {
+        $("#space").on("input", function (e) {
             $(this).val($(this).val().match(/\d*\.?\d+/));
+            space = +$("#space").val();
+            $("#total").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            if (space == 0) {
+                $("#total").html(0);
+                $("#totalWhole").html(0);
+                return;
+            }
+        });
+        $("#space").on("focusout", function (e) {
             if (parseInt($(this).val()) < 30) {
                 $(this).val(30);   
             }
             space = +$("#space").val();
+            $("#total").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
         });
         $(".increment-field .increment").on("click", function (e) {
             e.preventDefault();
