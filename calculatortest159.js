@@ -112,7 +112,7 @@
             if (furnitureBool) {
                 furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;   
             }
-            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${Math.round(furnitureTotal / (28.5 * space))}$/м²</span>`);
+            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${(furnitureTotal / (28.5 * space)).toFixed(2)}$/м²</span>`);
             return furnitureTotal;
         }
 
@@ -202,13 +202,12 @@
                 conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space;
             }
             let entranceDoors = optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage);
-            console.log(optionsBool.entranceDoors + " " + element.entranceDoor + " " + element.entranceDoorMontage);
-            $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
-            $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
+            $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${(element.floorScreed / (28.5)).toFixed(2)}$/м²</span>`);
+            $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${(element.floorScreed / (28.5)).toFixed(2)}$/м²</span>`);
             //$("#conditioning").siblings(".label").html(`Кондиціювання <span class=\"grey\">+${Math.round((element.conditioningSplit * space + element.conditioner * (1 + 1 / parseData("S113")) * 1.05) / (space * 28.5 * 2))}$/м²</span>`);
-            $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${Math.round((element.entranceDoor) / (space * 28.5))}$/м²</span>`);
-            $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${Math.round(element.partitions / (28.5))}$/м²</span>`);
-            $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${Math.round((amountOfBathrooms * element.hygienicShower) / (space * 28.5))}$/м²</span>`);
+            $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${((element.entranceDoor) / (space * 28.5)).toFixed(2)}$/м²</span>`);
+            $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${(element.partitions / (28.5)).toFixed(2)}$/м²</span>`);
+            $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${((amountOfBathrooms * element.hygienicShower) / (space * 28.5)).toFixed(2)}$/м²</span>`);
             optionsTotal = floorScreed + shower + heatedFlooring + secondGypsumLayer + denoising1 + denoising2 + conditioning + entranceDoors;
 
             if ((optionsBool.denoising + ceilingBool.ceiling1 + ceilingBool.ceiling2) > 2) {
@@ -252,9 +251,9 @@
                 mielePrice += appliances.miele[jkey];
                 i++;
             }
-            $(".choice[data-appliances='gorenje']").children(".grey").html(`${Math.round(gorenjePrice/(space*28.5))}$/м²`);
-            $(".choice[data-appliances='bosch']").children(".grey").html(`${Math.round(boschPrice/(space*28.5))}$/м²`);
-            $(".choice[data-appliances='miele']").children(".grey").html(`${Math.round(mielePrice/(space*28.5))}$/м²`);
+            $(".choice[data-appliances='gorenje']").children(".grey").html(`${(gorenjePrice/(space*28.5)).toFixed(2)}$/м²`);
+            $(".choice[data-appliances='bosch']").children(".grey").html(`${(boschPrice/(space*28.5)).toFixed(2)}$/м²`);
+            $(".choice[data-appliances='miele']").children(".grey").html(`${(mielePrice/(space*28.5)).toFixed(2)}$/м²`);
             sum += i * parseFloat(parseData("G36"));
             return (sum * appliancesBoolTotal);
         }
@@ -658,10 +657,8 @@
                     table: parseData("O125"),
                     chairs: parseData("O126"),
                     otherKitchenFurniture: parseData("O127"),
-                    //barStool: parseFloat(parseData("F123")),
                     sofa: parseData("O131"),
                     livingroomChair: parseData("O132"),
-                    //otherFurniture: parseFloat(parseData("F128")),
                     bed: parseData("O134"),
                     matress: parseData("O135"),
                     shelves: parseData("O136"),
@@ -753,13 +750,10 @@
                 ClimaticMarkup = parseData("S113");
             let months = parseFloat(parseData("G8", space));
             let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
-            console.log(((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))));
-            console.log(handleAppliances(appliances)*0.9/(28.5*50));
-            console.log(handleOptions(options)/(space*28.5));
             return result;
         }
 
-        $("input").on("change", function () {
+        $("input").on("input", function () {
             space = +$("#space").val();
             amountOfRooms = +$("#amountOfRooms").val();
             amountOfBathrooms = +$("#amountOfBathrooms").val();
@@ -783,7 +777,7 @@
             $("#total").html(Math.round(handleTotal()));
             $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
         });
-        $("input:text").on("keypress", function (e) {
+        $("input:text").on("input", function (e) {
             space = +$("#space").val();
         });
         $(".increment-field .increment").on("click", function (e) {
@@ -847,8 +841,8 @@
             }
             $(".calculator-tab").removeClass("w--current");
             $(`.calculator-tab[data-slider-index='${slideNumber}']`).addClass("w--current");
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#total").html(handleTotal().toFixed(2));
+            $("#totalWhole").html(handleTotal() * space * 28.5);
         });
         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
