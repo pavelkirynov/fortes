@@ -782,7 +782,7 @@
             $(this).val($(this).val().match(/\d*\.?\d+/));
             space = +$("#space").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal() * space));
             if (space == 0) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
@@ -795,7 +795,7 @@
             }
             space = +$("#space").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal() * space));
         });
         $(".increment-field .increment").on("click", function (e) {
             e.preventDefault();
@@ -821,7 +821,7 @@
             optionsBool.heatedFlooring = +$("#heatedFlooring").val();
             optionsBool.conditioning = +$("#conditioning").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal()* space));
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).attr("data-slider-index"));
@@ -841,7 +841,7 @@
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal()* space));
         });
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
@@ -903,7 +903,7 @@
                 appliancesBool.standardGorenje = 0;
             }
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal()* space));
         });
         $("#node").on("click", function () {
             appliancesBoolTotal = 0;
@@ -911,7 +911,7 @@
             appliancesBool.standardBosch = 0;
             appliancesBool.premiumMiele = 0;
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()));
+            $("#totalWhole").html(Math.round(handleTotal()* space));
         });
         $("#appliancesBool").on("click", function () {
             if (!($(this).is(":checked"))) {
@@ -921,10 +921,10 @@
                 appliancesBoolTotal = 1;
                 appliancesBool.standardGorenje = 1;
                 $("#total").html(Math.round(handleTotal()));
-                $("#totalWhole").html(Math.round(handleTotal()));
+                $("#totalWhole").html(Math.round(handleTotal()* space));
             }
         });
 
         $("#total").html(Math.round(handleTotal()));
-        $("#totalWhole").html(Math.round(handleTotal()));
+        $("#totalWhole").html(Math.round(handleTotal()* space));
     };
