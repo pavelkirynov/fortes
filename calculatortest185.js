@@ -1,6 +1,6 @@
     let style = "cozy";
     let appliancesCookie = "";
-    $("#space").val(30);
+    $("#space").val(50);
     let space = +$("#space").val(),
         amountOfRooms = +$("#amountOfRooms").val(),
         amountOfBathrooms = +$("#amountOfBathrooms").val(),
