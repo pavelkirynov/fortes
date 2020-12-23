@@ -776,13 +776,13 @@
             flooringBool.vinyl = +$("#vynil").is(":checked");
             flooringBool.parquet = +$("#parket").is(":checked");
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
         });
         $("#space").on("input", function (e) {
             $(this).val($(this).val().match(/\d*\.?\d+/));
             space = +$("#space").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
             if (space == 0) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
@@ -821,7 +821,7 @@
             optionsBool.heatedFlooring = +$("#heatedFlooring").val();
             optionsBool.conditioning = +$("#conditioning").val();
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).attr("data-slider-index"));
@@ -841,7 +841,7 @@
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
         });
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
@@ -859,7 +859,7 @@
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass("w--current");
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
@@ -876,7 +876,7 @@
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab:eq(0)").addClass("w--current");
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main, .calculator-slide.cozy").toggle(true);
@@ -903,7 +903,7 @@
                 appliancesBool.standardGorenje = 0;
             }
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
         });
         $("#node").on("click", function () {
             appliancesBoolTotal = 0;
@@ -911,7 +911,7 @@
             appliancesBool.standardBosch = 0;
             appliancesBool.premiumMiele = 0;
             $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+            $("#totalWhole").html(Math.round(handleTotal()));
         });
         $("#appliancesBool").on("click", function () {
             if (!($(this).is(":checked"))) {
@@ -921,10 +921,10 @@
                 appliancesBoolTotal = 1;
                 appliancesBool.standardGorenje = 1;
                 $("#total").html(Math.round(handleTotal()));
-                $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+                $("#totalWhole").html(Math.round(handleTotal()));
             }
         });
 
         $("#total").html(Math.round(handleTotal()));
-        $("#totalWhole").html(Math.round(handleTotal() * space * 28.5));
+        $("#totalWhole").html(Math.round(handleTotal()));
     };
