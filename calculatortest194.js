@@ -1,4 +1,4 @@
-    let style = "cozy";
+    let style = "";
     let appliancesCookie = "";
     $("#space").val(50);
     let space = +$("#space").val(),
@@ -841,7 +841,6 @@
             } else if (number == 4) {
                 style = "neoclassic";
             }
-
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
