@@ -842,6 +842,7 @@
             $(`.calculator-slide.` + style).toggle(true);
             returnValue(space);
         });
+        $("#calculateHeader")
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
             if (slideNumber == 0) {
@@ -865,7 +866,7 @@
             $(".calculator-slider-option.active").removeClass("active");
             $(".calculator-slider-option:eq(0)").addClass("active");
         });
-        $("#calculateCozy").on("click", function () {
+        $(".calculatecozy").on("click", function () {
             style = "cozy";
             $("calculator-tab.w--current").removeClass("w--current");
             $(".wrap-border.calculator-tab .custom-style").css("color", "black");
