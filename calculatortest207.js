@@ -108,11 +108,12 @@
             bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) * furnitureBool + element.shelves * 2;
             lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)*furnitureBool + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
             decorationsTotal = element.jalousie * furnitureBool + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
+            let showPrice = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) + (element.sofa + element.livingroomChair) + (element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) + element.shelves * 2) + (((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight) + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier) + (element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms);
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal)*(1 + (parseData("S157") / 100));
             if (furnitureBool) {
                 furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;   
             }
-            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${(furnitureTotal / (28.5 * space)).toFixed(2)}$/м²</span>`);
+            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${Math.round((showPrice * (1 + (parseData("S157") / 100))) / (28.5 * space))}$/м²</span>`);
             return furnitureTotal;
         }
 
@@ -208,11 +209,11 @@
                 conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space;
             }
             let entranceDoors = optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage);
-            $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${(element.floorScreed / (28.5)).toFixed(2)}$/м²</span>`);
-            $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${(((element.denoising * space) + (element.tensionCeilingDenoising * space * (ceilingBool.ceiling1 + ceilingBool.ceiling2)) + (element.gypsumCeilingDenoising * space * ceilingBool.ceiling3)) / (28.5*50)).toFixed(2)}$/м²</span>`);
-            $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${((element.entranceDoor + element.entranceDoorMontage) / (space * 28.5)).toFixed(2)}$/м²</span>`);
-            $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${(element.partitions / (28.5)).toFixed(2)}$/м²</span>`);
-            $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${((amountOfBathrooms * element.hygienicShower) / (space * 28.5)).toFixed(2)}$/м²</span>`);
+            $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${Math.round(element.floorScreed / (28.5))}$/м²</span>`);
+            $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${Math.Round(((element.denoising * space) + (element.tensionCeilingDenoising * space * (ceilingBool.ceiling1 + ceilingBool.ceiling2)) + (element.gypsumCeilingDenoising * space * ceilingBool.ceiling3)) / (28.5*50))}$/м²</span>`);
+            $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${Math.round((element.entranceDoor + element.entranceDoorMontage) / (space * 28.5))}$/м²</span>`);
+            $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${Math.round(element.partitions / (28.5))}$/м²</span>`);
+            $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${Math.round((amountOfBathrooms * element.hygienicShower) / (space * 28.5))}$/м²</span>`);
             optionsTotal = floorScreed + shower + heatedFlooring + secondGypsumLayer + denoising1 + denoising2 + denoising3 + conditioning + entranceDoors;
             return optionsTotal;
         }
@@ -252,9 +253,9 @@
                 mielePrice += appliances.miele[jkey];
                 i++;
             }
-            $(".choice[data-appliances='gorenje']").children(".grey").html(`${(gorenjePrice/(space*28.5)).toFixed(2)}$/м²`);
-            $(".choice[data-appliances='bosch']").children(".grey").html(`${(boschPrice/(space*28.5)).toFixed(2)}$/м²`);
-            $(".choice[data-appliances='miele']").children(".grey").html(`${(mielePrice/(space*28.5)).toFixed(2)}$/м²`);
+            $(".choice[data-appliances='gorenje']").children(".grey").html(`${Math.round(gorenjePrice/(space*28.5))}$/м²`);
+            $(".choice[data-appliances='bosch']").children(".grey").html(`${Math.round(boschPrice/(space*28.5))}$/м²`);
+            $(".choice[data-appliances='miele']").children(".grey").html(`${Math.round(mielePrice/(space*28.5))}$/м²`);
             sum += i * parseFloat(parseData("G36"));
             return (sum * appliancesBoolTotal);
         }
