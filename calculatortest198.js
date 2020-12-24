@@ -932,6 +932,7 @@
             
             $("#total").html(numberWithSpaces(Math.round(handleTotal())));
             $("#totalWhole").html(numberWithSpaces(Math.round(handleTotal() * multiplier)));
+            console.log(handleTotal() * multiplier + " " + Math.round(handleTotal() * multiplier) + " " + numberWithSpaces(Math.round(handleTotal() * multiplier)));
             
             function numberWithSpaces(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
