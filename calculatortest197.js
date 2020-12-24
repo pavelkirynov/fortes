@@ -751,7 +751,7 @@
                 ClimaticMarkup = parseData("S113");
             let months = parseFloat(parseData("G8", space));
             let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
-            return result;
+            return Number(result);
         }
 
         $("input").on("input", function () {
@@ -928,12 +928,12 @@
                 $("#totalWhole").html(Math.round(handleTotal()* space));
             }
         });
-        function returnValue (multiplier) {
+        function returnValue(multiplier) {
             
-            $("#total").html(numberWithCommas(Math.round(handleTotal())));
-            $("#totalWhole").html(numberWithCommas(Math.round(handleTotal() * multiplier)));
+            $("#total").html(numberWithSpaces(Math.round(handleTotal())));
+            $("#totalWhole").html(numberWithSpaces(Math.round(handleTotal() * multiplier)));
             
-            function numberWithCommas(num) {
+            function numberWithSpaces(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
             }
         }
