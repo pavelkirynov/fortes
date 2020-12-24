@@ -1,4 +1,4 @@
-    let style = "";
+    let style = "cozy";
     let appliancesCookie = "";
     $("#space").val(50);
     let space = +$("#space").val(),
