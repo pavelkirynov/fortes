@@ -775,14 +775,12 @@
             flooringBool.laminate = +$("#laminat").is(":checked");
             flooringBool.vinyl = +$("#vynil").is(":checked");
             flooringBool.parquet = +$("#parket").is(":checked");
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space));
+            returnValue(space);
         });
         $("#space").on("input", function (e) {
             $(this).val($(this).val().match(/\d*\.?\d+/));
             space = +$("#space").val();
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space));
+            returnValue(space);
             if ((space == 0) || (amountOfRooms == 0)) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
@@ -794,8 +792,7 @@
                 $(this).val(30);   
             }
             space = +$("#space").val();
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * 30));
+            returnValue(30);
         });
         $(".increment-field .increment").on("click", function (e) {
             e.preventDefault();
@@ -825,8 +822,7 @@
                 $("#totalWhole").html(0);
                 return;
             }
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space));
+            returnValue(space);
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).attr("data-slider-index"));
@@ -844,8 +840,7 @@
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal() * space));
+            returnValue(space);
         });
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
@@ -906,16 +901,14 @@
                 appliancesBool.premiumMiele = 1;
                 appliancesBool.standardGorenje = 0;
             }
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()* space));
+            returnValue(space);
         });
         $("#node").on("click", function () {
             appliancesBoolTotal = 0;
             appliancesBool.standardGorenje = 0;
             appliancesBool.standardBosch = 0;
             appliancesBool.premiumMiele = 0;
-            $("#total").html(Math.round(handleTotal()));
-            $("#totalWhole").html(Math.round(handleTotal()* space));
+            returnValue(space);
         });
         $("#appliancesBool").on("click", function () {
             if (!($(this).is(":checked"))) {
@@ -924,8 +917,7 @@
             if (!(document.querySelector(".choiceActiveBorder"))) {
                 appliancesBoolTotal = 1;
                 appliancesBool.standardGorenje = 1;
-                $("#total").html(Math.round(handleTotal()));
-                $("#totalWhole").html(Math.round(handleTotal()* space));
+                returnValue(space);
             }
         });
         function returnValue(multiplier) {
