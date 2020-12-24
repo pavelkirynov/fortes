@@ -790,10 +790,10 @@
         });
         $("#space").on("focusout", function (e) {
             if ((parseInt($(this).val()) < 30) || (!$(this).val())) {
-                $(this).val(30);   
+                $(this).val(30);
+                space = +$("#space").val();
+                returnValue(30);
             }
-            space = +$("#space").val();
-            returnValue(30);
         });
         $(".increment-field .increment").on("click", function (e) {
             e.preventDefault();
@@ -929,5 +929,5 @@
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
             }
         }
-        returnValue(50);
+        returnValue(space);
     };
