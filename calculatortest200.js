@@ -928,17 +928,7 @@
                 $("#totalWhole").html(Math.round(handleTotal()* space));
             }
         });
-        function returnValue(multiplier) {
-            
-            $("#total").html(numberWithSpaces(Math.round(handleTotal())));
-            $("#totalWhole").html(numberWithSpaces(Math.round(handleTotal() * multiplier)));
-            console.log(handleTotal() * multiplier + " " + Math.round(handleTotal() * multiplier) + " " + numberWithSpaces(Math.round(handleTotal() * multiplier)));
-            
-            function numberWithSpaces(num) {
-                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
-            }
-        }
-        
 
-        returnValue(50);
+        $("#total").html(Math.round(handleTotal()));
+        $("#totalWhole").html(Math.round(handleTotal() * 50));
     };
