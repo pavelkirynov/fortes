@@ -928,7 +928,16 @@
                 $("#totalWhole").html(Math.round(handleTotal()* space));
             }
         });
+        function returnValue (multiplier) {
+            
+            $("#total").html(numberWithCommas(Math.round(handleTotal())));
+            $("#totalWhole").html(numberWithCommas(Math.round(handleTotal() * multiplier)));
+            
+            function numberWithCommas(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
+            }
+        }
+        
 
-        $("#total").html(Math.round(handleTotal()));
-        $("#totalWhole").html(Math.round(handleTotal() * 50));
+        returnValue(50);
     };
