@@ -106,6 +106,7 @@
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal);
             furnitureTotal *= 1.03 * (1 + (parseData("S157") / 100));   
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(showPrice)}$/м²</span>`);
+            console.log(furnitureTotal - showPrice);
             return furnitureTotal;
         }
 
