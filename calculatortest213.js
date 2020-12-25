@@ -108,7 +108,7 @@
             bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) * furnitureBool + element.shelves * 2;
             lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)*furnitureBool + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
             decorationsTotal = element.jalousie * furnitureBool + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
-            let showPrice = ((element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) + (element.sofa + element.livingroomChair) + (element.cupboard + element.bedChair + element.mirror) + (((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)) + (element.jalousie)) * 1.26;
+            let showPrice = ((element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) + (element.sofa + element.livingroomChair) + (element.cupboard + element.bedChair + element.mirror) + (((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)) + (element.jalousie));
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal)*(1 + (parseData("S157") / 100));
             if (furnitureBool) {
                 furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * 1.26;   
@@ -118,24 +118,13 @@
         }
 
         function handleWork(work, months) {
-            let element = "",
-                ceilingTotal = 0,
+            let ceilingTotal = 0,
                 paintingTotal = 0,
                 flooringTotal = 0,
                 plinthTotal = 0,
                 generalTotal = 0,
-                mainWorks = 0;
-            if (style == "modern") {
-                element = work.modern;
-            } else if (style == "fusion") {
-                element = work.fusion;
-            } else if (style == "cozy") {
-                element = work.cozy;
-            } else if (style == "japandi") {
-                element = work.japandi;
-            } else if (style == "neoclassic") {
-                element = work.neoclassic;
-            }
+                mainWorks = 0,
+                element = work;
             mainWorks = (element.electricity + element.waterSupply + element.canalisation + (element.ventilation * amountOfBathrooms)) * space;
             generalTotal = (element.kafel * amountOfBathrooms * space) + (element.bathtub * bathtub) + (element.shower * shower) + element.gypsumMontage * space + element.doorInstallation * (amountOfBathrooms + amountOfRooms);
             ceilingTotal = (element.ceiling1 * ceilingBool.ceiling1 + element.ceiling2 * ceilingBool.ceiling2 + element.ceiling3 * ceilingBool.ceiling3) * space;
@@ -261,120 +250,23 @@
         }
 
         function handleTotal() {
-
-            let work = {
-                cozy: {
-                    waterSupply: parseData("I42", space),
-                    canalisation: parseData("I43", space),
-                    ventilation: parseData("I44", space),
-                    electricity: parseData("I45"),
-                    shower: parseData("I46"),
-                    bathtub: parseData("I47"),
-                    gypsumMontage: parseData("I48", space),
-                    kafel: parseData("I49", space),
-                    doorInstallation: parseData("I50"),
-                    wallPainting: parseData("I52", space),
-                    ceilingPainting: parseData("I53", space),
-                    ceiling1: parseData("I56"),
-                    ceiling2: parseData("I57", space),
-                    ceiling3: parseData("I58", space),
-                    laminate: parseData("I60", space),
-                    vinyl: parseData("I61", space),
-                    parquet: parseData("I62", space),
-                    mouldings: parseData("I54", space),
-                    plinth: parseData("I64", space),
-                    plinthHidden: parseData("I65", space),
-                },
-                japandi: {
-                    waterSupply: parseData("K42", space),
-                    canalisation: parseData("K43", space),
-                    ventilation: parseData("K44", space),
-                    electricity: parseData("K45"),
-                    shower: parseData("K46"),
-                    bathtub: parseData("K47"),
-                    gypsumMontage: parseData("K48", space),
-                    kafel: parseData("K49", space),
-                    doorInstallation: parseData("K50"),
-                    wallPainting: parseData("K52", space),
-                    ceilingPainting: parseData("K53", space),
-                    ceiling1: parseData("K56"),
-                    ceiling2: parseData("K57", space),
-                    ceiling3: parseData("K58", space),
-                    laminate: parseData("K60", space),
-                    vinyl: parseData("K61", space),
-                    parquet: parseData("K62", space),
-                    mouldings: parseData("K54", space),
-                    plinth: parseData("K64", space),
-                    plinthHidden: parseData("K65", space),
-                },
-                fusion: {
-                    waterSupply: parseData("M42", space),
-                    canalisation: parseData("M43", space),
-                    ventilation: parseData("M44", space),
-                    electricity: parseData("M45"),
-                    shower: parseData("M46"),
-                    bathtub: parseData("M47"),
-                    gypsumMontage: parseData("M48", space),
-                    kafel: parseData("M49", space),
-                    doorInstallation: parseData("M50"),
-                    wallPainting: parseData("M52", space),
-                    ceilingPainting: parseData("M53", space),
-                    ceiling1: parseData("M56"),
-                    ceiling2: parseData("M57", space),
-                    ceiling3: parseData("M58", space),
-                    laminate: parseData("M60", space),
-                    vinyl: parseData("M61", space),
-                    parquet: parseData("M62", space),
-                    mouldings: parseData("M54", space) * 140,
-                    plinth: parseData("M64", space),
-                    plinthHidden: parseData("M65", space),
-                },
-                modern: {
-                    waterSupply: parseData("O42", space),
-                    canalisation: parseData("O43", space),
-                    ventilation: parseData("O44", space),
-                    electricity: parseData("O45"),
-                    shower: parseData("O46"),
-                    bathtub: parseData("O47"),
-                    gypsumMontage: parseData("O48", space),
-                    kafel: parseData("O49", space),
-                    doorInstallation: parseData("O50"),
-                    wallPainting: parseData("O52", space),
-                    ceilingPainting: parseData("O53", space),
-                    denoising: parseData("F42", space),
-                    ceiling1: parseData("O56"),
-                    ceiling2: parseData("O57", space),
-                    ceiling3: parseData("O58", space),
-                    laminate: parseData("O60", space),
-                    vinyl: parseData("O61", space),
-                    parquet: parseData("O62", space),
-                    mouldings: parseData("O54", space) * 140,
-                    plinth: parseData("O64", space),
-                    plinthHidden: parseData("O65", space),
-                },
-                neoclassic: {
-                    waterSupply: parseData("Q42", space),
-                    canalisation: parseData("Q43", space),
-                    ventilation: parseData("Q44", space),
-                    electricity: parseData("Q45"),
-                    shower: parseData("Q46"),
-                    bathtub: parseData("Q47"),
-                    gypsumMontage: parseData("Q48", space),
-                    kafel: parseData("Q49", space),
-                    doorInstallation: parseData("Q50"),
-                    wallPainting: parseData("Q52", space),
-                    ceilingPainting: parseData("Q53", space),
-                    ceiling1: parseData("Q56"),
-                    ceiling2: parseData("Q57", space),
-                    ceiling3: parseData("Q58", space),
-                    laminate: parseData("Q60", space),
-                    vinyl: parseData("Q61", space),
-                    parquet: parseData("Q62", space),
-                    mouldings: parseData("Q54", space) * 140,
-                    plinth: parseData("Q64", space),
-                    plinthHidden: parseData("Q65", space),
-                },
-            };
+            if (style == "modern") {
+                letter = "O";
+            } else if (style == "fusion") {
+                letter = "M";
+            } else if (style == "cozy") {
+                letter = "I";
+            } else if (style == "japandi") {
+                letter = "K";
+            } else if (style == "neoclassic") {
+                letter = "Q";
+            }
+            let work = {};
+            let workArrNum = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 53, 54, 56, 57, 58, 60, 61, 62, 64, 65];
+            let workPropArr = ["waterSupply", "canalisation", "ventilation", "electricity", "shower", "bathtub", "gypsumMontage", "kafel", "doorInstallation", "wallPainting", "ceilingPainting", "mouldings", "ceiling1", "ceiling2", "ceiling3", "laminate", "vinyl", "parquet", "plinth", "plinthHidden"];
+            for (let j = 0; j < workPropArr.length; j++) {
+                work[`${propArr[j]}`] = parseData(`${letter}${arrNum[j]}`, space);
+            }
             let options = {
                 cozy: {
                     floorScreed: parseFloat(parseData("I102", space)),
