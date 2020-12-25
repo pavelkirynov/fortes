@@ -267,73 +267,14 @@
             for (let i = 0; i < workPropArr.length; i++) {
                 work[`${workPropArr[i]}`] = parseData(`${letter}${workArrNum[i]}`, space);
             }
-            let options = {
-                cozy: {
-                    floorScreed: parseFloat(parseData("I102", space)),
-                    hygienicShower: parseFloat(parseData("I103")),
-                    heatedFlooring: parseFloat(parseData("I104")),
-                    partitions: parseFloat(parseData("I105", space)),
-                    gypsumCeilingDenoising: parseFloat(parseData("I106", space)),
-                    tensionCeilingDenoising: parseFloat(parseData("I107")),
-                    denoising: parseFloat(parseData("I108", space)),
-                    conditioningSplit: parseFloat(parseData("I112", space)),
-                    entranceDoor: parseFloat(parseData("I109")),
-                    entranceDoorMontage: parseFloat(parseData("I110")),
-                    conditioner: parseFloat(parseData("I113")),
-                },
-                japandi: {
-                    floorScreed: parseFloat(parseData("K102", space)),
-                    hygienicShower: parseFloat(parseData("K103")),
-                    heatedFlooring: parseFloat(parseData("K104")),
-                    partitions: parseFloat(parseData("K105", space)),
-                    gypsumCeilingDenoising: parseFloat(parseData("K106", space)),
-                    tensionCeilingDenoising: parseFloat(parseData("K107")),
-                    denoising: parseFloat(parseData("K108", space)),
-                    conditioningSplit: parseFloat(parseData("K112", space)),
-                    entranceDoor: parseFloat(parseData("K109")),
-                    entranceDoorMontage: parseFloat(parseData("K110")),
-                    conditioner: parseFloat(parseData("K113")),
-                },
-                fusion: {
-                    floorScreed: parseFloat(parseData("M102", space)),
-                    hygienicShower: parseFloat(parseData("M103")),
-                    heatedFlooring: parseFloat(parseData("M104")),
-                    partitions: parseFloat(parseData("M105", space)),
-                    gypsumCeilingDenoising: parseFloat(parseData("M106", space)),
-                    tensionCeilingDenoising: parseFloat(parseData("M107")),
-                    denoising: parseFloat(parseData("M108", space)),
-                    conditioningSplit: parseFloat(parseData("M112", space)),
-                    entranceDoor: parseFloat(parseData("M109")),
-                    entranceDoorMontage: parseFloat(parseData("M110")),
-                    conditioner: parseFloat(parseData("M113")),
-                },
-                modern: {
-                    floorScreed: parseFloat(parseData("O102", space)),
-                    hygienicShower: parseFloat(parseData("O103")),
-                    heatedFlooring: parseFloat(parseData("O104")),
-                    partitions: parseFloat(parseData("O105", space)),
-                    gypsumCeilingDenoising: parseFloat(parseData("O106", space)),
-                    tensionCeilingDenoising: parseFloat(parseData("O107")),
-                    denoising: parseFloat(parseData("O108", space)),
-                    conditioningSplit: parseFloat(parseData("O112", space)),
-                    entranceDoor: parseFloat(parseData("O109")),
-                    entranceDoorMontage: parseFloat(parseData("O110")),
-                    conditioner: parseFloat(parseData("O113")),
-                },
-                neoclassic: {
-                    floorScreed: parseFloat(parseData("Q102", space)),
-                    hygienicShower: parseFloat(parseData("Q103")),
-                    heatedFlooring: parseFloat(parseData("Q104")),
-                    partitions: parseFloat(parseData("Q105", space)),
-                    gypsumCeilingDenoising: parseFloat(parseData("Q106", space)),
-                    tensionCeilingDenoising: parseFloat(parseData("Q107")),
-                    denoising: parseFloat(parseData("Q108", space)),
-                    conditioningSplit: parseFloat(parseData("Q112", space)),
-                    entranceDoor: parseFloat(parseData("Q109")),
-                    entranceDoorMontage: parseFloat(parseData("Q110")),
-                    conditioner: parseFloat(parseData("Q113")),
-                },
-            };
+            
+            let options = {};
+            let optionsArrNum = [102, 103, 104, 105, 106, 107, 108, 109, 110, 112, 113];
+            let optionsPropArr = ["floorScreed", "hygienicShower", "heatedFlooring", "partitions", "gypsumCeilingDenoising", "tensionCeilingDenoising", "denoising", "entranceDoor", "entranceDoorMontage", "conditioningSplit", "conditioner"];
+            for (let i = 0; i < optionsPropArr.length; i++) {
+                work[`${optionsPropArr[i]}`] = parseData(`${letter}${optionsArrNum[i]}`, space);
+            }
+            
             let materials = {
                 cozy: {
                     door: parseFloat(parseData("I72")),
