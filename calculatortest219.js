@@ -112,14 +112,13 @@
                 flooringTotal = 0,
                 plinthTotal = 0,
                 generalTotal = 0,
-                mainWorks = 0,
-                element = work;
-            mainWorks = (element.electricity + element.waterSupply + element.canalisation + (element.ventilation * amountOfBathrooms)) * space;
-            generalTotal = (element.kafel * amountOfBathrooms * space) + (element.bathtub * bathtub) + (element.shower * shower) + element.gypsumMontage * space + element.doorInstallation * (amountOfBathrooms + amountOfRooms);
-            ceilingTotal = (element.ceiling1 * ceilingBool.ceiling1 + element.ceiling2 * ceilingBool.ceiling2 + element.ceiling3 * ceilingBool.ceiling3) * space;
-            flooringTotal = (element.laminate * flooringBool.laminate + element.vinyl * flooringBool.vinyl + element.parquet * flooringBool.parquet) * space;
-            paintingTotal = element.wallPainting * space + element.ceilingPainting * ceilingBool.ceiling3 * space + element.mouldings;
-            plinthTotal = (element.plinth + element.plinthHidden) * space;
+                mainWorks = 0;
+            mainWorks = (work.electricity + work.waterSupply + work.canalisation + (work.ventilation * amountOfBathrooms)) * space;
+            generalTotal = (work.kafel * amountOfBathrooms * space) + (work.bathtub * bathtub) + (work.shower * shower) + work.gypsumMontage * space + work.doorInstallation * (amountOfBathrooms + amountOfRooms);
+            ceilingTotal = (work.ceiling1 * ceilingBool.ceiling1 + work.ceiling2 * ceilingBool.ceiling2 + work.ceiling3 * ceilingBool.ceiling3) * space;
+            flooringTotal = (work.laminate * flooringBool.laminate + work.vinyl * flooringBool.vinyl + work.parquet * flooringBool.parquet) * space;
+            paintingTotal = work.wallPainting * space + work.ceilingPainting * ceilingBool.ceiling3 * space + work.mouldings;
+            plinthTotal = (work.plinth + work.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal);
             workTotal += workTotal * 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000) + mainWorks;
             return workTotal;
@@ -300,26 +299,7 @@
         }
 
         $("input").on("input", function () {
-            space = +$("#space").val();
-            amountOfRooms = +$("#amountOfRooms").val();
-            amountOfBathrooms = +$("#amountOfBathrooms").val();
-            optionsBool.hygienicShower = +$("#hygienicShower").is(":checked");
-            optionsBool.secondGypsumLayer = +$("#secondGypsumLayer").is(":checked");
-            optionsBool.heatedFlooring = +$("#heatedFlooring").val();
-            furnitureBool = +$("#furnitureBool").is(":checked");
-            bathtub = +$("#bathtub").is(":checked");
-            shower = +$("#shower").is(":checked");
-            appliancesBoolTotal = +$("#appliancesBool").is(":checked");
-            optionsBool.floorScreed = +$("#floorscreed").is(":checked");
-            optionsBool.denoising = +$("#noise").is(":checked");
-            optionsBool.entranceDoors = +$("#doors").is(":checked");
-            optionsBool.conditioning = +$("#conditioning").val();
-            ceilingBool.ceiling1 = +$("#ceiling1").is(":checked");
-            ceilingBool.ceiling2 = +$("#ceiling2").is(":checked");
-            ceilingBool.ceiling3 = +$("#ceiling3").is(":checked");
-            flooringBool.laminate = +$("#laminat").is(":checked");
-            flooringBool.vinyl = +$("#vynil").is(":checked");
-            flooringBool.parquet = +$("#parket").is(":checked");
+            updateUserData();
             returnValue(space);
         });
         $("#space").on("input", function (e) {
@@ -357,11 +337,7 @@
             } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
                 $(this).siblings(".disabled").toggleClass("disabled");
             }
-            space = +$("#space").val();
-            amountOfRooms = +$("#amountOfRooms").val();
-            amountOfBathrooms = +$("#amountOfBathrooms").val();
-            optionsBool.heatedFlooring = +$("#heatedFlooring").val();
-            optionsBool.conditioning = +$("#conditioning").val();
+            updateUserData();
             if (amountOfRooms == 0) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
@@ -371,36 +347,15 @@
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).attr("data-slider-index"));
-            if (number == 0) {
-                style = "cozy";
-            } else if (number == 2) {
-                style = "fusion";
-            } else if (number == 1) {
-                style = "japandi";
-            } else if (number == 3) {
-                style = "modern";
-            } else if (number == 4) {
-                style = "neoclassic";
-            }
+            getUserStyle(number);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
             returnValue(space);
         });
-        $("#calculateHeader")
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
-            if (slideNumber == 0) {
-                style = "cozy";
-            } else if (slideNumber == 2) {
-                style = "fusion";
-            } else if (slideNumber == 1) {
-                style = "japandi";
-            } else if (slideNumber == 3) {
-                style = "modern";
-            } else if (slideNumber == 4) {
-                style = "neoclassic";
-            }
+            getUserStyle(slideNumber);
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass("w--current");
             returnValue(space);
@@ -473,5 +428,41 @@
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
             }
         }
+        function updateUserData() {
+            space = +$("#space").val();
+            amountOfRooms = +$("#amountOfRooms").val();
+            amountOfBathrooms = +$("#amountOfBathrooms").val();
+            optionsBool.heatedFlooring = +$("#heatedFlooring").val();
+            optionsBool.conditioning = +$("#conditioning").val();
+            optionsBool.hygienicShower = +$("#hygienicShower").is(":checked");
+            optionsBool.secondGypsumLayer = +$("#secondGypsumLayer").is(":checked");
+            furnitureBool = +$("#furnitureBool").is(":checked");
+            bathtub = +$("#bathtub").is(":checked");
+            shower = +$("#shower").is(":checked");
+            appliancesBoolTotal = +$("#appliancesBool").is(":checked");
+            optionsBool.floorScreed = +$("#floorscreed").is(":checked");
+            optionsBool.denoising = +$("#noise").is(":checked");
+            optionsBool.entranceDoors = +$("#doors").is(":checked");
+            ceilingBool.ceiling1 = +$("#ceiling1").is(":checked");
+            ceilingBool.ceiling2 = +$("#ceiling2").is(":checked");
+            ceilingBool.ceiling3 = +$("#ceiling3").is(":checked");
+            flooringBool.laminate = +$("#laminat").is(":checked");
+            flooringBool.vinyl = +$("#vynil").is(":checked");
+            flooringBool.parquet = +$("#parket").is(":checked");   
+        }
+        function getUserStyle(number) {
+            if (number == 0) {
+                style = "cozy";
+            } else if (number == 2) {
+                style = "fusion";
+            } else if (number == 1) {
+                style = "japandi";
+            } else if (number == 3) {
+                style = "modern";
+            } else if (number == 4) {
+                style = "neoclassic";
+            }
+        }
+        
         returnValue(space);
     };
