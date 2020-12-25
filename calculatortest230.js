@@ -99,11 +99,14 @@
             decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
 
             let showPrice = (element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms) * 1.03 * (1 + (parseData("S157") / 100));
-            console.log(showPrice);
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal) * (1 + (parseData("S157") / 100));
             furnitureTotal *= 1.03 * (1 + (parseData("S157") / 100));   
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
-            return furnitureTotal;
+            if (furnitureBool) {
+                return furnitureTotal;
+            } else {
+                return showPrice;
+            }
         }
 
         function handleWork(work, months) {
