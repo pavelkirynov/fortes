@@ -86,23 +86,12 @@
         }
 
         function handleFurniture(furniture, FurnitureMarkup) {
-            let element = "",
+            let element = furniture,
                 kitchenTotal = 0,
                 livingroomTotal = 0,
                 bedroomTotal = 0,
                 lightingTotal = 0,
                 decorationsTotal = 0;
-            if (style == "modern") {
-                element = furniture.modern;
-            } else if (style == "fusion") {
-                element = furniture.fusion;
-            } else if (style == "cozy") {
-                element = furniture.cozy;
-            } else if (style == "japandi") {
-                element = furniture.japandi;
-            } else if (style == "neoclassic") {
-                element = furniture.neoclassic;
-            }
             kitchenTotal = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) * furnitureBool;
             livingroomTotal = (element.sofa + element.livingroomChair) * furnitureBool;
             bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) * furnitureBool + element.shelves * 2;
@@ -259,159 +248,13 @@
             for (let i = 0; i < materialsPropArr.length; i++) {
                 materials[`${materialsPropArr[i]}`] = parseData(`${letter}${materialsArrNum[i]}`, space);
             }
-           
-            let furniture = {
-                cozy: {
-                    kitchen: parseData("I120"),
-                    kitchenMontage: parseData("I121"),
-                    kitchenDelivery: parseData("I122"),
-                    kitchenSink: parseData("I123"),
-                    kitchenSinkMixer: parseData("I124"),
-                    table: parseData("I125"),
-                    chairs: parseData("I126"),
-                    otherKitchenFurniture: parseData("I127"),
-                    sofa: parseData("I131"),
-                    livingroomChair: parseData("I132"),
-                    bed: parseData("I134"),
-                    matress: parseData("I135"),
-                    shelves: parseData("I136"),
-                    cupboard: parseData("I137"),
-                    bedChair: parseData("I138"),
-                    mirror: parseData("I139"),
-                    spotlight: parseData("I141"),
-                    chandelier: parseData("I142"),
-                    bedsideLight: parseData("I143"),
-                    kitchenWallLight: parseData("I144"),
-                    kitchenCeilingLight: parseData("I145"),
-                    livingroomFloorLight: parseData("I146"),
-                    hangingLight: parseData("I147"),
-                    curtains: parseData("I149"),
-                    tulle: parseData("I150"),
-                    cornice: parseData("I151"),
-                    jalousie: parseData("I152"),
-                    coffeeTable: parseData("I153"),
-                },
-                japandi: {
-                    kitchen: parseData("K120"),
-                    kitchenMontage: parseData("K121"),
-                    kitchenDelivery: parseData("K122"),
-                    kitchenSink: parseData("K123"),
-                    kitchenSinkMixer: parseData("K124"),
-                    table: parseData("K125"),
-                    chairs: parseData("K126"),
-                    otherKitchenFurniture: parseData("K127"),
-                    sofa: parseData("K131"),
-                    livingroomChair: parseData("K132"),
-                    bed: parseData("K134"),
-                    matress: parseData("K135"),
-                    shelves: parseData("K136"),
-                    cupboard: parseData("K137"),
-                    bedChair: parseData("K138"),
-                    mirror: parseData("K139"),
-                    spotlight: parseData("K141"),
-                    chandelier: parseData("K142"),
-                    bedsideLight: parseData("K143"),
-                    kitchenWallLight: parseData("K144"),
-                    kitchenCeilingLight: parseData("K145"),
-                    livingroomFloorLight: parseData("K146"),
-                    hangingLight: parseData("K147"),
-                    curtains: parseData("K149"),
-                    tulle: parseData("K150"),
-                    cornice: parseData("K151"),
-                    jalousie: parseData("K152"),
-                    coffeeTable: parseData("K153"),
-                },
-                fusion: {
-                    kitchen: parseData("M120"),
-                    kitchenMontage: parseData("M121"),
-                    kitchenDelivery: parseData("M122"),
-                    kitchenSink: parseData("M123"),
-                    kitchenSinkMixer: parseData("M124"),
-                    table: parseData("M125"),
-                    chairs: parseData("M126"),
-                    otherKitchenFurniture: parseData("M127"),
-                    sofa: parseData("M131"),
-                    livingroomChair: parseData("M132"),
-                    bed: parseData("M134"),
-                    matress: parseData("M135"),
-                    shelves: parseData("M136"),
-                    cupboard: parseData("M137"),
-                    bedChair: parseData("M138"),
-                    mirror: parseData("M139"),
-                    spotlight: parseData("M141"),
-                    chandelier: parseData("M142"),
-                    bedsideLight: parseData("M143"),
-                    kitchenWallLight: parseData("M144"),
-                    kitchenCeilingLight: parseData("M145"),
-                    livingroomFloorLight: parseData("M146"),
-                    hangingLight: parseData("M147"),
-                    curtains: parseData("M149"),
-                    tulle: parseData("M150"),
-                    cornice: parseData("M151"),
-                    jalousie: parseData("M152"),
-                    coffeeTable: parseData("M153"),
-                },
-                modern: {
-                    kitchen: parseData("O120"),
-                    kitchenMontage: parseData("O121"),
-                    kitchenDelivery: parseData("O122"),
-                    kitchenSink: parseData("O123"),
-                    kitchenSinkMixer: parseData("O124"),
-                    table: parseData("O125"),
-                    chairs: parseData("O126"),
-                    otherKitchenFurniture: parseData("O127"),
-                    sofa: parseData("O131"),
-                    livingroomChair: parseData("O132"),
-                    bed: parseData("O134"),
-                    matress: parseData("O135"),
-                    shelves: parseData("O136"),
-                    cupboard: parseData("O137"),
-                    bedChair: parseData("O138"),
-                    mirror: parseData("O139"),
-                    spotlight: parseData("O141"),
-                    chandelier: parseData("O142"),
-                    bedsideLight: parseData("O143"),
-                    kitchenWallLight: parseData("O144"),
-                    kitchenCeilingLight: parseData("O145"),
-                    livingroomFloorLight: parseData("O146"),
-                    hangingLight: parseData("O147"),
-                    curtains: parseData("O149"),
-                    tulle: parseData("O150"),
-                    cornice: parseData("O151"),
-                    jalousie: parseData("O152"),
-                    coffeeTable: parseData("O153"),
-                },
-                neoclassic: {
-                    kitchen: parseData("Q120"),
-                    kitchenMontage: parseData("Q121"),
-                    kitchenDelivery: parseData("Q122"),
-                    kitchenSink: parseData("Q123"),
-                    kitchenSinkMixer: parseData("Q124"),
-                    table: parseData("Q125"),
-                    chairs: parseData("Q126"),
-                    otherKitchenFurniture: parseData("Q127"),
-                    sofa: parseData("Q131"),
-                    livingroomChair: parseData("Q132"),
-                    bed: parseData("Q134"),
-                    matress: parseData("Q135"),
-                    shelves: parseData("Q136"),
-                    cupboard: parseData("Q137"),
-                    bedChair: parseData("Q138"),
-                    mirror: parseData("Q139"),
-                    spotlight: parseData("Q141"),
-                    chandelier: parseData("Q142"),
-                    bedsideLight: parseData("Q143"),
-                    kitchenWallLight: parseData("Q144"),
-                    kitchenCeilingLight: parseData("Q145"),
-                    livingroomFloorLight: parseData("Q146"),
-                    hangingLight: parseData("Q147"),
-                    curtains: parseData("Q149"),
-                    tulle: parseData("Q150"),
-                    cornice: parseData("Q151"),
-                    jalousie: parseData("Q152"),
-                    coffeeTable: parseData("Q153"),
-                },
-            };
+
+            let furniture = {};
+            let furnitureArrNum = [120, 121, 122, 123, 124, 125, 126, 127, 131, 132, 134, 135, 136, 137, 138, 139, 141, 142, 143, 144, 145, 146, 147, 149, 150, 151, 152, 153];
+            let furniturePropArr = ["kitchen", "kitchenMontage", "kitchenDelivery", "kitchenSink", "kitchenSinkMixer", "table", "chairs", "otherKitchenFurniture", "sofa", "livingroomChair", "bed", "matress", "shelves", "cupboard", "bedChair", "mirror", "spotlight", "chandelier", "bedsideLight", "kitchenWallLight", "kitchenCeilingLight", "livingroomFloorLight", "hangingLight", "curtains", "tulle", "cornice", "jalousie", "coffeeTable"];
+            for (let i = 0; i < furniturePropArr.length; i++) {
+                furniture[`${furniturePropArr[i]}`] = parseData(`${letter}${furnitureArrNum[i]}`, space);
+            }
             let appliances = {
                 gorenje: {
                     fridge: parseData("D161"),
