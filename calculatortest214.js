@@ -264,8 +264,8 @@
             let work = {};
             let workArrNum = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 53, 54, 56, 57, 58, 60, 61, 62, 64, 65];
             let workPropArr = ["waterSupply", "canalisation", "ventilation", "electricity", "shower", "bathtub", "gypsumMontage", "kafel", "doorInstallation", "wallPainting", "ceilingPainting", "mouldings", "ceiling1", "ceiling2", "ceiling3", "laminate", "vinyl", "parquet", "plinth", "plinthHidden"];
-            for (let j = 0; j < workPropArr.length; j++) {
-                work[`${propArr[j]}`] = parseData(`${letter}${arrNum[j]}`, space);
+            for (let i = 0; i < workPropArr.length; i++) {
+                work[`${workPropArr[i]}`] = parseData(`${letter}${workArrNum[i]}`, space);
             }
             let options = {
                 cozy: {
