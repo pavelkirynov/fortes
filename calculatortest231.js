@@ -92,21 +92,20 @@
                 bedroomTotal = 0,
                 lightingTotal = 0,
                 decorationsTotal = 0;
-            kitchenTotal = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture);
-            livingroomTotal = (element.sofa + element.livingroomChair);
-            bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) + element.shelves * 2;
-            lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight) + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
-            decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
-
-            let showPrice = (element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms) * 1.03 * (1 + (parseData("S157") / 100));
-            let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal) * (1 + (parseData("S157") / 100));
-            furnitureTotal *= 1.03 * (1 + (parseData("S157") / 100));   
-            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
+                
+            kitchenTotal = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) * furnitureBool;
+            livingroomTotal = (element.sofa + element.livingroomChair) * furnitureBool;
+            bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) * furnitureBool + element.shelves * 2;
+            lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)*furnitureBool + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
+            decorationsTotal = element.jalousie * furnitureBool + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
+            let showPrice = ((element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture) + (element.sofa + element.livingroomChair) + (element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) + element.shelves * 2) +
+                ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight) + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier + element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms) * 1.03;
+            let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal)* 1.03 * (1 + (parseData("S157") / 100));
             if (furnitureBool) {
-                return furnitureTotal;
-            } else {
-                return showPrice;
+                furnitureTotal *= 1.03 * (1 + (parseData("S157") / 100));   
             }
+            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(showPrice)}$/м²</span>`);
+            return furnitureTotal;
         }
 
         function handleWork(work, months) {
