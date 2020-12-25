@@ -164,10 +164,10 @@
                 conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space;
             }
             let entranceDoors = optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage);
-            $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${returnRoundedPrice(element.floorScreed)}$/м²</span>`);
+            $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${returnRoundedPrice(element.floorScreed * space)}$/м²</span>`);
             $("#noise").siblings(".label").html(`Шумоізоляція <span class=\"grey\">+${returnRoundedPrice(((element.denoising * space) + (element.tensionCeilingDenoising * space * (ceilingBool.ceiling1 + ceilingBool.ceiling2)) + (element.gypsumCeilingDenoising * space * ceilingBool.ceiling3)))}$/м²</span>`);
             $("#doors").siblings(".label").html(`Вхідні двері <span class=\"grey\">+${returnRoundedPrice(element.entranceDoor + element.entranceDoorMontage)}$/м²</span>`);
-            $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${returnRoundedPrice(element.partitions)}$/м²</span>`);
+            $("#secondGypsumLayer").siblings(".label").html(`Другий шар гіпсокартону <span class=\"grey\">+${returnRoundedPrice(element.partitions * space)}$/м²</span>`);
             $("#hygienicShower").siblings(".label").html(`Гігієнічний душ <span class=\"grey\">+${returnRoundedPrice(amountOfBathrooms * element.hygienicShower)}$/м²</span>`);
             optionsTotal = floorScreed + shower + heatedFlooring + secondGypsumLayer + denoising1 + denoising2 + denoising3 + conditioning + entranceDoors;
             return optionsTotal;
