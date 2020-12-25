@@ -167,19 +167,8 @@
         }
 
         function handleOptions(options) {
-            let element = "",
+            let element = options,
                 optionsTotal = 0;
-            if (style == "modern") {
-                element = options.modern;
-            } else if (style == "fusion") {
-                element = options.fusion;
-            } else if (style == "cozy") {
-                element = options.cozy;
-            } else if (style == "japandi") {
-                element = options.japandi;
-            } else if (style == "neoclassic") {
-                element = options.neoclassic;
-            }
             let denoising1 = 0,
                 denoising2 = 0;
             let floorScreed = optionsBool.floorScreed * element.floorScreed * space;
