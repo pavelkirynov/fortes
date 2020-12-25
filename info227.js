@@ -355,7 +355,7 @@ appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScr
 appendOptionsOption(parseData("F113"), parseData(letterModel + "113"), +conditioning, +conditioning * parseFloat(parseData(`${letter+113}`, space)) * (1 + parseFloat(parseData("S113")/100)));
     
 $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>$spacedNum({Math.round(workSum))} грн.</span>`);
+$("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum))} грн.</span>`);
 
 function appendOptionsOption(name, manufacturer, amount, price) {
     if ((amount == 0) || (!amount) || !(price)) {
@@ -447,7 +447,7 @@ if (!!appliancesBoolTotal) {
         }
     }
     $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-    $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${sum} грн.</span>`);
+    $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
     i = 0;
 }
@@ -470,9 +470,9 @@ if (style == "cozy") {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
     }
 
-let kitchenMontage = parseFloat(parseData(`${letter + 121}`));
-let kitchenDelivery = parseFloat(parseData(`${letter + 122}`));
-let kitchenPrice = parseFloat(parseData(`${letter + 120}`));
+let kitchenMontage = parseData(`${letter + 121}`);
+let kitchenDelivery = parseData(`${letter + 122}`);
+let kitchenPrice = parseData(`${letter + 120}`);
 let kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
 $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
 $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
