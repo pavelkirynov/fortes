@@ -137,22 +137,11 @@
         }
 
         function handleMaterials(materials) {
-            let element = "",
+            let element = materials,
                 generalTotal = 0,
                 bathroomTotal = 0,
                 flooringTotal = 0,
                 materialsTotal = 0;
-            if (style == "modern") {
-                element = materials.modern;
-            } else if (style == "fusion") {
-                element = materials.fusion;
-            } else if (style == "cozy") {
-                element = materials.cozy;
-            } else if (style == "japandi") {
-                element = materials.japandi;
-            } else if (style == "neoclassic") {
-                element = materials.neoclassic;
-            }
             generalTotal = element.door * (amountOfBathrooms + amountOfRooms) + element.kafel * amountOfBathrooms * 35 + 0.66 * element.corniceWall * space + 0.66 * element.corniceCeiling * space + 0.59 * element.plinth * space + parseData("H77", space) * element.electricalFurniture;
             bathroomTotal = amountOfBathrooms * (element.sink + element.stand + element.waterMixer + element.bathShelf) + element.bathtub * bathtub + (element.shower + element.ladder) * shower + (bathtub + shower) * element.bathShowerMixer + amountOfBathrooms * element.toilet + (element.towelHolder + element.bathMirror) * amountOfBathrooms;
             let vinylAmount, laminateAmount, parquetAmount;
@@ -261,126 +250,16 @@
             let optionsArrNum = [102, 103, 104, 105, 106, 107, 108, 109, 110, 112, 113];
             let optionsPropArr = ["floorScreed", "hygienicShower", "heatedFlooring", "partitions", "gypsumCeilingDenoising", "tensionCeilingDenoising", "denoising", "entranceDoor", "entranceDoorMontage", "conditioningSplit", "conditioner"];
             for (let i = 0; i < optionsPropArr.length; i++) {
-                work[`${optionsPropArr[i]}`] = parseData(`${letter}${optionsArrNum[i]}`, space);
+                options[`${optionsPropArr[i]}`] = parseData(`${letter}${optionsArrNum[i]}`, space);
             }
             
-            let materials = {
-                cozy: {
-                    door: parseFloat(parseData("I72")),
-                    kafel: parseFloat(parseData("I73")),
-                    corniceWall: parseFloat(parseData("I74")),
-                    corniceCeiling: parseFloat(parseData("I75")),
-                    plinth: parseFloat(parseData("I76")),
-                    electricalFurniture: parseFloat(parseData("I77")),
-                    sink: parseFloat(parseData("I79")),
-                    stand: parseFloat(parseData("I80")),
-                    waterMixer: parseFloat(parseData("I81")),
-                    bathShelf: parseFloat(parseData("I82")),
-                    bathtub: parseFloat(parseData("I83")),
-                    ladder: parseFloat(parseData("I84")),
-                    shower: parseFloat(parseData("I85")),
-                    bathShowerMixer: parseFloat(parseData("I86")),
-                    toilet: parseFloat(parseData("I87")),
-                    towelHolder: parseFloat(parseData("I88")),
-                    bathMirror: parseFloat(parseData("I89")),
-                    laminate: parseFloat(parseData("I91")),
-                    quartzvinyl: parseFloat(parseData("I92")),
-                    parquet: parseFloat(parseData("I93")),
-                    delivery: parseFloat(parseData("I94")),
-                },
-                japandi: {
-                    door: parseFloat(parseData("K72")),
-                    kafel: parseFloat(parseData("K73")),
-                    corniceWall: parseFloat(parseData("K74")),
-                    corniceCeiling: parseFloat(parseData("I75")),
-                    plinth: parseFloat(parseData("K76")),
-                    electricalFurniture: parseFloat(parseData("K77")),
-                    sink: parseFloat(parseData("K79")),
-                    stand: parseFloat(parseData("K80")),
-                    waterMixer: parseFloat(parseData("K81")),
-                    bathShelf: parseFloat(parseData("K82")),
-                    bathtub: parseFloat(parseData("K83")),
-                    ladder: parseFloat(parseData("K84")),
-                    shower: parseFloat(parseData("K85")),
-                    bathShowerMixer: parseFloat(parseData("K86")),
-                    toilet: parseFloat(parseData("K87")),
-                    towelHolder: parseFloat(parseData("K88")),
-                    bathMirror: parseFloat(parseData("K89")),
-                    laminate: parseFloat(parseData("K91")),
-                    quartzvinyl: parseFloat(parseData("K92")),
-                    parquet: parseFloat(parseData("K93")),
-                    delivery: parseFloat(parseData("K94")),
-                },
-                fusion: {
-                    door: parseFloat(parseData("M72")),
-                    kafel: parseFloat(parseData("M73")),
-                    corniceWall: parseFloat(parseData("M74")),
-                    corniceCeiling: parseFloat(parseData("M75")),
-                    plinth: parseFloat(parseData("M76")),
-                    electricalFurniture: parseFloat(parseData("M77")),
-                    sink: parseFloat(parseData("M79")),
-                    stand: parseFloat(parseData("M80")),
-                    waterMixer: parseFloat(parseData("M81")),
-                    bathShelf: parseFloat(parseData("M82")),
-                    bathtub: parseFloat(parseData("M83")),
-                    ladder: parseFloat(parseData("M84")),
-                    shower: parseFloat(parseData("M85")),
-                    bathShowerMixer: parseFloat(parseData("M86")),
-                    toilet: parseFloat(parseData("M87")),
-                    towelHolder: parseFloat(parseData("M88")),
-                    bathMirror: parseFloat(parseData("M89")),
-                    laminate: parseFloat(parseData("M91")),
-                    quartzvinyl: parseFloat(parseData("M92")),
-                    parquet: parseFloat(parseData("M93")),
-                    delivery: parseFloat(parseData("M94")),
-                },
-                modern: {
-                    door: parseFloat(parseData("O72")),
-                    kafel: parseFloat(parseData("O73")),
-                    corniceWall: parseFloat(parseData("O74")),
-                    corniceCeiling: parseFloat(parseData("O75")),
-                    plinth: parseFloat(parseData("O76")),
-                    electricalFurniture: parseFloat(parseData("O77")),
-                    sink: parseFloat(parseData("O79")),
-                    stand: parseFloat(parseData("O80")),
-                    waterMixer: parseFloat(parseData("O81")),
-                    bathShelf: parseFloat(parseData("O82")),
-                    bathtub: parseFloat(parseData("O83")),
-                    ladder: parseFloat(parseData("O84")),
-                    shower: parseFloat(parseData("O85")),
-                    bathShowerMixer: parseFloat(parseData("O86")),
-                    toilet: parseFloat(parseData("O87")),
-                    towelHolder: parseFloat(parseData("O88")),
-                    bathMirror: parseFloat(parseData("O89")),
-                    laminate: parseFloat(parseData("O91")),
-                    quartzvinyl: parseFloat(parseData("O92")),
-                    parquet: parseFloat(parseData("O93")),
-                    delivery: parseFloat(parseData("O94")),
-                },
-                neoclassic: {
-                    door: parseFloat(parseData("Q72")),
-                    kafel: parseFloat(parseData("Q73")),
-                    corniceWall: parseFloat(parseData("Q74")),
-                    corniceCeiling: parseFloat(parseData("Q75")),
-                    plinth: parseFloat(parseData("Q76")),
-                    electricalFurniture: parseFloat(parseData("Q77")),
-                    sink: parseFloat(parseData("Q79")),
-                    stand: parseFloat(parseData("Q80")),
-                    waterMixer: parseFloat(parseData("Q81")),
-                    bathShelf: parseFloat(parseData("Q82")),
-                    bathtub: parseFloat(parseData("Q83")),
-                    ladder: parseFloat(parseData("Q84")),
-                    shower: parseFloat(parseData("Q85")),
-                    bathShowerMixer: parseFloat(parseData("Q86")),
-                    toilet: parseFloat(parseData("Q87")),
-                    towelHolder: parseFloat(parseData("Q88")),
-                    bathMirror: parseFloat(parseData("Q89")),
-                    laminate: parseFloat(parseData("Q91")),
-                    quartzvinyl: parseFloat(parseData("Q92")),
-                    parquet: parseFloat(parseData("Q93")),
-                    delivery: parseFloat(parseData("Q94")),
-                },
-            };
+            let materials = {};
+            let materialsArrNum = [72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92, 93, 94];
+            let materialsPropArr = ["door", "kafel", "corniceWall", "corniceCeiling", "plinth", "electricalFurniture", "sink", "stand", "waterMixer", "bathShelf", "bathtub", "ladder", "shower", "bathShowerMixer", "toilet", "towelHolder", "bathMirror", "laminate", "quartzvinyl", "parquet", "delivery"];
+            for (let i = 0; i < materialsPropArr.length; i++) {
+                materials[`${materialsPropArr[i]}`] = parseData(`${letter}${materialsArrNum[i]}`, space);
+            }
+           
             let furniture = {
                 cozy: {
                     kitchen: parseData("I120"),
