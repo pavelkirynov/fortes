@@ -85,7 +85,7 @@
             return parseFloat(data.feed.entry.find((entry) => entry.title.$t == range).content.$t);
         }
 
-        function handleFurniture(furniture, FurnitureMarkup) {
+        function handleFurniture(furniture) {
             let element = furniture,
                 kitchenTotal = 0,
                 livingroomTotal = 0,
@@ -98,11 +98,11 @@
             bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) + element.shelves * 2;
             lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLigh + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier);
             decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
-            let showPrice = element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms + element.bed + element.matress + element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
-            showPrice *= 1 + (parseData("S157") / 100);
-            let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal);
-            furnitureTotal *= 1.03 * (1 + (parseData("S157") / 100));   
+            let showPrice = (element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms + element.bed + element.matress + element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier) * (1 + (parseData("S157") / 100));
+            let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal) * 1.03 * (1 + (parseData("S157") / 100));
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
+            console.log(furnitureTotal);
+            console.log(showPrice);
             if (furnitureBool) {
                 return parseInt(furnitureTotal);
             } else {
@@ -295,9 +295,8 @@
                     TV: parseData("D198"),
                 },
             };
-            let AccessorriesMarkup = parseData("S99"),
-                FurnitureMarkup = parseData("S157");
-            let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+            let AccessorriesMarkup = parseData("S99");
+            let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
             return result;
         }
 
