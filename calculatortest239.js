@@ -98,19 +98,17 @@
             bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) * furnitureBool + element.shelves * 2;
             lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)*furnitureBool + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
             decorationsTotal = element.jalousie * furnitureBool + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
-            let showPrice = ((element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture)
-                + (element.sofa + element.livingroomChair)
-                + (element.cupboard + element.bedChair + element.mirror)
-                + ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight)
-                + element.jalousie) * 1.03 * (1 + (parseData("S157") / 100));
+            let showPrice = element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms + element.bed + element.matress + element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier;
+            showPrice *= 1 + (parseData("S157") / 100);
+            console.log(returnRoundedPrice(showPrice));
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal);
             furnitureTotal *= 1.03 * (1 + (parseData("S157") / 100));   
-            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(showPrice)}$/м²</span>`);
-            console.log(furnitureTotal - showPrice);
+            //$("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(showPrice)}$/м²</span>`);
+            //console.log(furnitureTotal - showPrice);
             return furnitureTotal;
         }
 
-        function handleWork(work, months) {
+        function handleWork(work) {
             let ceilingTotal = 0,
                 paintingTotal = 0,
                 flooringTotal = 0,
@@ -295,10 +293,8 @@
                 },
             };
             let AccessorriesMarkup = parseData("S99"),
-                FurnitureMarkup = parseData("S157"),
-                ClimaticMarkup = parseData("S113");
-            let months = parseFloat(parseData("G8", space));
-            let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work, months)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+                FurnitureMarkup = parseData("S157");
+            let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture, FurnitureMarkup) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
             return result;
         }
 
