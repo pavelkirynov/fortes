@@ -340,7 +340,7 @@ function appendMaterialsOption(name, manufacturer, amount, price, dim) {
     console.log(price*amount + " " + name +" "+ workSum);
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
-    if ((hygienicShower) || (secondGypsumLayer) || (floorScreed) || (heatedFlooring) || (denoising) || (entranceDoors) || (conditioning)) {
+    if (!!parseInt(hygienicShower) || !!parseInt(secondGypsumLayer) || !!parseInt(floorScreed) || !!parseInt(heatedFlooring) || !!parseInt(denoising) || !!parseInt(entranceDoors) || !!parseInt(conditioning)) {
         $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
         $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\"> Опції</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);    
     }
