@@ -215,7 +215,9 @@ returnValue(space);
 function formPostQuery(data) {
     $.post('https://script.google.com/macros/s/AKfycbxzex4Y_ct7vSuTPjd7Qd_YAFVJ9jBWwV_ZzZWh4Kr_379otqGE/exec',
         data).always(function () {
-        getCell();
+        setTimeout(function () {
+            getCell();            
+       }, 25);
     });
 }
 function getCell () {
