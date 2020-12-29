@@ -156,7 +156,7 @@ function returnValue(multiplier) {
     updateUserData();
     formPostQuery(data);
     console.log(priceValue);
-    $("#total").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")))));
+    $("#total").html(numberWithSpaces(Math.round(parseInt(priceValue)))); //.replace(/,/g, ".")
     //$("#totalWhole").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")) * multiplier)));
 
     function numberWithSpaces(num) {
@@ -190,19 +190,19 @@ function updateUserData() {
 function getUserStyle(number) {
     if (number == 0) {
         style = "cozy";
-        styleLetter = "11";
+        data.styleLetter = "11";
     } else if (number == 2) {
         style = "fusion";
-        styleLetter = "13";
+        data.styleLetter = "13";
     } else if (number == 1) {
         style = "japandi";
-        styleLetter = "12";
+        data.styleLetter = "12";
     } else if (number == 3) {
         style = "modern";
-        styleLetter = "14";
+        data.styleLetter = "14";
     } else if (number == 4) {
         style = "neoclassic";
-        styleLetter = "15";
+        data.styleLetter = "15";
     }
 }
 
