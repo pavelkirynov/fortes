@@ -218,7 +218,7 @@ function formPostQuery(data) {
         getCell();
     });
 }
-getCell = function () {
+function getCell () {
     let api = 'https://spreadsheets.google.com/feeds/cells/';
     let spreadsheet = "1HJy4hKxrZ2JEDoK2Sizzgu-6UCrZkd0uCJIUqhBf4Jk";
     let worksheet = "default";
