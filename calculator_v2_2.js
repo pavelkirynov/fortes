@@ -155,9 +155,9 @@ $("#appliancesBool").on("click", function () {
 function returnValue(multiplier) {
     updateUserData();
     formPostQuery(data);
-
+    console.log(priceValue);
     $("#total").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")))));
-    $("#totalWhole").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")) * multiplier)));
+    //$("#totalWhole").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")) * multiplier)));
 
     function numberWithSpaces(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
