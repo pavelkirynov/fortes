@@ -223,7 +223,7 @@ function getCell () {
     let spreadsheet = "1HJy4hKxrZ2JEDoK2Sizzgu-6UCrZkd0uCJIUqhBf4Jk";
     let worksheet = "default";
     let row = "36";
-    let col = styleLetter;
+    let col = data.styleLetter;
     let url = api + spreadsheet + '/' + worksheet + '/public/basic/R' + row + "C" + col + '?alt=json';
     $.getJSON(url)
         .done(function (data) {
