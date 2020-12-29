@@ -4,12 +4,12 @@ let appliancesCookie = "";
 $("#space").val(50);
 let data = {
     space: +$("#space").val(),
-    amountOfRooms = +$("#amountOfRooms").val(),
-    amountOfBathrooms = +$("#amountOfBathrooms").val(),
-    furnitureBool = +$("#furnitureBool").is(":checked"),
-    appliancesBoolTotal = +$("#appliancesBool").is(":checked"),
-    bathtub = +$("#bathtub").is(":checked"),
-    shower = +$("#shower").is(":checked"),
+    amountOfRooms: +$("#amountOfRooms").val(),
+    amountOfBathrooms: +$("#amountOfBathrooms").val(),
+    furnitureBool: +$("#furnitureBool").is(":checked"),
+    appliancesBoolTotal: +$("#appliancesBool").is(":checked"),
+    bathtub: +$("#bathtub").is(":checked"),
+    shower: +$("#shower").is(":checked"),
     hygienicShower: +$("#hygienicShower").is(":checked"),
     secondGypsumLayer: +$("#secondGypsumLayer").is(":checked"),
     floorScreed: +$("#floorscreed").is(":checked"),
