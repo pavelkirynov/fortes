@@ -217,7 +217,7 @@ function formPostQuery(data) {
         data).always(function () {
         setTimeout(function () {
             getCell();            
-       }, 25);
+       }, 100);
     });
 }
 function getCell () {
