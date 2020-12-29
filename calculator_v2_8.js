@@ -213,20 +213,13 @@ function returnRoundedPrice(price) {
 returnValue(space);
 
 function formPostQuery(data) {
-    $.post('https://script.google.com/macros/s/AKfycbxzex4Y_ct7vSuTPjd7Qd_YAFVJ9jBWwV_ZzZWh4Kr_379otqGE/exec',
-        data).always(function () {
-        setTimeout(function () {
-            getCell();            
-       }, 100);
-    });
+    $.post('https://script.google.com/macros/s/AKfycbxzex4Y_ct7vSuTPjd7Qd_YAFVJ9jBWwV_ZzZWh4Kr_379otqGE/exec', data);
+    getCell();
 }
-function getCell () {
-    let api = 'https://spreadsheets.google.com/feeds/cells/';
-    let spreadsheet = "1HJy4hKxrZ2JEDoK2Sizzgu-6UCrZkd0uCJIUqhBf4Jk";
-    let worksheet = "default";
-    let row = "36";
+
+function getCell() {
     let col = data.styleLetter;
-    let url = api + spreadsheet + '/' + worksheet + '/public/basic/R' + row + "C" + col + '?alt=json';
+    let url = "https://spreadsheets.google.com/feeds/cells/1HJy4hKxrZ2JEDoK2Sizzgu-6UCrZkd0uCJIUqhBf4Jk/default/public/basic/R36C" + col + '?alt=json';
     $.getJSON(url)
         .done(function (data) {
             if (data.entry) {
@@ -239,3 +232,34 @@ function getCell () {
             console.log('Failed to fetch data <br />');
         });
 }
+
+//queue ajax requests
+$.ajaxQueue = [];
+var que = $.ajaxQueue;
+
+$.ajaxSetup({
+    beforeSend: function () {
+        if (this.queue) {
+            que.push(this);
+        } else {
+            return true;
+        }
+        if (que.length > 1) {
+            return false;
+        }
+    },
+    complete: function () {
+        que.shift();
+        var newReq = que[0];
+        if (newReq) {
+            // setup object creation should be automated 
+            // and include all properties in queued AJAX request
+            // this version is just a demonstration. 
+            var setup = {
+                url: newReq.url,
+                success: newReq.success
+            };
+            $.ajax(setup);
+        }
+    }
+});
