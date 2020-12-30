@@ -121,6 +121,9 @@ let $bar = $(".progressbar");
 let barIndex = 0;
 
 function stopAnimation() {
+    if (!document.querySelector(".main-slider")) {
+        return;    
+    }
     $bar.stop(true, false).animate({
         width: "0px"
     }, 250, "swing");
@@ -132,14 +135,17 @@ function stopAnimation() {
     }, 250, "swing");*/
 }
 
-function startAnimation() {
+function startAnimation(
+    if (!document.querySelector(".main-slider")) {
+        return;    
+    }
     $bar.parent().css("opacity", 0);
     $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
     $(`.progressbar:eq(${barIndex})`).animate({
         width: "100%",
     }, 5000, "swing", function () {
             stopAnimation();
-        if (barIndex == 10) {
+        if (barIndex == 4) {
             barIndex = 0;
         } else {
             barIndex++;
@@ -150,7 +156,7 @@ function startAnimation() {
 }
 $(".slide-nav").on("click", function (e) {
     e.preventDefault(),
-        stopAnimation();
+    stopAnimation();
     slideIndex = parseInt($(this).data("index"));
     (barIndex = slideIndex);
     startAnimation();
