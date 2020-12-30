@@ -118,7 +118,7 @@ $(".calculator-slider-side")
         }]
     });
 let $bar = $("#progressBar");
-let i = 0;
+let barIndex = 0;
 $("#animate").on("click", function () {
     startAnimation();
 });
@@ -130,25 +130,19 @@ function stopAnimation() {
     $bar.stop(true, false).animate({
         width: "0px"
     }, 250, "swing");
-    if (i == 4) {
-        i = 0;
-    } else {
-        i++;
-    }
-    startAnimation();
 }
 
 function startAnimation() {
-    $(`#progressBar:eq(${i})`).animate({
+    $(`#progressBar:eq(${barIndex})`).animate({
         width: "100%",
     }, 4500, "swing", function () {
         $(`#progressBar:eq(${i})`).animate({
             width: "0px"
         }, 250, "swing");
-        if (i == 4) {
-            i = 0;
+        if (barIndex == 4) {
+            barIndex = 0;
         } else {
-            i++;
+            barIndex++;
         }
         startAnimation();
     });
@@ -156,7 +150,8 @@ function startAnimation() {
 $(".slide-nav").on("click", function (e) {
     e.preventDefault(),
         stopAnimation();
-    (i = slideIndex),
+    (barIndex = slideIndex);
+    startAnimation();
     t[0].slick.slickGoTo(slideIndex);
 });
 let u = "";
@@ -192,12 +187,16 @@ $(".slider-tab").on("click", function (t) {
     $(".arrow-left").on("click", function () {
         $(".main-slider").slick("slickPrev");
         let e = $("#progressBarContainer").siblings("a").data("index");
-        clearInterval(a), o(e - 1 < 0 ? (e = 4) : e - 1), $("#progressBar").css("width", "0%"), (d = 0), (a = setInterval(g, 75));
+        stopAnimation();
+        barIndex--;
+        startAnimation();
     }),
     $(".arrow-right").on("click", function () {
         $(".main-slider").slick("slickNext");
         let e = $("#progressBarContainer").siblings("a").data("index");
-        clearInterval(a), o(e + 1 > 4 ? (e = 0) : e + 1), $("#progressBar").css("width", "0%"), (d = 0), (a = setInterval(g, 75));
+        stopAnimation();
+        barIndex++;
+        startAnimation();
     }),
     $(window).width() < 991 && clearInterval(a),
     $(".preview-image, .blackbg-text").hover(
