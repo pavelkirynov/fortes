@@ -124,15 +124,17 @@ function stopAnimation() {
     $bar.stop(true, false).animate({
         width: "0px"
     }, 250, "swing");
-    $bar.parent().animate({
+    /*$bar.parent().animate({
         opacity: "0"
     }, 250, "swing");
     $(`.progressbar:eq(${barIndex})`).parent().animate({
         opacity: "1"
-    }, 250, "swing");
+    }, 250, "swing");*/
 }
 
 function startAnimation() {
+    $bar.parent().css("opacity", 0);
+    $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
     $(`.progressbar:eq(${barIndex})`).animate({
         width: "100%",
     }, 5000, "swing", function () {
