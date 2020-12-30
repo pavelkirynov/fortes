@@ -119,12 +119,6 @@ $(".calculator-slider-side")
     });
 let $bar = $(".progressBar");
 let barIndex = 0;
-$("#animate").on("click", function () {
-    startAnimation();
-});
-$("#stop").on("click", function () {
-    stopAnimation();
-});
 
 function stopAnimation() {
     $bar.stop(true, false).animate({
@@ -154,15 +148,16 @@ $(".slide-nav").on("click", function (e) {
     startAnimation();
     t[0].slick.slickGoTo(slideIndex);
 });
+startAnimation();
 let u = "";
 $(".slider-tab").on("click", function (t) {
-        if (
-            ($(".slider-main").slick("refresh"),
-                clearInterval(a),
-                $(".slider-tab.w--current").toggleClass("w--current"),
-                $(this).toggleClass("w--current"),
-                $("#progressBar").css("width", "0%"),
-                (d = 0),
+    if (
+        ($(".slider-main").slick("refresh"),
+            $(".slider-tab.w--current").toggleClass("w--current"),
+            $(this).toggleClass("w--current"),
+            stopAnimation(),
+            (barIndex = 0),
+            startAnimation(),
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
         )
             u = "cozy";
