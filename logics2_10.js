@@ -127,7 +127,7 @@ function stopAnimation() {
 }
 
 function startAnimation() {
-    $(bar).css("opacity", 0);
+    $bar.css("opacity", 0);
     $(`.progressbar:eq(${barIndex})`).css("opacity", 1);
     $(`.progressbar:eq(${barIndex})`).animate({
         width: "100%",
