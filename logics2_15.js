@@ -135,7 +135,7 @@ function stopAnimation() {
     }, 250, "swing");*/
 }
 
-function startAnimation(
+function startAnimation() {
     if (!document.querySelector(".main-slider")) {
         return;    
     }
