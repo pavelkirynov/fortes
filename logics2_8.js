@@ -138,7 +138,7 @@ function startAnimation() {
         } else {
             barIndex++;
         }
-        $(".main-slide").slick("slickGoTo", barIndex);
+        t[0].slick.slickGoTo(barIndex);
         startAnimation();
     });
 }
