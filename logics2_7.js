@@ -138,13 +138,14 @@ function startAnimation() {
         } else {
             barIndex++;
         }
+        $(".main-slide").slick("slickGoTo", barIndex);
         startAnimation();
     });
 }
 $(".slide-nav").on("click", function (e) {
     e.preventDefault(),
         stopAnimation();
-    slideIndex = parseInt($(this).data("slide-index"));
+    slideIndex = parseInt($(this).data("index"));
     (barIndex = slideIndex);
     startAnimation();
     t[0].slick.slickGoTo(slideIndex);
@@ -152,13 +153,13 @@ $(".slide-nav").on("click", function (e) {
 startAnimation();
 let u = "";
 $(".slider-tab").on("click", function (t) {
-    if (
-        ($(".slider-main").slick("refresh"),
-            $(".slider-tab.w--current").toggleClass("w--current"),
-            $(this).toggleClass("w--current"),
-            stopAnimation(),
-            (barIndex = 0),
-            startAnimation(),
+        if (
+            ($(".slider-main").slick("refresh"),
+                $(".slider-tab.w--current").toggleClass("w--current"),
+                $(this).toggleClass("w--current"),
+                stopAnimation(),
+                (barIndex = 0),
+                startAnimation(),
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
         )
             u = "cozy";
