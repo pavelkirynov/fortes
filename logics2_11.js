@@ -123,19 +123,19 @@ let barIndex = 0;
 function stopAnimation() {
     $bar.stop(true, false).animate({
         width: "0px"
-    }, 200, "swing");
+    }, 250, "swing");
 }
 
 function startAnimation() {
-    $bar.css("opacity", 0);
-    $(`.progressbar:eq(${barIndex})`).css("opacity", 1);
+    $bar.parent().css("opacity", 0);
+    $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
     $(`.progressbar:eq(${barIndex})`).animate({
         width: "100%",
     }, 6000, "swing", function () {
         $(`.progressbar:eq(${barIndex})`).animate({
             width: "0px"
-        }, 200, "swing");
-        if (barIndex == 4) {
+        }, 250, "swing");
+        if (barIndex == 10) {
             barIndex = 0;
         } else {
             barIndex++;
