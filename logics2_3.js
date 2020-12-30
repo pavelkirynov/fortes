@@ -117,7 +117,7 @@ $(".calculator-slider-side")
             settings: "unslick"
         }]
     });
-let $bar = $("#progressBar");
+let $bar = $(".progressBar");
 let barIndex = 0;
 $("#animate").on("click", function () {
     startAnimation();
@@ -133,10 +133,10 @@ function stopAnimation() {
 }
 
 function startAnimation() {
-    $(`#progressBar:eq(${barIndex})`).animate({
+    $(`.progressBar:eq(${barIndex})`).animate({
         width: "100%",
     }, 4500, "swing", function () {
-        $(`#progressBar:eq(${i})`).animate({
+        $(`.progressBar:eq(${barIndex})`).animate({
             width: "0px"
         }, 250, "swing");
         if (barIndex == 4) {
