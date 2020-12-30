@@ -144,6 +144,7 @@ function startAnimation() {
 $(".slide-nav").on("click", function (e) {
     e.preventDefault(),
         stopAnimation();
+    slideIndex = parseInt($(this).data("slide-index"));
     (barIndex = slideIndex);
     startAnimation();
     t[0].slick.slickGoTo(slideIndex);
