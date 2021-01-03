@@ -156,13 +156,6 @@ $("#appliancesBool").on("click", function () {
 function returnValue(multiplier) {
     updateUserData();
     formPostQuery(data);
-    console.log(priceValue);
-    $("#total").html(numberWithSpaces(Math.round(parseInt(priceValue)))); //.replace(/,/g, ".")
-    //$("#totalWhole").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")) * multiplier)));
-
-    function numberWithSpaces(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
 }
 
 function updateUserData() {
@@ -215,7 +208,7 @@ returnValue(space);
 
 function formPostQuery(data) {
     $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data).always(function () {
-        setTimeout(getCell, 20);   
+        setTimeout(getCell, 120);   
     });
     
 }
@@ -232,6 +225,13 @@ function getCell() {
         }).fail(function (e) {
             console.log("error: " + e);
         });
+        console.log(priceValue);
+        $("#total").html(numberWithSpaces(Math.round(parseInt(priceValue)))); //.replace(/,/g, ".")
+        //$("#totalWhole").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")) * multiplier)));
+
+        function numberWithSpaces(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
     /*let col = data.styleLetter;
     let url = "https://spreadsheets.google.com/feeds/cells/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/default/public/basic/R36C" + col + '?alt=json';
     $.getJSON(url)
@@ -246,34 +246,3 @@ function getCell() {
             console.log('Failed to fetch data');
         });*/
 }
-/*
-//queue ajax requests
-$.ajaxQueue = [];
-var que = $.ajaxQueue;
-
-$.ajaxSetup({
-    beforeSend: function () {
-        if (this.queue) {
-            que.push(this);
-        } else {
-            return true;
-        }
-        if (que.length > 1) {
-            return false;
-        }
-    },
-    complete: function () {
-        que.shift();
-        var newReq = que[0];
-        if (newReq) {
-            // setup object creation should be automated 
-            // and include all properties in queued AJAX request
-            // this version is just a demonstration. 
-            var setup = {
-                url: newReq.url,
-                success: newReq.success
-            };
-            $.ajax(setup);
-        }
-    }
-});*/
