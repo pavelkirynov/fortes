@@ -191,7 +191,8 @@ $(".slider-tab").on("click", function (t) {
             $(".style-heading, .style-note, .style-description").toggle(!1),
             $(".header-" + u).toggle(!0),
             $(".main-slider").slick("slickGoTo", slideIndex),
-            $(".arrow-left, .arrow-right").toggle(!0);
+            $(".arrow-left, .arrow-right").toggle(!0),
+            $("#submit").attr("href", `/specifications/${u}`);
     }),
     $(".arrow-left").on("click", function () {
         $(".main-slider").slick("slickPrev");
@@ -207,7 +208,6 @@ $(".slider-tab").on("click", function (t) {
         barIndex++;
         startAnimation();
     }),
-    $(window).width() < 991 && clearInterval(a),
     $(".preview-image, .blackbg-text").hover(
         function () {
             $(".video-cursor").css("opacity", 1);
