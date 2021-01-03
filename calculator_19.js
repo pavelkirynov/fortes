@@ -218,7 +218,7 @@
             $(".choice[data-appliances='gorenje']").children(".grey").html(`${returnRoundedPrice(gorenjePrice)}$/м²`);
             $(".choice[data-appliances='bosch']").children(".grey").html(`${returnRoundedPrice(boschPrice)}$/м²`);
             $(".choice[data-appliances='miele']").children(".grey").html(`${returnRoundedPrice(mielePrice)}$/м²`);
-            sum += i * parseData("G36");
+            sum += (i + 1) * parseData("G36");
             return (sum * appliancesBoolTotal);
         }
 
@@ -298,8 +298,8 @@
                 },
             };
             let AccessorriesMarkup = parseData("S99");
-            console.log(handleAppliances(appliances));
-            let result = (handleAppliances(appliances)/* * 0.9*/ + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
+            console.log(handleAppliances(appliances) + " " + handleFurniture(furniture) + " " + handleMaterials(materials) + " " + handleWork(work)+ " " + handleOptions(options));
+            let result = (handleAppliances(appliances) + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
             return result;
         }
 
