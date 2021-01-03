@@ -213,13 +213,13 @@ function returnRoundedPrice(price) {
 returnValue(space);
 
 function formPostQuery(data) {
-    $.post('https://script.google.com/macros/s/AKfycbxzex4Y_ct7vSuTPjd7Qd_YAFVJ9jBWwV_ZzZWh4Kr_379otqGE/exec', data);
+    $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data);
     getCell();
 }
 
 function getCell() {
     let col = data.styleLetter;
-    let url = "https://spreadsheets.google.com/feeds/cells/1HJy4hKxrZ2JEDoK2Sizzgu-6UCrZkd0uCJIUqhBf4Jk/default/public/basic/R36C" + col + '?alt=json';
+    let url = "https://spreadsheets.google.com/feeds/cells/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/default/public/basic/R36C" + col + '?alt=json';
     $.getJSON(url)
         .done(function (data) {
             if (data.entry) {
