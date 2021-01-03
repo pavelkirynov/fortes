@@ -294,6 +294,7 @@
                 },
             };
             let AccessorriesMarkup = parseData("S99");
+            console.log(handleAppliances(appliances) + " " + handleFurniture(furniture) + " " + handleMaterials(materials) + " " + handleWork(work) + " " + handleOptions(options));
             let result = (handleAppliances(appliances) * 0.9 + handleFurniture(furniture) + ((handleMaterials(materials) + handleWork(work)) * (1 + (AccessorriesMarkup / 100))) + handleOptions(options)) / (28.5 * space);
             return result;
         }
