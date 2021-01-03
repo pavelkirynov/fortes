@@ -226,7 +226,7 @@ function getCell() {
             type: 'GET',
             success: function (result) {
                 console.log("success");
-                console.log(result.values[0]);
+                console.log(result.values[0][0]);
             }
         }).fail(function (e) {
             console.log("error: " + e);
