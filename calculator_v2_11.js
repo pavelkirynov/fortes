@@ -117,28 +117,28 @@ $(".choice").on("click", function () {
     if ($("#node").is(":checked")) {
         return 0;
     }
-    appliancesBool = 1;
+    data.appliancesBool = 1;
     appliancesCookie = $(this).attr("data-appliances");
     if ($(this).attr("data-appliances") == "bosch") {
-        standardBosch = 1;
-        premiumMiele = 0;
-        standardGorenje = 0;
+        data.standardBosch = 1;
+        data.premiumMiele = 0;
+        data.standardGorenje = 0;
     } else if ($(this).attr("data-appliances") == "gorenje") {
-        standardBosch = 0;
-        premiumMiele = 0;
-        standardGorenje = 1;
+        data.standardBosch = 0;
+        data.premiumMiele = 0;
+        data.standardGorenje = 1;
     } else {
-        standardBosch = 0;
-        premiumMiele = 1;
-        standardGorenje = 0;
+        data.standardBosch = 0;
+        data.premiumMiele = 1;
+        data.standardGorenje = 0;
     }
     returnValue(space);
 });
 $("#node").on("click", function () {
-    appliancesBool = 0;
-    standardGorenje = 0;
-    standardBosch = 0;
-    premiumMiele = 0;
+    data.appliancesBool = 0;
+    data.standardGorenje = 0;
+    data.standardBosch = 0;
+    data.premiumMiele = 0;
     returnValue(space);
 });
 $("#appliancesBool").on("click", function () {
@@ -146,8 +146,8 @@ $("#appliancesBool").on("click", function () {
         return;
     }
     if (!(document.querySelector(".choiceActiveBorder"))) {
-        appliancesBool = 1;
-        standardGorenje = 1;
+        data.appliancesBool = 1;
+        data.standardGorenje = 1;
         returnValue(space);
     }
 });
