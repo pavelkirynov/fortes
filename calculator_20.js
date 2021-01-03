@@ -124,7 +124,7 @@
             generalTotal = (work.kafel * amountOfBathrooms * space) + (work.bathtub * bathtub) + (work.shower * shower) + work.gypsumMontage * space + work.doorInstallation * (amountOfBathrooms + amountOfRooms);
             ceilingTotal = (work.ceiling1 * ceilingBool.ceiling1 + work.ceiling2 * ceilingBool.ceiling2 + work.ceiling3 * ceilingBool.ceiling3) * space;
             flooringTotal = (work.laminate * flooringBool.laminate + work.vinyl * flooringBool.vinyl + work.parquet * flooringBool.parquet) * space;
-            paintingTotal = work.wallPainting * space + work.ceilingPainting * ceilingBool.ceiling3 * space + work.mouldings;
+            paintingTotal = work.wallPainting * space + work.ceilingPainting * ceilingBool.ceiling3 * space + work.mouldings * 140;
             plinthTotal = (work.plinth + work.plinthHidden) * space;
             let workTotal = (generalTotal + ceilingTotal + flooringTotal + paintingTotal + plinthTotal);
             workTotal += workTotal * 0.022 + ((space * 100) + (parseData("G8", space) * 2 * 1200) + 3000) + mainWorks;
