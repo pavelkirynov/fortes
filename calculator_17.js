@@ -168,7 +168,7 @@
             let denoising3 = element.denoising * optionsBool.denoising * space;
             let conditioning = 0;
             if (optionsBool.conditioning) {
-                conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space;
+                conditioning = element.conditioner * optionsBool.conditioning * (1 + parseData("S113") / 100) * 1.05 + element.conditioningSplit * space * optionsBool.conditioning;
             }
             let entranceDoors = optionsBool.entranceDoors * (element.entranceDoor + element.entranceDoorMontage);
             $("#floorscreed").siblings(".label").html(`Стяжка підлоги <span class=\"grey\">+${returnRoundedPrice(element.floorScreed * space)}$/м²</span>`);
