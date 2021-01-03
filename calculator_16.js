@@ -101,7 +101,7 @@
             let showPrice = (element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms + element.bed + element.matress + element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier) * (1 + (parseData("S157") / 100));
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal +
                     decorationsTotal) * (1 + (parseData("S157") / 100)) + (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal +
-                    decorationsTotal) * 0.03 * (1 + (parseData("S157") / 100));
+                    decorationsTotal) * 0.03 * (1 + (parseData("S157") / 100)) * (1 + (parseData("S157") / 100));
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
             if (furnitureBool) {
                 console.log(furnitureTotal);
