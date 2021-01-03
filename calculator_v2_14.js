@@ -214,8 +214,10 @@ function returnRoundedPrice(price) {
 returnValue(space);
 
 function formPostQuery(data) {
-    $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data);
-    setTimeout(getCell, 240);
+    $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data).always(function () {
+        getCell();   
+    });
+    
 }
 
 function getCell() {
@@ -226,14 +228,14 @@ function getCell() {
             if (data.entry) {
                 priceValue = (data.entry.content['$t'].split(" "));
             } else {
-                console.log('Failed to fetch data <br />');
+                console.log('Failed to fetch data');
             }
         })
         .fail(function () {
-            console.log('Failed to fetch data <br />');
+            console.log('Failed to fetch data');
         });
 }
-
+/*
 //queue ajax requests
 $.ajaxQueue = [];
 var que = $.ajaxQueue;
@@ -263,4 +265,4 @@ $.ajaxSetup({
             $.ajax(setup);
         }
     }
-});
+});*/
