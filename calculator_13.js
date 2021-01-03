@@ -103,7 +103,7 @@
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
             if (furnitureBool) {
                 console.log(furnitureTotal);
-                console.log((kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal));
+                console.log(("test" + kitchenTotal + " " + livingroomTotal + " " + bedroomTotal + " " + lightingTotal + " " + decorationsTotal));
                 return parseInt(furnitureTotal);
             } else {
                 return parseInt(showPrice);
