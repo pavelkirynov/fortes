@@ -191,19 +191,19 @@ function updateUserData() {
 function getUserStyle(number) {
     if (number == 0) {
         style = "cozy";
-        data.styleLetter = "11";
+        data.styleLetter = "K";
     } else if (number == 2) {
         style = "fusion";
-        data.styleLetter = "13";
+        data.styleLetter = "M";
     } else if (number == 1) {
         style = "japandi";
-        data.styleLetter = "12";
+        data.styleLetter = "L";
     } else if (number == 3) {
         style = "modern";
-        data.styleLetter = "14";
+        data.styleLetter = "N";
     } else if (number == 4) {
         style = "neoclassic";
-        data.styleLetter = "15";
+        data.styleLetter = "O";
     }
 }
 
@@ -221,7 +221,17 @@ function formPostQuery(data) {
 }
 
 function getCell() {
-    let col = data.styleLetter;
+    $.ajax({
+            url: "https://sheets.googleapis.com/v4/spreadsheets/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/values/%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82!" + data.styleLetter + "36?key=AIzaSyCkgcA0WdlQTTXBKMJYZ_ntzGRenI0MuRQ",
+            type: 'GET',
+            success: function (result) {
+                console.log("success");
+                console.log(result.values[0]);
+            }
+        }).fail(function (e) {
+            console.log("error: " + e);
+        });
+    /*let col = data.styleLetter;
     let url = "https://spreadsheets.google.com/feeds/cells/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/default/public/basic/R36C" + col + '?alt=json';
     $.getJSON(url)
         .done(function (data) {
@@ -233,7 +243,7 @@ function getCell() {
         })
         .fail(function () {
             console.log('Failed to fetch data');
-        });
+        });*/
 }
 /*
 //queue ajax requests
