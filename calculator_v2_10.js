@@ -117,28 +117,28 @@ $(".choice").on("click", function () {
     if ($("#node").is(":checked")) {
         return 0;
     }
-    appliancesBoolTotal = 1;
+    appliancesBool = 1;
     appliancesCookie = $(this).attr("data-appliances");
     if ($(this).attr("data-appliances") == "bosch") {
-        appliancesBool.standardBosch = 1;
-        appliancesBool.premiumMiele = 0;
-        appliancesBool.standardGorenje = 0;
+        standardBosch = 1;
+        premiumMiele = 0;
+        standardGorenje = 0;
     } else if ($(this).attr("data-appliances") == "gorenje") {
-        appliancesBool.standardBosch = 0;
-        appliancesBool.premiumMiele = 0;
-        appliancesBool.standardGorenje = 1;
+        standardBosch = 0;
+        premiumMiele = 0;
+        standardGorenje = 1;
     } else {
-        appliancesBool.standardBosch = 0;
-        appliancesBool.premiumMiele = 1;
-        appliancesBool.standardGorenje = 0;
+        standardBosch = 0;
+        premiumMiele = 1;
+        standardGorenje = 0;
     }
     returnValue(space);
 });
 $("#node").on("click", function () {
-    appliancesBoolTotal = 0;
-    appliancesBool.standardGorenje = 0;
-    appliancesBool.standardBosch = 0;
-    appliancesBool.premiumMiele = 0;
+    appliancesBool = 0;
+    standardGorenje = 0;
+    standardBosch = 0;
+    premiumMiele = 0;
     returnValue(space);
 });
 $("#appliancesBool").on("click", function () {
@@ -146,8 +146,8 @@ $("#appliancesBool").on("click", function () {
         return;
     }
     if (!(document.querySelector(".choiceActiveBorder"))) {
-        appliancesBoolTotal = 1;
-        appliancesBool.standardGorenje = 1;
+        appliancesBool = 1;
+        standardGorenje = 1;
         returnValue(space);
     }
 });
