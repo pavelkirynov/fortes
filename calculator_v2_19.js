@@ -27,7 +27,7 @@ let data = {
     standardGorenje: 0,
     standardBosch: 0,
     premiumMiele: 1,
-    styleLetter: "11"
+    styleLetter: "K"
 };
 
 $("input").on("input", function () {
@@ -222,7 +222,7 @@ function formPostQuery(data) {
 
 function getCell() {
     $.ajax({
-            url: "https://sheets.googleapis.com/v4/spreadsheets/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/values/%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82!" + data.styleLetter + "36?key=AIzaSyCkgcA0WdlQTTXBKMJYZ_ntzGRenI0MuRQ",
+            url: `https://sheets.googleapis.com/v4/spreadsheets/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/values/%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82!${data.styleLetter}36?key=AIzaSyCkgcA0WdlQTTXBKMJYZ_ntzGRenI0MuRQ`,
             type: 'GET',
             success: function (result) {
                 console.log("success");
