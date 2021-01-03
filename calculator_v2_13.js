@@ -48,7 +48,8 @@ $("#space").on("focusout", function (e) {
     if ((parseInt($(this).val()) < 30) || (!$(this).val())) {
         $(this).val(30);
         space = +$("#space").val();
-        returnValue(30);
+        updateUserData();
+    returnValue(30);
     }
 });
 $(".increment-field .increment").on("click", function (e) {
@@ -214,7 +215,7 @@ returnValue(space);
 
 function formPostQuery(data) {
     $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data);
-    setTimeout(getCell, 120);
+    setTimeout(getCell, 240);
 }
 
 function getCell() {
