@@ -31,7 +31,7 @@ let data = {
 };
 
 $("input").on("input", function () {
-    //updateUserData();
+    updateUserData();
     returnValue(space);
 });
 $("#space").on("input", function (e) {
@@ -214,7 +214,7 @@ returnValue(space);
 
 function formPostQuery(data) {
     $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data);
-    getCell();
+    setTimeout(getCell, 120);
 }
 
 function getCell() {
