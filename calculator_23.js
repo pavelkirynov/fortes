@@ -99,7 +99,7 @@
             lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier);
             decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
             let showPrice = (element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms + element.bed + element.matress + element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier) * (1 + (parseData("S157") / 100));
-            let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal) * 0.03 * (1 + (parseData("S157") / 100)) * (1 + (parseData("S157") / 100));
+            let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal + decorationsTotal) * 1.03 * (1 + (parseData("S157") / 100)) * (1 + (parseData("S157") / 100));
             $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal)}$/м²</span>`);
             return (parseInt(furnitureTotal) * parseInt(furnitureBool));
         }
