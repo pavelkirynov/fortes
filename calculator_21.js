@@ -102,10 +102,8 @@
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal +
                     decorationsTotal) * (1 + (parseData("S157") / 100)) + (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal +
                     decorationsTotal) * 0.03 * (1 + (parseData("S157") / 100)) * (1 + (parseData("S157") / 100));
-            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
+            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal)}$/м²</span>`);
             if (furnitureBool) {
-                console.log(furnitureTotal);
-                console.log(("test" + kitchenTotal + " " + livingroomTotal + " " + bedroomTotal + " " + lightingTotal + " " + decorationsTotal));
                 return parseInt(furnitureTotal);
             } else {
                 return parseInt(showPrice);
@@ -215,9 +213,9 @@
                 mielePrice += appliances.miele[jkey];
                 i++;
             }
-            $(".choice[data-appliances='gorenje']").children(".grey").html(`${returnRoundedPrice(gorenjePrice)}$/м²`);
-            $(".choice[data-appliances='bosch']").children(".grey").html(`${returnRoundedPrice(boschPrice)}$/м²`);
-            $(".choice[data-appliances='miele']").children(".grey").html(`${returnRoundedPrice(mielePrice)}$/м²`);
+            $(".choice[data-appliances='gorenje']").children(".grey").html(`${returnRoundedPrice(gorenjePrice + (appliances.gorenje.length * parseData("G36")))}$/м²`);
+            $(".choice[data-appliances='bosch']").children(".grey").html(`${returnRoundedPrice(boschPrice + (appliances.bosch.length * parseData("G36")))}$/м²`);
+            $(".choice[data-appliances='miele']").children(".grey").html(`${returnRoundedPrice(mielePrice + (appliances.miele.length * parseData("G36")))}$/м²`);
             sum += (i + 1) * parseData("G36");
             return (sum * appliancesBoolTotal);
         }
