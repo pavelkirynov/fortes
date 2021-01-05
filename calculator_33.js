@@ -92,25 +92,27 @@
                 bedroomTotal = 0,
                 lightingTotal = 0,
                 decorationsTotal = 0;
-                
-            kitchenTotal = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element.kitchenSink + element.kitchenSinkMixer + element.table + (element.chairs * 4) + element.otherKitchenFurniture);
+
+            kitchenTotal = (element.kitchen + element.kitchenDelivery + element.kitchenMontage + element
+                .kitchenSink +
+                element.kitchenSinkMixer + element.table + (element.chairs * 4) + element
+                .otherKitchenFurniture);
             livingroomTotal = (element.sofa + element.livingroomChair);
-            bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element.mirror) + element.shelves * 2;
-            lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight + element.livingroomFloorLight + element.hangingLight + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier);
-            decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms;
-            let showPrice = (element.coffeeTable * (amountOfRooms - 1) + (element.cornice + element.tulle + element.curtains) * amountOfRooms + element.bed + element.matress + element.shelves * 2 + element.kitchenCeilingLight * 2 + element.bedsideLight * 2 + element.chandelier) * (1 + (parseData("S157") / 100));
+            bedroomTotal = element.bed + element.matress + (element.cupboard + element.bedChair + element
+                    .mirror) +
+                element.shelves * 2;
+            lightingTotal = ((element.spotlight * (0.48 * space)) + element.kitchenWallLight +
+                element.livingroomFloorLight + element.hangingLight + element.kitchenCeilingLight * 2 +
+                element.bedsideLight *
+                2 + element.chandelier);
+            decorationsTotal = element.jalousie + element.coffeeTable * (amountOfRooms - 1) + (element.cornice +
+                element.tulle + element.curtains) * amountOfRooms;
             let furnitureTotal = (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal +
-                    decorationsTotal) * (1 + (parseData("S157") / 100)) + (kitchenTotal + livingroomTotal + bedroomTotal + lightingTotal +
-                    decorationsTotal) * 0.03 * (1 + (parseData("S157") / 100)) * (1 + (parseData("S157") / 100));
-            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal - showPrice)}$/м²</span>`);
-            if (furnitureBool) {
-                console.log(furnitureTotal);
-                console.log(("test" + kitchenTotal + " " + livingroomTotal + " " + bedroomTotal + " " + lightingTotal + " " + decorationsTotal));
-                return parseInt(furnitureTotal);
-            } else {
-                return parseInt(showPrice);
-            }
-            
+                decorationsTotal) * (1 + (parseData("S157") / 100));
+            furnitureTotal = furnitureTotal + furnitureTotal * 0.03 * (1 +
+                (parseData("S157") / 100));
+            $("#furnitureBool").siblings(".label").html(`Так <span class=\"grey\">+${returnRoundedPrice(furnitureTotal)}$/м²</span>`);
+            return parseInt(furnitureTotal * furnitureBool);
         }
 
         function handleWork(work) {
@@ -215,9 +217,9 @@
                 mielePrice += appliances.miele[jkey];
                 i++;
             }
-            $(".choice[data-appliances='gorenje']").children(".grey").html(`${returnRoundedPrice(gorenjePrice)}$/м²`);
-            $(".choice[data-appliances='bosch']").children(".grey").html(`${returnRoundedPrice(boschPrice)}$/м²`);
-            $(".choice[data-appliances='miele']").children(".grey").html(`${returnRoundedPrice(mielePrice)}$/м²`);
+            $(".choice[data-appliances='gorenje']").children(".grey").html(`${returnRoundedPrice(gorenjePrice + (Object.keys(appliances.gorenje).length * parseData("G36")))}$/м²`);
+            $(".choice[data-appliances='bosch']").children(".grey").html(`${returnRoundedPrice(boschPrice + (Object.keys(appliances.bosch).length * parseData("G36")))}$/м²`);
+            $(".choice[data-appliances='miele']").children(".grey").html(`${returnRoundedPrice(mielePrice + (Object.keys(appliances.miele).length * parseData("G36")))}$/м²`);
             sum += (i + 1) * parseData("G36");
             return (sum * appliancesBoolTotal);
         }
