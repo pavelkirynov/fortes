@@ -191,7 +191,7 @@ $(".slider-tab").on("click", function (t) {
             $(".slide" + `.${u}`).toggle(!0),
             $(".style-heading, .style-note, .style-description").toggle(!1),
             $(".header-" + u).toggle(!0),
-            $(".main-slider").slick("slickGoTo", slideIndex),
+            $(".main-slider").slick("slickGoTo", 0),
             $(".arrow-left, .arrow-right").toggle(!0);
     }),
     $(".arrow-left").on("click", function () {
