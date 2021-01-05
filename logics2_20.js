@@ -79,7 +79,7 @@ t.slick({
     dots: !1,
     speed: 425,
     draggable: !1,
-    adaptiveHeight: !0,
+    //adaptiveHeight: !0,
     responsive: [{
             breakpoint: 991,
             settings: {
@@ -201,7 +201,6 @@ $(".slider-tab").on("click", function (t) {
         barIndex++;
         startAnimation();
     }),
-    $(window).width() < 991 && clearInterval(a),
     $(".preview-image, .blackbg-text").hover(
         function () {
             $(".video-cursor").css("opacity", 1);
