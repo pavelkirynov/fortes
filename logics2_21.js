@@ -79,7 +79,7 @@ t.slick({
     dots: !1,
     speed: 425,
     draggable: !1,
-    //adaptiveHeight: !0,
+    adaptiveHeight: !0,
     responsive: [{
             breakpoint: 991,
             settings: {
@@ -121,6 +121,9 @@ let $bar = $(".progressbar");
 let barIndex = 0;
 
 function stopAnimation() {
+    if (!document.querySelector(".main-slider")) {
+        return;    
+    }
     $bar.stop(true, false).animate({
         width: "0px"
     }, 250, "swing");
@@ -133,13 +136,16 @@ function stopAnimation() {
 }
 
 function startAnimation() {
+    if (!document.querySelector(".main-slider")) {
+        return;    
+    }
     $bar.parent().css("opacity", 0);
     $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
     $(`.progressbar:eq(${barIndex})`).animate({
         width: "100%",
     }, 5000, "swing", function () {
             stopAnimation();
-        if (barIndex == 10) {
+        if (barIndex == 4) {
             barIndex = 0;
         } else {
             barIndex++;
@@ -150,7 +156,7 @@ function startAnimation() {
 }
 $(".slide-nav").on("click", function (e) {
     e.preventDefault(),
-        stopAnimation();
+    stopAnimation();
     slideIndex = parseInt($(this).data("index"));
     (barIndex = slideIndex);
     startAnimation();
@@ -246,7 +252,8 @@ $(".slider-tab").on("click", function (t) {
             $(".calculator-slide.main").toggle(!0),
             $(".calculator-slide" + `.${u}`).toggle(!0),
             $(".calculator-tab.w--current").removeClass("w--current"),
-            $(this).addClass("w--current");
+            $(this).addClass("w--current"),
+            $("#submit").attr("href", `/specifications/${u}-1`);
     }),
     $(".calculator-slider-option").on("click", function () {
         $(".calculator-slider-option.active").removeClass("active"), $(this).addClass("active"), (slideIndex = parseInt($(this).data("slider-index"))), (r = slideIndex), i[0].slick.slickGoTo(slideIndex);
