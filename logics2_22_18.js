@@ -1,4 +1,5 @@
-let slideIndex = 0;
+$(window).on('load', function() { 
+        let slideIndex = 0;
 $("#submit").on("click", function (e) {
         let t = {},
             i = "";
@@ -278,3 +279,4 @@ $(".slider-tab").on("click", function (t) {
         let e = parseInt($(".calculator-slider-option.active").data("slider-index"));
         $(".calculator-slider-option.active").removeClass("active"), 0 == e ? (e = 4) : (e -= 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (slideIndex = e);
     });
+});
