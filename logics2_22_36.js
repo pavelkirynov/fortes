@@ -168,8 +168,7 @@ startAnimation();
 let u = "";
 $(".slider-tab").on("click", function (t) {
         if (
-            ($(".slider-main").slick("refresh"),
-                $(".slider-tab.w--current").toggleClass("w--current"),
+            ($(".slider-tab.w--current").toggleClass("w--current"),
                 $(this).toggleClass("w--current"),
                 (barIndex = 0),
                 stopAnimation(),
@@ -194,8 +193,8 @@ $(".slider-tab").on("click", function (t) {
             $(".style-heading, .style-note, .style-description").toggle(!1),
             $(".header-" + u).toggle(!0);
             barIndex = 0;
+            slideIndex = 0;
             $(".main-slider").slick("slickGoTo", 0),
-            t[0].slick("slickGoTo", 0),
             $(".arrow-left, .arrow-right").toggle(!0);
             $(".main-slider").slick("refresh");
     }),
