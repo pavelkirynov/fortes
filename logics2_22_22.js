@@ -257,7 +257,7 @@ $(".slider-tab").on("click", function (t) {
             $(".calculator-tab.w--current").removeClass("w--current"),
             $(this).addClass("w--current"),
             $(".wrap-border.calculator-btn").toggle(false);
-            $(".specification" + `.${u}`).toggle(true);
+            $(".specification " + `${u}`).toggle(true);
     }),
     $(".calculator-slider-option").on("click", function () {
         $(".calculator-slider-option.active").removeClass("active"), $(this).addClass("active"), (slideIndex = parseInt($(this).data("slider-index"))), (r = slideIndex), i[0].slick.slickGoTo(slideIndex);
