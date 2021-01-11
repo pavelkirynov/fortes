@@ -141,16 +141,16 @@ function startAnimation() {
         return;    
     }
     $bar.parent().css("opacity", 0);
-    $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
-    $(`.progressbar:eq(${barIndex})`).animate({
-        width: "100%",
-    }, 10000, "swing", function () {
-            stopAnimation();
         if (barIndex >= 4) {
             barIndex = 0;
         } else {
             barIndex++;
         }
+    $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
+    $(`.progressbar:eq(${barIndex})`).animate({
+        width: "100%",
+    }, 10000, "swing", function () {
+            stopAnimation();
         t[0].slick.slickGoTo(barIndex);
         startAnimation();
     });
