@@ -162,8 +162,7 @@ $(".slide-nav").on("click", function (e) {
     slideIndex = parseInt($(this).data("index"));
     (barIndex = slideIndex);
     startAnimation();
-    t[0].slick.slickGoTo(0);
-    $(".main-slider").slick("slickGoTo", 0);
+    t[0].slick.slickGoTo(slideIndex);
 });
 startAnimation();
 let u = "";
@@ -172,9 +171,11 @@ $(".slider-tab").on("click", function (t) {
             ($(".slider-main").slick("refresh"),
                 $(".slider-tab.w--current").toggleClass("w--current"),
                 $(this).toggleClass("w--current"),
-                 (barIndex = 0),
+                (barIndex = 0),
                 stopAnimation(),
                 startAnimation(),
+                t[0].slick.slickGoTo(slideIndex),
+                $(".main-slider").slick("slickGoTo", 0),
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
         )
             u = "cozy";
@@ -195,6 +196,7 @@ $(".slider-tab").on("click", function (t) {
             $(".header-" + u).toggle(!0);
             barIndex = 0;
             $(".main-slider").slick("slickGoTo", 0),
+
             $(".arrow-left, .arrow-right").toggle(!0);
             $(".main-slider").slick("refresh");
     }),
