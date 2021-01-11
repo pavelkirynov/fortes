@@ -174,7 +174,6 @@ $(".slider-tab").on("click", function (t) {
                 (barIndex = 0),
                 stopAnimation(),
                 startAnimation(),
-                t[0].slick.slickGoTo(slideIndex),
                 $(".main-slider").slick("slickGoTo", 0),
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
         )
@@ -196,7 +195,7 @@ $(".slider-tab").on("click", function (t) {
             $(".header-" + u).toggle(!0);
             barIndex = 0;
             $(".main-slider").slick("slickGoTo", 0),
-
+            t[0].slick.slickGoTo(0),
             $(".arrow-left, .arrow-right").toggle(!0);
             $(".main-slider").slick("refresh");
     }),
