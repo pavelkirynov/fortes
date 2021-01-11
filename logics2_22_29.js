@@ -200,14 +200,12 @@ $(".slider-tab").on("click", function (t) {
         $(".main-slider").slick("slickPrev");
         let e = $("#progressBarContainer").siblings("a").data("index");
         stopAnimation();
-        barIndex--;
         startAnimation();
     }),
     $(".arrow-right").on("click", function () {
         $(".main-slider").slick("slickNext");
         let e = $("#progressBarContainer").siblings("a").data("index");
         stopAnimation();
-        barIndex++;
         startAnimation();
     }),
     $(".preview-image, .blackbg-text").hover(
