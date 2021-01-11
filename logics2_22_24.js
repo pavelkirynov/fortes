@@ -192,9 +192,9 @@ $(".slider-tab").on("click", function (t) {
             $(".style-heading, .style-note, .style-description").toggle(!1),
             $(".header-" + u).toggle(!0);
             barIndex = 0;
-            $(".main-slider").slick("slickGoTo", barIndex),
+            $(".main-slider").slick("slickGoTo", 0),
             $(".arrow-left, .arrow-right").toggle(!0);
-        
+            $(".main-slider").slick("refresh");
     }),
     $(".arrow-left").on("click", function () {
         $(".main-slider").slick("slickPrev");
