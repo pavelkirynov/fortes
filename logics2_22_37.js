@@ -201,8 +201,8 @@ $(".slider-tab").on("click", function (t) {
     $(".arrow-left").on("click", function () {
         $(".main-slider").slick("slickPrev");
         let e = $("#progressBarContainer").siblings("a").data("index");
-                if (barIndex >= 4) {
-            barIndex = 0;
+        if (barIndex <= 0) {
+            barIndex = 4;
         } else {
             barIndex--;
         }
