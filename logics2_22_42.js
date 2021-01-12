@@ -278,11 +278,11 @@ $(".slider-tab").on("click", function (t) {
     $(".arrow-right.calculator-arrow").on("click", function () {
         $(".calculator-slider-side").slick("slickNext");
         let e = parseInt($(".calculator-slider-option.active").data("slider-index"));
-        $(".calculator-slider-option.active").removeClass("active"), e >= 4 ? (e <= 0) : (e += 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (barIndex = e);
+        $(".calculator-slider-option.active").removeClass("active"), e >= 4 ? (e = 0) : (e += 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (barIndex = e);
     }),
     $(".arrow-left.calculator-arrow").on("click", function () {
         $(".calculator-slider-side").slick("slickPrev");
         let e = parseInt($(".calculator-slider-option.active").data("slider-index"));
-        $(".calculator-slider-option.active").removeClass("active"), 0 <= e ? (e >= 4) : (e -= 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (barIndex = e);
+        $(".calculator-slider-option.active").removeClass("active"), e = 0 ? (e = 4) : (e -= 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (barIndex = e);
     });
 });
