@@ -135,7 +135,6 @@ function startAnimation() {
         return;    
     }
     $bar.parent().css("opacity", 0);
-
     $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
     $(`.progressbar:eq(${barIndex})`).animate({
         width: "100%",
@@ -146,7 +145,6 @@ function startAnimation() {
         } else {
             barIndex++;
         }
-//        t[0].slick.slickGoTo(barIndex);
         $(".main-slider").slick("slickGoTo", barIndex);
         startAnimation();
     });
@@ -155,9 +153,9 @@ $(".slide-nav").on("click", function (e) {
     e.preventDefault(),
     stopAnimation();
     slideIndex = parseInt($(this).data("index"));
-    (barIndex = slideIndex);
+    barIndex = slideIndex;
     startAnimation();
-    t[0].slick.slickGoTo(slideIndex);
+    t[0].slick.slickGoTo(barIndex);
 });
 startAnimation();
 let u = "";
@@ -167,7 +165,6 @@ $(".slider-tab").on("click", function () {
                 $(this).toggleClass("w--current"),
                 (barIndex = 0),
                 (slideIndex = 0),
-                $(".main-slider").slick("slickGoTo", 0),
                 stopAnimation(),
                 startAnimation(),
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
@@ -193,7 +190,6 @@ $(".slider-tab").on("click", function () {
     }),
     $(".arrow-left").on("click", function () {
         $(".main-slider").slick("slickPrev");
-//        let e = $("#progressBarContainer").siblings("a").data("index");
         if (barIndex <= 0) {
             barIndex = 4;
         } else {
@@ -204,7 +200,6 @@ $(".slider-tab").on("click", function () {
     }),
     $(".arrow-right").on("click", function () {
         $(".main-slider").slick("slickNext");
-//        let e = $("#progressBarContainer").siblings("a").data("index");
         if (barIndex >= 4) {
             barIndex = 0;
         } else {
