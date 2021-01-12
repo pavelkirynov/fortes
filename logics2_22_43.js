@@ -161,7 +161,7 @@ $(".slide-nav").on("click", function (e) {
 });
 startAnimation();
 let u = "";
-$(".slider-tab").on("click", function (t) {
+$(".slider-tab").on("click", function () {
         if (
             ($(".slider-tab.w--current").toggleClass("w--current"),
                 $(this).toggleClass("w--current"),
