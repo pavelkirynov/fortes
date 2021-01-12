@@ -128,12 +128,6 @@ function stopAnimation() {
     $bar.stop(true, false).animate({
         width: "0px"
     }, 250, "swing");
-    /*$bar.parent().animate({
-        opacity: "0"
-    }, 250, "swing");
-    $(`.progressbar:eq(${barIndex})`).parent().animate({
-        opacity: "1"
-    }, 250, "swing");*/
 }
 
 function startAnimation() {
@@ -153,6 +147,7 @@ function startAnimation() {
             barIndex++;
         }
         t[0].slick.slickGoTo(barIndex);
+        $(".main-slider").slick("slickGoTo", barIndex);
         startAnimation();
     });
 }
@@ -171,9 +166,10 @@ $(".slider-tab").on("click", function (t) {
             ($(".slider-tab.w--current").toggleClass("w--current"),
                 $(this).toggleClass("w--current"),
                 (barIndex = 0),
+                (slideIndex = 0),
                 stopAnimation(),
                 startAnimation(),
-                $(".main-slider").slick("slickGoTo", 0),
+                
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
         )
             u = "cozy";
@@ -200,7 +196,7 @@ $(".slider-tab").on("click", function (t) {
     }),
     $(".arrow-left").on("click", function () {
         $(".main-slider").slick("slickPrev");
-        let e = $("#progressBarContainer").siblings("a").data("index");
+//        let e = $("#progressBarContainer").siblings("a").data("index");
         if (barIndex <= 0) {
             barIndex = 4;
         } else {
@@ -211,7 +207,7 @@ $(".slider-tab").on("click", function (t) {
     }),
     $(".arrow-right").on("click", function () {
         $(".main-slider").slick("slickNext");
-        let e = $("#progressBarContainer").siblings("a").data("index");
+//        let e = $("#progressBarContainer").siblings("a").data("index");
         if (barIndex >= 4) {
             barIndex = 0;
         } else {
