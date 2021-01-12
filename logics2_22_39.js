@@ -165,11 +165,10 @@ $(".slider-tab").on("click", function (t) {
         if (
             ($(".slider-tab.w--current").toggleClass("w--current"),
                 $(this).toggleClass("w--current"),
-                (barIndex = 0),
-                (slideIndex = 0),
+                (barIndex = -1),
+                (slideIndex = -1),
                 stopAnimation(),
                 startAnimation(),
-                
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
         )
             u = "cozy";
@@ -188,9 +187,6 @@ $(".slider-tab").on("click", function (t) {
             $(".slide" + `.${u}`).toggle(!0),
             $(".style-heading, .style-note, .style-description").toggle(!1),
             $(".header-" + u).toggle(!0);
-            barIndex = 0;
-            slideIndex = 0;
-            $(".main-slider").slick("slickGoTo", 0),
             $(".arrow-left, .arrow-right").toggle(!0);
             $(".main-slider").slick("refresh");
     }),
