@@ -146,7 +146,7 @@ function startAnimation() {
         } else {
             barIndex++;
         }
-        t[0].slick.slickGoTo(barIndex);
+//        t[0].slick.slickGoTo(barIndex);
         $(".main-slider").slick("slickGoTo", barIndex);
         startAnimation();
     });
@@ -165,8 +165,9 @@ $(".slider-tab").on("click", function (t) {
         if (
             ($(".slider-tab.w--current").toggleClass("w--current"),
                 $(this).toggleClass("w--current"),
-                (barIndex = -1),
-                (slideIndex = -1),
+                (barIndex = 0),
+                (slideIndex = 0),
+                $(".main-slider").slick("slickGoTo", 0),
                 stopAnimation(),
                 startAnimation(),
                 0 == (e = parseInt($(this).attr("data-slider-index"))))
