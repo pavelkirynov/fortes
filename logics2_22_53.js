@@ -188,6 +188,9 @@ $(window).on('load', function () {
             $(".main-slider").slick("refresh");
             $(".slide-nav.active").removeClass("active");
             $(".slide-nav:eq(0)").addClass("active");
+            $(".slider-container .checkmark").css("margin-left", "0px");
+            $(".main-slider .color-var").toggle(false);
+            $(`.main-slider .color-1`).toggle(true);
         }),
         $(".arrow-left").on("click", function () {
             $(".main-slider").slick("slickPrev");
@@ -263,6 +266,9 @@ $(window).on('load', function () {
                 $(this).addClass("w--current"),
                 $(".wrap-border.calculator-btn").toggle(false);
             $(`.specification-${u}`).toggle(true);
+            $(".calculator .checkmark").css("margin-left", "0px");
+            $(".calculator-slider-side .color-var").toggle(false);
+            $(`.calculator-slider-side .color-1`).toggle(true);
         }),
         $(".calculator-slider-option").on("click", function () {
             $(".calculator-slider-option.active").removeClass("active"), $(this).addClass("active"), (slideIndex = parseInt($(this).data("slider-index"))), (r = slideIndex), i[0].slick.slickGoTo(slideIndex);
