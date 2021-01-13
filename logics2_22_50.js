@@ -189,6 +189,9 @@ $(window).on('load', function () {
         }),
         $(".arrow-left").on("click", function () {
             $(".main-slider").slick("slickPrev");
+            let e = $(".main-slider").slick("currentSlide");
+            $(".slide-nav.active").removeClass("active");
+            $(`.slide-nav:eq(${e})`).addClass("active");
             /*if (barIndex <= 0) {
                 barIndex = 4;
             } else {
@@ -199,6 +202,9 @@ $(window).on('load', function () {
         }),
         $(".arrow-right").on("click", function () {
             $(".main-slider").slick("slickNext");
+            let e = $(".main-slider").slick("currentSlide");
+            $(".slide-nav.active").removeClass("active");
+            $(`.slide-nav:eq(${e})`).addClass("active");
             /*if (barIndex >= 4) {
                 barIndex = 0;
             } else {
@@ -255,6 +261,8 @@ $(window).on('load', function () {
                 $(this).addClass("w--current"),
                 $(".wrap-border.calculator-btn").toggle(false);
             $(`.specification-${u}`).toggle(true);
+            $(".slide-nav.active").removeClass("active");
+            $(".slide-nav:eq(0)").addClass("active");
         }),
         $(".calculator-slider-option").on("click", function () {
             $(".calculator-slider-option.active").removeClass("active"), $(this).addClass("active"), (slideIndex = parseInt($(this).data("slider-index"))), (r = slideIndex), i[0].slick.slickGoTo(slideIndex);
@@ -272,11 +280,11 @@ $(window).on('load', function () {
         $(".arrow-right.calculator-arrow").on("click", function () {
             $(".calculator-slider-side").slick("slickNext");
             let e = parseInt($(".calculator-slider-option.active").data("slider-index"));
-            $(".calculator-slider-option.active").removeClass("active"), e >= 4 ? (e = 0) : (e += 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (barIndex = e);
+            $(".calculator-slider-option.active").removeClass("active"), e >= 4 ? (e = 0) : (e += 1), $(`.calculator-slider-option:eq(${e})`).addClass("active");
         }),
         $(".arrow-left.calculator-arrow").on("click", function () {
             $(".calculator-slider-side").slick("slickPrev");
             let e = parseInt($(".calculator-slider-option.active").data("slider-index"));
-            $(".calculator-slider-option.active").removeClass("active"), e = 0 ? (e = 4) : (e -= 1), $(`.calculator-slider-option:eq(${e})`).addClass("active"), (barIndex = e);
+            $(".calculator-slider-option.active").removeClass("active"), e = 0 ? (e = 4) : (e -= 1), $(`.calculator-slider-option:eq(${e})`).addClass("active");
         });
 });
