@@ -96,7 +96,7 @@ $(window).on('load', function () {
                 breakpoint: 478,
                 settings: {
                     draggable: !0,
-                    infinite: !1,
+                    infinite: !0,
                     arrows: !1,
                     dots: !0,
                     autoplay: !0,
