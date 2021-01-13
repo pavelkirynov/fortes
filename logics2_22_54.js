@@ -235,9 +235,6 @@ $(window).on('load', function () {
             }
         ),
         $("#laminat").prop("checked", !0),
-        $("#appliances").prop("checked", !0),
-        $(".choice").first().toggleClass("choiceActive"),
-        $(".choice").first().parent().toggleClass("choiceActiveBorder"),
         $(".choice").on("click", function (e) {
             if (!$("#appliancesBool").is(":checked")) return e.preventDefault(), $(".choiceActive").toggleClass("choiceActive"), void $(".choiceActiveBorder").toggleClass("choiceActiveBorder");
             $(this).hasClass("borderAcrive") ||
