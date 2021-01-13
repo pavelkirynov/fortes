@@ -131,7 +131,8 @@ $(window).on('load', function () {
     }
 
     function startAnimation() {
-        if (!document.querySelector(".main-slider")) {
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        if ((!document.querySelector(".main-slider")) || (vw < 990)) {
             return;
         }
         $bar.parent().css("opacity", 0);
