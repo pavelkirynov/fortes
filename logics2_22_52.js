@@ -204,7 +204,7 @@ $(window).on('load', function () {
         }),
         $(".arrow-right").on("click", function () {
             $(".main-slider").slick("slickNext");
-            let e = $(".main-slider").slick("currentSlide");
+            let e = $(".main-slider").slick("slickCurrentSlide");
             $(".slide-nav.active").removeClass("active");
             $(`.slide-nav:eq(${e})`).addClass("active");
             /*if (barIndex >= 4) {
