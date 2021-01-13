@@ -88,8 +88,6 @@ $(window).on('load', function () {
                     infinite: !0,
                     arrows: !0,
                     dots: !1,
-                    autoplay: !0,
-                    autoplaySpeed: 4e3
                 }
             },
             {
@@ -99,8 +97,6 @@ $(window).on('load', function () {
                     infinite: !0,
                     arrows: !1,
                     dots: !0,
-                    autoplay: !0,
-                    autoplaySpeed: 3500
                 }
             },
         ],
@@ -118,7 +114,7 @@ $(window).on('load', function () {
                 settings: "unslick"
             }]
         });
-    let $bar = $(".progressbar");
+    /*let $bar = $(".progressbar");
     let barIndex = 0;
 
     function stopAnimation() {
@@ -149,25 +145,25 @@ $(window).on('load', function () {
             $(".main-slider").slick("slickGoTo", barIndex);
             startAnimation();
         });
-    }
+    }*/
     $(".slide-nav").on("click", function (e) {
-        e.preventDefault(),
+        /*e.preventDefault(),
             stopAnimation();
-        slideIndex = parseInt($(this).data("index"));
         barIndex = slideIndex;
-        startAnimation();
-        t[0].slick.slickGoTo(barIndex);
+        startAnimation();*/
+        slideIndex = parseInt($(this).data("index"));
+        t[0].slick.slickGoTo(slideIndex);
     });
-    startAnimation();
+//    startAnimation();
     let u = "";
     $(".slider-tab").on("click", function () {
             if (
                 ($(".slider-tab.w--current").toggleClass("w--current"),
                     $(this).toggleClass("w--current"),
-                    (barIndex = 0),
+                    /*(barIndex = 0),
                     (slideIndex = 0),
                     stopAnimation(),
-                    startAnimation(),
+                    startAnimation(),*/
                     0 == (e = parseInt($(this).attr("data-slider-index"))))
             )
                 u = "cozy";
@@ -191,23 +187,23 @@ $(window).on('load', function () {
         }),
         $(".arrow-left").on("click", function () {
             $(".main-slider").slick("slickPrev");
-            if (barIndex <= 0) {
+            /*if (barIndex <= 0) {
                 barIndex = 4;
             } else {
                 barIndex--;
             }
             stopAnimation();
-            startAnimation();
+            startAnimation();*/
         }),
         $(".arrow-right").on("click", function () {
             $(".main-slider").slick("slickNext");
-            if (barIndex >= 4) {
+            /*if (barIndex >= 4) {
                 barIndex = 0;
             } else {
                 barIndex++;
             }
             stopAnimation();
-            startAnimation();
+            startAnimation();*/
         }),
         $(".preview-image, .blackbg-text").hover(
             function () {
