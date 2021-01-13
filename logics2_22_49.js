@@ -151,6 +151,8 @@ $(window).on('load', function () {
             stopAnimation();
         barIndex = slideIndex;
         startAnimation();*/
+        $(".slide-nav.active").toggleClass("active");
+        $(this).addClass("active");
         slideIndex = parseInt($(this).data("index"));
         t[0].slick.slickGoTo(slideIndex);
     });
