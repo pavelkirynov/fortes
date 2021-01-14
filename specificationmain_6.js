@@ -435,9 +435,9 @@ if (style == "cozy") {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
     }
 
-let kitchenMontage = parseData(`${letter + 121}`);
-let kitchenDelivery = parseData(`${letter + 122}`);
-let kitchenPrice = parseData(`${letter + 120}`);
+let kitchenMontage = parseData(`${styleLetter + 121}`);
+let kitchenDelivery = parseData(`${styleLetter + 122}`);
+let kitchenPrice = parseData(`${styleLetter + 120}`);
 let kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
 $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
 $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
