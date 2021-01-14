@@ -154,6 +154,16 @@ let water = parseFloat(parseData(`${letter+42}`, space)) * space,
     canalisation = parseFloat(parseData(`${letter+43}`, space)) * space,
     vents = parseFloat(parseData(`${letter+44}`, space)) * space,
     electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
+    
+
+/*appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
+appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
+appendWorkOption(parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), vents);
+appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);*/
+appendNewPricelistEntry($("#work"), workSum, parseData("F42"), parseData("G42"), 1, water);
+appendNewPricelistEntry($("#work"), workSum, parseData("F43"), parseData("G43"), 1, canalisation);
+appendNewPricelistEntry($("#work"), workSum, parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), electricity);
+appendNewPricelistEntry($("#work"), workSum, parseData("F45"), parseData("G45"), 1, vents);
 
 appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
 appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
@@ -364,6 +374,7 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     }
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
 }
+    
 function appendNewPricelistEntry(object, summingVar, name, manufacturer, amount, price) {
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return;
