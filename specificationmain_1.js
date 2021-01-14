@@ -103,6 +103,9 @@ let appliances = {
         TV: parseData("D198"),
     },
 };
+    let gorenje = [161, 9],
+        bosch = [175, 10],
+        miele = [190, 9];
 let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({
     ...accumulator,
     [key.trim()]: decodeURIComponent(value),
@@ -412,7 +415,22 @@ if (!!appliancesBoolTotal) {
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
     var sum = 0;
-    if (appliancesCookie == "gorenje") {
+    let array;
+    if (appliancesCookie === "gorenje") {
+        array = gorenje;
+    } else if (appliancesCookie === "bosch") {
+        array = bosch;
+    } else if (appliancesCookie === "miele") {
+        array = miele;
+    } 
+    for (let i = 0; i < array[1]; i++) {
+        $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
+        $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+        $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+        $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+        sum += parseFloat(parseData("D" + (array[0] + i)));
+    }
+    /*if (appliancesCookie == "gorenje") {
         let element = appliances.gorenje;
         let i = 0;
 
@@ -447,13 +465,12 @@ if (!!appliancesBoolTotal) {
             sum += parseFloat(parseData("D" + (190 + i)));
             i++;
         }
-    }
+    }*/
     $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#appliancesTotal").html(spacedNum(sum ));
     $("#appliancesTotalDiscount").html(spacedNum(sum*0.9));
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
-    i = 0;
 }
 if (!furnitureBool) {
     $("#kitchenSection").css("display", "none");
