@@ -80,7 +80,7 @@ if (!appliancesCookie) {
     appliancesCookie = "gorenje";
 }
 let styleURL = window.location.href.split("/");
-let style = styleURL[styleURL.length - 1];
+let style = styleURL[styleURL.length - 1].split("-")[0];
 let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     furnitureBool = +cookies._furnitureBool,
     space = +cookies._space,
