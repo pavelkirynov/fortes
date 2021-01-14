@@ -67,45 +67,10 @@ function parseData(range, comparableData) {
     }
     return data.feed.entry.find((entry) => entry.title.$t == range).content.$t;
 }
-let appliances = {
-    gorenje: {
-        fridge: parseData("D161"),
-        oven: parseData("D162"),
-        varochnayaPanel: parseData("D163"),
-        microwave: parseData("D164"),
-        vytyazhka: parseData("D165"),
-        washingMachine: parseData("D166"),
-        dishwasher: parseData("D167"),
-        boiler: parseData("D168"),
-        TV: parseData("D169"),
-    },
-    bosch: {
-        fridge: parseData("D175"),
-        oven: parseData("D176"),
-        varochnayaPanel: parseData("D177"),
-        microwave: parseData("D178"),
-        vytyazhka: parseData("D179"),
-        washingMachine: parseData("D180"),
-        sushylnaMachina: parseData("D181"),
-        dishwasher: parseData("D182"),
-        boiler: parseData("D183"),
-        TV: parseData("D184"),
-    },
-    miele: {
-        fridge: parseData("D190"),
-        oven: parseData("D191"),
-        varochnayaPanel: parseData("D192"),
-        vytyazhka: parseData("D193"),
-        washingMachine: parseData("D194"),
-        sushylnaMachina: parseData("D195"),
-        dishwasher: parseData("D196"),
-        boiler: parseData("D197"),
-        TV: parseData("D198"),
-    },
-};
-    let gorenje = [161, 9],
-        bosch = [175, 10],
-        miele = [190, 9];
+//first cell of furniture price column + amount of items to count
+let gorenje = [161, 9],
+    bosch = [175, 10],
+    miele = [190, 9];
 let cookies = document.cookie.split(";").map((cookie) => cookie.split("=")).reduce((accumulator, [key, value]) => ({
     ...accumulator,
     [key.trim()]: decodeURIComponent(value),
@@ -114,9 +79,10 @@ let appliancesCookie = cookies._appliances;
 if (!appliancesCookie) {
     appliancesCookie = "gorenje";
 }
+let styleURL = window.location.href.split("/");
+let style = styleURL[styleURL.length - 1];
 let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     furnitureBool = +cookies._furnitureBool,
-    style = cookies._style,
     space = +cookies._space,
     bath = cookies._bath,
     shower = cookies._shower,
@@ -136,13 +102,7 @@ let appliancesBoolTotal = +cookies._appliancesBoolTotal,
     workSum = 0,
     furnitureSum = 0,
     $furniture = $("#furnitureList");
-    console.log(floorScreed+ " " +denoising+ " " +hygienicShower+ " " +secondGypsumLayer+ " " +heatedFlooring+ " " +entranceDoors+ " " +conditioning);
-  	console.log(style);
-    if (style == "neoclassic") {
-        $("#styleSpec").html("Neo Classic"); 
-    } else {
-        $("#styleSpec").html(style[0].toUpperCase() + style.slice(1, style.length));    
-    }
+
 
 if (style == "cozy") {
     letter = "I";
@@ -199,6 +159,7 @@ appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
 appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
 appendWorkOption(parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), vents);
 appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);
+appendNewPricelistEntry();
 //appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
 //appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
 appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
@@ -403,6 +364,14 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     }
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
 }
+function appendNewPricelistEntry(object, summingVar, name, manufacturer, amount, price) {
+    if ((amount == 0) || (amount == undefined) || !(price)) {
+        return;
+    }
+    summingVar += price * amount;
+    object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+    object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
+}
 
     
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
@@ -430,44 +399,8 @@ if (!!appliancesBoolTotal) {
         $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
         sum += parseFloat(parseData("D" + (array[0] + i)));
     }
-    /*if (appliancesCookie == "gorenje") {
-        let element = appliances.gorenje;
-        let i = 0;
-
-        for (let key in element) {
-            $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
-            $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (161+i)))} грн.</span>`);
-            $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-            $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (161 + i))} ${parseData("E" + (161 + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (161+i)))} грн.</span>`);
-            sum += parseFloat(parseData("D" + (161 + i)));
-            i++;
-        }
-
-    } else if (appliancesCookie == "bosch") {
-        let element = appliances.bosch;
-        let i = 0;
-        for (let key in element) {
-            $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
-            $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (175 + i))} ${parseData("E" + (175 + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (175+i)))} грн.</span>`);
-            $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-            $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (175 + i))} ${parseData("E" + (175 + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (175+i)))} грн.</span>`);
-            sum += parseFloat(parseData("D" + (175 + i)));
-            i++;
-        }
-    } else if (appliancesCookie == "miele") {
-        let element = appliances.miele;
-        let i = 0;
-        for (let key in element) {
-            $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
-            $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (190 + i))} ${parseData("E" + (190 + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (190+i)))} грн.</span>`);
-            $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-            $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (190 + i))} ${parseData("E" + (190 + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (190+i)))} грн.</span>`);
-            sum += parseFloat(parseData("D" + (190 + i)));
-            i++;
-        }
-    }*/
     $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-    $("#appliancesTotal").html(spacedNum(sum ));
+    $("#appliancesTotal").html(spacedNum(sum));
     $("#appliancesTotalDiscount").html(spacedNum(sum*0.9));
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
