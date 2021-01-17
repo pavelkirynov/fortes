@@ -164,8 +164,10 @@ let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flo
 for (let i = 0; i < workAdressesArray.length; i++) {
     workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span></div></div>`;
-    $("#workList").append(textObject);  
+    $("#workList").append(textObject);
+    
 }
+    console.log(workSum + " first");
 
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
@@ -181,6 +183,7 @@ for (let i = 0; i < materialsAdressesArray.length; i++) {
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span></div></div>`;
     $("#workList").append(textObject);
 }
+    console.log(workSum + " second");
     
 if (space < 100) {
     appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
