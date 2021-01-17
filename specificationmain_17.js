@@ -187,7 +187,7 @@ let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseD
 let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
-        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), workAmountArray[i], workPriceArray[i]);
+        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
         console.log(workSum);
     }
 
@@ -318,7 +318,7 @@ function appendMaterialsOption(name, manufacturer, amount, price, dim) {
         $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
         return;
     }
-    console.log(price*amount + " " + name +" "+ workSum);
+    console.log(price*amount + " " + name + " " + workSum);
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
 }
     if (!!parseInt(hygienicShower) || !!parseInt(secondGypsumLayer) || !!parseInt(floorScreed) || !!parseInt(heatedFlooring) || !!parseInt(denoising) || !!parseInt(entranceDoors) || !!parseInt(conditioning)) {
