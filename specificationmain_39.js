@@ -188,6 +188,8 @@ let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathro
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
+        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+        object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span>`);   
         console.log(workSum);
     }
 
@@ -218,6 +220,8 @@ let materialsAdressesArray = [72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85
 let materialsDimArray = [null, null, null, null, null, null, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
 for (let i = 0; i < materialsAdressesArray.length; i++) {
     workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + materialsAdressesArray[i]), parseData("G" + materialsAdressesArray[i]), parseFloat(materialsAmountArray[i]), materialsPriceArray[i]/*, materialsDimArray[i]*/);
+    object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+    object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span>`); 
     console.log(workSum);
 }
     
@@ -396,12 +400,12 @@ function appendNewPricelistEntry(object, sumVar, name, manufacturer, amount, pri
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return sumVar;
     }
-    console.log("test " + name + " " + price + " " + amount);
-    function appendValue() {
+/*
+    function appendValue(object, name, manufacturer, amount, price) {
         object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);   
     }
-    appendValue();
+    appendValue(object, name, manufacturer, amount, price);*/
     return (sumVar + parseFloat(price) * parseFloat(amount));
 }
 
