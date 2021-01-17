@@ -394,7 +394,7 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     
 function appendNewPricelistEntry(object, sumVar, name, manufacturer, amount, price) {
     if ((amount == 0) || (amount == undefined) || !(price)) {
-        return 0;
+        return sumVar;
     }
     console.log("test " + name + " " + price + " " + amount);
     object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
