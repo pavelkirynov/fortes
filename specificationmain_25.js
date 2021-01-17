@@ -187,10 +187,30 @@ let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseD
 let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
-        workSum = appendNewPricelistEntry($("#work"), parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]), false);
+        workSum += appendNewPricelistEntry($("#work"), parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]), false);
         console.log(workSum);
     }
 
+        
+function appendNewPricelistEntry(object, name, manufacturer, amount, price/*, dim*/) {
+    if ((amount == 0) || (amount == undefined) || !(price)) {
+        return;
+    }
+    /*if (dim) {
+        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+        object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
+        return (parseFloat(price) * parseFloat(amount));
+    } else if (dim === null) {
+        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+        object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${parseData("G" + dim)} </span>`);
+        return (parseFloat(price) * parseFloat(amount));
+    }*/
+    console.log("test " + name + " " + price + " " + amount);
+    object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+    object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
+    return (parseFloat(price) * parseFloat(amount));
+}
+    
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
     
@@ -391,26 +411,6 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     }
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
 }
-    
-function appendNewPricelistEntry(object, name, manufacturer, amount, price, dim) {
-    if ((amount == 0) || (amount == undefined) || !(price)) {
-        return;
-    }
-    /*if (dim) {
-        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-        object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
-        return (parseFloat(price) * parseFloat(amount));
-    } else if (dim === null) {
-        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-        object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${parseData("G" + dim)} </span>`);
-        return (parseFloat(price) * parseFloat(amount));
-    }*/
-    console.log("test " + name + " " + price + " " + amount);
-    object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-    object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-    return (parseFloat(price) * parseFloat(amount));
-}
-
     
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
