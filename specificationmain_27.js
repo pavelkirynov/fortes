@@ -191,7 +191,7 @@ let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flo
         console.log(workSum);
     }
         
-/*function appendNewPricelistEntry(object, name, manufacturer, amount, price/*, dim*/) {
+/*function appendNewPricelistEntry(object, name, manufacturer, amount, price, dim) {
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return;
     }
