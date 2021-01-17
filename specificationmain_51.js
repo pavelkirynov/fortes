@@ -165,7 +165,7 @@ for (let i = 0; i < workAdressesArray.length; i++) {
     workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span></div></div>`;
     $("#workList").append(textObject);
-    
+    console.log("test " + parseData("F" + workAdressesArray[i]) +parseFloat(workPriceArray[i]) );
 }
     console.log(workSum + " first");
 
