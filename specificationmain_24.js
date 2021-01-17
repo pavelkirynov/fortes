@@ -396,7 +396,7 @@ function appendNewPricelistEntry(object, name, manufacturer, amount, price, dim)
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return;
     }
-    if (dim) {
+    /*if (dim) {
         object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
         return (parseFloat(price) * parseFloat(amount));
@@ -404,7 +404,7 @@ function appendNewPricelistEntry(object, name, manufacturer, amount, price, dim)
         object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${parseData("G" + dim)} </span>`);
         return (parseFloat(price) * parseFloat(amount));
-    }
+    }*/
     console.log("test " + name + " " + price + " " + amount);
     object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
     object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
