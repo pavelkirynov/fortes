@@ -187,7 +187,7 @@ let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseD
 let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
-        workSum += appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
+        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
         console.log(workSum);
     }
 
