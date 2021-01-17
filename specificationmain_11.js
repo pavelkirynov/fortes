@@ -398,10 +398,10 @@ if (!appliancesBoolTotal) {
     $(".comfy-section").css("display", "none");
     $("#appliancesListTotal").css("display", "none");
 }
+let sum = 0;
 if (!!appliancesBoolTotal) {
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
-    var sum = 0;
     let array;
     if (appliancesCookie === "gorenje") {
         array = gorenje;
