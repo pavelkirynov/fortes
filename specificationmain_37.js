@@ -397,12 +397,12 @@ function appendNewPricelistEntry(object, sumVar, name, manufacturer, amount, pri
         return sumVar;
     }
     console.log("test " + name + " " + price + " " + amount);
-   
-    return (
-        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>"),
-        object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`),
-        (sumVar + parseFloat(price) * parseFloat(amount))
-    );
+    appendValue();
+    return (sumVar + parseFloat(price) * parseFloat(amount));
+    function appendValue() {
+        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+        object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);   
+    }
 }
 
     
