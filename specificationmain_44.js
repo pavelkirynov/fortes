@@ -226,7 +226,7 @@ for (let i = 0; i < materialsAdressesArray.length; i++) {
     textArray += `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span></div></div>`;
     console.log(workSum);
 }
-$("#work").append(textArray);
+$("#workList").append(textArray);
     
 if (space < 100) {
     appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
