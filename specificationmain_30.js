@@ -187,7 +187,7 @@ let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseD
 let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
-        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
+        workSum += appendNewPricelistEntry($("#work"), parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
         console.log(workSum);
     }
 
@@ -392,11 +392,11 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
 }
     
-function appendNewPricelistEntry(object, summingVar, name, manufacturer, amount, price) {
+function appendNewPricelistEntry(object, name, manufacturer, amount, price) {
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return;
     }
-    console.log("test " + name + " " + price + " " + amount + " " + summingVar);
+    console.log("test " + name + " " + price + " " + amount;
     object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
     object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
     return (parseFloat(price) * parseFloat(amount));
