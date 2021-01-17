@@ -213,7 +213,7 @@ appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloa
 appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));*/
     
 let materialsPriceArray = [parseFloat(parseData(`${letter+72}`, space)), parseFloat(parseData(`${letter+73}`, space)), parseFloat(parseData(`${letter+74}`, space)), parseFloat(parseData(`${letter+75}`, space)), parseFloat(parseData(`${letter+76}`, space)), parseFloat(parseData(`${letter+77}`, space)), parseFloat(parseData(`${letter+79}`, space)), parseFloat(parseData(`${letter+80}`, space)), parseFloat(parseData(`${letter+81}`, space)), parseFloat(parseData(`${letter+82}`, space)), parseFloat(parseData(`${letter+83}`, space)), parseFloat(parseData(`${letter+84}`, space)), parseFloat(parseData(`${letter+85}`, space)), parseFloat(parseData(`${letter+86}`, space)), parseFloat(parseData(`${letter+87}`, space)), parseFloat(parseData(`${letter+88}`, space)), parseFloat(parseData(`${letter+89}`, space))];
-let materialsAmountArray = [(parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), amountOfBathrooms, 0.66 * space, 0.66 * space, parseFloat(parseData("H77", space)), 1,1,1,1, bath, shower, shower, bath, amountOfBathrooms,amountOfBathrooms,amountOfBathrooms];
+let materialsAmountArray = [(parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(amountOfBathrooms) * 35, 0.66 * space, 0.66 * space, 0.59* space , parseFloat(parseData("H77", space)), 1,1,1,1, bath, shower, shower, bath, amountOfBathrooms,amountOfBathrooms,amountOfBathrooms];
 let materialsAdressesArray = [72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
 let materialsDimArray = [null, null, null, null, null, null, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
 for (let i = 0; i < materialsAdressesArray.length; i++) {
@@ -397,9 +397,12 @@ function appendNewPricelistEntry(object, sumVar, name, manufacturer, amount, pri
         return sumVar;
     }
     console.log("test " + name + " " + price + " " + amount);
-    object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-    object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-    return (sumVar + parseFloat(price) * parseFloat(amount));
+   
+    return (
+        object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>"),
+        object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`),
+        (sumVar + parseFloat(price) * parseFloat(amount))
+    );
 }
 
     
