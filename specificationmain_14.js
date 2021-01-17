@@ -184,10 +184,11 @@ appendWorkOption(parseData("F64"), parseData("G64"), 1, parseFloat(parseData(`${
 appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum) / 100) * 1.56));
 appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));*/
 let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, Math.round((parseFloat(workSum) / 100) * 1.56), (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100))];
-let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, amountOfRooms + amountOfBathrooms, 1, 1, mouldings, 1, 1, 1, 1, 1];
+let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
         appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), workAmountArray[i], workPriceArray[i]);
+        console.log(workSum);
     }
 
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
