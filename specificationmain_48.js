@@ -149,82 +149,37 @@ if (ceiling == "stretch ceiling") {
     ceilingNum = "58";
     mouldings = 1;
 }
-console.log(flooring + " " + ceiling);
+
+let textObject = "";
+    
 let water = parseFloat(parseData(`${letter+42}`, space)) * space,
     canalisation = parseFloat(parseData(`${letter+43}`, space)) * space,
     vents = parseFloat(parseData(`${letter+44}`, space)) * space,
     electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
-    
 
-/*appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
-appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
-appendWorkOption(parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), vents);
-appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);
-appendNewPricelistEntry($("#work"), workSum, parseData("F42"), parseData("G42"), 1, water);
-appendNewPricelistEntry($("#work"), workSum, parseData("F43"), parseData("G43"), 1, canalisation);
-appendNewPricelistEntry($("#work"), workSum, parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), electricity);
-appendNewPricelistEntry($("#work"), workSum, parseData("F45"), parseData("G45"), 1, vents);
-
-appendWorkOption(parseData("F42"), parseData("G42"), 1, water);
-appendWorkOption(parseData("F43"), parseData("G43"), 1, canalisation);
-appendWorkOption(parseData("F44"), parseData("G44"), parseFloat(amountOfBathrooms), vents);
-appendWorkOption(parseData("F45"), parseData("G45"), 1, electricity);
-appendNewPricelistEntry();
-//appendWorkOption(parseData("F46"), parseData("G46"), shower, parseFloat(parseData(`${letter + 46}`, space)));
-//appendWorkOption(parseData("F47"), parseData("G47"), bath, parseFloat(parseData(`${letter + 47}`, space)));
-appendWorkOption(parseData("F48"), parseData("G48"), 1, parseFloat(parseData(`${letter + 48}`, space)) * space);
-appendWorkOption(parseData("F49"), parseData("G49"), amountOfBathrooms, parseFloat(parseData(`${letter + 49}`, space)) * space);
-appendWorkOption(parseData("F50"), parseData("G50"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter + 50}`)));
-appendWorkOption(parseData("F52"), parseData("G52"), 1, parseFloat(parseData(`${letter + 52}`, space)) * space);
-appendWorkOption(parseData("F54"), parseData("G54"), 1, parseFloat(parseData(`${letter + 54}`)));
-appendWorkOption(parseData("F53"), parseData("G53"), mouldings, parseFloat(parseData(`${letter + 53}`, space)) * 140);
-appendWorkOption(parseData("F" + ceilingNum), parseData("G" + ceilingNum), 1, parseFloat(parseData(letter + ceilingNum, space)) * space);
-appendWorkOption(parseData("F" + flooringNum), parseData("G" + flooringNum), 1, parseFloat(parseData(letter + flooringNum, space)) * space);
-appendWorkOption(parseData("F64"), parseData("G64"), 1, parseFloat(parseData(`${letter + 64}`, space)) * space);
-appendWorkOption(parseData("F66"), 0, 1, Math.round((parseFloat(workSum) / 100) * 1.56));
-appendWorkOption(parseData("F67"), 0, 1, (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100)));*/
 let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, Math.round((parseFloat(workSum) / 100) * 1.56), (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100))];
 let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
-    for (let i = 0; i < workAdressesArray.length; i++) {
-        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
-        $("#work").append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-        $("#work").children(".option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span>`);   
-        console.log(workSum);
-    }
+    
+for (let i = 0; i < workAdressesArray.length; i++) {
+    workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
+    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span></div></div>`;
+    $("#workList").append(textObject);  
+}
 
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
-    
-/*appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), null);
-appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 35, parseFloat(parseData(`${letter+73}`, space)), null);
-appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66 * space, parseFloat(parseData(`${letter+74}`, space)), null);
-appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66 * space, parseFloat(parseData(`${letter+75}`, space)), null);
-appendMaterialsOption(parseData("F76"), parseData(letterModel + "76"), 0.59 * space, parseFloat(parseData(`${letter+76}`, space)), null);
-appendMaterialsOption(parseData("F77"), parseData(letterModel + "77"), parseFloat(parseData("H77", space)), parseFloat(parseData(`${letter+77}`, space)), null);
-appendMaterialsOption(parseData("F79"), parseData(letterModel + "79"), 1, parseFloat(parseData(`${letter+79}`, space)), parseData("G79"));
-appendMaterialsOption(parseData("F80"), parseData(letterModel + "80"), 1, parseFloat(parseData(`${letter+80}`, space)), parseData("G80"));
-appendMaterialsOption(parseData("F81"), parseData(letterModel + "81"), 1, parseFloat(parseData(`${letter+81}`, space)), parseData("G81"));
-appendMaterialsOption(parseData("F82"), parseData(letterModel + "82"), 1, parseFloat(parseData(`${letter+82}`, space)), parseData("G82"));
-appendMaterialsOption(parseData("F83"), parseData(letterModel + "83"), parseFloat(bath), parseFloat(parseData(`${letter+83}`, space)), parseData("G83"));
-appendMaterialsOption(parseData("F84"), parseData(letterModel + "84"), parseFloat(shower), parseFloat(parseData(`${letter+84}`, space)), parseData("G84"));
-appendMaterialsOption(parseData("F85"), parseData(letterModel + "85"), shower, parseFloat(parseData(`${letter+85}`, space)), parseData("G85"));
-appendMaterialsOption(parseData("F86"), parseData(letterModel + "86"), parseFloat(bath) + parseFloat(shower), parseFloat(parseData(`${letter+86}`, space)), parseData("G86"));
-appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
-appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
-appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));*/
-    
+       
 let materialsPriceArray = [parseFloat(parseData(`${letter+72}`, space)), parseFloat(parseData(`${letter+73}`, space)), parseFloat(parseData(`${letter+74}`, space)), parseFloat(parseData(`${letter+75}`, space)), parseFloat(parseData(`${letter+76}`, space)), parseFloat(parseData(`${letter+77}`, space)), parseFloat(parseData(`${letter+79}`, space)), parseFloat(parseData(`${letter+80}`, space)), parseFloat(parseData(`${letter+81}`, space)), parseFloat(parseData(`${letter+82}`, space)), parseFloat(parseData(`${letter+83}`, space)), parseFloat(parseData(`${letter+84}`, space)), parseFloat(parseData(`${letter+85}`, space)), parseFloat(parseData(`${letter+86}`, space)), parseFloat(parseData(`${letter+87}`, space)), parseFloat(parseData(`${letter+88}`, space)), parseFloat(parseData(`${letter+89}`, space))];
 let materialsAmountArray = [(parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(amountOfBathrooms) * 35, 0.66 * space, 0.66 * space, 0.59* space , parseFloat(parseData("H77", space)), 1,1,1,1, bath, shower, shower, bath, amountOfBathrooms,amountOfBathrooms,amountOfBathrooms];
 let materialsAdressesArray = [72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
 let materialsDimArray = [null, null, null, null, null, null, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
-let textObject = "";
+    
 for (let i = 0; i < materialsAdressesArray.length; i++) {
     
     workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + materialsAdressesArray[i]), parseData("G" + materialsAdressesArray[i]), parseFloat(materialsAmountArray[i]), materialsPriceArray[i]/*, materialsDimArray[i]*/);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span></div></div>`;
     $("#workList").append(textObject);
-    console.log(workSum);
 }
     
 if (space < 100) {
