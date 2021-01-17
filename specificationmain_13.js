@@ -188,7 +188,6 @@ let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathro
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
         appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), workAmountArray[i], workPriceArray[i]);
-        console.log("price " + i + " " + workAmountArray[i] * workPriceArray[i]);
     }
 
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
@@ -387,7 +386,7 @@ function appendNewPricelistEntry(object, summingVar, name, manufacturer, amount,
         return;
     }
     summingVar = summingVar + price * amount;
-    console.log("test " + price + " " + amount + " " + summingVar);
+    console.log("test " + name + " " + price + " " + amount + " " + summingVar);
     object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
     object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
 }
