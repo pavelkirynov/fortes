@@ -187,14 +187,14 @@ let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseD
 let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, 1, amountOfBathrooms, parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms), 1, 1, mouldings, 1, 1, 1, 1, 1];
 let workAdressesArray = [42, 43, 44, 45, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 66, 67];
     for (let i = 0; i < workAdressesArray.length; i++) {
-        workSum = appendNewPricelistEntry($("#work"), parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]));
+        workSum = appendNewPricelistEntry($("#work"), parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), parseFloat(workAmountArray[i]), parseFloat(workPriceArray[i]), false);
         console.log(workSum);
     }
 
 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
 $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
     
-appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), null);
+/*appendMaterialsOption(parseData("F72"), parseData(letterModel + "72"), (parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), parseFloat(parseData(`${letter+72}`, space)), null);
 appendMaterialsOption(parseData("F73"), parseData(letterModel + "73"), parseFloat(amountOfBathrooms) * 35, parseFloat(parseData(`${letter+73}`, space)), null);
 appendMaterialsOption(parseData("F74"), parseData(letterModel + "74"), 0.66 * space, parseFloat(parseData(`${letter+74}`, space)), null);
 appendMaterialsOption(parseData("F75"), parseData(letterModel + "75"), 0.66 * space, parseFloat(parseData(`${letter+75}`, space)), null);
@@ -211,6 +211,16 @@ appendMaterialsOption(parseData("F86"), parseData(letterModel + "86"), parseFloa
 appendMaterialsOption(parseData("F87"), parseData(letterModel + "87"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+87}`, space)), parseData("G87"));
 appendMaterialsOption(parseData("F88"), parseData(letterModel + "88"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+88}`, space)), parseData("G88"));
 appendMaterialsOption(parseData("F89"), parseData(letterModel + "89"), parseFloat(amountOfBathrooms), parseFloat(parseData(`${letter+89}`, space)), parseData("G89"));
+    */
+//let materialsPriceArray = [];
+let materialsAmountArray = [(parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms)), amountOfBathrooms, 0.66 * space, 0.66 * space, parseFloat(parseData("H77", space)), 1,1,1,1, bath, shower, shower, bath, amountOfBathrooms,amountOfBathrooms,amountOfBathrooms];
+let materialsAdressesArray = [72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
+let materialsDimArray = [null, null, null, null, null, null, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89];
+for (let i = 0; i < workAdressesArray.length; i++) {
+    workSum = appendNewPricelistEntry($("#work"), parseData("F" + materialsAdressesArray[i]), parseData("G" + materialsAdressesArray[i]), parseFloat(materialsAmountArray[i]), parseFloat(materialsDimArray[i]), materialsDimArray[i]);
+    console.log(workSum);
+}
+    
 if (space < 100) {
     appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
 } else {
@@ -382,14 +392,19 @@ function appendOptionsOption(name, manufacturer, amount, price, dim) {
     $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
 }
     
-function appendNewPricelistEntry(object, name, manufacturer, amount, price) {
+function appendNewPricelistEntry(object, name, manufacturer, amount, price, dim) {
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return;
+    }
+    if (dim || (dim == null)) {
+        object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
+    } else if (dim == null) {
+        object.children("option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${parseData("G" + dim)} </span>`);
     }
     console.log("test " + name + " " + price + " " + amount);
     object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
     object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-    return (parseFloat(price) * parseFloat(amount));
+    return (parseFloat(parseData(`${letter + price}`, space)) * parseFloat(amount));
 }
 
     
