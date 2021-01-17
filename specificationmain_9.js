@@ -451,5 +451,6 @@ $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
 $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
 $("#kitchenTotal, #kitchenTotalPrice").html(spacedNum(kitchenTotal) + " грн");
 $("#kitchenTotalPriceDiscount").html(spacedNum(kitchenTotal * 0.9));
+    console.log("sums" + workSum + " " + furnitureSum  + " " + sum);
 $("#totalPriceTotal").html(spacedNum(Math.round(furnitureSum + workSum + sum)) + " грн. *");
 };
