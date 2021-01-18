@@ -150,7 +150,7 @@ let data = {
             }
         });
         function returnValue(multiplier) {
-            let price = makeCall();
+            let price = parseFloat(makeCall());
             $("#total").html(numberWithSpaces(Math.round(price)));
             $("#totalWhole").html(numberWithSpaces(Math.round(price * multiplier)));
             
@@ -209,6 +209,7 @@ async function makeCall() {
         method: "POST"
     });
     let result = await response.json();
+    console.log(result.cost_per_meter);
     return(parseFloat(result.cost_per_meter));   
 }
 
