@@ -27,7 +27,7 @@ let data = {
     standardGorenje: 0,
     standardBosch: 0,
     premiumMiele: 1,
-    styleLetter: "K"
+    styleLetter: "11"
 };
 
 $("input").on("input", function () {
@@ -153,11 +153,6 @@ $("#appliancesBool").on("click", function () {
     }
 });
 
-function returnValue(multiplier) {
-    updateUserData();
-    formPostQuery(data);
-}
-
 function updateUserData() {
     data.space = +$("#space").val();
     data.amountOfRooms = +$("#amountOfRooms").val();
@@ -204,45 +199,16 @@ function returnRoundedPrice(price) {
     return Math.round(price / (space * 28.5));
 }
 
-returnValue(space);
-
-function formPostQuery(data) {
-    $.post('https://script.google.com/macros/s/AKfycbwhVE2K9XlKJLI-XnXH7u_sogy4O-UUi2jKCvNd8kbm33UIL7jb/exec', data).always(function () {
-        getCell();   
+async function makeCall() {
+    let response = await fetch('https://api.fortes.agency/calc', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     });
-    
-}
 
-function getCell() {
-    $.ajax({
-            url: `https://sheets.googleapis.com/v4/spreadsheets/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/values/%D0%A0%D0%B5%D0%BC%D0%BE%D0%BD%D1%82!${data.styleLetter}36?key=AIzaSyCkgcA0WdlQTTXBKMJYZ_ntzGRenI0MuRQ`,
-            type: 'GET',
-            success: function (result) {
-                console.log("success");
-                console.log(result.values[0][0]);
-                priceValue = result.values[0][0];
-            }
-        }).fail(function (e) {
-            console.log("error: " + e);
-        });
-        console.log(priceValue);
-        $("#total").html(numberWithSpaces(Math.round(parseInt(priceValue)))); //.replace(/,/g, ".")
-        //$("#totalWhole").html(numberWithSpaces(Math.round(parseInt(priceValue.replace(/,/g, ".")) * multiplier)));
-
-        function numberWithSpaces(num) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-        }
-    /*let col = data.styleLetter;
-    let url = "https://spreadsheets.google.com/feeds/cells/17Bi-77sL01Oil6fnjY9yJZKDAiyzylvQ5ir0fB8ym4M/default/public/basic/R36C" + col + '?alt=json';
-    $.getJSON(url)
-        .done(function (data) {
-            if (data.entry) {
-                priceValue = (data.entry.content['$t'].split(" "));
-            } else {
-                console.log('Failed to fetch data');
-            }
-        })
-        .fail(function () {
-            console.log('Failed to fetch data');
-        });*/
+    let result = await response.json();
+    alert(result.message);
 }
+makeCall();
