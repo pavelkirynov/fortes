@@ -200,15 +200,14 @@ function returnRoundedPrice(price) {
 }
 
 async function makeCall() {
-    let response = await fetch('https://api.fortes.agency/calc', {
-        method: 'POST',
+    let response = await fetch("https://api.fortes.agency/calc", {
+        body: JSON.stringify(data),
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(data)
+        method: "POST"
     });
-
     let result = await response.json();
-    alert(result.message);
+    alert(result);
 }
 makeCall();
