@@ -150,6 +150,7 @@ let data = {
             }
         });
         async function returnValue(multiplier) {
+            updateUserData();
             let price = await makeCall();
             $("#total").html(numberWithSpaces(Math.round(price)));
             $("#totalWhole").html(numberWithSpaces(Math.round(price * multiplier)));
