@@ -2,7 +2,7 @@
     let appliancesCookie = "";
     $("#space").val(50);
 let data = {
-    cost_Per_Metre: 0,
+    cost_per_metre: 0,
     appliances: 1,
     style: "cozy",
     bath: 1,
