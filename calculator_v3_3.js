@@ -153,6 +153,7 @@ $("#appliancesBool").on("click", function () {
     }
 });
 
+
 function updateUserData() {
     data.space = +$("#space").val();
     data.amountOfRooms = +$("#amountOfRooms").val();
@@ -199,7 +200,10 @@ function returnRoundedPrice(price) {
     return Math.round(price / (space * 28.5));
 }
 
-async function makeCall() {
+returnValue(space);
+
+async function returnValue(multiplier) {
+    updateUserData();
     let response = await fetch("https://api.fortes.agency/calc", {
         body: JSON.stringify(data),
         headers: {
@@ -208,6 +212,9 @@ async function makeCall() {
         method: "POST"
     });
     let result = await response.json();
-    alert(result.total_cost + " " + result.price_per_meter);
+    return(numberWithSpaces(parseFloat(result.cost_per_meter) * multiplier));
+
+    function numberWithSpaces(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
 }
-makeCall();
