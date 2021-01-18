@@ -2,25 +2,25 @@
     let appliancesCookie = "";
     $("#space").val(50);
 let data = {
-    costPerMetre: 0,
+    cost_Per_Metre: 0,
     appliances: 1,
     style: "cozy",
     bath: 1,
     shower: 0,
     ceiling: "stretch ceiling",
     flooring: "laminat",
-    hygienicShower: 0,
-    secondGypsumLayer: 0,
-    floorScreed: 0,
-    heatedFlooring: 0,
+    hygienic_shower: 0,
+    second_gypsum_layer: 0,
+    floor_screed: 0,
+    heated_flooring: 0,
     denoising: 0,
-    entranceDoors: 0,
+    entrance_doors: 0,
     conditioning: 0,
-    amountOfRooms: 2,
-    amountOfBathrooms: 1,
-    summedPrice: 0,
-    appliancesBoolTotal: 1,
-    furnitureBool: 1,
+    amount_of_rooms: 2,
+    amount_of_bathrooms: 1,
+    summed_price: 0,
+    appliances_bool_total: 1,
+    furniture_bool: 1,
     space: 50
 };
         $("input").on("input", function () {
@@ -167,19 +167,19 @@ let data = {
 
 function updateUserData() {
     data.space = +$("#space").val();
-    data.amountOfRooms = +$("#amountOfRooms").val();
-    data.amountOfBathrooms = +$("#amountOfBathrooms").val();
-    data.heatedFlooring = +$("#heatedFlooring").val();
+    data.amount_of_rooms = +$("#amountOfRooms").val();
+    data.amount_of_bathrooms = +$("#amountOfBathrooms").val();
+    data.heated_flooring = +$("#heatedFlooring").val();
     data.conditioning = +$("#conditioning").val();
-    data.hygienicShower = +$("#hygienicShower").is(":checked");
-    data.secondGypsumLayer = +$("#secondGypsumLayer").is(":checked");
-    data.furnitureBool = +$("#furnitureBool").is(":checked");
+    data.hygienic_shower = +$("#hygienicShower").is(":checked");
+    data.second_gypsum_Layer = +$("#secondGypsumLayer").is(":checked");
+    data.furniture_bool = +$("#furnitureBool").is(":checked");
     data.bath = +$("#bathtub").is(":checked");
     data.shower = +$("#shower").is(":checked");
-    data.appliancesBoolTotal = +$("#appliancesBool").is(":checked");
-    data.floorScreed = +$("#floorscreed").is(":checked");
+    data.appliances_bool_total = +$("#appliancesBool").is(":checked");
+    data.floor_screed = +$("#floorscreed").is(":checked");
     data.denoising = +$("#noise").is(":checked");
-    data.entranceDoors = +$("#doors").is(":checked");
+    data.entrance_doors = +$("#doors").is(":checked");
     data.ceiling = $(":radio[name='ceiling']:checked").val();
     data.flooring = $(":radio[name='flooring']:checked").val();
 
