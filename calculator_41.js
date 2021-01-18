@@ -2,31 +2,26 @@
     let appliancesCookie = "";
     $("#space").val(50);
 let data = {
-    space: +$("#space").val(),
-    amountOfRooms: +$("#amountOfRooms").val(),
-    amountOfBathrooms: +$("#amountOfBathrooms").val(),
-    furnitureBool: +$("#furnitureBool").is(":checked"),
-    appliancesBoolTotal: +$("#appliancesBool").is(":checked"),
-    bathtub: +$("#bathtub").is(":checked"),
-    shower: +$("#shower").is(":checked"),
-    hygienicShower: +$("#hygienicShower").is(":checked"),
-    secondGypsumLayer: +$("#secondGypsumLayer").is(":checked"),
-    floorScreed: +$("#floorscreed").is(":checked"),
-    heatedFlooring: +$("#heatedFlooring").val(),
-    denoising: +$("#noise").is(":checked"),
-    entranceDoors: +$("#doors").is(":checked"),
-    conditioning: +$("#conditioning").val(),
-    ceiling1: +$("#ceiling1").is(":checked"),
-    ceiling2: +$("#ceiling2").is(":checked"),
-    ceiling3: +$("#ceiling3").is(":checked"),
-    aminate: +$("#laminat").is(":checked"),
-    vinyl: +$("#vynil").is(":checked"),
-    parquet: +$("#parket").is(":checked"),
-    appliancesBool: 1,
-    standardGorenje: 0,
-    standardBosch: 0,
-    premiumMiele: 1,
-    styleLetter: "11"
+    costPerMetre: 0,
+    appliances: 1,
+    style: "cozy",
+    bath: 1,
+    shower: 0,
+    ceiling: "stretch ceiling",
+    flooring: "laminat",
+    hygienicShower: 0,
+    secondGypsumLayer: 0,
+    floorScreed: 0,
+    heatedFlooring: 0,
+    denoising: 0,
+    entranceDoors: 0,
+    conditioning: 0,
+    amountOfRooms: 2,
+    amountOfBathrooms: 1,
+    summedPrice: 0,
+    appliancesBoolTotal: 1,
+    furnitureBool: 1,
+    space: 50
 };
         $("input").on("input", function () {
             updateUserData();
@@ -179,18 +174,15 @@ function updateUserData() {
     data.hygienicShower = +$("#hygienicShower").is(":checked");
     data.secondGypsumLayer = +$("#secondGypsumLayer").is(":checked");
     data.furnitureBool = +$("#furnitureBool").is(":checked");
-    data.bathtub = +$("#bathtub").is(":checked");
+    data.bath = +$("#bathtub").is(":checked");
     data.shower = +$("#shower").is(":checked");
     data.appliancesBoolTotal = +$("#appliancesBool").is(":checked");
     data.floorScreed = +$("#floorscreed").is(":checked");
     data.denoising = +$("#noise").is(":checked");
     data.entranceDoors = +$("#doors").is(":checked");
-    data.ceiling1 = +$("#ceiling1").is(":checked");
-    data.ceiling2 = +$("#ceiling2").is(":checked");
-    data.ceiling3 = +$("#ceiling3").is(":checked");
-    data.laminate = +$("#laminat").is(":checked");
-    data.vinyl = +$("#vynil").is(":checked");
-    data.parquet = +$("#parket").is(":checked");
+    data.ceiling = $(":radio[name='ceiling']:checked").val();
+    data.flooring = $(":radio[name='flooring']:checked").val();
+
 }
         function getUserStyle(number) {
             if (number == 0) {
