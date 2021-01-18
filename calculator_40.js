@@ -159,7 +159,8 @@ let data = {
                 },
                 method: "POST"
             });
-            let price = await response.json().cost_per_meter;
+            let result = await response.json();
+            let price = result.cost_per_meter;
             
             $("#total").html(numberWithSpaces(Math.round(parseFloat(price))));
             $("#totalWhole").html(numberWithSpaces(Math.round(parseFloat(price) * multiplier)));
