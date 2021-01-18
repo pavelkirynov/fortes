@@ -151,9 +151,18 @@ let data = {
         });
         async function returnValue(multiplier) {
             updateUserData();
-            let price = await makeCall();
-            $("#total").html(numberWithSpaces(Math.round(price)));
-            $("#totalWhole").html(numberWithSpaces(Math.round(price * multiplier)));
+            
+            let response = await fetch("https://api.fortes.agency/calc", {
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST"
+            });
+            let price = await response.json().cost_per_meter;
+            
+            $("#total").html(numberWithSpaces(Math.round(parseFloat(price))));
+            $("#totalWhole").html(numberWithSpaces(Math.round(parseFloat(price) * multiplier)));
             
             function numberWithSpaces(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
