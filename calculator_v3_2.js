@@ -208,6 +208,6 @@ async function makeCall() {
         method: "POST"
     });
     let result = await response.json();
-    alert(result);
+    alert(result.total_cost + " " + result.price_per_meter);
 }
 makeCall();
