@@ -2,8 +2,6 @@
     let appliancesCookie = "";
     $("#space").val(50);
 let data = {
-    cost_per_metre: 0,
-    appliances: 1,
     style: "cozy",
     bath: 1,
     shower: 0,
@@ -18,7 +16,7 @@ let data = {
     conditioning: 0,
     amount_of_rooms: 2,
     amount_of_bathrooms: 1,
-    summed_price: 0,
+    appliances: 1,
     appliances_bool_total: 1,
     furniture_bool: 1,
     space: 50
@@ -110,28 +108,12 @@ let data = {
             if ($("#node").is(":checked")) {
                 return 0;
             }
-            appliancesBoolTotal = 1;
-            appliancesCookie = $(this).attr("data-appliances");
-            if ($(this).attr("data-appliances") == "bosch") {
-                appliancesBool.standardBosch = 1;
-                appliancesBool.premiumMiele = 0;
-                appliancesBool.standardGorenje = 0;
-            } else if ($(this).attr("data-appliances") == "gorenje") {
-                appliancesBool.standardBosch = 0;
-                appliancesBool.premiumMiele = 0;
-                appliancesBool.standardGorenje = 1;
-            } else {
-                appliancesBool.standardBosch = 0;
-                appliancesBool.premiumMiele = 1;
-                appliancesBool.standardGorenje = 0;
-            }
+            data.appliances_bool_total = 1;
+            data.appliances = $(".choiceActiveBorder").data("appliances");
             returnValue(space);
         });
         $("#node").on("click", function () {
-            appliancesBoolTotal = 0;
-            appliancesBool.standardGorenje = 0;
-            appliancesBool.standardBosch = 0;
-            appliancesBool.premiumMiele = 0;
+            data.appliances_bool_total = 0;
             returnValue(space);
         });
         $("#appliancesBool").on("click", function () {
@@ -139,8 +121,8 @@ let data = {
                 return;
             }
             if (!(document.querySelector(".choiceActiveBorder"))) {
-                appliancesBoolTotal = 1;
-                appliancesBool.standardGorenje = 1;
+                data.appliances_bool_total = 1;
+                data.appliances = "gorenje";
                 returnValue(space);
             }
         });
@@ -158,7 +140,7 @@ let data = {
             let price = result.cost_per_meter;
             
             $("#total").html(numberWithSpaces(Math.round(parseFloat(price))));
-            $("#totalWhole").html(numberWithSpaces(Math.round(parseFloat(price) * multiplier)));
+            $("#totalWhole").html(numberWithSpaces(Math.round(parseFloat(price) * parseFloat(multiplier))));
             
             function numberWithSpaces(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");   
@@ -182,14 +164,13 @@ function updateUserData() {
     data.entrance_doors = +$("#doors").is(":checked");
     data.ceiling = $(":radio[name='ceiling']:checked").val();
     data.flooring = $(":radio[name='flooring']:checked").val();
-
+    data.appliances = $(".choiceActiveBorder").data("appliances");
 }
         function getUserStyle(number) {
             if (number == 0) {
                 style = "cozy";
             } else if (number == 2) {
-                style = "fusion";
-            } else if (number == 1) {
+                style = "fusion";            } else if (number == 1) {
                 style = "japandi";
             } else if (number == 3) {
                 style = "modern";
@@ -202,16 +183,3 @@ function updateUserData() {
         }
         
         returnValue(space);
-
-async function makeCall() {
-    let response = await fetch("https://api.fortes.agency/calc", {
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        },
-        method: "POST"
-    });
-    let result = await response.json();
-    return(result.cost_per_meter);
-}
-
