@@ -21,7 +21,7 @@ let data = {
     furniture_bool: 1,
     space: 50
 };
-        $("input").on("input", function () {
+        $("input").on("focusout", function () {
             updateUserData();
             returnValue(data.space);
         });
