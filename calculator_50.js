@@ -17,7 +17,7 @@ let data = {
     amount_of_rooms: 2,
     amount_of_bathrooms: 1,
     appliances: "gorenje",
-    appliances_bool_total: 1,
+    appliances_bool_total: 0,
     furniture_bool: 1,
     space: 50
 };
