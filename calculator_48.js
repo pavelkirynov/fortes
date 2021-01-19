@@ -70,15 +70,15 @@ let data = {
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).data("slider-index"));
-            getUserStyle(number);
+//            getUserStyle(number);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
-            $(`.calculator-slide.` + style).toggle(true);
+            $(`.calculator-slide.` + data.style).toggle(true);
             returnValue(data.space);
         });
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
-            getUserStyle(slideNumber);
+//            getUserStyle(slideNumber);
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass("w--current");
             returnValue(data.space);
