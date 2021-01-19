@@ -60,7 +60,6 @@ let data = {
             } else if (parseInt($(this).siblings(".increment-input").val()) > 0) {
                 $(this).siblings(".disabled").toggleClass("disabled");
             }
-            updateUserData();
             if (data.amountOfRooms == 0) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
@@ -127,12 +126,12 @@ let data = {
                 returnValue(data.space);
             }
         });
-/*$("#appliancesBool").on("change", function () {
+$("#appliancesBool").on("change", function () {
     if ($(this).is(":checked")) {
         data.appliances_bool_total = 1;
         returnValue(data.space);
     }
-});*/
+});
         async function returnValue(multiplier) {
             getUserStyle($(".calculator-tab.w--current").data("slider-index"));
             updateUserData();
@@ -162,7 +161,7 @@ function updateUserData() {
     data.heated_flooring = +$("#heatedFlooring").val();
     data.conditioning = +$("#conditioning").val();
     data.hygienic_shower = +$("#hygienicShower").is(":checked");
-    data.second_gypsum_Layer = +$("#secondGypsumLayer").is(":checked");
+    data.second_gypsum_layer = +$("#secondGypsumLayer").is(":checked");
     data.furniture_bool = +$("#furnitureBool").is(":checked");
     data.bath = +$("#bathtub").is(":checked");
     data.shower = +$("#shower").is(":checked");
