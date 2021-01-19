@@ -16,7 +16,7 @@ let data = {
     conditioning: 0,
     amount_of_rooms: 2,
     amount_of_bathrooms: 1,
-    appliances: 1,
+    appliances: "gorenje",
     appliances_bool_total: 1,
     furniture_bool: 1,
     space: 50
@@ -127,6 +127,12 @@ let data = {
                 returnValue(data.space);
             }
         });
+/*$("#appliancesBool").on("change", function () {
+    if ($(this).is(":checked")) {
+        data.appliances_bool_total = 1;
+        returnValue(data.space);
+    }
+});*/
         async function returnValue(multiplier) {
             getUserStyle($(".calculator-tab.w--current").data("slider-index"));
             updateUserData();
