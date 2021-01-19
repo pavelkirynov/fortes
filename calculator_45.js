@@ -140,6 +140,7 @@ let data = {
             let price = result.cost_per_meter;
             
             $("#total").html(numberWithSpaces(Math.round(parseFloat(price))));
+            console.log(price + " " + multiplier);
             $("#totalWhole").html(numberWithSpaces(Math.round(parseFloat(price) * parseFloat(multiplier))));
             
             function numberWithSpaces(num) {
