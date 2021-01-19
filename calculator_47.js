@@ -61,7 +61,7 @@ let data = {
                 $(this).siblings(".disabled").toggleClass("disabled");
             }
             updateUserData();
-            if (amountOfRooms == 0) {
+            if (data.amountOfRooms == 0) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
                 return;
@@ -69,7 +69,7 @@ let data = {
             returnValue(data.space);
         });
         $(".calculator-tab").on("click", function (e) {
-            number = parseInt($(this).attr("data-slider-index"));
+            number = parseInt($(this).data("slider-index"));
             getUserStyle(number);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
@@ -90,7 +90,8 @@ let data = {
             $(".calculator-slider-option:eq(0)").addClass("active");
         });
         $(".calculatecozy").on("click", function () {
-            style = "cozy";
+            data.style = "cozy";
+            style = "cozy;"
             $("calculator-tab.w--current").removeClass("w--current");
             $(".wrap-border.calculator-tab .custom-style").css("color", "black");
             $(".wrap-border.calculator-tab .custom-style").css("background", "white");
@@ -127,8 +128,8 @@ let data = {
             }
         });
         async function returnValue(multiplier) {
-            updateUserData();
             getUserStyle($(".calculator-tab.w--current").data("slider-index"));
+            updateUserData();
             
             let response = await fetch("https://api.fortes.agency/calc", {
                 body: JSON.stringify(data),
@@ -141,7 +142,6 @@ let data = {
             let price = result.cost_per_meter;
             
             $("#total").html(numberWithSpaces(Math.round(parseFloat(price))));
-            console.log(price + " " + multiplier);
             $("#totalWhole").html(numberWithSpaces(Math.round(parseFloat(price) * parseFloat(multiplier))));
             
             function numberWithSpaces(num) {
