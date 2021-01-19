@@ -23,13 +23,13 @@ let data = {
 };
         $("input").on("input", function () {
             updateUserData();
-            returnValue(space);
+            returnValue(data.space);
         });
         $("#space").on("input", function (e) {
             $(this).val($(this).val().match(/\d*\.?\d+/));
-            space = +$("#space").val();
-            returnValue(space);
-            if ((space == 0) || (amountOfRooms == 0)) {
+            data.space = +$("#space").val();
+            returnValue(data.space);
+            if ((data.space == 0) || (data.amountOfRooms == 0)) {
                 $("#total").html(0);
                 $("#totalWhole").html(0);
                 return;
@@ -38,7 +38,7 @@ let data = {
         $("#space").on("focusout", function (e) {
             if ((parseInt($(this).val()) < 30) || (!$(this).val())) {
                 $(this).val(30);
-                space = +$("#space").val();
+                data.space = +$("#space").val();
                 returnValue(30);
             }
         });
@@ -66,7 +66,7 @@ let data = {
                 $("#totalWhole").html(0);
                 return;
             }
-            returnValue(space);
+            returnValue(data.space);
         });
         $(".calculator-tab").on("click", function (e) {
             number = parseInt($(this).attr("data-slider-index"));
@@ -74,14 +74,14 @@ let data = {
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + style).toggle(true);
-            returnValue(space);
+            returnValue(data.space);
         });
         $("#calculate").on("click", function () {
             let slideNumber = parseInt($(".slider-tab.w--current").data("slider-index"));
             getUserStyle(slideNumber);
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass("w--current");
-            returnValue(space);
+            returnValue(data.space);
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
@@ -97,7 +97,7 @@ let data = {
             $("calculator-tab:eq(0)").addClass("w--current");
             $(".calculator-tab").removeClass("w--current");
             $(".calculator-tab:eq(0)").addClass("w--current");
-            returnValue(space);
+            returnValue(data.space);
             $(".calculator-slider-side").slick("slickGoTo", 0);
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main, .calculator-slide.cozy").toggle(true);
@@ -110,11 +110,11 @@ let data = {
             }
             data.appliances_bool_total = 1;
             data.appliances = $(".choiceActiveBorder").data("appliances");
-            returnValue(space);
+            returnValue(data.space);
         });
         $("#node").on("click", function () {
             data.appliances_bool_total = 0;
-            returnValue(space);
+            returnValue(data.space);
         });
         $("#appliancesBool").on("click", function () {
             if (!($(this).is(":checked"))) {
@@ -123,11 +123,12 @@ let data = {
             if (!(document.querySelector(".choiceActiveBorder"))) {
                 data.appliances_bool_total = 1;
                 data.appliances = "gorenje";
-                returnValue(space);
+                returnValue(data.space);
             }
         });
         async function returnValue(multiplier) {
             updateUserData();
+            getUserStyle($(".calculator-tab.w--current").data("slider-index"));
             
             let response = await fetch("https://api.fortes.agency/calc", {
                 body: JSON.stringify(data),
@@ -170,17 +171,23 @@ function updateUserData() {
         function getUserStyle(number) {
             if (number == 0) {
                 style = "cozy";
+                data.style = "cozy";
             } else if (number == 2) {
-                style = "fusion";            } else if (number == 1) {
+                style = "fusion";            
+                data.style = "fusion";            
+            } else if (number == 1) {
                 style = "japandi";
+                data.style = "japandi";
             } else if (number == 3) {
                 style = "modern";
+                data.style = "modern";
             } else if (number == 4) {
                 style = "neoclassic";
+                data.style = "neoclassic";
             }
         }
         function returnRoundedPrice(price) {
-            return Math.round(price / (space * 28.5)); 
+            return Math.round(price / (data.space * 28.5)); 
         }
         
-        returnValue(space);
+        returnValue(data.space);
