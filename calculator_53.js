@@ -104,9 +104,13 @@ let data = {
             $(".calculator-slider-option.active").removeClass("active");
             $(".calculator-slider-option:eq(0)").addClass("active");
         });
-        $(".choice").on("click", function () {
+         $(".choice").on("click", function () {
             if ($("#node").is(":checked")) {
-                return 0;
+               $(".choiceActiveBorder").removeClass("choiceActiveBorder"); $(this).parent().toggleClass("choiceActiveBorder");
+                $("#appliancesBool").prop("checked", true);
+                $("#node").siblings("div").removeClass("w--redirected-checked");
+                $("#appliancesBool").siblings("div").addClass("w--redirected-checked");
+                
             }
             data.appliances_bool_total = 1;
             data.appliances = $(".choiceActiveBorder").data("appliances");
