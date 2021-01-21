@@ -138,7 +138,6 @@ $("#appliancesBool").on("change", function () {
     }
 });
         async function returnValue(multiplier) {
-            getUserStyle($(".calculator-tab.w--current").data("slider-index"));
             updateUserData();
             
             let response = await fetch("https://api.fortes.agency/calc", {
