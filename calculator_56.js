@@ -111,11 +111,9 @@ let data = {
                $("#appliancesBool").prop("checked", true);
                $("#node").siblings("div").removeClass("w--redirected-checked");
                $("#appliancesBool").siblings("div").addClass("w--redirected-checked");
-            }
-            console.log($(".choiceActiveBorder").data("appliances"));
-             
+            }             
             data.appliances_bool_total = 1;
-            data.appliances = $(".choiceActiveBorder").data("appliances");
+            data.appliances = $(this).data("appliances");
             returnValue(data.space);
         });
         $("#node").on("click", function () {
