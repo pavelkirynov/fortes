@@ -114,58 +114,17 @@ $(window).on('load', function () {
                 settings: "unslick"
             }]
         });
-    /*let $bar = $(".progressbar");
-    let barIndex = 0;
-
-    function stopAnimation() {
-        if (!document.querySelector(".main-slider")) {
-            return;
-        }
-        $bar.stop(true, false).animate({
-            width: "0px"
-        }, 250, "swing");
-    }
-
-    function startAnimation() {
-        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-        if ((!document.querySelector(".main-slider")) || (vw < 990)) {
-            return;
-        }
-        $bar.parent().css("opacity", 0);
-        $(`.progressbar:eq(${barIndex})`).parent().css("opacity", 1);
-        $(`.progressbar:eq(${barIndex})`).animate({
-            width: "100%",
-        }, 4500, "swing", function () {
-            stopAnimation();
-            if (barIndex >= 4) {
-                barIndex = 0;
-            } else {
-                barIndex++;
-            }
-            $(".main-slider").slick("slickGoTo", barIndex);
-            startAnimation();
-        });
-    }*/
     $(".slide-nav").on("click", function (e) {
-        /*e.preventDefault(),
-            stopAnimation();
-        barIndex = slideIndex;
-        startAnimation();*/
         $(".slide-nav.active").toggleClass("active");
         $(this).addClass("active");
         slideIndex = parseInt($(this).data("index"));
         t[0].slick.slickGoTo(slideIndex);
     });
-//    startAnimation();
     let u = "";
     $(".slider-tab").on("click", function () {
             if (
                 ($(".slider-tab.w--current").toggleClass("w--current"),
                     $(this).toggleClass("w--current"),
-                    /*(barIndex = 0),
-                    (slideIndex = 0),
-                    stopAnimation(),
-                    startAnimation(),*/
                     0 == (e = parseInt($(this).attr("data-slider-index"))))
             )
                 u = "cozy";
@@ -197,26 +156,12 @@ $(window).on('load', function () {
             let e = $(".main-slider").slick("slickCurrentSlide");
             $(".slide-nav.active").removeClass("active");
             $(`.slide-nav:eq(${e})`).addClass("active");
-            /*if (barIndex <= 0) {
-                barIndex = 4;
-            } else {
-                barIndex--;
-            }
-            stopAnimation();
-            startAnimation();*/
         }),
         $(".arrow-right").on("click", function () {
             $(".main-slider").slick("slickNext");
             let e = $(".main-slider").slick("slickCurrentSlide");
             $(".slide-nav.active").removeClass("active");
             $(`.slide-nav:eq(${e})`).addClass("active");
-            /*if (barIndex >= 4) {
-                barIndex = 0;
-            } else {
-                barIndex++;
-            }
-            stopAnimation();
-            startAnimation();*/
         }),
         $(".preview-image, .blackbg-text").hover(
             function () {
