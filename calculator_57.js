@@ -175,7 +175,6 @@ function updateUserData() {
     data.entrance_doors = +$("#doors").is(":checked");
     data.ceiling = $(":radio[name='ceiling']:checked").val();
     data.flooring = $(":radio[name='flooring']:checked").val();
-    data.appliances = $(".choiceActiveBorder").data("appliances");
 }
         function getUserStyle(number) {
             if (number == 0) {
