@@ -174,7 +174,7 @@ function updateUserData() {
     data.entrance_doors = +$("#doors").is(":checked");
     data.ceiling = $(":radio[name='ceiling']:checked").val();
     data.flooring = $(":radio[name='flooring']:checked").val();
-    updateUserStyle(parseInt($(".calculator-tab.w--current").data("slider-index")));
+    getUserStyle(parseInt($(".calculator-tab.w--current").data("slider-index")));
 }
         function getUserStyle(number) {
             if (number == 0) {
