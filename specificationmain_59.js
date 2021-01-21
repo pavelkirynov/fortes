@@ -362,20 +362,12 @@ function appendNewPricelistEntry(object, sumVar, name, manufacturer, amount, pri
     if ((amount == 0) || (amount == undefined) || !(price)) {
         return sumVar;
     }
-    //object.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-    //object.children(".option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-    //let textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${name}</span></div></div>`;
-    //object.append(textObject);
     return (sumVar + parseFloat(price) * parseFloat(amount));
 }
 
     
 $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
 $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
-if (!appliancesBoolTotal) {
-    $(".comfy-section").css("display", "none");
-    $("#appliancesListTotal").css("display", "none");
-}
 let sum = 0;
 if (!!appliancesBoolTotal) {
     let $appliances = $("#appliancesList");
@@ -401,9 +393,7 @@ if (!!appliancesBoolTotal) {
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
 }
-if (!furnitureBool) {
-    $("#kitchenSection").css("display", "none");
-}
+
 let styleLetter = "J";
 if (style == "cozy") {
     styleLetter = "J";
