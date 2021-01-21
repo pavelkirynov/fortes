@@ -72,6 +72,8 @@ let data = {
             $(".calculator-slide").toggle(false);
             $(".calculator-slide.main").toggle(true);
             $(`.calculator-slide.` + data.style).toggle(true);
+            getUserStyle(number);
+            console.log(data.style);
             returnValue(data.space);
         });
         $("#calculate").on("click", function () {
