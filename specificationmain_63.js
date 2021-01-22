@@ -423,6 +423,7 @@ const onDataLoaded = (data) => {
     $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
     $("#kitchenTotal").html(spacedNum(kitchenTotal) + " грн");
     $("#kitchenTotalPrice").html(spacedNum(sum) + " грн");
-    $("#kitchenTotalPriceDiscount").html(spacedNum(sum * 0.9));
+    $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
+    $("#discountTotal").html(spacedNum(Math.round(sum - sum * 0.9)) + " грн.");
     $("#totalPriceTotal").html(spacedNum(Math.round(furnitureSum + workSum + parseInt(appliancesBoolTotal) * sum)) + " грн. *");
 };
