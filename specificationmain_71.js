@@ -243,7 +243,7 @@ const onDataLoaded = (data) => {
 
     $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
-    //furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157") / 100)));
+    furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157") / 100)));
 
     function appendMaterialsOption(name, manufacturer, amount, price, dim) {
         let $materials = $("#workList");
@@ -279,6 +279,10 @@ const onDataLoaded = (data) => {
         appendOptionsOption(parseData("F107"), parseData(letterModel + "107"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+107}`, space)));
     }
 
+    if (!!appliancesBoolTotal) {
+        $(".comfy-section").togle(false);   
+    }
+    
     appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+108}`, space)));
     appendOptionsOption(parseData("F113"), parseData(letterModel + "113"), +conditioning, +conditioning * parseFloat(parseData(`${letter+113}`, space)) * (1 + parseFloat(parseData("S113") / 100)));
 
