@@ -280,7 +280,7 @@ const onDataLoaded = (data) => {
     }
 
     if (!appliancesBoolTotal) {
-        $(".comfy-section").togle(false);
+        $(".comfy-section").toggle(false);
     }
 
     appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+108}`, space)));
