@@ -279,7 +279,7 @@ const onDataLoaded = (data) => {
         appendOptionsOption(parseData("F107"), parseData(letterModel + "107"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+107}`, space)));
     }
 
-    if (!!appliancesBoolTotal) {
+    if (!appliancesBoolTotal) {
         $(".comfy-section").togle(false);
     }
 
@@ -354,7 +354,7 @@ const onDataLoaded = (data) => {
     } else if (appliances === "miele") {
         array = miele;
     }
-    if (appliances === "undefined") {
+    if (appliances !== "undefined") {
         for (let i = 0; i < array[1]; i++) {
             $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
             $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
