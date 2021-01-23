@@ -21,11 +21,11 @@ let data = {
     furniture_bool: 1,
     space: 50
 };
-        $("input").on("focusout", function () {
+        $("input").on("change", function () {
             updateUserData();
             returnValue(data.space);
         });
-        $("#space").on("input", function (e) {
+        $("#space").on("focusout", function (e) {
             $(this).val($(this).val().match(/\d*\.?\d+/));
             data.space = +$("#space").val();
             returnValue(data.space);
