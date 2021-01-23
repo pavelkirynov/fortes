@@ -388,6 +388,7 @@ const onDataLoaded = (data) => {
             $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
         }
         sum += parseFloat(parseData("D" + (array[0] + i)));
+        sum += parseFloat(parseData("G36"));
     }
     if (!!appliancesBoolTotal) {
         $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
