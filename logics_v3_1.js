@@ -5,7 +5,7 @@ $(window).on('load', function () {
                 i = "";
             (document.cookie = ""),
             (t._costPerMetre = $("#total").html()),
-            (t._appliances = appliancesCookie),
+            (t._appliances = $(".choiceActiveBorder").data("appliances")),
             (t._style = style),
             (t._bath = +$("#bathtub").is(":checked")),
             (t._shower = +$("#shower").is(":checked")),
