@@ -150,11 +150,9 @@ const onDataLoaded = (data) => {
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), workAmountArray[i], workPriceArray[i]);
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span></div></div>`;
         $("#workList").append(textObject);
-        console.log("test " + parseData("F" + workAdressesArray[i]) + " " + parseFloat(workPriceArray[i]) * parseFloat(workAmountArray[i]));
     }
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span></div></div>`;
     workSum += (workSum - (vents + canalisation + electricity + water)) * 0.022;
-    console.log(workSum + " first");
 
     $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
     $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
@@ -183,7 +181,6 @@ const onDataLoaded = (data) => {
 
     workSum = Math.round(workSum * (1 + parseFloat(parseData("S99") / 100)));
 
-
     if (furnitureBool) {
         $("#furnitureList").append("</div><div class=\"list-option-container\"></div>");
         $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Кухня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
@@ -206,7 +203,6 @@ const onDataLoaded = (data) => {
         appendFurnitureOption(parseData("F131"), parseData(letterModel + "131"), 1, parseFloat(parseData(`${letter+131}`, space)), parseData("G131"));
         appendFurnitureOption(parseData("F132"), parseData(letterModel + "132"), 1, parseFloat(parseData(`${letter+132}`, space)), parseData("G132"));
     }
-
 
     $("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
     $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Спальня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
@@ -236,8 +232,6 @@ const onDataLoaded = (data) => {
     $("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
     $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Декор</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
-
-
     appendFurnitureOption(parseData("F149"), parseData(letterModel + "149"), amountOfRooms, parseFloat(parseData(`${letter+149}`, space)), parseData("G149"));
     appendFurnitureOption(parseData("F150"), parseData(letterModel + "150"), amountOfRooms, parseFloat(parseData(`${letter+150}`, space)), parseData("G150"));
     appendFurnitureOption(parseData("F151"), parseData(letterModel + "151"), amountOfRooms, parseFloat(parseData(`${letter+151}`, space)), parseData("G151"));
@@ -249,17 +243,7 @@ const onDataLoaded = (data) => {
 
     $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
-    furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157") / 100)));
-
-    function appendWorkOption(name, manufacturer, amount, price) {
-        if ((amount == 0) || (amount == undefined) || (price == 0) || !(price)) {
-            return;
-        }
-        let $work = $("#workList");
-        workSum += price * amount;
-        $work.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-        $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-    }
+    //furnitureSum = furnitureSum + (furnitureSum * 0.03 * (1 + (parseData("S157") / 100)));
 
     function appendMaterialsOption(name, manufacturer, amount, price, dim) {
         let $materials = $("#workList");
@@ -358,7 +342,7 @@ const onDataLoaded = (data) => {
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
     let array;
-    console.log(appliances);
+
     if (appliances === "gorenje") {
         array = gorenje;
     } else if (appliances === "bosch") {
