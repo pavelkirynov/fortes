@@ -358,6 +358,7 @@ const onDataLoaded = (data) => {
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
     let array;
+    console.log(appliances);
     if (appliances === "gorenje") {
         array = gorenje;
     } else if (appliances === "bosch") {
