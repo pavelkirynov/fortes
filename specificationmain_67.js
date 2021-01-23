@@ -1,8 +1,3 @@
-let appliancesBool = {
-    standardGorenje: 1,
-    standardBosch: 0,
-    premiumMiele: 0,
-};
 const onDataLoaded = (data) => {
     let sign = "",
         value = 0,
@@ -67,10 +62,8 @@ const onDataLoaded = (data) => {
         ...accumulator,
         [key.trim()]: decodeURIComponent(value),
     }), {});
-    let appliancesCookie = cookies._appliances;
-    if (!appliancesCookie) {
-        appliancesCookie = "gorenje";
-    }
+    let appliances = cookies._appliances;
+
     let styleURL = window.location.href.split("/");
     let style = styleURL[styleURL.length - 1].split("-")[0];
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
@@ -365,11 +358,11 @@ const onDataLoaded = (data) => {
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
     let array;
-    if (appliancesCookie === "gorenje") {
+    if (appliances === "gorenje") {
         array = gorenje;
-    } else if (appliancesCookie === "bosch") {
+    } else if (appliances === "bosch") {
         array = bosch;
-    } else if (appliancesCookie === "miele") {
+    } else if (appliances === "miele") {
         array = miele;
     }
     for (let i = 0; i < array[1]; i++) {
