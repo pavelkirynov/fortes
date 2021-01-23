@@ -21,19 +21,14 @@ const onDataLoaded = (data) => {
         if (rawData.includes("=IF")) {
             while (rawData[rawData.length - 1] == ")") {
                 rawData = rawData.substring(0, rawData.length - 1);
-                //console.log("e");
             }
             let formulaData = rawData.split("IF");
-            //console.log(Fdata);
             formulaData = formulaData.map(item => item.split(";"));
-            //console.log(formulaData[1][1]);
             for (let i = 1; i < formulaData.length; i++) {
                 value = parseFloat(formulaData[i][1].replace(",", "."));
-                //console.log(value);
 
                 let item = formulaData[i][0].slice(1, formulaData[i][0].length).split("=");
                 threshold = formulaData[i][0].slice(1, formulaData[i][0].length).split("=")[1];
-                //console.log(threshold);
                 if (item[0].indexOf(">") > -1) {
                     sign = morethan;
                 } else if (item[0].indexOf("<") > -1) {
@@ -41,7 +36,6 @@ const onDataLoaded = (data) => {
                 } else {
                     sign = equals;
                 }
-                //console.log(sign);
                 if (!price) {
                     price = value;
                 }
@@ -56,9 +50,7 @@ const onDataLoaded = (data) => {
                         price = value;
                     }
                 }
-                //formulaRaw.splice(0, formulaRaw.length);
             }
-            //console.log(price);
             return parseFloat(price);
         }
         if (isFinite(parseFloat(data.feed.entry.find((entry) => entry.title.$t == range).content.$t.replace(",", ".")))) {
@@ -390,10 +382,11 @@ const onDataLoaded = (data) => {
         sum += parseFloat(parseData("D" + (array[0] + i)));
         sum += parseFloat(parseData("G36"));
     }
+    sum += parseFloat(parseData("G36"));
     if (!!appliancesBoolTotal) {
         $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         $("#appliancesTotal").html(spacedNum(sum));
-        $("#appliancesTotalDiscount").html(spacedNum(sum * 0.9));
+        $("#appliancesTotalDiscount").html(parseFloat(spacedNum(sum * 0.9)));
         $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
         $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`)
     };
