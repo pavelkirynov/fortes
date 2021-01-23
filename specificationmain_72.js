@@ -280,9 +280,9 @@ const onDataLoaded = (data) => {
     }
 
     if (!!appliancesBoolTotal) {
-        $(".comfy-section").togle(false);   
+        $(".comfy-section").togle(false);
     }
-    
+
     appendOptionsOption(parseData("F108"), parseData(letterModel + "108"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+108}`, space)));
     appendOptionsOption(parseData("F113"), parseData(letterModel + "113"), +conditioning, +conditioning * parseFloat(parseData(`${letter+113}`, space)) * (1 + parseFloat(parseData("S113") / 100)));
 
@@ -354,18 +354,21 @@ const onDataLoaded = (data) => {
     } else if (appliances === "miele") {
         array = miele;
     }
-    for (let i = 0; i < array[1]; i++) {
-        $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
-        $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
-        if (!!appliancesBoolTotal) {
-            $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-            $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+    if (appliances === "undefined") {
+        for (let i = 0; i < array[1]; i++) {
+            $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
+            $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+            if (!!appliancesBoolTotal) {
+                $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+                $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+            }
+            sum += parseFloat(parseData("D" + (array[0] + i)));
+            sum += parseFloat(parseData("G36"));
         }
-        sum += parseFloat(parseData("D" + (array[0] + i)));
-        sum += parseFloat(parseData("G36"));
     }
+
     sum += parseFloat(parseData("G36"));
-    if (!!appliancesBoolTotal) {
+    if (!appliancesBoolTotal) {
         $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         $("#appliancesTotal").html(spacedNum(sum));
         $("#appliancesTotalDiscount").html(parseFloat(spacedNum(sum * 0.9)));
@@ -402,5 +405,5 @@ const onDataLoaded = (data) => {
     $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
     $("#discountTotal").html(`<span class='bold-text-7'>${spacedNum(Math.round(sum - sum * 0.9))} грн.</span>`);
     $("#totalPriceTotal").html(spacedNum(Math.round(furnitureSum + workSum + parseInt(appliancesBoolTotal) * sum * 0.9)) + " грн. *");
-    console.log("test"+ furnitureSum + " " + workSum + " " + furnitureSum+ " " +Math.round(sum * 0.9));
+    console.log("test" + furnitureSum + " " + workSum + " " + furnitureSum + " " + Math.round(sum * 0.9));
 };
