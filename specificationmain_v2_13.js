@@ -154,7 +154,7 @@ const onDataLoaded = (data) => {
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), workAmountArray[i], workPriceArray[i] * workRate);
         price = workSum - price;
         if (price === 0) {
-            return;   
+            continue;   
         }
 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)}</span></div></div>`;
         $("#workList").append(textObject);
@@ -175,7 +175,7 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + materialsAdressesArray[i]), parseData("G" + materialsAdressesArray[i]), parseFloat(materialsAmountArray[i]), materialsPriceArray[i] * materialsRate /*, materialsDimArray[i]*/ );
         price = workSum - price;
         if (price === 0) {
-            return;   
+            continue;   
         }
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)}</span></div></div>`;
         $("#workList").append(textObject);
@@ -203,7 +203,7 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + casualtiesAdressesArray[i]), parseData("G" + casualtiesAdressesArray[i]), parseFloat(casualtiesAmountArray[i]), casualtiesPriceArray[i]);
         price = workSum - price;
         if (price === 0) {
-            return;   
+            continue;   
         }
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)}</span></div></div>`;
         $("#workList").append(textObject);
