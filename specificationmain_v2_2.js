@@ -88,8 +88,8 @@ const onDataLoaded = (data) => {
         furnitureSum = 0,
         $furniture = $("#furnitureList");
     let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
-        workRate = parseFloat(parseData("S42")),
-        materialsRate = parseFloat(parseData("S72"));
+        workRate = parseData("S42"),
+        materialsRate = parseData("S72");
 
 
     if (style == "cozy") {
@@ -171,6 +171,20 @@ const onDataLoaded = (data) => {
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span></div></div>`;
         $("#workList").append(textObject);
     }
+    
+    /////
+    $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
+    $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
+
+    let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`)];
+    let casualtiesAmountArray = [4, 4];
+    let casualtiesAdressesArray = [101, 102];
+
+    for (let i = 0; i < casualtiesAdressesArray.length; i++) {
+        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + casualtiesAdressesArray[i]), parseData("G" + casualtiesAdressesArray[i]), parseFloat(casualtiesAmountArray[i]), casualtiesPriceArray[i]);
+        textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span></div></div>`;
+        $("#workList").append(textObject);
+    }
 
 
     if (space < 100) {
@@ -181,8 +195,6 @@ const onDataLoaded = (data) => {
     if (furnitureBool) {
         appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space * 100, null);
     }
-
-    workSum = Math.round(workSum * (1 + parseFloat(parseData("S99") / 100)));
 
     if (furnitureBool) {
         $("#furnitureList").append("</div><div class=\"list-option-container\"></div>");
