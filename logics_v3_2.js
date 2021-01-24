@@ -81,7 +81,7 @@ $(window).on('load', function () {
         speed: 425,
         draggable: !1,
         adaptiveHeight: !0,
-        responsive: [{
+        /*responsive: [{
                 breakpoint: 991,
                 settings: {
                     draggable: !0,
@@ -99,7 +99,7 @@ $(window).on('load', function () {
                     dots: !0,
                 }
             },
-        ],
+        ],*/
     });
     let i = $(".calculator-slider-side");
     $(".calculator-slider-side")
