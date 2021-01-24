@@ -171,7 +171,7 @@ const onDataLoaded = (data) => {
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span></div></div>`;
         $("#workList").append(textObject);
     }
-    
+
     if (space < 100) {
         appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
     } else {
@@ -201,9 +201,9 @@ const onDataLoaded = (data) => {
         appendFurnitureOption(parseData("F127"), parseData(letterModel + "127"), 1, parseFloat(parseData(`${letter+127}`, space)), parseData("G120"));
         furnitureSum += Math.round(parseFloat(parseData(`${letter+129}`, space) * furnitureRate)) + Math.round(parseFloat(parseData(`${letter+128}`, space) * furnitureRate));
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div></div>");
-        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F121")}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(Math.round(parseFloat(parseData(`${letter+121}`, space) * (1 +( parseData("S157")/100))))) } грн.</span>`);
+        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F121")}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(Math.round(parseFloat(parseData(`${letter+128}`, space) * furnitureRate))) } грн.</span>`);
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist small-heading\"></div><div class=\"list-option-container\"></div></div>");
-        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F122")}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(Math.round( parseFloat(parseData(`${letter+122}`, space) * (1 +( parseData("S157")/100))))) } грн.</span>`);
+        $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F122")}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(Math.round( parseFloat(parseData(`${letter+129}`, space) * furnitureRate))) } грн.</span>`);
 
         appendFurnitureOption(parseData("F130"), parseData(letterModel + "130"), 1, parseFloat(parseData(`${letter+130}`, space)), parseData("G130"));
         appendFurnitureOption(parseData("F131"), parseData(letterModel + "131"), 1, parseFloat(parseData(`${letter+131}`, space)), parseData("G131"));
@@ -254,7 +254,7 @@ const onDataLoaded = (data) => {
     appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
 
     console.log(furnitureRate + " furRate");
-    
+
     $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
     furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
@@ -323,7 +323,7 @@ const onDataLoaded = (data) => {
             return;
         }
         furnitureSum += price * furnitureRate * amount;
-        console.log(price + " " +amount+ " "+name)
+        console.log(price + " " + amount + " " + name)
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
@@ -350,7 +350,7 @@ const onDataLoaded = (data) => {
         if ((amount == 0) || (amount == undefined) || !(price)) {
             return sumVar;
         }
-//        console.log(name + " " + amount + " " + parseFloat(price) * parseFloat(amount));
+        //        console.log(name + " " + amount + " " + parseFloat(price) * parseFloat(amount));
         return (sumVar + parseFloat(price) * parseFloat(amount));
     }
 
@@ -358,42 +358,47 @@ const onDataLoaded = (data) => {
     $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
     let sum = 0;
+    
 
-    let $appliances = $("#appliancesList");
-    let $appliancesList = $("#appliancesListTotal");
-    let array;
+    function appendAppliances() {
+        let $appliances = $("#appliancesList");
+        let $appliancesList = $("#appliancesListTotal");
+        let array;
 
-    if (appliances === "gorenje") {
-        array = gorenje;
-    } else if (appliances === "bosch") {
-        array = bosch;
-    } else if (appliances === "miele") {
-        array = miele;
-    }
-    if (appliances !== "undefined") {
-        for (let i = 0; i < array[1]; i++) {
-            $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
-            $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
-            if (!!appliancesBoolTotal) {
-                $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
-                $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+        if (appliances === "gorenje") {
+            array = gorenje;
+        } else if (appliances === "bosch") {
+            array = bosch;
+        } else if (appliances === "miele") {
+            array = miele;
+        }
+        if (appliances !== "undefined") {
+            for (let i = 0; i < array[1]; i++) {
+                $appliances.append("<div class=\"option-block\"><div class=\"division-block white\"></div><div class=\"list-option-container appliances\"></div></div>");
+                $("#appliancesList .option-block .list-option-container.appliances").last().append(`<span class=\'name white\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text white\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+                if (!!appliancesBoolTotal) {
+                    $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
+                    $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>${parseData("F" + (array[0] + i))} ${parseData("E" + (array[0] + i))}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(parseData("D"+ (array[0]+i)))} грн.</span>`);
+                }
+                sum += parseFloat(parseData("D" + (array[0] + i)));
+                sum += parseFloat(parseData("G36"));
             }
-            sum += parseFloat(parseData("D" + (array[0] + i)));
+        }
+
+        if (!!appliancesBoolTotal) {
             sum += parseFloat(parseData("G36"));
+            $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
+            $("#appliancesTotal").html(spacedNum(sum));
+            $("#appliancesTotalDiscount").html(parseFloat(spacedNum(sum * 0.9)));
+            $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
+            $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
+
+        } else {
+            $("#appliancesListTotal").toggle(false);
         }
     }
-
-    if (!!appliancesBoolTotal) {
-        sum += parseFloat(parseData("G36"));
-        $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-        $("#appliancesTotal").html(spacedNum(sum));
-        $("#appliancesTotalDiscount").html(parseFloat(spacedNum(sum * 0.9)));
-        $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
-        $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
-        
-    } else {
-        $("#appliancesListTotal").toggle(false);   
-    }
+    
+    appendAppliances();
 
     let styleLetter = "J";
     if (style == "cozy") {
