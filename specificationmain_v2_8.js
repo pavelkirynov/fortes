@@ -152,7 +152,7 @@ const onDataLoaded = (data) => {
     for (let i = 0; i < workAdressesArray.length; i++) {
         let price = workSum;
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + workAdressesArray[i]), parseData("G" + workAdressesArray[i]), workAmountArray[i], workPriceArray[i] * workRate);
-        price = workSUm - price;
+        price = workSum - price;
 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${price}</span></div></div>`;
         $("#workList").append(textObject);
     }
