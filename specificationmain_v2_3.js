@@ -177,7 +177,7 @@ const onDataLoaded = (data) => {
     $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
 
     let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`)];
-    let casualtiesAmountArray = [4, 4];
+    let casualtiesAmountArray = [parseFloat(parseData("G8", space)), parseFloat(parseData("G8", space))];
     let casualtiesAdressesArray = [101, 102];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
@@ -350,6 +350,7 @@ const onDataLoaded = (data) => {
         if ((amount == 0) || (amount == undefined) || !(price)) {
             return sumVar;
         }
+        console.log(name + " " + amount + " " + parseFloat(price) * parseFloat(amount));
         return (sumVar + parseFloat(price) * parseFloat(amount));
     }
 
