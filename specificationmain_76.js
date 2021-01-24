@@ -376,7 +376,7 @@ const onDataLoaded = (data) => {
         $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
         
     } else {
-        $("#appliancesBoolTotal").toggle(false);   
+        $("#appliancesListTotal").toggle(false);   
     }
 
     let styleLetter = "J";
