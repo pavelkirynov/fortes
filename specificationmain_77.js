@@ -367,7 +367,7 @@ const onDataLoaded = (data) => {
         }
     }
 
-    if (!appliancesBoolTotal) {
+    if (!!appliancesBoolTotal) {
         sum += parseFloat(parseData("G36"));
         $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         $("#appliancesTotal").html(spacedNum(sum));
