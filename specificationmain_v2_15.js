@@ -248,7 +248,7 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
     $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Світильники</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
     if (furnitureBool) {
-        appendFurnitureOption(parseData("F148"), parseData(letterModel + "148"), Math.round(space * 0.48), parseFloat(parseData(`${letter+141}`, space)), parseData("G141"));
+        appendFurnitureOption(parseData("F148"), parseData(letterModel + "148"), Math.round(space * 0.48), parseFloat(parseData(`${letter+148}`, space)), parseData("G148"));
         appendFurnitureOption(parseData("F149"), parseData(letterModel + "149"), 1, parseFloat(parseData(`${letter+149}`, space)), parseData("G149"));
         appendFurnitureOption(parseData("F151"), parseData(letterModel + "151"), 1, parseFloat(parseData(`${letter+151}`, space)), parseData("G151"));
         appendFurnitureOption(parseData("F153"), parseData(letterModel + "153"), 1, parseFloat(parseData(`${letter+153}`, space)), parseData("G153"));
