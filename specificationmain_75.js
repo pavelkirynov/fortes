@@ -367,14 +367,17 @@ const onDataLoaded = (data) => {
         }
     }
 
-    sum += parseFloat(parseData("G36"));
     if (!appliancesBoolTotal) {
+        sum += parseFloat(parseData("G36"));
         $appliancesList.append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         $("#appliancesTotal").html(spacedNum(sum));
         $("#appliancesTotalDiscount").html(parseFloat(spacedNum(sum * 0.9)));
         $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
-        $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`)
-    };
+        $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
+        
+    } else {
+        $("#appliancesBoolTotal").toggle(false);   
+    }
 
     let styleLetter = "J";
     if (style == "cozy") {
