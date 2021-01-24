@@ -255,7 +255,8 @@ const onDataLoaded = (data) => {
     }
     appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
 
-
+    console.log(furnitureRate + " furRate");
+    
     $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
     $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
     furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
