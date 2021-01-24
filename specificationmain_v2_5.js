@@ -172,6 +172,14 @@ const onDataLoaded = (data) => {
         $("#workList").append(textObject);
     }
     
+    if (space < 100) {
+        appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
+    } else {
+        appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 10), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
+    }
+    if (furnitureBool) {
+        appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space * 100, null);
+    }
     /////
     $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
     $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
@@ -184,16 +192,6 @@ const onDataLoaded = (data) => {
         workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + casualtiesAdressesArray[i]), parseData("G" + casualtiesAdressesArray[i]), parseFloat(casualtiesAmountArray[i]), casualtiesPriceArray[i]);
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span></div></div>`;
         $("#workList").append(textObject);
-    }
-
-
-    if (space < 100) {
-        appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 7), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
-    } else {
-        appendMaterialsOption(parseData(`F${flooringNum2}`), parseData(letterModel + flooringNum2), (space - parseFloat(amountOfBathrooms) * 10), parseFloat(parseData(`${letter+flooringNum2}`, space)), null);
-    }
-    if (furnitureBool) {
-        appendMaterialsOption(parseData("F94"), parseData(letterModel + "94"), 1, space * 100, null);
     }
 
     if (furnitureBool) {
@@ -324,7 +322,8 @@ const onDataLoaded = (data) => {
         if ((amount == 0) || (!amount) || !(price)) {
             return;
         }
-        furnitureSum += price * (1 + parseFloat(parseData("S164") / 100)) * amount;
+        furnitureSum += price * furnitureRate * amount;
+        console.log(price + " " +amount+ " "+name)
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
@@ -351,7 +350,7 @@ const onDataLoaded = (data) => {
         if ((amount == 0) || (amount == undefined) || !(price)) {
             return sumVar;
         }
-        console.log(name + " " + amount + " " + parseFloat(price) * parseFloat(amount));
+//        console.log(name + " " + amount + " " + parseFloat(price) * parseFloat(amount));
         return (sumVar + parseFloat(price) * parseFloat(amount));
     }
 
