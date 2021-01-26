@@ -195,8 +195,8 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
     }*/
     /////
     $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
-    $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
-    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F100")}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${((style == "modern") || (style == "neoclassic")) ? months + 1 : months} міс.</span></div></div>`;
+    $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
+    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F100")}</span><span class=\'list-text amount\'>${((style == "modern") || (style == "neoclassic")) ? months + 1 : months} міс.</span><span class=\'list-text\'> </span></div></div>`;
     $("#workList").append(textObject);
 
     let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`)];
