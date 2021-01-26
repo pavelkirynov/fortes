@@ -89,7 +89,8 @@ const onDataLoaded = (data) => {
         $furniture = $("#furnitureList");
     let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
         workRate = parseData("S42"),
-        materialsRate = parseData("S72");
+        materialsRate = parseData("S72"),
+        months = parseData("G8", space);
 
 
     if (style == "cozy") {
@@ -145,7 +146,7 @@ const onDataLoaded = (data) => {
         vents = parseFloat(parseData(`${letter+44}`, space)) * space,
         electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
 
-    let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space, "price", (parseFloat(parseData("G8", space) * 2 * 1200) + 3000 + (space * 100))];
+    let workPriceArray = [water, canalisation, electricity, vents, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space, "price", (months * 2 * 1200) + 3000 + (space * 100))];
     let workAmountArray = [1, 1, parseFloat(amountOfBathrooms), 1, parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1, 1, 1];
     let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 66, 67];
 
@@ -193,9 +194,11 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
     /////
     $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
     $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
+    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F100")}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${((style == "modern") || (style == "neoclassic")) ? months + 1 : months} місяців</span></div></div>`;
+    $("#workList").append(textObject);
 
     let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`)];
-    let casualtiesAmountArray = [((style == "modern") || (style == "neoclassic")) ? parseFloat(parseData("G8", space)) + 1 : parseFloat(parseData("G8", space)), ((style == "modern") || (style == "neoclassic")) ? parseFloat(parseData("G8", space)) + 1 : parseFloat(parseData("G8", space))];
+    let casualtiesAmountArray = [((style == "modern") || (style == "neoclassic")) ? months + 1 : months, ((style == "modern") || (style == "neoclassic")) ? months + 1 : months];
     let casualtiesAdressesArray = [101, 102];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
