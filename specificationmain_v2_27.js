@@ -90,7 +90,7 @@ const onDataLoaded = (data) => {
     let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
         workRate = parseData("S42"),
         materialsRate = parseData("S72"),
-        months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) : parseData("G8", space);
+        months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) + 1 : parseData("G8", space);
     
     $("#months").html(months);
 
