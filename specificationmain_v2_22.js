@@ -91,6 +91,8 @@ const onDataLoaded = (data) => {
         workRate = parseData("S42"),
         materialsRate = parseData("S72"),
         months = parseData("G8", space);
+    
+    $("#months").html(months);
 
 
     if (style == "cozy") {
