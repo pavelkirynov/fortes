@@ -90,7 +90,7 @@ const onDataLoaded = (data) => {
     let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
         workRate = parseData("S42"),
         materialsRate = parseData("S72"),
-        months = parseData("G8", space);
+        months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) : parseData("G8", space);
     
     $("#months").html(months);
 
@@ -200,12 +200,12 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
     $("#workList").append(textObject);
 
     let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`)];
-    let casualtiesAmountArray = [((style == "modern") || (style == "neoclassic")) ? months + 1 : months, ((style == "modern") || (style == "neoclassic")) ? months + 1 : months];
+    let casualtiesAmountArray = [months, months];
     let casualtiesAdressesArray = [101, 102];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
         let price = workSum;
-        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + casualtiesAdressesArray[i]), parseData("G" + casualtiesAdressesArray[i]), parseFloat(casualtiesAmountArray[i]), casualtiesPriceArray[i]);
+        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + casualtiesAdressesArray[i]), parseData("G" + casualtiesAdressesArray[i]), casualtiesAmountArray[i], casualtiesPriceArray[i]);
         price = workSum - price;
         if (price === 0) {
             continue;   
