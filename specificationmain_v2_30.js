@@ -316,6 +316,9 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
     if (!appliancesBoolTotal) {
         $(".comfy-section").toggle(false);
     }
+    if (!furnitureBool) {
+        $("#furnitureList").toggle(false);
+    }
 
     appendOptionsOption(parseData("F115"), parseData(letterModel + "115"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+115}`, space)));
     appendOptionsOption(parseData("F120"), parseData(letterModel + "120"), +conditioning, +conditioning * parseFloat(parseData(`${letter+120}`, space)) * furnitureRate);
