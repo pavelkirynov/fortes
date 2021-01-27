@@ -1,6 +1,6 @@
 $(window).on('load', function () {
     let slideIndex = 0;
-    $("#submit").on("click", function (e) {
+    $(".wrap-border.calculator-btn").on("click", function (e) {
             let t = {},
                 i = "";
             (document.cookie = ""),
