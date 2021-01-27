@@ -210,7 +210,7 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
         if (price === 0) {
             continue;   
         }
-        textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
+        textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'>${Math.round(price/months)} грн./місяць</span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
     }
 
