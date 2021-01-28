@@ -215,9 +215,6 @@ $(window).on('load', function () {
         $(".calculator-slider-option").on("click", function () {
             $(".calculator-slider-option.active").removeClass("active"), $(this).addClass("active"), (slideIndex = parseInt($(this).data("slider-index"))), (r = slideIndex), i[0].slick.slickGoTo(slideIndex);
         }),
-        $(".button.modal").on("click", function (e) {
-            $("#agreementCheckbox").is(":checked") || (e.preventDefault(), $(".agreementCheckbox").toggle(!0)), ($("#name").val() && $("#phone").val() && $("#email").val()) || (e.preventDefault(), $(".warning.inputs").toggle(!0));
-        }),
         $(".calculator-button, .calculate, .calculator-tab").on("click", function () {
             $(".calculator-slider-side").slick("refresh");
         }),
