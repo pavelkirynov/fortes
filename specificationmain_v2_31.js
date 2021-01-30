@@ -175,7 +175,7 @@ textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
         let price = workSum;
-        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + materialsAdressesArray[i]), parseData("G" + materialsAdressesArray[i]), parseFloat(materialsAmountArray[i]), materialsPriceArray[i] * materialsRate /*, materialsDimArray[i]*/ );
+        workSum = appendNewPricelistEntry($("#work"), workSum, parseData("F" + materialsAdressesArray[i]), parseData(letterModel + materialsAdressesArray[i]), parseFloat(materialsAmountArray[i]), materialsPriceArray[i] * materialsRate /*, materialsDimArray[i]*/ );
         price = workSum - price;
         if (price === 0) {
             continue;   
