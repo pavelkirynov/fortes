@@ -120,6 +120,13 @@ $(window).on('load', function () {
             $(".slider-container .checkmark").css("margin-left", "0px");
             $(".main-slider .color-var").toggle(false);
             $(`.main-slider .color-1`).toggle(true);
+            $(".calculator-slide").toggle(!1),
+            $(".calculator-slide.main").toggle(!0),
+            $(".calculator-slide" + `.${u}`).toggle(!0),
+            $(".calculator-tab.w--current").removeClass("w--current"),
+            $(`.calculator-tab[data-slider-index='${e}']`).addClass("w--current"),
+            $(".wrap-border.calculator-btn").toggle(false);
+            $(`.specification-${u}`).toggle(true);
         }),
         $(".arrow-left").on("click", function () {
             $(".main-slider").slick("slickPrev");
