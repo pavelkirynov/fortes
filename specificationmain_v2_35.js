@@ -205,7 +205,7 @@ const onDataLoaded = (data) => {
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
         let price = parseData(letter + casualtiesAdressesArray[i]) * casualtiesAmountArray[i];
 
-        workSum += price * amount;
+        workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'>${Math.round(price/months)} грн./місяць</span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
     }
