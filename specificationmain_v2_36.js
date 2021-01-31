@@ -153,7 +153,7 @@ const onDataLoaded = (data) => {
     let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 66, 67];
 
     for (let i = 0; i < workAdressesArray.length; i++) {
-        let price = parseData(letter + workAdressesArray[i]);
+        let price = workPriceArray[i] * workAmountArray[i];
         let amount = workAmountArray[i];
         if ((price === 0) || (amount === 0)) {
             continue;   
@@ -173,8 +173,7 @@ const onDataLoaded = (data) => {
     let materialsDimArray = [null, null, null, null, null, null, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, flooringNum2, 94];
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
-        let price = parseData(letter + materialsAdressesArray[i]);
-        let amount = materialsAmountArray[i];
+        let price = materialsPriceArray[i] * materialsAmountArray[i];
         if ((price === 0) || (amount === 0)) {
             continue;   
         }
@@ -203,8 +202,7 @@ const onDataLoaded = (data) => {
     let casualtiesAdressesArray = [101, 102];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
-        let price = parseData(letter + casualtiesAdressesArray[i]) * casualtiesAmountArray[i];
-
+        let price = casualtiesPriceArray[i] * casualtiesAmountArray[i];
         workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'>${Math.round(price/months)} грн./місяць</span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
