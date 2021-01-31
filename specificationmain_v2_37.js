@@ -154,10 +154,10 @@ const onDataLoaded = (data) => {
 
     for (let i = 0; i < workAdressesArray.length; i++) {
         let price = workPriceArray[i] * workAmountArray[i];
-        let amount = workAmountArray[i];
-        if ((price === 0) || (amount === 0)) {
+        if (price === 0) {
             continue;   
         }
+        workSum+= price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
     }
@@ -174,10 +174,10 @@ const onDataLoaded = (data) => {
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
         let price = materialsPriceArray[i] * materialsAmountArray[i];
-        if ((price === 0) || (amount === 0)) {
+        if (price === 0) {
             continue;   
         }
-        workSum += amount * price;
+        workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}, ${parseData(letterModel + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
     }
