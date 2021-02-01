@@ -231,9 +231,10 @@ $(window).on('load', function () {
         fd.append("Кондиціювання", $("#conditioning").val());
         fd.append("Меблі", checkVal($("#furnitureBool").is(":checked")));
         fd.append("Техніка", appliances);
+//        fd.append("Термін виконання робіт", );
         
         function checkVal(val) {
-          return parseInt(val) == true ? "Обрано" : "Не обрано";
+          return !!val == true ? "Обрано" : "Не обрано";
         }
         
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec';
