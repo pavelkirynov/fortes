@@ -36,7 +36,7 @@
         }
     });
     $(".slider-tab").click(function () {
-        getUserStyle($(".slider-tab.w--current").data("slider-index"));
+        getUserStyle($(this).data("slider-index"));
         returnValue(data.space);
     });
     $("#space").on("focusout", function (e) {
