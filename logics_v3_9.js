@@ -207,7 +207,9 @@ $(window).on('load', function () {
         });
     $(".wrap-border.calculator-btn .button").click(function () {
         let fd = new FormData();
-        fd.append("Стиль", style || data.style);
+        let ukrStyle = data.style == "cozy" ? "Козі" : data.style == "japandi" ? "Джапанді" : data.style == "fusion" ? "Фьюжн" : data.style == "modern" ? "Модерн" : "Нео Класика";
+        let months = data.space < 60 ? 4 : data.space <= 80 ? 5 : data.space <= 100 ? 6 : data.space <= 130 ? 7 : data.space <= 150 ? 8 : data.space <= 175 ? 9 : 10;
+        fd.append("Стиль", ukrStyle);
         fd.append("Ціна за метр", $("#total").html());
         fd.append("Загальна ціна", $("#totalWhole").html());
         fd.append("Площа", $("#space").val());
@@ -231,7 +233,7 @@ $(window).on('load', function () {
         fd.append("Кондиціювання", $("#conditioning").val());
         fd.append("Меблі", checkVal($("#furnitureBool").is(":checked")));
         fd.append("Техніка", appliances);
-//        fd.append("Термін виконання робіт", );
+        fd.append("Термін виконання робіт", months);
         
         function checkVal(val) {
           return !!val == true ? "Обрано" : "Не обрано";
