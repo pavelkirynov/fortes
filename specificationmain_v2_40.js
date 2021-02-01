@@ -154,6 +154,7 @@ const onDataLoaded = (data) => {
 
     for (let i = 0; i < workAdressesArray.length; i++) {
         let price = workPriceArray[i] * workAmountArray[i];
+        console.log("test " + price + " " + parseData("F" + workAdressesArray[i]));
         if (workPriceArray[i] == "work") {
             price = (workSum - water - canalisation - electricity - vents) * 0.022;   
         }
@@ -176,10 +177,12 @@ const onDataLoaded = (data) => {
     let materialsDimArray = [null, null, null, null, null, null, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, flooringNum2, 94];
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
+
         let price = materialsPriceArray[i] * materialsAmountArray[i];
         if ((price === 0) || (price == NaN)) {
             continue;   
         }
+        console.log("test " + price + " " + parseData("F" + materialsAdressesArray[i]));
         workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}, ${parseData(letterModel + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
@@ -206,6 +209,7 @@ const onDataLoaded = (data) => {
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
         let price = casualtiesPriceArray[i] * casualtiesAmountArray[i];
+        console.log("test " + price + " " + parseData("F" + casualtiesAdressesArray[i]));
         workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'>${Math.round(price/months)} грн./місяць</span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
