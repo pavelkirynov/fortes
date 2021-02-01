@@ -205,4 +205,43 @@ $(window).on('load', function () {
             let e = parseInt($(".calculator-slider-option.active").data("slider-index"));
             $(".calculator-slider-option.active").removeClass("active"), e = 0 ? (e = 4) : (e -= 1), $(`.calculator-slider-option:eq(${e})`).addClass("active");
         });
+    $(".wrap-border.calculator-btn .button").click(function () {
+        let fd = new FormData();
+        fd.append("Стиль", style || data.style);
+        fd.append("Ціна за метр", $("#total").html());
+        fd.append("Загальна ціна", $("#totalWhole").html());
+        fd.append("Площа", $("#space").val());
+        fd.append("Кількість кімнат", $("#amountOfRooms").val());
+        fd.append("Кількість санвузлів", $("#amountOfBathrooms").val());
+        fd.append("Ванна", checkVal($("#bathtub").prop("checked")));
+        fd.append("Душ", checkVal($("#shower").prop("checked")));
+        
+        let ceiling = $(":radio[name='ceiling']:checked").val() == "stretch ceiling" ? "Натяжна матова" : $(":radio[name='ceiling']:checked").val() == "gapless" ? "Натяжна бесщелева матова" : "Гіпсокартон";
+        let flooring = $(":radio[name='flooring']:checked").val() == "laminat" ? "Ламінат" : $(":radio[name='flooring']:checked").val() == "vynil" ? "Вінілова підлога" : "Паркет";
+        let appliances = $(".choiceActiveBorder").data("appliances") == undefined ? "Не обрано" : $(".choiceActiveBorder").data("appliances").substr(0, 1).toUpperCase() + $(".choiceActiveBorder").data("appliances").substr(1);
+        
+        fd.append("Стеля", ceiling);
+        fd.append("Підлогове покриття", flooring);
+        fd.append("Стяжка підлоги", checkVal($("#floorscreed").is(":checked")));
+        fd.append("Шумоізоляція", checkVal($("#noise").is(":checked")));
+        fd.append("Вхідні двері", checkVal($("#doors").is(":checked")));
+        fd.append("Другий шар гіпсокартону", checkVal($("#secondGypsumLayer").is(":checked")));
+        fd.append("Гігієнічний душ", checkVal($("#hygienicShower").is(":checked")));
+        fd.append("Тепла підлога", $("#heatedFlooring").val());
+        fd.append("Кондиціювання", $("#conditioning").val());
+        fd.append("Меблі", checkVal($("#furnitureBool").is(":checked")));
+        fd.append("Техніка", appliances);
+        
+        function checkVal(val) {
+          return parseInt(val) == true ? "Обрано" : "Не обрано";
+        }
+        
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec';
+
+        fetch(scriptURL, { method: 'POST', body: fd})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message));
+
+    });
+    
 });
