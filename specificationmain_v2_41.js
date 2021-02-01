@@ -153,7 +153,7 @@ const onDataLoaded = (data) => {
     let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 66, 67];
 
     for (let i = 0; i < workAdressesArray.length; i++) {
-        let price = workPriceArray[i] * workAmountArray[i];
+        let price = workPriceArray[i] * workAmountArray[i] *  * parseData("S42");
         console.log("test " + price + " " + parseData("F" + workAdressesArray[i]));
         if (workPriceArray[i] == "work") {
             price = (workSum - water - canalisation - electricity - vents) * 0.022;   
@@ -178,7 +178,7 @@ const onDataLoaded = (data) => {
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
 
-        let price = materialsPriceArray[i] * materialsAmountArray[i];
+        let price = materialsPriceArray[i] * materialsAmountArray[i] * parseData("S72");
         if ((price === 0) || (price == NaN)) {
             continue;   
         }
