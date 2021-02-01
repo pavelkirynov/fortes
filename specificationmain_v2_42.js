@@ -153,7 +153,7 @@ const onDataLoaded = (data) => {
     let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 66, 67];
 
     for (let i = 0; i < workAdressesArray.length; i++) {
-        let price = workPriceArray[i] * workAmountArray[i] *  * parseData("S42");
+        let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
         console.log("test " + price + " " + parseData("F" + workAdressesArray[i]));
         if (workPriceArray[i] == "work") {
             price = (workSum - water - canalisation - electricity - vents) * 0.022;   
