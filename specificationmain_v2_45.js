@@ -164,7 +164,7 @@ const onDataLoaded = (data) => {
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
     }
-    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span></div></div>`;
+    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round((workSum - (vents + canalisation + electricity + water)) * 0.022)} грн.</span></div></div>`;
     $("#workList").append(textObject);
     workSum += (workSum - (vents + canalisation + electricity + water)) * 0.022;
 
