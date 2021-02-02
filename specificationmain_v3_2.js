@@ -289,15 +289,24 @@
         }
         if (!!parseInt(hygienicShower) || !!parseInt(secondGypsumLayer) || !!parseInt(floorScreed) || !!parseInt(heatedFlooring) || !!parseInt(denoising) || !!parseInt(entranceDoors) || !!parseInt(conditioning)) {
         $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
-        $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\"> Опції</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Кількість</span>`);
+        $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\"> Опції</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
         }
-        appendOptionsOption(parseData("F109"), parseData(letterModel + "109"), +floorScreed, space * parseFloat(parseData(`${letter+109}`, space)));
-        appendOptionsOption(parseData("F110"), parseData(letterModel + "110"), +hygienicShower * parseFloat(amountOfBathrooms), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)));
-        appendOptionsOption(parseData("F111"), parseData(letterModel + "111"), +heatedFlooring, +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)));
-        appendOptionsOption(parseData("F112"), parseData(letterModel + "112"), +secondGypsumLayer, space * parseFloat(parseData(`${letter+112}`, space)));
-        appendOptionsOption(parseData("F113"), parseData(letterModel + "113"), +denoising + mouldings, (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)));
-        if ((+denoising + +gapless + stretch) > 2) {
-        appendOptionsOption(parseData("F114"), parseData(letterModel + "114"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+114}`, space)));
+
+                
+        let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), +conditioning * parseFloat(parseData(`${letter+120}`, space)) * furnitureRate];
+        let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising + mouldings, +floorScreed, +denoising, +conditioning];
+        let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 120];
+
+        for (let i = 0; i < optionsAdressesArray.length; i++) {
+
+        let price = optionsPriceArray[i] * optionsAmountArray[i];
+        if ((price === 0) || (price == NaN) || (optionsAdressesArray[i] == null)) {
+            continue;   
+        }
+        console.log(parseData("F" + optionsAdressesArray[i]) + " " + price);
+        workSum += price;
+        textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + optionsAdressesArray[i])}, ${parseData(letterModel + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
+        $("#workList").append(textObject);
         }
 
         if (!appliancesBoolTotal) {
@@ -306,9 +315,6 @@
         if (!furnitureBool) {
         $("#furnitureList").toggle(false);
         }
-
-        appendOptionsOption(parseData("F115"), parseData(letterModel + "115"), +floorScreed, +floorScreed * parseFloat(parseData(`${letter+115}`, space)));
-        appendOptionsOption(parseData("F120"), parseData(letterModel + "120"), +conditioning, +conditioning * parseFloat(parseData(`${letter+120}`, space)) * furnitureRate);
 
         $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
         $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum))} грн.</span>`);
