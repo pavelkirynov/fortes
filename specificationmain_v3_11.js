@@ -268,26 +268,7 @@
             
             }
 
-            function appendMaterialsOption(name, manufacturer, amount, price, dim) {
-                let $materials = $("#workList");
-                if (dim == null) {
-                    workSum += price * amount;
-                    $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
-                    $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span>`);
-                    return;
-                }
-                if ((amount == 0) || (!amount) || !(price)) {
-                    return;
-                }
 
-                workSum += price * amount;
-                $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
-                if (!manufacturer) {
-                    $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
-                    return;
-                }
-                $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
-            }
             if (!!parseInt(hygienicShower) || !!parseInt(secondGypsumLayer) || !!parseInt(floorScreed) || !!parseInt(heatedFlooring) || !!parseInt(denoising) || !!parseInt(entranceDoors) || !!parseInt(conditioning)) {
                 $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
                 $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\"> Опції</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
@@ -319,22 +300,8 @@
             $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
             $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum))} грн.</span>`);
 
-            function appendOptionsOption(name, manufacturer, amount, price) {
-                if ((amount == 0) || (!amount) || !(price)) {
-                    return;
-                }
-                let $workList = $("#workList");
-                workSum += price * amount;
-                $workList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container margined\"></div></div>");
-                if (!manufacturer) {
-                    $("#workList .option-block .list-option-container margined").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
-                    return;
-                }
-                $("#workList .option-block .list-option-container margined").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} шт.</span>`);
-            }
-
             function appendFurnitureOption(name, manufacturer, amount, price, dim) {
-                if (furnitureBool) {
+                if (!furnitureBool) {
                     return;
                 }
 
@@ -351,25 +318,9 @@
                 $("#furnitureList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${spacedNum(Math.round(price * amount * (1 + parseFloat(parseData("S164")/100))))} грн.</span>`);
             }
 
-            function appendOptionsOption(name, manufacturer, amount, price, dim) {
-                if ((amount == 0) || (!amount) || !(price)) {
-                    return;
-                }
-                let $materials = $("#workList");
-                workSum += price * amount;
-                $materials.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container materials\"></div></div>");
-                if (!manufacturer) {
-                    $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount}</span>`);
-                    return;
-                }
-                $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount}</span>`);
-            }
-
-
             $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
             $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
             let sum = 0;
-
 
 
             let $appliances = $("#appliancesList");
