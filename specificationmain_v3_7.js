@@ -203,7 +203,7 @@
         $("#workList").append(textObject);
         }
 
-        if (furnitureBool) {
+        if (!!furnitureBool) {
         $("#furnitureList").append("</div><div class=\"list-option-container\"></div>");
         $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Кухня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
@@ -232,7 +232,7 @@
         appendFurnitureOption(parseData("F141"), parseData(letterModel + "141"), 1, parseFloat(parseData(`${letter+141}`, space)), parseData("G141"));
         appendFurnitureOption(parseData("F142"), parseData(letterModel + "142"), 1, parseFloat(parseData(`${letter+142}`, space)), parseData("G142"));
         appendFurnitureOption(parseData("F143"), parseData(letterModel + "143"), 2, parseFloat(parseData(`${letter+143}`, space)), parseData("G143"));
-        if (furnitureBool) {
+        if (!!furnitureBool) {
         appendFurnitureOption(parseData("F144"), parseData(letterModel + "144"), 1, parseFloat(parseData(`${letter+144}`, space)), parseData("G144"));
         appendFurnitureOption(parseData("F145"), parseData(letterModel + "145"), 1, parseFloat(parseData(`${letter+145}`, space)), parseData("G145"));
         appendFurnitureOption(parseData("F146"), parseData(letterModel + "146"), 1, parseFloat(parseData(`${letter+146}`, space)), parseData("G146"));
@@ -241,7 +241,7 @@
         $("#furnitureList").append("</div><div class=\"list-option-container margined\"></div>");
         $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Світильники</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
-        if (furnitureBool) {
+        if (!!furnitureBool) {
         appendFurnitureOption(parseData("F148"), parseData(letterModel + "148"), Math.round(space * 0.48), parseFloat(parseData(`${letter+148}`, space)), parseData("G148"));
         appendFurnitureOption(parseData("F149"), parseData(letterModel + "149"), 1, parseFloat(parseData(`${letter+149}`, space)), parseData("G149"));
         appendFurnitureOption(parseData("F151"), parseData(letterModel + "151"), 1, parseFloat(parseData(`${letter+151}`, space)), parseData("G151"));
@@ -257,7 +257,7 @@
         appendFurnitureOption(parseData("F156"), parseData(letterModel + "156"), amountOfRooms, parseFloat(parseData(`${letter+156}`, space)), parseData("G156"));
         appendFurnitureOption(parseData("F157"), parseData(letterModel + "157"), amountOfRooms, parseFloat(parseData(`${letter+157}`, space)), parseData("G157"));
         appendFurnitureOption(parseData("F158"), parseData(letterModel + "158"), amountOfRooms, parseFloat(parseData(`${letter+158}`, space)), parseData("G158"));
-        if (furnitureBool) {
+        if (!!furnitureBool) {
         appendFurnitureOption(parseData("F159"), parseData(letterModel + "159"), 1, parseFloat(parseData(`${letter+159}`, space)), parseData("G159"));
         }
         appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
@@ -303,7 +303,6 @@
         if ((price === 0) || (price == NaN) || (optionsAdressesArray[i] == null)) {
             continue;   
         }
-        console.log(parseData("F" + optionsAdressesArray[i]) + " " + price);
         workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + optionsAdressesArray[i])}, ${parseData(letterModel + optionsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
@@ -334,7 +333,7 @@
         }
 
         function appendFurnitureOption(name, manufacturer, amount, price, dim) {
-        if (furnitureBool == 0) {
+        if ((furnitureBool == 0) || (furnitureBool == "0")) {
                 return;       
         }
 
