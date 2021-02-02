@@ -105,10 +105,15 @@ $(window).on('load', function () {
             else if (1 == e) u = "japandi";
             else if (3 == e) u = "modern";
             else if (4 == e) u = "neoclassic";
-            $(".slide.main, .arrow-left, .arrow-right").toggle(!0),
+            $(".main-slider").toggle(!0),
+            $(".custom-style-section").toggle(!1),
+            $(".slider-side").toggle(!0),
+            $(".slide").toggle(!1),
+            $(".slide.main").toggle(!0),
             $(".slide" + `.${u}`).toggle(!0),
-            $(".style-heading, .style-note, .style-description, .slide").toggle(!1),
+            $(".style-heading, .style-note, .style-description").toggle(!1),
             $(".header-" + u).toggle(!0);
+            $(".arrow-left, .arrow-right").toggle(!0);
             $(".main-slider").slick("refresh");
             $(".slide-nav.active").removeClass("active");
             $(".slide-nav:eq(0)").addClass("active");
