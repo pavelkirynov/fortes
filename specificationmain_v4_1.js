@@ -350,7 +350,7 @@
                 }
 
 
-                if (!!parseInt(appliancesBoolTotal)) {
+                if (appliancesBoolTotal) {
                     sum += parseFloat(parseData("G36"));
                     $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
                     $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${parseFloat(quantity) * parseFloat(parseData("G36"))} грн.</span>`);
@@ -363,10 +363,11 @@
                     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
                     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
 
-                } else {
-                    $("#appliancesListTotal").toggle(false);
-                }
+                } 
             }
+        if (!appliancesBoolTotal) {
+            $("#appliancesListTotal").toggle(false);
+        }
 
 
             let styleLetter = "J";
