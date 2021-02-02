@@ -153,9 +153,7 @@
 
         for (let i = 0; i < workAdressesArray.length; i++) {
         let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
-        if (workPriceArray[i] == "work") {
-            price = (workSum - water - canalisation - electricity - vents) * 0.022;   
-        }
+
         if ((price === 0) || (price == NaN)) {
             continue;   
         }
@@ -392,7 +390,7 @@
             }
 
 
-        if (!!appliancesBoolTotal) {
+        if (!!parseInt(appliancesBoolTotal)) {
             sum += parseFloat(parseData("G36"));
             $appliancesList.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
             $("#appliancesListTotal .option-block .list-option-container").last().append(`<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${parseFloat(quantity) * parseFloat(parseData("G36"))} грн.</span>`);
