@@ -94,7 +94,6 @@
 
         $("#months").html(months);
 
-
         if (style == "cozy") {
         letter = "I";
         letterModel = "A";
@@ -160,6 +159,7 @@
         if ((price === 0) || (price == NaN)) {
             continue;   
         }
+        console.log(parseData("F" + workAdressesArray[i]) + " " + price);
         workSum+= price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
@@ -182,6 +182,7 @@
         if ((price === 0) || (price == NaN)) {
             continue;   
         }
+        console.log(parseData("F" + materialsAdressesArray[i]) + " " + price);
         workSum += price;
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}, ${parseData(letterModel + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
         $("#workList").append(textObject);
@@ -286,7 +287,6 @@
             $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
             return;
         }
-        console.log(price * amount + " " + name + " " + workSum);
         $("#workList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
         }
         if (!!parseInt(hygienicShower) || !!parseInt(secondGypsumLayer) || !!parseInt(floorScreed) || !!parseInt(heatedFlooring) || !!parseInt(denoising) || !!parseInt(entranceDoors) || !!parseInt(conditioning)) {
@@ -335,7 +335,7 @@
             return;
         }
         furnitureSum += price * furnitureRate * amount;
-        console.log(price + " " + amount + " " + name)
+        console.log(price * furnitureRate * amount + " " + amount + " " + name);
         $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
         if (!manufacturer) {
             $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
