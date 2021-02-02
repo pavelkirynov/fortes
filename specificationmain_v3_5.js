@@ -444,6 +444,9 @@
         $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
         $("#kitchenTotal").html(spacedNum(kitchenTotal) + " грн");
         $("#kitchenTotalPrice").html(spacedNum(sum) + " грн");
+        if (furnitureBool == "0") {
+                furnitureSum = 0;       
+        }
         $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
         $("#discountTotal").html(`<span class='bold-text-7'>${spacedNum(Math.round(sum - sum * 0.9))} грн.</span>`);
         $("#totalPriceTotal").html(spacedNum(Math.round(furnitureSum + workSum + parseInt(appliancesBoolTotal) * sum * 0.9)) + " грн. *");
