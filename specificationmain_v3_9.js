@@ -203,7 +203,7 @@
                 $("#workList").append(textObject);
             }
 
-            if (!!furnitureBool) {
+            if (furnitureBool) {
                 $("#furnitureList").append("</div><div class=\"list-option-container\"></div>");
                 $("#furnitureList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Кухня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`);
 
@@ -257,15 +257,16 @@
                 appendFurnitureOption(parseData("F156"), parseData(letterModel + "156"), amountOfRooms, parseFloat(parseData(`${letter+156}`, space)), parseData("G156"));
                 appendFurnitureOption(parseData("F157"), parseData(letterModel + "157"), amountOfRooms, parseFloat(parseData(`${letter+157}`, space)), parseData("G157"));
                 appendFurnitureOption(parseData("F158"), parseData(letterModel + "158"), amountOfRooms, parseFloat(parseData(`${letter+158}`, space)), parseData("G158"));
-                if (!!furnitureBool) {
-                    appendFurnitureOption(parseData("F159"), parseData(letterModel + "159"), 1, parseFloat(parseData(`${letter+159}`, space)), parseData("G159"));
-                }
+
+                appendFurnitureOption(parseData("F159"), parseData(letterModel + "159"), 1, parseFloat(parseData(`${letter+159}`, space)), parseData("G159"));
                 appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
-            }
+            
 
             $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
             $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
             furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
+            
+            }
 
             function appendMaterialsOption(name, manufacturer, amount, price, dim) {
                 let $materials = $("#workList");
@@ -333,14 +334,14 @@
             }
 
             function appendFurnitureOption(name, manufacturer, amount, price, dim) {
-                if ((furnitureBool == 0) || (furnitureBool == "0")) {
+                if (furnitureBool) {
                     return;
                 }
 
                 if ((amount == 0) || (!amount) || !(price)) {
                     return;
                 }
-                furnitureSum += price * furnitureRate * amount;
+                furnitureSum += price * furnitureRate * amount * furnitureBool;
                 console.log(price * furnitureRate * amount + " " + amount + " " + name);
                 $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
                 if (!manufacturer) {
@@ -443,7 +444,7 @@
             $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
             $("#kitchenTotal").html(spacedNum(kitchenTotal) + " грн");
             $("#kitchenTotalPrice").html(spacedNum(sum) + " грн");
-            if (furnitureBool == 0) {
+            if (furnitureBool) {
                 furnitureSum = 0;
             }
             $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
