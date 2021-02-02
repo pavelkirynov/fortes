@@ -260,12 +260,12 @@
 
                 appendFurnitureOption(parseData("F159"), parseData(letterModel + "159"), 1, parseFloat(parseData(`${letter+159}`, space)), parseData("G159"));
                 appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
-            
 
-            $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-            $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
-            furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
-            
+
+                $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
+                $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
+                furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
+
             }
 
 
@@ -363,11 +363,11 @@
                     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${spacedNum(sum)} грн.</span>`);
                     $("#appliancesListTotal .list-option-container").last().append(`<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(sum * 0.9))} грн.</span>`);
 
-                } 
+                }
             }
-        if (!appliancesBoolTotal) {
-            $("#appliancesListTotal").toggle(false);
-        }
+            if (!appliancesBoolTotal) {
+                $("#appliancesListTotal").toggle(false);
+            }
 
 
             let styleLetter = "J";
@@ -401,5 +401,5 @@
             }
             $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
             $("#discountTotal").html(`<span class='bold-text-7'>${spacedNum(Math.round(sum - sum * 0.9))} грн.</span>`);
-            $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5) + " грн. *");
+            $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5) + " грн. *"));
         };
