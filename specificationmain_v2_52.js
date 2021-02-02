@@ -166,7 +166,7 @@
         }
         textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round((workSum - (vents + canalisation + electricity + water)) * 0.022)} грн.</span></div></div>`;
         $("#workList").append(textObject);
-        workSum += (workSum - (vents + canalisation + electricity + water)) * 0.022;
+        workSum += (workSum - (vents + canalisation + electricity + water)) * 0.022 * parseData("S42");
 
         $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
         $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
