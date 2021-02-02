@@ -334,7 +334,7 @@
         }
 
         function appendFurnitureOption(name, manufacturer, amount, price, dim) {
-        if (furnitureBool == "0") {
+        if (furnitureBool == 0) {
                 return;       
         }
 
@@ -444,7 +444,7 @@
         $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
         $("#kitchenTotal").html(spacedNum(kitchenTotal) + " грн");
         $("#kitchenTotalPrice").html(spacedNum(sum) + " грн");
-        if (furnitureBool == "0") {
+        if (furnitureBool == 0) {
                 furnitureSum = 0;       
         }
         $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
