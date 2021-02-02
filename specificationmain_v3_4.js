@@ -334,6 +334,9 @@
         }
 
         function appendFurnitureOption(name, manufacturer, amount, price, dim) {
+        if (furnitureBool == "0") {
+                return;       
+        }
 
         if ((amount == 0) || (!amount) || !(price)) {
             return;
