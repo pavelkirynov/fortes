@@ -126,7 +126,7 @@ $(window).on('load', function () {
             $(".calculator-tab.w--current").removeClass("w--current"),
             $(`.calculator-tab[data-slider-index='${e}']`).addClass("w--current"),
             $(".wrap-border.calculator-btn").toggle(false);
-            $(`.specification-${u}`).toggle(true);
+            $(`.specification-${u}.color-1`).toggle(true);
         }),
         $(".arrow-left").on("click", function () {
             $(".main-slider").slick("slickPrev");
