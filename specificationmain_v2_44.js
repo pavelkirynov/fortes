@@ -165,6 +165,7 @@ const onDataLoaded = (data) => {
         $("#workList").append(textObject);
     }
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span></div></div>`;
+    $("#workList").append(textObject);
     workSum += (workSum - (vents + canalisation + electricity + water)) * 0.022;
 
     $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
