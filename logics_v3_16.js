@@ -54,7 +54,6 @@ $(window).on('load', function () {
         speed: 425,
         draggable: !1,
         adaptiveHeight: !0,
-        mobileFirst: true,
         responsive: [{
                 breakpoint: 991,
                 settings: {
