@@ -275,7 +275,7 @@
             }
 
 
-            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), +conditioning * parseFloat(parseData(`${letter+120}`, space)) * furnitureRate];
+            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), +conditioning * parseFloat(parseData(`${letter+120}`, space)) * furnitureRate + parseData(letter + 119, space) * +conditioning];
             let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising + mouldings, +floorScreed, +denoising, +conditioning];
             let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 120];
 
