@@ -275,13 +275,13 @@
             }
 
 
-            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), parseFloat(parseData(`${letter+120}`, space)) * furnitureRate + parseFloat(parseData(letter + 119, space)) * space];
-            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising + mouldings, +floorScreed, +denoising, +conditioning];
-            let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 120];
+            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), parseFloat(parseData(letter + 119, space)) * space, parseFloat(parseData(`${letter+120}`, space)) * furnitureRate];
+            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising + mouldings, +floorScreed, +denoising, +conditioning, +conditioning];
+            let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 119, 120];
 
             for (let i = 0; i < optionsAdressesArray.length; i++) {
                 let price = optionsPriceArray[i] * optionsAmountArray[i];
-                console.log(price + " " + parseData("F" + optionsAdressesArray[i]));
+                console.log(price + " " + parseData("F" + optionsAdressesArray[i]) + " " + optionsPriceArray[i] + " " + optionsAmountArray[i]);
                 if ((price === 0) || (price == NaN) || (optionsAdressesArray[i] == null)) {
                     continue;
                 }
