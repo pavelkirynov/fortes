@@ -88,6 +88,7 @@
                 furnitureSum = 0,
                 $furniture = $("#furnitureList");
             let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
+                conditionerRate = 1 + parseFloat(parseData("S120")/ 100),
                 workRate = parseData("S42"),
                 materialsRate = parseData("S72"),
                 months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) + 1 : parseData("G8", space);
@@ -275,9 +276,9 @@
             }
 
 
-            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), parseFloat(parseData(letter + 119, space)) * space, parseFloat(parseData(`${letter+120}`, space)) * furnitureRate];
-            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising + mouldings, +floorScreed, +denoising, +conditioning, +conditioning];
-            let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 119, 120];
+            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), (+denoising + mouldings) * space * parseFloat(parseData(`${letter+113}`, space)), +floorScreed * parseFloat(parseData(`${letter+114}`, space)), +denoising * parseFloat(parseData(`${letter+115}`, space)), parseFloat(parseData(`${letter+119}`, space)) * space, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate * 0.05];
+            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising + mouldings, +floorScreed, +denoising, +conditioning, +conditioning, 1];
+            let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 119, 120, 121];
 
             for (let i = 0; i < optionsAdressesArray.length; i++) {
                 let price = optionsPriceArray[i] * optionsAmountArray[i];
