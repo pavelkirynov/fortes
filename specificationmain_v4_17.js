@@ -277,13 +277,13 @@
 
 
             let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), ((+denoising + mouldings) > 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)) + ((+denoising + mouldings) == 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)), parseFloat(parseData(`${letter+119}`, space)) * space, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate * 0.05];
-            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, 1, +conditioning, +conditioning, 1];
+            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, 1, +conditioning, +conditioning, +conditioning > 0 ? 1 : 0];
             let optionsAdressesArray = [109, 110, 111, 112, 113, 119, 120, 121];
 
             for (let i = 0; i < optionsAdressesArray.length; i++) {
                 let price = optionsPriceArray[i] * optionsAmountArray[i];
                 console.log(price + " " + parseData("F" + optionsAdressesArray[i]) + " " + optionsPriceArray[i] + " " + optionsAmountArray[i]);
-                if ((price === 0) || (price == NaN) || (optionsAdressesArray[i] == null)) {
+                if ((price === 0) || (price == NaN) || (optionsAmountArray[i] == 0)|| (optionsAdressesArray[i] == null)) {
                     continue;
                 }
                 workSum += price;
