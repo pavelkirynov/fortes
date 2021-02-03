@@ -70,7 +70,7 @@ $(window).on('load', function () {
                     mobileFirst: true,
                     draggable: !0,
                     infinite: !0,
-                    arrows: !1,
+                    arrows: !0,
                     dots: !0,
                 }
             },
