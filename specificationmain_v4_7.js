@@ -280,8 +280,8 @@
             let optionsAdressesArray = [109, 110, 111, 112, 113, ((+denoising + +gapless + stretch) > 2) ? 114 : null, 120];
 
             for (let i = 0; i < optionsAdressesArray.length; i++) {
-
                 let price = optionsPriceArray[i] * optionsAmountArray[i];
+                console.log(price + " " + parseData("F" + optionsAdressesArray[i]));
                 if ((price === 0) || (price == NaN) || (optionsAdressesArray[i] == null)) {
                     continue;
                 }
