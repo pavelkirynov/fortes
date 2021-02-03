@@ -88,7 +88,7 @@
                 furnitureSum = 0,
                 $furniture = $("#furnitureList");
             let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
-                conditionerRate = 1 + parseFloat(parseData("S120")/ 100),
+                conditionerRate = 1 + parseFloat(parseData("S120") / 100),
                 workRate = parseData("S42"),
                 materialsRate = parseData("S72"),
                 months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) + 1 : parseData("G8", space);
@@ -276,7 +276,7 @@
             }
 
 
-            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), ((+denoising + mouldings) > 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)) + ((+denoising + mouldings) = 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)), parseFloat(parseData(`${letter+119}`, space)) * space * +conditioning, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate * 0.05];
+            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), +heatedFlooring * parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), ((+denoising + mouldings) > 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)) + ((+denoising + mouldings) == 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)), parseFloat(parseData(`${letter+119}`, space)) * space * +conditioning, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate, parseFloat(parseData(`${letter+120}`, space)) * conditionerRate * 0.05];
             let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, 1, +conditioning, +conditioning, 1];
             let optionsAdressesArray = [109, 110, 111, 112, 113, 119, 120, 121];
 
@@ -400,9 +400,9 @@
             if (furnitureBool) {
                 furnitureSum = 0;
             }
-                if (!furnitureBool && !appliancesBoolTotal) {
-                        $("#workList .list-text.summary").last().html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн."))       
-                }
+            if (!furnitureBool && !appliancesBoolTotal) {
+                $("#workList .list-text.summary").last().html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн."))
+            }
             $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
             $("#discountTotal").html(`<span class='bold-text-7'>${spacedNum(Math.round(sum - sum * 0.9))} грн.</span>`);
             $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн. *"));
