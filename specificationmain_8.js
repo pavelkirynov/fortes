@@ -148,9 +148,9 @@
                 vents = parseFloat(parseData(`${letter+44}`, space)) * space,
                 electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
 
-            let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space, ((months * 2 * 1200) + 3000 + (space * 100))];
-            let workAmountArray = [1, 1, 1, parseFloat(amountOfBathrooms), parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1, 1];
-            let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 67];
+            let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space];
+            let workAmountArray = [1, 1, 1, parseFloat(amountOfBathrooms), parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1];
+            let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65];
 
             for (let i = 0; i < workAdressesArray.length; i++) {
                 let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
@@ -165,7 +165,11 @@
             }
             textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round((workSum - (vents + canalisation + electricity + water)) * 0.022 /* parseData("S42")*/)} грн.</span></div></div>`;
             $("#workList").append(textObject);
-            workSum += (workSum - (vents + canalisation + electricity + water)/* * parseData("S42")*/) * 0.022 /* parseData("S42")*/;
+            workSum += (workSum - (vents + canalisation + electricity + water) * parseData("S42")) * 0.022 * parseData("S42");
+                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 67)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(((months * 2 * 1200) + 3000 + (space * 100)))} грн.</span></div></div>`;
+            $("#workList").append(textObject);
+            workSum += ((months * 2 * 1200) + 3000 + (space * 100));
+                
 
             $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
             $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
