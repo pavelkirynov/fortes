@@ -411,7 +411,7 @@
                 if (!(furnitureBool) && !(appliancesBoolTotal)) {
                         $("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
                 } else {
-                    $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн. *"));
+                    $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._summedPrice) * 28.5) + " грн. *"));
                 }
 
         };
