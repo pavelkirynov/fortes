@@ -154,7 +154,6 @@
 
             for (let i = 0; i < workAdressesArray.length; i++) {
                 let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
-                console.log(parseData("F" + workAdressesArray[i]) + " " + price);
                 if ((price === 0) || (price == NaN)) {
                     continue;
                 }
@@ -163,16 +162,14 @@
                 $("#workList").append(textObject);
             }
             textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(workSum * 0.022 * parseData("S42"))} грн.</span></div></div>`;
-            $("#workList").append(textObject);
-            console.log(workSum * 0.022 * parseData("S42"));        
+            $("#workList").append(textObject);    
             workSum += workSum * 0.022 * parseData("S42");
 
             textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 67)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42"))} грн.</span></div></div>`;
-            $("#workList").append(textObject);
-            console.log(((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42"));     
+            $("#workList").append(textObject);  
             workSum += ((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42");
-                
-                
+
+
 
             $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
             $("#workList .list-option-container").last().append(`<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`);
@@ -188,7 +185,6 @@
                 if ((price === 0) || (price == NaN)) {
                     continue;
                 }
-                //console.log(parseData("F" + materialsAdressesArray[i]) + " " + price);
                 workSum += price;
                 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}, ${parseData(letterModel + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
                 $("#workList").append(textObject);
@@ -269,10 +265,13 @@
                 appendFurnitureOption(parseData("F159"), parseData(letterModel + "159"), 1, parseFloat(parseData(`${letter+159}`, space)), parseData("G159"));
                 appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
 
-
+                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 162)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(furnitureSum * 0.03 * furnitureRate)} грн.</span></div></div>`;
+                $("#materialsList").append(textObject);  
+                furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
+                    
                 $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
                 $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
-                furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
+                
 
             }
 
@@ -409,5 +408,10 @@
             }
             $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
             $("#discountTotal").html(`<span class='bold-text-7'>${spacedNum(Math.round(sum - sum * 0.9))} грн.</span>`);
-            $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн. *"));
+                if (!(furnitureBool) && !(appliancesBoolTotal)) {
+                        $("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
+                } else {
+                    $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн. *"));
+                }
+
         };
