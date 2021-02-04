@@ -276,8 +276,8 @@
             }
 
 
-            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), ((+denoising + mouldings) > 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)) + ((+denoising + mouldings) == 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)), parseFloat(parseData(`${letter+116}`, space)) + parseFloat(parseData(`${letter+117}`, space)), parseFloat(parseData(`${letter+119}`, space)) * space + parseFloat(parseData(`${letter+120}`, space)) * conditionerRate + parseFloat(parseData(`${letter+120}`, space)) * conditionerRate * 0.05];
-            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, 1, +entranceDoors, +conditioning];
+            let optionsPriceArray = [space * parseFloat(parseData(`${letter+109}`, space)), +hygienicShower * parseFloat(parseData(`${letter+110}`, space)), parseFloat(parseData(`${letter+111}`, space)), space * parseFloat(parseData(`${letter+112}`, space)), ((+denoising + mouldings) > 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+113}`, space)) + ((+denoising + mouldings) == 1 ? 1 : 0) * space * parseFloat(parseData(`${letter+114}`, space)) + space * parseFloat(parseData(`${letter+115}`, space)), parseFloat(parseData(`${letter+116}`, space)) + parseFloat(parseData(`${letter+117}`, space)), parseFloat(parseData(`${letter+119}`, space)) * space + parseFloat(parseData(`${letter+120}`, space)) * conditionerRate + parseFloat(parseData(`${letter+120}`, space)) * conditionerRate * 0.05];
+            let optionsAmountArray = [+floorScreed, +hygienicShower, +heatedFlooring, +secondGypsumLayer, +denoising, +entranceDoors, +conditioning];
             let optionsAdressesArray = [109, 110, 111, 112, 113, 116, 120];
 
             for (let i = 0; i < optionsAdressesArray.length; i++) {
@@ -399,9 +399,6 @@
             $("#kitchenTotalPrice").html(spacedNum(sum) + " грн");
             if (furnitureBool) {
                 furnitureSum = 0;
-            }
-            if (!furnitureBool && !appliancesBoolTotal) {
-                $("#workList .list-text.summary").last().html(spacedNum(Math.round(parseInt(cookies._costPerMetre) * 28.5 * space) + " грн."))
             }
             $("#kitchenTotalPriceDiscount").html(spacedNum(Math.round(sum * 0.9)));
             $("#discountTotal").html(`<span class='bold-text-7'>${spacedNum(Math.round(sum - sum * 0.9))} грн.</span>`);
