@@ -148,9 +148,9 @@
                 vents = parseFloat(parseData(`${letter+44}`, space)) * space,
                 electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
 
-            let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space];
-            let workAmountArray = [1, 1, 1, parseFloat(amountOfBathrooms), parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1];
-            let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65];
+            let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space, workSum * 0.022, ((months * 2 * 1200) + 3000 + (space * 100))];
+            let workAmountArray = [1, 1, 1, parseFloat(amountOfBathrooms), parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1, 1, 1];
+            let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 66, 67];
 
             for (let i = 0; i < workAdressesArray.length; i++) {
                 let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
@@ -163,12 +163,6 @@
                 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
                 $("#workList").append(textObject);
             }
-            textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(workSum * 0.022 * parseData("S42"))} грн.</span></div></div>`;
-            $("#workList").append(textObject);
-            workSum += workSum * 0.022 * parseData("S42");
-                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 67)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42"))} грн.</span></div></div>`;
-            $("#workList").append(textObject);
-            workSum += ((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42");
                 
 
             $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
@@ -185,7 +179,7 @@
                 if ((price === 0) || (price == NaN)) {
                     continue;
                 }
-                console.log(parseData("F" + materialsAdressesArray[i]) + " " + price);
+                //console.log(parseData("F" + materialsAdressesArray[i]) + " " + price);
                 workSum += price;
                 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + materialsAdressesArray[i])}, ${parseData(letterModel + materialsAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
                 $("#workList").append(textObject);
@@ -286,7 +280,7 @@
 
             for (let i = 0; i < optionsAdressesArray.length; i++) {
                 let price = optionsPriceArray[i] * optionsAmountArray[i];
-                console.log(price + " " + parseData("F" + optionsAdressesArray[i]) + " " + optionsPriceArray[i] + " " + optionsAmountArray[i]);
+                //console.log(price + " " + parseData("F" + optionsAdressesArray[i]) + " " + optionsPriceArray[i] + " " + optionsAmountArray[i]);
                 if ((price === 0) || (price == NaN) || (optionsAmountArray[i] == 0)|| (optionsAdressesArray[i] == null)) {
                     continue;
                 }
@@ -303,7 +297,7 @@
             }
 
             $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-            $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum * 0.9946))} грн.</span>`);
+            $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum))} грн.</span>`);
 
             function appendFurnitureOption(name, manufacturer, amount, price, dim) {
                 if (!furnitureBool) {
@@ -314,7 +308,7 @@
                     return;
                 }
                 furnitureSum += price * furnitureRate * amount * furnitureBool;
-                console.log(price * furnitureRate * amount + " " + amount + " " + name);
+                //console.log(price * furnitureRate * amount + " " + amount + " " + name);
                 $furniture.append("<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"></div></div>");
                 if (!manufacturer) {
                     $("#materialsList .option-block .list-option-container").last().append(`<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`);
@@ -324,7 +318,7 @@
             }
 
             $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-            $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum * 0.9946)} грн.</span>`);
+            $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
             let sum = 0;
 
 
