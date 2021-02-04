@@ -148,21 +148,21 @@
                 vents = parseFloat(parseData(`${letter+44}`, space)) * space,
                 electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
 
-            let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space, workSum * 0.022 * 2, ((months * 2 * 1200) + 3000 + (space * 100))];
+            let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space, 290 * space, ((months * 2 * 1200) + 3000 + (space * 100))];
             let workAmountArray = [1, 1, 1, parseFloat(amountOfBathrooms), parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1, 1, 1];
             let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65, 66, 67];
 
             for (let i = 0; i < workAdressesArray.length; i++) {
                 let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
-
+                console.log(parseData("F" + workAdressesArray[i]) + " " + price);
                 if ((price === 0) || (price == NaN)) {
                     continue;
                 }
-                console.log(parseData("F" + workAdressesArray[i]) + " " + price);
                 workSum += price;
                 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + workAdressesArray[i])}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
                 $("#workList").append(textObject);
             }
+                
                 
 
             $("#workList").append("</div><div class=\"list-option-container margined\"></div>");
