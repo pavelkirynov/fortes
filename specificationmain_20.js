@@ -266,11 +266,11 @@
                 appendFurnitureOption(parseData("F160"), parseData(letterModel + "160"), amountOfRooms - 1, parseFloat(parseData(`${letter+160}`, space)), parseData("G160"));
 
                 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 162)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(furnitureSum * 0.03 * furnitureRate)} грн.</span></div></div>`;
-                $("#materialsList").append(textObject);  
-                furnitureSum = furnitureSum + (furnitureSum * 0.03 * furnitureRate);
+                $("#furnitureList").append(textObject);  
+                furnitureSum += (furnitureSum * 0.03 * furnitureRate);
                     
                 $("#furnitureList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-                $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(furnitureSum)} грн.</span>`);
+                $("#furnitureList .list-option-container").last().append(`<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(furnitureSum))} грн.</span>`);
                 
 
             }
