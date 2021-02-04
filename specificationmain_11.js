@@ -166,7 +166,7 @@
             textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 66)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round((workSum - (vents + canalisation + electricity + water) * parseData("S42")) * 0.022 * parseData("S42"))} грн.</span></div></div>`;
             $("#workList").append(textObject);
             workSum += (workSum - (vents + canalisation + electricity + water) * parseData("S42")) * 0.022 * parseData("S42");
-                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 67)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(((months * 2 * 1200) + 3000 + (space * 100)))} грн.</span></div></div>`;
+                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + 67)}</span><span class=\'list-text amount\'> </span><span class=\'list-text\'>${Math.round(((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42"))} грн.</span></div></div>`;
             $("#workList").append(textObject);
             workSum += ((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42");
                 
@@ -324,7 +324,7 @@
             }
 
             $("#materialsList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-            $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum)} грн.</span>`);
+            $("#materialsList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Math.round(workSum * 0.9946)} грн.</span>`);
             let sum = 0;
 
 
