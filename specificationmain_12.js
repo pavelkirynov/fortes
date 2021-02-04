@@ -303,7 +303,7 @@
             }
 
             $("#workList").append("<div class=\"division-block pricelist\"></div><div class=\"list-option-container summary\"></div>");
-            $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum))} грн.</span>`);
+            $("#workList .list-option-container").last().append(`<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${spacedNum(Math.round(workSum * 0.9946))} грн.</span>`);
 
             function appendFurnitureOption(name, manufacturer, amount, price, dim) {
                 if (!furnitureBool) {
