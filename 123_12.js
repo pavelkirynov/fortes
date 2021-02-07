@@ -67,6 +67,38 @@ let options = {
         },
     ],
 };
+
+$('#wf-form-consult').submit(function () {
+    if (!$("#agreementCheckbox").is(":checked")) {
+        show($(".warning.agreementcheckbox"));
+    } else {
+        hide($(".warning.agreementcheckbox"));
+    }
+    if (!$("#phone").val()) {
+        show($(".warning.inputs.phone"));
+
+    } else {
+        hide($(".warning.inputs.phone"));
+    }
+    if (!$("#name").val()) {
+        show($(".warning.inputs.name"));
+    } else {
+        hide($(".warning.inputs.name"));
+    }
+    if ($(".warning").is(":visible")) {
+        return false;
+    } else {
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxaZQTrmT0wZsVWErYh9k8yxgTqUn1v9NfBTXyZCv01dFmRsp-4/exec';
+        let fd = new FormData($("#wf-form-consult").get(0));
+
+        fetch(scriptURL, {
+                method: 'POST',
+                body: fd
+            })
+            .catch(error => console.error('Error!', error.message));
+    }
+});
+
 t.slick(options);
 let i = $(".calculator-slider-side");
 let options2 = {
