@@ -169,7 +169,7 @@
                 }
             });
             hide($(".color-var, .wrap-border.calculator-btn"));
-            show($(`.slide.color-${index + 1}, .calculator-slide.color-${index + 1}, .wrap-border.calculator-btn.specification-${style}.color-${index + 1}`));
+            show($(`.slide .color-${index + 1}, .calculator-slide .color-${index + 1}, .wrap-border.calculator-btn.specification-${style}.color-${index + 1}`));
         }
     });
     $(".calculator-slider-option").click(function () {
