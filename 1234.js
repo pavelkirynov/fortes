@@ -162,7 +162,7 @@ $(document).ready(() => {
         let number = $(".calculator-tab.w--current").index();
         let style = getStyle(number);
         if ($(this).not(".active")) {
-            rmActives(".color-tab.active");
+            rmActives($(".color-tab.active"));
             $(".div-block-14 .color-tab").each(function () {
                 if ($(this).index() == index) {
                     setActive($(this));
@@ -176,7 +176,6 @@ $(document).ready(() => {
         rmActives($(".calculator-slider-option.active"));
         setActive($(this));
         slideIndex = $(this).index();
-        r = slideIndex;
         i[0].slick.slickGoTo(slideIndex);
     });
     $(".calculator-button, .calculate, .calculator-tab").click(() => {
@@ -255,7 +254,7 @@ $(document).ready(() => {
     }
 
     function rmActives(obj) {
-        return obj.removeClass("active");
+        return obj.toggleClass("active");
     }
 
     function hide(obj) {
