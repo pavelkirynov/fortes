@@ -258,11 +258,11 @@ $(document).ready(() => {
     }
 
     function hide(obj) {
-        return obj.toggle(false);
+        obj.toggle(false);
     }
 
     function show(obj) {
-        return obj.toggle(true);
+        obj.toggle(true);
     }
 
     function data(obj, data) {
