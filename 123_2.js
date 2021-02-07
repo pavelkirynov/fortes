@@ -154,9 +154,32 @@
         });
         hide($(".slide .color-var, .calculator-slide .color-var, .wrap-border.calculator-btn"));
         show($(".slide .color-1, .calculator-slide .color-1, .calculator - slide " + `.${u}`));
-        $(`.calculator-tab[data-slider-index='${e}']`).addClass("w--current");
+        $(`.calculator-tab:eq(${e})`).addClass("w--current");
+        $(`.slider-tab:eq(${e})`).addClass("w--current");
         show($(`.specification-${u}.color-1`));
     });
+$(".hover-text").on("click", function () {
+    let obj = $(this);
+    obj.siblings(".hover-modal").css("display", "flex");
+    if (obj.siblings(".hover-modal").css("opacity") == 0) {
+      if (!isInViewport(obj.siblings(".hover-modal").get(0))) {    
+        $([document.documentElement, document.body]).animate({
+          scrollTop: obj.siblings(".hover-modal").offset().top - 96
+        }, 450);
+      }
+      obj.siblings(".hover-modal").animate({
+        bottom: 42,
+        opacity: 1
+      }, 200, "swing");
+    } else {
+      obj.siblings(".hover-modal").animate({
+        bottom: 12,
+        opacity: 0
+      }, 200, function () {
+        obj.siblings(".hover-modal").toggle(false);
+      });
+    }
+  });
     $(".color-tab").click(function () {
         let index = $(this).index();
         let number = $(".calculator-tab.w--current").index();
