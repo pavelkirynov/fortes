@@ -205,16 +205,15 @@ $(".hover-text").on("click", function () {
         i.slick("refresh");
     });
     $(".calculator-arrow").click(function () {
-        let e = $(".calculator-slider-option.active").index();
         if ($(this).is(".arrow-right")) {
             i.slick("slickNext");
-            e >= 4 ? (e = 0) : (e += 1);
         } else {
             i.slick("slickPrev");
-            e = 0 ? (e = 4) : (e -= 1);
         }
+        let e = t.slick("slickCurrentSlide");
         rmActives($(".calculator-slider-option.active"));
         setActive($(`.calculator-slider-option:eq(${e})`));
+        
     });
 
     $(".wrap-border.calculator-btn .button").click(function () {
@@ -308,4 +307,12 @@ $(".hover-text").on("click", function () {
     function checkbox(obj) {
         return +obj.is(":checked");
     }
-
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
