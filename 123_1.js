@@ -1,4 +1,4 @@
-$(document).ready(() => {
+
     $(".choiceactive.card").toggleClass("choiceActiveBorder");
     $("#laminat").prop("checked", !0);
 
@@ -285,4 +285,4 @@ $(document).ready(() => {
     function checkbox(obj) {
         return +obj.is(":checked");
     }
-});
+
