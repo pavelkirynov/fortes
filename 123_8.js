@@ -1,4 +1,4 @@
-$(document).load(function () {
+
     $("input").each(function () {
         $(this).attr("name", $(this).data("name"));
     });
@@ -86,6 +86,23 @@ $(document).load(function () {
         slideIndex = $(this).index();
         t[0].slick.slickGoTo(slideIndex);
     });
+
+    $(".preview-image, .blackbg-text").hover(
+        () => opacity($(".video-cursor"), 1),
+        () => opacity($(".video-cursor"), 0)
+    );
+    $(".project-link-image").hover(
+        () => opacity($(".project-dot"), 1),
+        () => opacity($(".project-dot"), 0)
+    );
+    $(".arrow-right").hover(
+        () => opacity($(".small-hover.right"), 1),
+        () => opacity($(".small-hover.right"), 0)
+    );
+    $(".arrow-left").hover(
+        () => opacity($(".small-hover.left"), 1),
+        () => opacity($(".small-hover.left"), 0)
+    );
 
     $(".choice").click(function () {
         if (!$("#appliancesBool").is(":checked")) return e.preventDefault(), $(".choiceActive").toggleClass("choiceActive"), void $(".choiceActiveBorder").toggleClass("choiceActiveBorder");
@@ -308,4 +325,4 @@ $(document).load(function () {
     function opacity(obj, val) {
         obj.css("opacity", val);
     }
-});
+
