@@ -28,12 +28,12 @@
     $("#space").on("focusout", function (e) {
         $(this).val($(this).val().match(/\d*\.?\d+/));
         data.space = +$("#space").val();
-        returnValue(data.space);
         if ((data.space == 0) || (data.amountOfRooms == 0)) {
             $("#total").html(0);
             $("#totalWhole").html(0);
             return;
         }
+        returnValue(data.space);
     });
     $(".slider-tab").click(function () {
         getUserStyle($(this).data("slider-index"));
