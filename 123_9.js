@@ -133,6 +133,8 @@
 
         t.slick("refresh");
         i.slick("refresh");
+        i.slick("slickGoTo", 0);
+        t.slick("slickGoTo", 0);
 
         rmActives($(".color-tab.active, .slide-nav.active"));
         setActive($(".slide-nav:eq(0)"));
