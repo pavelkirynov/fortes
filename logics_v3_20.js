@@ -119,7 +119,8 @@ $(window).on('load', function () {
             $(".main-slider").slick("refresh");
             $(".slide-nav.active").removeClass("active");
             $(".slide-nav:eq(0)").addClass("active");
-            $(".checkmark").css("margin-left", "0px");
+            $(".color-tab.active, .color-tab.calc.active").removeClass("active");
+            $(".color-tab:eq(0), .color-tab.calc:eq(0)").addClass("active");
             $(".slide .color-var, .calculator-slide .color-var").toggle(false);
             $(`.slide .color-1, .calculator-slide .color-1`).toggle(true);
             $(".calculator-slide").toggle(!1),
@@ -187,7 +188,8 @@ $(window).on('load', function () {
                 $(this).addClass("w--current"),
                 $(".wrap-border.calculator-btn").toggle(false);
             $(`.specification-${u}.color-1`).toggle(true);
-            $(".checkmark").css("margin-left", "0px");
+            $(".color-tab.active, .color-tab.calc.active").removeClass("active");
+            $(".color-tab:eq(0), .color-tab.calc:eq(0)").addClass("active");
             $(".calculator-slide .color-var, .slide .color-var").toggle(false);
             $(`.calculator-slide .color-1, .slide .color-1`).toggle(true);
         }),
