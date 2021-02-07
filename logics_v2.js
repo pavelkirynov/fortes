@@ -283,7 +283,7 @@ $(".wrap-border.calculator-btn .button").click(function () {
 
     let ceiling = val($(":radio[name='ceiling']:checked")) == "stretch ceiling" ? "Натяжна матова" : val($(":radio[name='ceiling']:checked")) == "gapless" ? "Натяжна бесщелева матова" : "Гіпсокартон";
     let flooring = val($(":radio[name='flooring']:checked")) == "laminat" ? "Ламінат" : val($(":radio[name='flooring']:checked")) == "vynil" ? "Вінілова підлога" : "Паркет";
-    let appliances = data($(".choiceActiveBorder"), "appliances") == undefined ? "Не обрано" : data($(".choiceActiveBorder"), "appliances").substr(0, 1).toUpperCase() + data($(".choiceActiveBorder"), "appliances").substr(1);
+    let appliances = getData($(".choiceActiveBorder"), "appliances") == undefined ? "Не обрано" : getData($(".choiceActiveBorder"), "appliances").substr(0, 1).toUpperCase() + getData($(".choiceActiveBorder"), "appliances").substr(1);
 
     fd.append("Стеля", ceiling);
     fd.append("Підлогове покриття", flooring);
@@ -347,7 +347,7 @@ function show(obj) {
     obj.toggle(true);
 }
 
-function data(obj, data) {
+function getData(obj, data) {
     if (isFinite(obj.data(data))) {
         return parseInt(obj.data(data));
     } else {
