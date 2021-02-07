@@ -27,14 +27,7 @@ $(window).on('load', function () {
             for (let e in t)(i = e + "=" + t[e] + ";"), (document.cookie = i);
         }),
         $(".calculator-tab").on("click", function () {
-            let e;
-            e || (e = "cozy");
-            let t = parseInt($(this).attr("data-slider-index"));
-            if (0 == t) e = "cozy";
-            else if (1 == t) e = "japandi";
-            else if (2 == t) e = "fusion";
-            else if (3 == t) e = "modern";
-            else if (4 == t) e = "neoclassic";
+                let e = getStyle(parseInt($(this).attr("data-slider-index")));
                 $(".calculator-slide").toggle(!1),
                 $(".calculator-slide.main").toggle(!0),
                 $(".calculator-slide" + `.${e}`).toggle(!0),
@@ -97,16 +90,9 @@ $(window).on('load', function () {
     });
     let u = "";
     $(".slider-tab").on("click", function () {
-            if (
-                ($(".slider-tab.w--current").toggleClass("w--current"),
-                    $(this).toggleClass("w--current"),
-                    0 == (e = parseInt($(this).attr("data-slider-index"))))
-            )
-                u = "cozy";
-            else if (2 == e) u = "fusion";
-            else if (1 == e) u = "japandi";
-            else if (3 == e) u = "modern";
-            else if (4 == e) u = "neoclassic";
+            $(".slider-tab.w--current").toggleClass("w--current");
+            $(this).toggleClass("w--current");
+            let u = getStyle(parseInt($(this).attr("data-slider-index")));
             $(".main-slider").toggle(!0),
             $(".custom-style-section").toggle(!1),
             $(".slider-side").toggle(!0),
@@ -119,8 +105,12 @@ $(window).on('load', function () {
             $(".main-slider").slick("refresh");
             $(".slide-nav.active").removeClass("active");
             $(".slide-nav:eq(0)").addClass("active");
-            $(".color-tab.active, .color-tab.calc.active").removeClass("active");
-            $(".color-tab:eq(0), .color-tab.calc:eq(0)").addClass("active");
+            $(".color-tab.active").toggleClass("active");
+            $(".div-block-14 .color-tab").each(function () {
+                if ($(this).index() == 0) {
+                  $(this).addClass("active");
+                }
+            });
             $(".slide .color-var, .calculator-slide .color-var").toggle(false);
             $(`.slide .color-1, .calculator-slide .color-1`).toggle(true);
             $(".calculator-slide").toggle(!1),
@@ -179,8 +169,7 @@ $(window).on('load', function () {
             13 != e.keyCode || e.preventDefault();
         }),
         $(".calculator-tab").on("click", function () {
-            0 == (e = parseInt($(this).attr("data-slider-index"))) ? (u = "cozy") : 2 == e ? (u = "fusion") : 1 == e ? (u = "japandi") : 3 == e ? (u = "modern") : 4 == e && (u = "neoclassic"),
-                u || (u = "cozy"),
+            let u = getStyle(parseInt($(this).attr("data-slider-index")));
                 $(".calculator-slide").toggle(!1),
                 $(".calculator-slide.main").toggle(!0),
                 $(".calculator-slide" + `.${u}`).toggle(!0),
@@ -188,26 +177,19 @@ $(window).on('load', function () {
                 $(this).addClass("w--current"),
                 $(".wrap-border.calculator-btn").toggle(false);
             $(`.specification-${u}.color-1`).toggle(true);
-            $(".color-tab.active, .color-tab.calc.active").removeClass("active");
-            $(".color-tab:eq(0), .color-tab.calc:eq(0)").addClass("active");
+            $(".color-tab.active").toggleClass("active");
+            $(".div-block-14 .color-tab").each(function () {
+                if ($(this).index() == 0) {
+                  $(this).addClass("active");
+                }
+            });
             $(".calculator-slide .color-var, .slide .color-var").toggle(false);
             $(`.calculator-slide .color-1, .slide .color-1`).toggle(true);
         });
         $(".color-tab").on("click", function () {
         let index = parseInt($(this).index());
         let number = parseInt($(".calculator-tab.w--current").data("slider-index"));
-        let style = "";
-        if (number == 0) {
-          style = "cozy";
-        } else if (number == 1) {
-          style = "japandi";
-        } else if (number == 2) {
-          style = "fusion";
-        } else if (number == 3) {
-          style = "modern";
-        } else {
-          style = "neoclassic";
-        }
+        let style = getStyle(number);
         if ($(this).not(".active")) {
           $(".color-tab.active").removeClass("active");
           $(".div-block-14 .color-tab").each(function () {
@@ -276,5 +258,17 @@ $(window).on('load', function () {
           .catch(error => console.error('Error!', error.message));
 
     });
-    
+    function getStyle(number) {
+       if (number == 0) {
+          return "cozy";
+        } else if (number == 1) {
+          return "japandi";
+        } else if (number == 2) {
+          return "fusion";
+        } else if (number == 3) {
+          return "modern";
+        } else {
+          return "neoclassic";
+        }
+    }
 });
