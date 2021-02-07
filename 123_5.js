@@ -1,3 +1,7 @@
+$(document).load(() => {
+    $("input").each(function () {
+        $(this).attr("name", $(this).data("name"));
+    });
 
     $(".choiceactive.card").toggleClass("choiceActiveBorder");
     $("#laminat").prop("checked", !0);
@@ -30,14 +34,6 @@
             i = e + "=" + t[e] + ";";
             document.cookie = i;
         }
-    });
-    $(".calculator-tab").click(function () {
-        let e = getStyle($(this).index());
-        hide($(".calculator-slide"))
-        show($(".calculator-slide.main, .calculator-slide " + `.${e}`));
-        $(".calculator-slider-side").slick("slickGoTo", 0);
-        rmActives($(".calculator-slider-option.active"));
-        setActive($(".calculator-slider-option[data-slider-index='0']"));
     });
     $(".increment-field .increment").click(function (e) {
         e.preventDefault(), val($(this).siblings(".increment-input")) <= 0 && $(this).siblings(".increment-input").val(0);
@@ -91,33 +87,23 @@
         t[0].slick.slickGoTo(slideIndex);
     });
 
-    $(".slider-arrow").click(function () {
-        if ($(this).is(".arrow-left")) {
-            t.slick("slickPrev");
-        } else {
-            t.slick("slickNext");
-        }
-        let e = t.slick("slickCurrentSlide");
-        rmActives($(".slide-nav.active"));
-        setActive($(`.slide-nav:eq(${e})`));
-    });
-
     $(".preview-image, .blackbg-text").hover(
-        () => {
-            $(".video-cursor").css("opacity", 1);
-        },
-        () => {
-            $(".video-cursor").css("opacity", 0);
-        }
+        () => opacity($(".video-cursor"), 1),
+        () => opacity($(".video-cursor"), 0)
     );
     $(".project-link-image").hover(
-        () => {
-            $(".project-dot").css("opacity", 1);
-        },
-        () => {
-            $(".project-dot").css("opacity", 0);
-        }
+        () => opacity($(".project-dot"), 1),
+        () => opacity($(".project-dot"), 0)
     );
+    $(".arrow-right").hover(
+        () => opacity($(".small-hover.right"), 1),
+        () => opacity($(".small-hover.right"), 0)
+    );
+    $(".arrow-left").hover(
+        () => opacity($(".small-hover.left"), 1),
+        () => opacity($(".small-hover.left"), 0)
+    );
+
     $(".choice").click(function () {
         if (!$("#appliancesBool").is(":checked")) return e.preventDefault(), $(".choiceActive").toggleClass("choiceActive"), void $(".choiceActiveBorder").toggleClass("choiceActiveBorder");
         $(this).hasClass("borderAcrive") ||
@@ -140,11 +126,14 @@
         let e = $(this).index();
         let u = getStyle(e);
 
-        hide($(".slide, .calculator-slide, .calculator-slide .color-var, .slide .color-var, .style-heading, .style-note, .style-description "));
-        show($(".slide.main, .calculator-slide.main .calculator-slide .color-1, .slide .color-1, .calculator-slide" + `.${u}, .slide.${u}, .header-${u}`));
+        hide($(".slide, .calculator-slide, .calculator-slide .color-var, .slide .color-var, .style-heading, .style-note, .style-description, .wrap-border.calculator-btn"));
+        show($(".slide.main, .calculator-slide.main .calculator-slide .color-1, .slide .color-1, .calculator-slide" + `.${u}, .slide.${u}, .header-${u}, .specification-${u}.color-1`));
         $(".slider-tab.w--current, .calculator-tab.w--current").removeClass("w--current");
+        $(`.calculator-tab:eq(${e}), .slider-tab:eq(${e})`).addClass("w--current");
 
         t.slick("refresh");
+        i.slick("refresh");
+
         rmActives($(".color-tab.active, .slide-nav.active"));
         setActive($(".slide-nav:eq(0)"));
         $(".div-block-14 .color-tab").each(function () {
@@ -152,34 +141,29 @@
                 setActive($(this));
             }
         });
-        hide($(".slide .color-var, .calculator-slide .color-var, .wrap-border.calculator-btn"));
-        show($(".slide .color-1, .calculator-slide .color-1, .calculator - slide " + `.${u}`));
-        $(`.calculator-tab:eq(${e})`).addClass("w--current");
-        $(`.slider-tab:eq(${e})`).addClass("w--current");
-        show($(`.specification-${u}.color-1`));
     });
-$(".hover-text").on("click", function () {
-    let obj = $(this);
-    obj.siblings(".hover-modal").css("display", "flex");
-    if (obj.siblings(".hover-modal").css("opacity") == 0) {
-      if (!isInViewport(obj.siblings(".hover-modal").get(0))) {    
-        $([document.documentElement, document.body]).animate({
-          scrollTop: obj.siblings(".hover-modal").offset().top - 96
-        }, 450);
-      }
-      obj.siblings(".hover-modal").animate({
-        bottom: 42,
-        opacity: 1
-      }, 200, "swing");
-    } else {
-      obj.siblings(".hover-modal").animate({
-        bottom: 12,
-        opacity: 0
-      }, 200, function () {
-        obj.siblings(".hover-modal").toggle(false);
-      });
-    }
-  });
+    $(".hover-text").on("click", function () {
+        let obj = $(this);
+        obj.siblings(".hover-modal").css("display", "flex");
+        if (obj.siblings(".hover-modal").css("opacity") == 0) {
+            if (!isInViewport(obj.siblings(".hover-modal").get(0))) {
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: obj.siblings(".hover-modal").offset().top - 96
+                }, 450);
+            }
+            obj.siblings(".hover-modal").animate({
+                bottom: 42,
+                opacity: 1
+            }, 200, "swing");
+        } else {
+            obj.siblings(".hover-modal").animate({
+                bottom: 12,
+                opacity: 0
+            }, 200, function () {
+                hide(obj.siblings(".hover-modal"));
+            });
+        }
+    });
     $(".color-tab").click(function () {
         let index = $(this).index();
         let number = $(".calculator-tab.w--current").index();
@@ -195,25 +179,38 @@ $(".hover-text").on("click", function () {
             show($(`.slide .color-${index + 1}, .calculator-slide .color-${index + 1}, .wrap-border.calculator-btn.specification-${style}.color-${index + 1}`));
         }
     });
+
     $(".calculator-slider-option").click(function () {
         rmActives($(".calculator-slider-option.active"));
         setActive($(this));
         slideIndex = $(this).index();
         i[0].slick.slickGoTo(slideIndex);
     });
-    $(".calculator-button, .calculate, .calculator-tab").click(() => {
+
+    $(".calculator-button, .calculate").click(() => {
         i.slick("refresh");
     });
+
+    $(".slider-arrow").click(function () {
+        if ($(this).is(".arrow-left")) {
+            t.slick("slickPrev");
+        } else {
+            t.slick("slickNext");
+        }
+        let e = t.slick("slickCurrentSlide");
+        rmActives($(".slide-nav.active"));
+        setActive($(`.slide-nav:eq(${e})`));
+    });
+
     $(".calculator-arrow").click(function () {
         if ($(this).is(".arrow-right")) {
             i.slick("slickNext");
         } else {
             i.slick("slickPrev");
         }
-        let e = t.slick("slickCurrentSlide");
+        let e = i.slick("slickCurrentSlide");
         rmActives($(".calculator-slider-option.active"));
         setActive($(`.calculator-slider-option:eq(${e})`));
-        
     });
 
     $(".wrap-border.calculator-btn .button").click(function () {
@@ -252,9 +249,17 @@ $(".hover-text").on("click", function () {
                 method: 'POST',
                 body: fd
             })
-            .then(response => console.log('Success!', response))
             .catch(error => console.error('Error!', error.message));
+    });
 
+    $(".closing-btn").click(function () {
+        let obj = $(this);
+        obj.parent(".hover-modal").animate({
+            bottom: 12,
+            opacity: 0
+        }, 200, function () {
+            hide(obj.parent(".hover-modal"));
+        });
     });
 
     function getStyle(number) {
@@ -293,7 +298,6 @@ $(".hover-text").on("click", function () {
         } else {
             return obj.data(data);
         }
-
     }
 
     function val(obj) {
@@ -307,12 +311,18 @@ $(".hover-text").on("click", function () {
     function checkbox(obj) {
         return +obj.is(":checked");
     }
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function opacity(obj, val) {
+        obj.css("opacity", val);
+    }
+});
