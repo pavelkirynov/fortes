@@ -83,8 +83,7 @@
     $(".slide-nav").click(function () {
         rmActives($(".slide-nav.active"));
         setActive($(this));
-        slideIndex = $(this).index();
-        t[0].slick.slickGoTo(slideIndex);
+        t[0].slick.slickGoTo($(this).index());
     });
 
     $(".preview-image, .blackbg-text").hover(
@@ -133,8 +132,8 @@
 
         t.slick("refresh");
         i.slick("refresh");
-        i.slick("slickGoTo", 0);
-        t.slick("slickGoTo", 0);
+        t[0].slick.slickGoTo(0);
+        i[0].slick.slickGoTo(0);
 
         rmActives($(".color-tab.active, .slide-nav.active"));
         setActive($(".slide-nav:eq(0)"));
