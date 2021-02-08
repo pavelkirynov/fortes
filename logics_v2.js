@@ -153,7 +153,7 @@ $(".arrow-left").hover(
     () => opacity($(".small-hover.left"), 0)
 );
 
-$(".choice").click(function () {
+$(".choice").click(function (e) {
     if (!$("#appliancesBool").is(":checked")) return e.preventDefault(), $(".choiceActive").toggleClass("choiceActive"), void $(".choiceActiveBorder").toggleClass("choiceActiveBorder");
     $(this).hasClass("borderAcrive") ||
         ($(".choiceActive").removeClass("choiceActive"),
