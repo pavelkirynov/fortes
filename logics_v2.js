@@ -129,9 +129,9 @@ $(".calculator-tab").click(function () {
 
 });
 
-$(".slide-nav").click(function () {
+$(".slide-bar-container").click(function () {
     rmActives($(".slide-nav.active"));
-    setActive($(this));
+    setActive($(this).children(".slide-nav"));
     slideIndex = $(this).index();
     t[0].slick.slickGoTo(slideIndex);
 });
