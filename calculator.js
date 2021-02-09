@@ -159,6 +159,17 @@
         }
     }
 
+      if ($(window).width() < 992) {
+        $(".calculator-tab.w--current, .slider-tab.w--current").toggleClass("w--current");
+        $(".slide, .calculator-slide, .header-cozy").toggle(false);
+        $(".slide.main, .calculator-slide.main, .slide.japandi, .calculator-slide.japandi").toggle(true);
+        $(".calculator-tab:eq(1), .slider-tab:eq(1)").toggleClass("w--current");
+        $(".header-japandi").toggle(true);
+        style = "japandi";
+        data.style = "japandi";
+        returnValue(data.space);
+      }
+
     function updateUserData() {
         data.space = +$("#space").val();
         data.amount_of_rooms = +$("#amountOfRooms").val();
