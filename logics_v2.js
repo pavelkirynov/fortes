@@ -181,7 +181,7 @@ $(".slider-tab, .calculator-tab").click(function () {
     $(`.calculator-tab:eq(${e}), .slider-tab:eq(${e})`).addClass("w--current");
 
     t.slick("refresh");
-    i.slick("refresh");
+    $(".calculator-slider-side").slick("refresh");
 
     rmActives($(".color-tab.active, .slide-nav.active"));
     setActive($(".slide-nav:eq(0)"));
@@ -232,12 +232,12 @@ $(".color-tab").click(function () {
 $(".calculator-slider-option").click(function () {
     rmActives($(".calculator-slider-option.active"));
     setActive($(this));
-    slideIndex = $(this).index();
+    slideIndex = parseInt($(this).data("slider-index"));
     i[0].slick.slickGoTo(slideIndex);
 });
 
 $(".calculator-button, .calculate").click(() => {
-    i.slick("refresh");
+    $(".calculator-slider-side").slick("refresh");
 });
 
 $(".slider-arrow").click(function () {
@@ -256,9 +256,9 @@ $(".slider-arrow").click(function () {
 
 $(".calculator-arrow").click(function () {
     if ($(this).is(".arrow-right")) {
-        i.slick("slickNext");
+        $(".calculator-slider-side").slick("slickNext");
     } else {
-        i.slick("slickPrev");
+        $(".calculator-slider-side").slick("slickPrev");
     }
     let e = i.slick("slickCurrentSlide");
     rmActives($(".calculator-slider-option.active"));
