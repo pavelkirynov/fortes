@@ -161,8 +161,8 @@
 
       if ($(window).width() < 992) {
         $(".calculator-tab.w--current, .slider-tab.w--current").toggleClass("w--current");
-        $(".slide, .calculator-slide, .header-cozy").toggle(false);
-        $(".slide.main, .calculator-slide.main, .slide.japandi, .calculator-slide.japandi").toggle(true);
+        $(".slide, .calculator-slide, .header-cozy, .wrap-border.calculator-btn").toggle(false);
+        $(".slide.main, .calculator-slide.main, .slide.japandi, .calculator-slide.japandi, .wrap-border.calculator-btn.specification-japandi.color-1").toggle(true);
         $(".calculator-tab:eq(1), .slider-tab:eq(1)").toggleClass("w--current");
         $(".header-japandi").toggle(true);
         style = "japandi";
