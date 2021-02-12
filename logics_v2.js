@@ -29,6 +29,7 @@ $(".wrap-border.calculator-btn").click(() => {
     t._appliancesBoolTotal = checkbox($("#appliancesBool"));
     t._furnitureBool = checkbox($("#furnitureBool"));
     t._space = val($("#space"));
+    t._color = $(".div-block-14 .color-tab.active").index();
     for (let e in t) {
         i = e + "=" + t[e] + ";";
         document.cookie = i;
