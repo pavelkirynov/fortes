@@ -54,6 +54,7 @@ let options = {
                 infinite: !0,
                 arrows: !0,
                 dots: !1,
+                adaptiveHeight: !0
             }
         },
         {
@@ -64,6 +65,7 @@ let options = {
                 infinite: !0,
                 arrows: !0,
                 dots: !0,
+                adaptiveHeight: !0
             }
         },
     ],
