@@ -63,6 +63,7 @@
                 [key.trim()]: decodeURIComponent(value),
             }), {});
             let appliances = cookies._appliances;
+            let hrnCourse = parseData("G7");
 
             let styleURL = window.location.href.split("/");
             let style = styleURL[styleURL.length - 1].split("-")[0];
@@ -145,11 +146,11 @@
 
             let water = parseFloat(parseData(`${letter+42}`, space)) * space,
                 canalisation = parseFloat(parseData(`${letter+43}`, space)) * space,
-                vents = parseFloat(parseData(`${letter+44}`, space)) * space,
-                electricity = parseFloat(parseData(`${letter+45}`, space)) * space;
+                vents = parseFloat(parseData(`${letter+44}`, space)) * space * parseInt(amountOfBathrooms),
+                electricity = parseFloat(parseData(`${letter+45}`) * space;
 
             let workPriceArray = [water, canalisation, vents, electricity, parseFloat(parseData(`${letter + 46}`, space)), parseFloat(parseData(`${letter + 47}`, space)), parseFloat(parseData(`${letter + 48}`, space)) * space, parseFloat(parseData(`${letter + 49}`, space)) * space, parseFloat(parseData(`${letter + 50}`)), parseFloat(parseData(`${letter + 52}`, space)) * space, parseFloat(parseData(`${letter + 54}`)), parseFloat(parseData(`${letter + 53}`, space)) * 140, parseFloat(parseData(letter + ceilingNum, space)) * space, parseFloat(parseData(letter + flooringNum, space)) * space, parseFloat(parseData(`${letter + 64}`, space)) * space, parseFloat(parseData(`${letter + 65}`, space)) * space];
-            let workAmountArray = [1, 1, 1, parseFloat(amountOfBathrooms), parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1];
+            let workAmountArray = [1, 1, 1, 1, parseInt(shower), parseInt(bath), 1, amountOfBathrooms, (parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms)), 1, 1, mouldings, 1, 1, 1, 1];
             let workAdressesArray = [42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 53, ceilingNum, flooringNum, 64, 65];
 
             for (let i = 0; i < workAdressesArray.length; i++) {
@@ -411,7 +412,7 @@
                 if (!(furnitureBool) && !(appliancesBoolTotal)) {
                         $("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
                 } else {
-                    $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._summedPrice) * 28.5) + " грн. *"));
+                    $("#totalPriceTotal").html(spacedNum(Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"));
                 }
 
         };
