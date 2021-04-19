@@ -198,9 +198,9 @@
             textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F100")}</span><span class=\'list-text amount\'>${months} міс.</span><span class=\'list-text\'> </span></div></div>`;
             $("#workList").append(textObject);
 
-            let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`), parseData("G37")];
-            let casualtiesAmountArray = [months, months, parseInt(hrnCourse) * parseInt(space)];
-            let casualtiesAdressesArray = [101, 102, 212];
+            let casualtiesPriceArray = [parseData(`${letter+101}`), parseData(`${letter+102}`)];
+            let casualtiesAmountArray = [months, months];
+            let casualtiesAdressesArray = [101, 102];
 
             for (let i = 0; i < casualtiesAdressesArray.length; i++) {
                 let price = casualtiesPriceArray[i] * casualtiesAmountArray[i];
@@ -209,7 +209,7 @@
                 $("#workList").append(textObject);
             }
                 workSum += parseInt(hrnCourse) * parseInt(space) * parseInt(parseData("G37"));
-                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F212")}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(parseInt(hrnCourse) * parseInt(space) * parseInt(parseData("G37")))} грн.</span></div></div>`;
+                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F212")}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(parseInt(hrnCourse) * space * parseInt(parseData("G37")))} грн.</span></div></div>`;
                 $("#workList").append(textObject);    
              
 
