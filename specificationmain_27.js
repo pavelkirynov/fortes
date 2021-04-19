@@ -93,7 +93,7 @@
                 workRate = parseData("S42"),
                 materialsRate = parseData("S72"),
                 months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) + 1 : parseData("G8", space);
-
+            console.log(hrnCourse);
             $("#months").html(months);
 
             if (style == "cozy") {
@@ -160,14 +160,14 @@
                     continue;
                 }
                 workSum += price;
-                textObject = returnObject(parseData("F" + workAdressesArray[i]), "", Math.round(price) + "грн.");
+                textObject = returnObject(parseData("F" + workAdressesArray[i]), "", Math.round(price) + " грн.");
                 $("#workList").append(textObject);
             }
-            textObject = returnObject(parseData("F" + 66), "", Math.round(workSum * 0.022 * parseData("S42")) + "грн."); 
+            textObject = returnObject(parseData("F" + 66), "", Math.round(workSum * 0.022 * parseData("S42")) + " грн."); 
             $("#workList").append(textObject);
             workSum += workSum * 0.022 * parseData("S42");
 
-            textObject = returnObject(parseData("F" + 67), "", Math.round(((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42")) + "грн.");
+            textObject = returnObject(parseData("F" + 67), "", Math.round(((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42")) + " грн.");
             $("#workList").append(textObject);
             workSum += ((months * 2 * 1200) + 3000 + (space * 100)) * parseData("S42");
 
