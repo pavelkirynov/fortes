@@ -208,9 +208,8 @@
                 textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F" + casualtiesAdressesArray[i])}</span><span class=\'list-text amount\'>${Math.round(price/months)} грн./місяць</span><span class=\'list-text\'>${Math.round(price)} грн.</span></div></div>`;
                 $("#workList").append(textObject);
             }
-                workSum += parseInt(hrnCourse) * parseInt(space) * parseInt(parseData("G37"));
-                console.log(parseInt(hrnCourse) + " " + parseInt(space) + " " + parseInt(parseData("G37")));
-                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F212")}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(parseInt(hrnCourse) * space * parseInt(parseData("G37")))} грн.</span></div></div>`;
+                workSum += parseFloat(hrnCourse) * parseInt(space) * parseInt(parseData("G37"));
+                textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData("F212")}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(parseFloat(hrnCourse) * space * parseInt(parseData("G37")))} грн.</span></div></div>`;
                 $("#workList").append(textObject);    
              
 
