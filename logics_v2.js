@@ -271,7 +271,7 @@ $(".calculator-arrow").click(function () {
     }
 });
 
-$(".wrap-border.calculator-btn .button").click(function () {
+$(".submit-container .button").click(function () {
     let fd = new FormData();
     let ukrStyle = data.style == "cozy" ? "Козі" : data.style == "japandi" ? "Джапанді" : data.style == "fusion" ? "Фьюжн" : data.style == "modern" ? "Модерн" : "Нео Класика";
     let months = data.space < 60 ? 4 : data.space <= 80 ? 5 : data.space <= 100 ? 6 : data.space <= 130 ? 7 : data.space <= 150 ? 8 : data.space <= 175 ? 9 : 10;
