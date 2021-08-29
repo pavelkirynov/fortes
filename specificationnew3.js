@@ -944,4 +944,5 @@ fetch(
         )
       );
     }
+  console.log(workSum);
   });
