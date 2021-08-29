@@ -36,7 +36,7 @@ fetch(
         {}
       );
     let appliances = cookies._appliances;
-    let hrnCourse = parseData("G8");
+    let hrnCourse = parseFloat(parseData("G8").replace(",", "."));
 
     let styleURL = window.location.href.split("/");
     let style = styleURL[styleURL.length - 1].split("-")[0];
@@ -944,10 +944,4 @@ fetch(
         )
       );
     }
-  console.log(workSum);
-  console.log(Math.round(workSum));
-  console.log(spacedNum(Math.round(workSum)));
-  console.log(parseInt(cookies._summedPrice));
-  console.log(cookies._summedPrice);
-  console.log(hrnCourse);
   });
