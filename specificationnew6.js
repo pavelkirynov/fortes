@@ -67,7 +67,7 @@ fetch(
       materialsRate = parseData("S72"),
       months =
         style == "modern" || style == "neoclassic"
-          ? parseData("G9", space) + 1
+          ? parseFloat(parseData("G9", space).replace(",", ".")) + 1
           : parseData("G9", space);
     console.log(hrnCourse);
     $("#months").html(months);
