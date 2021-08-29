@@ -945,4 +945,9 @@ fetch(
       );
     }
   console.log(workSum);
+  console.log(Math.round(workSum));
+  console.log(spacedNum(Math.round(workSum)));
+  console.log(parseInt(cookies._summedPrice));
+  console.log(cookies._summedPrice);
+  console.log(hrnCourse);
   });
