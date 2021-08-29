@@ -36,7 +36,7 @@ fetch(
         {}
       );
     let appliances = cookies._appliances;
-    let hrnCourse = parseData("G7");
+    let hrnCourse = parseData("G8");
 
     let styleURL = window.location.href.split("/");
     let style = styleURL[styleURL.length - 1].split("-")[0];
@@ -67,8 +67,8 @@ fetch(
       materialsRate = parseData("S72"),
       months =
         style == "modern" || style == "neoclassic"
-          ? parseData("G8", space) + 1
-          : parseData("G8", space);
+          ? parseData("G9", space) + 1
+          : parseData("G9", space);
     console.log(hrnCourse);
     $("#months").html(months);
 
