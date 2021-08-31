@@ -19,7 +19,7 @@ fetch(
       }
       if (json.table.rows[row].c[col] !== null) {
         return json.table.rows[row].c[col].v;
-      } else return;
+      } else return "";
     }
 
     //first cell of furniture price column + amount of items to count
