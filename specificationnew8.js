@@ -115,40 +115,44 @@ fetch(
       flooringNum2 = "91";
       laminat = 1;
       flooringPrice =
-        space <= 70 ? parseFloat(parseData(`${letter + 60}`)) : 198.81;
+        space *
+        (space <= 70 ? parseFloat(parseData(`${letter + 60}`)) : 198.81);
     } else if (flooring == "vynil") {
       flooringNum = "61";
       vynil = 1;
       flooringNum2 = "92";
       ceilingPrice =
-        space <= 70 ? parseFloat(parseData(`${letter + 61}`)) : 161.8;
+        space * (space <= 70 ? parseFloat(parseData(`${letter + 61}`)) : 161.8);
     } else if (flooring == "parket") {
       flooringNum = "62";
       parket = 1;
       flooringNum2 = "93";
       ceilingPrice =
-        space <= 80 ? parseFloat(parseData(`${letter + 62}`)) : 240.31;
+        space *
+        (space <= 80 ? parseFloat(parseData(`${letter + 62}`)) : 240.31);
     }
 
     if (ceiling == "stretch ceiling") {
       ceilingNum = "56";
       mouldings = 0;
-      ceilingPrice = parseFloat(parseData(`${letter + 56}`));
+      ceilingPrice = parseFloat(parseData(`${letter + 56}`)) * space;
     } else if (ceiling == "gapless") {
       ceilingNum = "57";
       mouldings = 0;
-      ceilingPrice = space <= 60 ? 611.64 : space <= 95 ? 548.9 : 581.94;
+      ceilingPrice =
+        space * (space <= 60 ? 611.64 : space <= 95 ? 548.9 : 581.94);
     } else if (ceiling == "gypsum") {
       ceilingNum = "58";
       mouldings = 1;
       ceilingPrice =
-        space <= 60
+        space *
+        (space <= 60
           ? 283.08
           : space <= 95
           ? 281.22
           : space <= 125
           ? 338.33
-          : 362.47;
+          : 362.47);
     }
     let $work = $("#workList"),
       textObject = "",
@@ -197,13 +201,6 @@ fetch(
             : space <= 95
             ? 1201.64
             : 1251.84),
-        space <= 60
-          ? parseFloat(parseData(`${letter + 54}`))
-          : space <= 100
-          ? 416.29
-          : space <= 135
-          ? 443.73
-          : 481.67,
         140 *
           (space <= 60
             ? parseFloat(parseData(`${letter + 53}`))
@@ -214,6 +211,14 @@ fetch(
             : space <= 180
             ? 114
             : 162),
+        space <= 60
+          ? parseFloat(parseData(`${letter + 54}`))
+          : space <= 100
+          ? 416.29
+          : space <= 135
+          ? 443.73
+          : 481.67,
+
         ceilingPrice,
         parseFloat(parseData(letter + flooringNum, space)) * space,
         space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 86.84),
