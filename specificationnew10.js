@@ -211,13 +211,14 @@ fetch(
             : space <= 180
             ? 114
             : 162),
-        space <= 60
-          ? parseFloat(parseData(`${letter + 53}`))
-          : space <= 100
-          ? 416.29
-          : space <= 135
-          ? 443.73
-          : 481.67,
+        space *
+          (space <= 60
+            ? parseFloat(parseData(`${letter + 53}`))
+            : space <= 100
+            ? 416.29
+            : space <= 135
+            ? 443.73
+            : 481.67),
         ceilingPrice,
         flooringPrice,
         space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 86.84),
@@ -334,7 +335,7 @@ fetch(
       bath,
       shower,
       shower,
-      bath,
+      amountOfBathrooms,
       amountOfBathrooms,
       amountOfBathrooms,
       amountOfBathrooms,
@@ -748,10 +749,11 @@ fetch(
     }
 
     let optionsPriceArray = [
-      space * parseFloat(parseData(`${letter + 109}`)),
+      space * parseFloat(parseData(`${letter + 109}`)) * 1.25,
       +hygienicShower * parseFloat(parseData(`${letter + 110}`)),
       parseFloat(parseData(`${letter + 111}`, space)),
       space *
+        1.25 *
         (space <= 60
           ? parseFloat(parseData(`${letter + 112}`))
           : space <= 95
@@ -761,6 +763,7 @@ fetch(
           : 277.29),
       (+denoising + mouldings == 2 ? 1 : 0) *
         space *
+        1.25 *
         (space <= 60
           ? parseFloat(parseData(`${letter + 113}`))
           : space <= 95
@@ -794,10 +797,10 @@ fetch(
     ];
     let optionsAmountArray = [
       +floorScreed,
-      +hygienicShower,
+      +shower && +hygienicShower ? parseInt(amountOfBathrooms) : 0,
       +heatedFlooring,
       +secondGypsumLayer,
-      +denoising,
+      !!+denoising,
       +entranceDoors,
       +conditioning,
     ];
@@ -813,6 +816,7 @@ fetch(
       ) {
         continue;
       }
+      console.log(letterModel + optionsAdressesArray[i]);
       workSum += price;
       appendObject(
         $work,
