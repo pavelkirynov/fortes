@@ -176,8 +176,8 @@ fetch(
         canalisation,
         vents,
         electricity,
-        parseFloat(parseData(`${letter + 46}`)),
-        parseFloat(parseData(`${letter + 47}`)),
+        parseFloat(parseData(`${letter + 46}`)) * parseInt(amountOfBathrooms),
+        parseFloat(parseData(`${letter + 47}`)) * parseInt(amountOfBathrooms),
         space *
           (space <= 60
             ? parseFloat(parseData(`${letter + 48}`))
@@ -203,7 +203,7 @@ fetch(
             : 1251.84),
         140 *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 53}`))
+            ? parseFloat(parseData(`${letter + 54}`))
             : space <= 80
             ? 50
             : space <= 120
@@ -212,15 +212,14 @@ fetch(
             ? 114
             : 162),
         space <= 60
-          ? parseFloat(parseData(`${letter + 54}`))
+          ? parseFloat(parseData(`${letter + 53}`))
           : space <= 100
           ? 416.29
           : space <= 135
           ? 443.73
           : 481.67,
-
         ceilingPrice,
-        parseFloat(parseData(letter + flooringNum, space)) * space,
+        flooringPrice,
         space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 86.84),
         space * (space <= 70 ? parseFloat(parseData(`${letter + 65}`)) : 170),
       ];
@@ -328,10 +327,10 @@ fetch(
       0.66 * space,
       0.59 * space,
       space <= 50 ? 42 : space <= 90 ? 60 : space <= 120 ? 84 : 90,
-      1,
-      1,
-      1,
-      1,
+      parseInt(amountOfBathrooms),
+      parseInt(amountOfBathrooms),
+      parseInt(amountOfBathrooms),
+      parseInt(amountOfBathrooms),
       bath,
       shower,
       shower,
@@ -436,11 +435,11 @@ fetch(
       $("#workList").append(textObject);
     }
     workSum +=
-      parseFloat(hrnCourse) * parseInt(space) * parseInt(parseData("G37"));
+      parseFloat(hrnCourse) * parseInt(space) * parseInt(parseData("G38"));
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F212"
     )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(
-      parseFloat(hrnCourse) * space * parseInt(parseData("G37"))
+      parseFloat(hrnCourse) * space * parseInt(parseData("G38"))
     )} грн.</span></div></div>`;
     $("#workList").append(textObject);
 
@@ -822,7 +821,7 @@ fetch(
             ", " +
             parseData(letterModel + optionsAdressesArray[i]),
           "",
-          Math.round(price) + "грн."
+          Math.round(price) + " грн."
         )
       );
     }
