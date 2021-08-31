@@ -714,7 +714,8 @@ fetch(
         $("#furnitureList"),
         returnObject(
           parseData("F" + 162),
-          Math.round(furnitureSum * 0.03 * furnitureRate) + "грн."
+          " ",
+          Math.round(furnitureSum * 0.03 * furnitureRate) + " грн."
         )
       );
       furnitureSum += furnitureSum * 0.03 * furnitureRate;
@@ -772,10 +773,12 @@ fetch(
           : space <= 125
           ? 63.87
           : 66.24) +
-        (+denoising + mouldings == 1 ? 1 : 0) *
+        (+denoising + mouldings === 1 ? 1 : 0) *
           space *
-          parseFloat(parseData(`${letter + 114}`)) +
+          parseFloat(parseData(`${letter + 114}`)) *
+          1.25 +
         space *
+          1.25 *
           (space <= 60
             ? parseFloat(parseData(`${letter + 115}`))
             : space <= 95
@@ -783,8 +786,8 @@ fetch(
             : space <= 125
             ? 58.29
             : 79.01),
-      parseFloat(parseData(`${letter + 116}`)) +
-        parseFloat(parseData(`${letter + 117}`)),
+      parseFloat(parseData(`${letter + 116}`)) * 1.1 +
+        parseFloat(parseData(`${letter + 117}`)) * 1.25,
       (space <= 60
         ? parseFloat(parseData(`${letter + 119}`))
         : space <= 100
@@ -792,7 +795,8 @@ fetch(
         : space <= 130
         ? 88.32
         : 64.35) *
-        space +
+        space *
+        1.25 +
         parseFloat(parseData(`${letter + 120}`)) * conditionerRate +
         parseFloat(parseData(`${letter + 120}`)) * conditionerRate * 0.05,
     ];
