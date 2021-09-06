@@ -652,7 +652,7 @@ fetch(
       appendFurnitureOption(
         parseData("F150"),
         parseData(letterModel + "150"),
-        2,
+        amountOfRooms > 1 ? 1 : 0,
         parseFloat(parseData(`${letter + 150}`, space)),
         parseData("G150")
       );
@@ -753,7 +753,7 @@ fetch(
     let optionsPriceArray = [
       space * parseFloat(parseData(`${letter + 109}`)) * 1.25,
       +hygienicShower * parseFloat(parseData(`${letter + 110}`)),
-      parseFloat(parseData(`${letter + 111}`, space)),
+      parseFloat(parseData(`${letter + 111}`)) * 1.25,
       space *
         1.25 *
         (space <= 60
@@ -802,7 +802,7 @@ fetch(
     ];
     let optionsAmountArray = [
       +floorScreed,
-      +shower && +hygienicShower ? parseInt(amountOfBathrooms) : 0,
+      hygienicShower ? parseInt(amountOfBathrooms) : 0,
       +heatedFlooring,
       +secondGypsumLayer,
       !!+denoising,
