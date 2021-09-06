@@ -752,7 +752,7 @@ fetch(
 
     let optionsPriceArray = [
       space * parseFloat(parseData(`${letter + 109}`)) * 1.25,
-      +hygienicShower * parseFloat(parseData(`${letter + 110}`)),
+      +hygienicShower * parseFloat(parseData(`${letter + 110}`)) * 1.25,
       parseFloat(parseData(`${letter + 111}`)) * 1.25,
       space *
         1.25 *
