@@ -123,8 +123,8 @@ $(".slider-tab").click(function () {
 
 $(".calculator-tab").click(function () {
     if ($(window).width() > 992) {
-        i.slick("unslick");
-        i.slick(options);
+        $(".calculator-slider-side").slick("unslick");
+        $(".calculator-slider-side").slick(options);
     } else {
         $('.calcualtor-tab').unbind('click');
         return;
