@@ -399,8 +399,8 @@ $(".submit-container .button").click(function (e) {
   })
     .then((response) => {
       if (isSafari) {
-        window.location = url;
         $(this).html(oldBtnName); 
+        window.location = url;
       } 
     })
     .catch((error) => console.error("Error!", error.message));
