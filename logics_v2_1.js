@@ -271,10 +271,13 @@ $(".calculator-arrow").click(function () {
     }
 });
 
-$(".submit-container .button").click(function () {
-    let fd = new FormData();
-    let ukrStyle = data.style == "cozy" ? "Козі" : data.style == "japandi" ? "Джапанді" : data.style == "fusion" ? "Фьюжн" : data.style == "modern" ? "Модерн" : "Нео Класика";
-    let months = data.space < 60 ? 4 : data.space <= 80 ? 5 : data.space <= 100 ? 6 : data.space <= 130 ? 7 : data.space <= 150 ? 8 : data.space <= 175 ? 9 : 10;
+$(".submit-container .button").click(function (e) {
+    e.preventDefault();
+    let url = $(this).attr("href"),
+        oldBtnName = $(this).html(),
+        fd = new FormData(),
+        ukrStyle = data.style == "cozy" ? "Козі" : data.style == "japandi" ? "Джапанді" : data.style == "fusion" ? "Фьюжн" : data.style == "modern" ? "Модерн" : "Нео Класика",
+        months = data.space < 60 ? 4 : data.space <= 80 ? 5 : data.space <= 100 ? 6 : data.space <= 130 ? 7 : data.space <= 150 ? 8 : data.space <= 175 ? 9 : 10;
     fd.append("Стиль", ukrStyle);
     fd.append("Ціна за метр", $("#total").html());
     fd.append("Загальна ціна", $("#totalWhole").html());
@@ -283,10 +286,11 @@ $(".submit-container .button").click(function () {
     fd.append("Кількість санвузлів", val($("#amountOfBathrooms")));
     fd.append("Ванна", checkbox($("#bathtub")));
     fd.append("Душ", checkbox($("#shower")));
+    $(this).html("Зачекайте...");
 
-    let ceiling = val($(":radio[name='ceiling']:checked")) == "stretch ceiling" ? "Натяжна матова" : val($(":radio[name='ceiling']:checked")) == "gapless" ? "Натяжна бесщелева матова" : "Гіпсокартон";
-    let flooring = val($(":radio[name='flooring']:checked")) == "laminat" ? "Ламінат" : val($(":radio[name='flooring']:checked")) == "vynil" ? "Вінілова підлога" : "Паркет";
-    let appliances = getData($(".choiceActiveBorder"), "appliances") == undefined ? "Не обрано" : getData($(".choiceActiveBorder"), "appliances").substr(0, 1).toUpperCase() + getData($(".choiceActiveBorder"), "appliances").substr(1);
+    let ceiling = val($(":radio[name='ceiling']:checked")) == "stretch ceiling" ? "Натяжна матова" : val($(":radio[name='ceiling']:checked")) == "gapless" ? "Натяжна бесщелева матова" : "Гіпсокартон",
+        flooring = val($(":radio[name='flooring']:checked")) == "laminat" ? "Ламінат" : val($(":radio[name='flooring']:checked")) == "vynil" ? "Вінілова підлога" : "Паркет",
+        appliances = getData($(".choiceActiveBorder"), "appliances") == undefined ? "Не обрано" : getData($(".choiceActiveBorder"), "appliances").substr(0, 1).toUpperCase() + getData($(".choiceActiveBorder"), "appliances").substr(1);
 
     fd.append("Стеля", ceiling);
     fd.append("Підлогове покриття", flooring);
@@ -306,7 +310,10 @@ $(".submit-container .button").click(function () {
     fetch(scriptURL, {
             method: 'POST',
             body: fd
-        })
+        }).then(response => response.json();).then((result) => {
+    window.location = url;
+        $(this).html(oldBtnName);
+    })
         .catch(error => console.error('Error!', error.message));
 });
 
