@@ -394,11 +394,10 @@ $(".submit-container .button").click(function (e) {
     method: "POST",
     body: fd,
   })
-    .then((response) => response.json())
-    .then((result) => {
+    .then((response) => {
       window.location = url;
       $(this).html(oldBtnName);
-    })
+  })
     .catch((error) => console.error("Error!", error.message));
 });
 
