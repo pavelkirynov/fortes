@@ -316,10 +316,14 @@ $(".calculator-arrow").click(function () {
 });
 
 $(".submit-container .button").click(function (e) {
-  e.preventDefault();
-  let url = $(this).attr("href"),
-    oldBtnName = $(this).html(),
-    fd = new FormData(),
+  let isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
+  if (isSafari) { 
+    e.preventDefault(); 
+    let url = $(this).attr("href"),
+        oldBtnName = $(this).html();
+    $(this).html("Зачекайте...");
+  }
+  let fd = new FormData(),
     ukrStyle =
       data.style == "cozy"
         ? "Козі"
@@ -352,7 +356,6 @@ $(".submit-container .button").click(function (e) {
   fd.append("Кількість санвузлів", val($("#amountOfBathrooms")));
   fd.append("Ванна", checkbox($("#bathtub")));
   fd.append("Душ", checkbox($("#shower")));
-  $(this).html("Зачекайте...");
 
   let ceiling =
       val($(":radio[name='ceiling']:checked")) == "stretch ceiling"
@@ -395,9 +398,11 @@ $(".submit-container .button").click(function (e) {
     body: fd,
   })
     .then((response) => {
-      window.location = url;
-      $(this).html(oldBtnName);
-  })
+      if (isSafari) {
+        window.location = url;
+        $(this).html(oldBtnName); 
+      } 
+    })
     .catch((error) => console.error("Error!", error.message));
 });
 
