@@ -438,7 +438,7 @@ fetch(
     }
     workSum +=
       parseFloat(hrnCourse) * parseInt(space) * parseInt(parseData("G38")) +
-      months * parseInt(parseData(`${letter + 212}`));
+      months * parseInt(parseData(`${letter + 214}`));
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F212"
     )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(
@@ -447,7 +447,7 @@ fetch(
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F214"
     )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(
-      months * parseInt(parseData(`${letter + 212}`))
+      months * parseInt(parseData(`${letter + 214}`))
     )} грн.</span></div></div>`;
     $("#workList").append(textObject);
 
