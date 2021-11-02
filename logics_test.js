@@ -11,8 +11,6 @@ $(".fact-link").click(function () {
 $(".tab-new").click(function () {
   $(".tab-new.active").removeClass("active");
   $(this).addClass("active");
-  $(".slide-new .slider-image-new.active").removeClass("active");
-  $(".slide-new .slider-image-new").eq($(this).index()).addClass("active");
 });
 
 $(".slider-new-container").slick();
