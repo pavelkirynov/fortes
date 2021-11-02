@@ -21,8 +21,14 @@ $(".tab-new").click(function () {
     if ($(this).index() == index) setActive($(this));
   });
 });
+$(".slick-btn-prev").click(() => {
+  $(".slider-new-container").slick("slickPrev");
+});
+$(".slick-btn-next").click(() => {
+  $(".slider-new-container").slick("slickNext");
+});
 
-$(".slider-new-container").slick({adaptiveHeight: true});
+$(".slider-new-container").slick({adaptiveHeight: true, arrows: false, dots: false,});
 
 $(".choiceactive.card").toggleClass("choiceActiveBorder");
 $("#laminat").prop("checked", !0);
