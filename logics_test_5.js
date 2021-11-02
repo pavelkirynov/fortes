@@ -22,7 +22,7 @@ $(".tab-new").click(function () {
   });
 });
 
-$(".slider-new-container").slick();
+$(".slider-new-container").slick({adaptiveHeight: true});
 
 $(".choiceactive.card").toggleClass("choiceActiveBorder");
 $("#laminat").prop("checked", !0);
