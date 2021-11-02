@@ -22,13 +22,54 @@ $(".tab-new").click(function () {
   });
 });
 $(".slick-btn-prev").click(() => {
+  const [textNext, textPrev] = getBtnText(
+    $(".slider-new-container").slick("slickCurrentSlide")
+  );
+  $(".slick-prev-text").html(textPrev);
+  $(".slick-next-text").html(textNext);
   $(".slider-new-container").slick("slickPrev");
+  /* ванна - гостиная - спальня - кухня - душ - ванна - гостиная*/
 });
 $(".slick-btn-next").click(() => {
+  const [textNext, textPrev] = getBtnText(
+    $(".slider-new-container").slick("slickCurrentSlide")
+  );
+  $(".slick-prev-text").html(textPrev);
+  $(".slick-next-text").html(textNext);
   $(".slider-new-container").slick("slickNext");
 });
 
-$(".slider-new-container").slick({adaptiveHeight: true, arrows: false, dots: false,});
+function getBtnText(index) {
+  let textPrev = "Дивитись ",
+    textNext = "Дивитись ";
+  textPrev +=
+    index === 0
+      ? "ванну"
+      : index === 1
+      ? "вітальню"
+      : index === 2
+      ? "спальню"
+      : index === 3
+      ? "кухню"
+      : "душ";
+  textNext +=
+    index === 0
+      ? "спальню"
+      : index === 1
+      ? "кухню"
+      : index === 2
+      ? "душ"
+      : index === 3
+      ? "ванну"
+      : "вітальню";
+  return [textPrev, textNext];
+}
+
+$(".slider-new-container").slick({
+  adaptiveHeight: true,
+  arrows: false,
+  dots: false,
+});
 
 $(".choiceactive.card").toggleClass("choiceActiveBorder");
 $("#laminat").prop("checked", !0);
