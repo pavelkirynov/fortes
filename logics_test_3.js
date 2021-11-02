@@ -3,14 +3,18 @@ $("input").each(function () {
 });
 
 $(".fact-link").click(function () {
-  $(".fact-container.active").removeClass("active");
-  $(".fact-container").eq((this).index()).addClass("active");
-  $(".fact-link.active").removeClass("active");
-  $(this).addClass("active");
+  if ($(this).is(".active")) return;
+
+  rmActive($(".fact-container.active"));
+  setActive($(".fact-container").eq(this.index()));
+  rmActive($(".fact-link.active"));
+  setActive($(this));
 });
 $(".tab-new").click(function () {
-  $(".tab-new.active").removeClass("active");
-  $(this).addClass("active");
+  if ($(this).is(".active")) return;
+
+  rmActive($(".tab-new.active"));
+  setActive($(this));
 });
 
 $(".slider-new-container").slick();
@@ -113,7 +117,7 @@ $(".calculator-tab").click(function () {
 });
 
 $(".slide-bar-container").click(function () {
-  rmActives($(".slide-nav.active"));
+  rmActive($(".slide-nav.active"));
   setActive($(this).children(".slide-nav"));
   slideIndex = $(this).index();
 });
@@ -186,7 +190,7 @@ $(".slider-tab, .calculator-tab").click(function () {
 
   $(".calculator-slider-side").slick("refresh");
 
-  rmActives($(".color-tab.active, .slide-nav.active"));
+  rmActive($(".color-tab.active, .slide-nav.active"));
   setActive($(".slide-nav:eq(0)"));
   $(".div-block-14 .color-tab").each(function () {
     if ($(this).index() == 0) {
@@ -232,7 +236,7 @@ $(".color-tab").click(function () {
   let number = $(".calculator-tab.w--current").index();
   let style = getStyle(number);
   if ($(this).not(".active")) {
-    rmActives($(".color-tab.active"));
+    rmActive($(".color-tab.active"));
     $(".div-block-14 .color-tab").each(function () {
       if ($(this).index() == index) {
         setActive($(this));
@@ -252,7 +256,7 @@ $(".color-tab").click(function () {
 });
 
 $(".calculator-slider-option").click(function () {
-  rmActives($(".calculator-slider-option.active"));
+  rmActive($(".calculator-slider-option.active"));
   setActive($(this));
   slideIndex = parseInt($(this).data("slider-index"));
   i[0].slick.slickGoTo(slideIndex);
@@ -269,7 +273,7 @@ $(".calculator-arrow").click(function () {
     $(".calculator-slider-side").slick("slickPrev");
   }
   let e = i.slick("slickCurrentSlide");
-  rmActives($(".calculator-slider-option.active"));
+  rmActive($(".calculator-slider-option.active"));
   setActive($(`.calculator-slider-option:eq(${e})`));
   if ($(window).width() < 992) {
     $(".calculator-arrow").unbind("click");
@@ -404,8 +408,8 @@ function setActive(obj) {
   return obj.addClass("active");
 }
 
-function rmActives(obj) {
-  return obj.toggleClass("active");
+function rmActive(obj) {
+  return obj.removeClass("active");
 }
 
 function hide(obj) {
