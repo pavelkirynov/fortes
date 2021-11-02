@@ -3,15 +3,16 @@ $("input").each(function () {
 });
 
 $(".fact-link").click(function () {
-  let index = $(this).index();
   $(".fact-container.active").removeClass("active");
-  $(".fact-container").eq(index).addClass("active");
+  $(".fact-container").eq((this).index()).addClass("active");
   $(".fact-link.active").removeClass("active");
   $(this).addClass("active");
 });
 $(".tab-new").click(function () {
   $(".tab-new.active").removeClass("active");
   $(this).addClass("active");
+  $(".slide-new .slider-image-new.active").removeClass("active");
+  $(".slide-new .slider-image-new").eq($(this).index()).addClass("active");
 });
 
 $(".slider-new-container").slick();
