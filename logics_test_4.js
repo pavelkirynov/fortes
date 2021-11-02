@@ -6,15 +6,20 @@ $(".fact-link").click(function () {
   if ($(this).is(".active")) return;
 
   rmActive($(".fact-container.active"));
-  setActive($(".fact-container").eq(this.index()));
+  setActive($(".fact-container").eq($(this).index()));
   rmActive($(".fact-link.active"));
   setActive($(this));
 });
 $(".tab-new").click(function () {
   if ($(this).is(".active")) return;
+  let index = $(this).index();
 
   rmActive($(".tab-new.active"));
   setActive($(this));
+  rmActive($(".slider-image-new"));
+  $(".slider-image-new").each(function () {
+    if ($(this).index() == index) setActive($(this));
+  });
 });
 
 $(".slider-new-container").slick();
