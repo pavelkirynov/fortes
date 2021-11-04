@@ -22,7 +22,7 @@ $(".tab-new").click(function () {
   });
 });
 $(".slick-btn-prev").click(() => {
-  const [textNext, textPrev] = getBtnText(
+  const [textPrev, textNext] = getBtnText(
     $(".slider-new-container").slick("slickCurrentSlide")
   );
   $(".slick-prev-text").html(textPrev);
@@ -31,7 +31,7 @@ $(".slick-btn-prev").click(() => {
   /* ванна - гостиная - спальня - кухня - душ - ванна - гостиная*/
 });
 $(".slick-btn-next").click(() => {
-  const [textNext, textPrev] = getBtnText(
+  const [textPrev, textNext] = getBtnText(
     $(".slider-new-container").slick("slickCurrentSlide")
   );
   $(".slick-prev-text").html(textPrev);
@@ -62,7 +62,6 @@ function getBtnText(index) {
       : index === 3
       ? "ванну"
       : "вітальню";
-console.log(textPrev, textNext);
   return [textPrev, textNext];
 }
 
