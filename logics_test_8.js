@@ -62,6 +62,7 @@ function getBtnText(index) {
       : index === 3
       ? "ванну"
       : "вітальню";
+console.log(textPrev, textNext);
   return [textPrev, textNext];
 }
 
