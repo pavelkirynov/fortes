@@ -21,49 +21,6 @@ $(".tab-new").click(function () {
     if ($(this).index() == index) setActive($(this));
   });
 });
-$(".slick-btn-prev").click(() => {
-  const [textPrev, textNext] = getBtnText(
-    $(".slider-new-container").slick("slickCurrentSlide")
-  );
-  $(".slick-prev-text").html(textPrev);
-  $(".slick-next-text").html(textNext);
-  $(".slider-new-container").slick("slickPrev");
-  /* ванна - гостиная - спальня - кухня - душ - ванна - гостиная*/
-});
-$(".slick-btn-next").click(() => {
-  const [textPrev, textNext] = getBtnText(
-    $(".slider-new-container").slick("slickCurrentSlide")
-  );
-  $(".slick-prev-text").html(textPrev);
-  $(".slick-next-text").html(textNext);
-  $(".slider-new-container").slick("slickNext");
-});
-
-function getBtnText(index) {
-  let textPrev = "Дивитись ",
-    textNext = "Дивитись ";
-  textPrev +=
-    index === 0
-      ? "ванну"
-      : index === 1
-      ? "вітальню"
-      : index === 2
-      ? "спальню"
-      : index === 3
-      ? "кухню"
-      : "душ";
-  textNext +=
-    index === 0
-      ? "спальню"
-      : index === 1
-      ? "кухню"
-      : index === 2
-      ? "душ"
-      : index === 3
-      ? "ванну"
-      : "вітальню";
-  return [textPrev, textNext];
-}
 
 $(".slider-new-container").slick({
   adaptiveHeight: true,
