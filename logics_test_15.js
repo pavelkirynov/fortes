@@ -26,15 +26,6 @@ $(".slider-new-container").slick({
   adaptiveHeight: true,
   arrows: false,
   dots: false,
-  lazyLoad: "progressive",
-  responsive: [
-    {
-      breakpoint: 480,
-      settings: {
-        dots: true,
-      }
-    }
-  ]
 });
 
 $(".choiceactive.card").toggleClass("choiceActiveBorder");
