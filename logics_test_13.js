@@ -25,7 +25,7 @@ $(".tab-new").click(function () {
 $(".slider-new-container").slick({
   arrows: false,
   dots: false,
-  lazyLoad: "ondemand",
+  lazyLoad: "progressive",
   responsive: [
     {
       breakpoint: 480,
