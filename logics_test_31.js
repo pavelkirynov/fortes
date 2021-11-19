@@ -23,7 +23,6 @@ $(".tab-new").click(function () {
 });
 
 $(".slider-new-container").slick({
-  lazyLoad: "ondemand",
   adaptiveHeight: true,
   arrows: false,
   dots: false,
