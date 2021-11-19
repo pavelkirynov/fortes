@@ -25,15 +25,11 @@ $(document).ready(function () {
   });
 
   $(".slider-new-container").slick({
-    lazyLoad: "ondemand",
+    lazyLoad: "progressive",
     adaptiveHeight: true,
     arrows: false,
     dots: false,
   });
-
-	$(".slider-new-container").on("lazyLoaded", function () {
-		$(".slider-new-container").slick("refresh");
-	});
 
   $(".choiceactive.card").toggleClass("choiceActiveBorder");
   $("#laminat").prop("checked", !0);
