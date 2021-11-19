@@ -157,11 +157,15 @@ $(".color-tab").click(function () {
 });
 
 $(".calculator-tab").click(function () {
+  if (vw < 992) {
+    $(".calculator-slider-side").slick("unslick");
+    $(".calculator-slider-side").slick(options2);
+  }
+});
+
+$(".calculator-tab").click(function () {
   let e = $(this).index();
   let u = getStyle(e);
-
-  $(".calculator-slider-side").slick("unslick");
-  $(".calculator-slider-side").slick(options2);
 
   hide(
     $(
