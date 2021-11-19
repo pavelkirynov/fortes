@@ -280,7 +280,7 @@ $(".calculator-arrow").click(function () {
   } else {
     $(".calculator-slider-side").slick("slickPrev");
   }
-  let e = i.slick("slickCurrentSlide");
+  let e = $(".calculator-slider-side").slick("slickCurrentSlide");
   rmActive($(".calculator-slider-option.active"));
   setActive($(`.calculator-slider-option:eq(${e})`));
   if ($(window).width() < 992) {
