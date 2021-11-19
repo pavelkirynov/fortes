@@ -24,7 +24,6 @@ $(".tab-new").click(function () {
 });
 
 $(".slider-new-container").slick({
-  lazyLoad: "progressive",
   adaptiveHeight: true,
   arrows: false,
   dots: false,
