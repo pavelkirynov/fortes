@@ -99,7 +99,6 @@ $("#wf-form-consult").submit(function () {
   }
 });
 
-let i = $(".calculator-slider-side");
 let options2 = {
   dots: !1,
   speed: 425,
@@ -113,12 +112,12 @@ let options2 = {
   ],
 };
 
-i.slick(options2);
+$(".calculator-slider-side").slick(options2);
 
 $(".calculator-tab").click(function () {
   if ($(window).width() > 992) {
     $(".calculator-slider-side").slick("unslick");
-    $(".calculator-slider-side").slick(options);
+    $(".calculator-slider-side").slick(options2);
   } else {
     $(".calcualtor-tab").unbind("click");
     return;
