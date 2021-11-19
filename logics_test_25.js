@@ -214,72 +214,68 @@ if (vw > 991) {
   });
 }
 
-if (vw <= 768) {
-  $(".star").mouseleave(function () {
+$(".star").mouseleave(function () {
+  $(this).removeClass("hidden");
+  $(this).siblings(".image-price").removeClass("active");
+});
+
+$(".image-price").click(function () {
+  if ($(this).is(".active")) {
+    $(this).siblings(".star").removeClass("hidden");
+    $(this).removeClass("active");
+  }
+});
+
+$(".star").click(function () {
+  if ($(this).is(".hidden")) {
     $(this).removeClass("hidden");
     $(this).siblings(".image-price").removeClass("active");
-  });
+  } else {
+    $(this).addClass("hidden");
+    $(this).siblings(".image-price").addClass("active");
+  }
+});
 
-  $(".image-price").click(function () {
-    if ($(this).is(".active")) {
-      $(this).siblings(".star").removeClass("hidden");
-      $(this).removeClass("active");
-    }
-  });
+$(".slick-btn-prev, .slick-btn-next").click(function () {
+  let index = $(".slider-new-container").slick("slickCurrentSlide"),
+    textPrev,
+    textNext;
+  if ($(this).index() == 0) {
+    $(".slider-new-container").slick("slickPrev");
+    index > 0 ? index-- : (index = 4);
+  } else {
+    $(".slider-new-container").slick("slickNext");
+    index < 4 ? index++ : (index = 0);
+  }
 
-  $(".star").click(function () {
-    if ($(this).is(".hidden")) {
-      $(this).removeClass("hidden");
-      $(this).siblings(".image-price").removeClass("active");
-    } else {
-      $(this).addClass("hidden");
-      $(this).siblings(".image-price").addClass("active");
-    }
-  });
-}
+  switch (index) {
+    case 0:
+      textPrev = "Дивитись ванну";
+      textNext = "Дивитись спальню";
+      break;
+    case 1:
+      textPrev = "Дивитись вітальню";
+      textNext = "Дивитись кухню";
+      break;
+    case 2:
+      textPrev = "Дивитись спальню";
+      textNext = "Дивитись душ";
+      break;
+    case 3:
+      textPrev = "Дивитись кухню";
+      textNext = "Дивитись ванну";
+      break;
+    case 4:
+      textPrev = "Дивитись душ";
+      textNext = "Дивитись вітальню";
+      break;
+    default:
+      return;
+  }
 
-if (vw >= 481) {
-  $(".slick-btn-prev, .slick-btn-next").click(function () {
-    let index = $(".slider-new-container").slick("slickCurrentSlide"),
-      textPrev,
-      textNext;
-    if ($(this).index() == 0) {
-      $(".slider-new-container").slick("slickPrev");
-      index > 0 ? index-- : (index = 4);
-    } else {
-      $(".slider-new-container").slick("slickNext");
-      index < 4 ? index++ : (index = 0);
-    }
-
-    switch (index) {
-      case 0:
-        textPrev = "Дивитись ванну";
-        textNext = "Дивитись спальню";
-        break;
-      case 1:
-        textPrev = "Дивитись вітальню";
-        textNext = "Дивитись кухню";
-        break;
-      case 2:
-        textPrev = "Дивитись спальню";
-        textNext = "Дивитись душ";
-        break;
-      case 3:
-        textPrev = "Дивитись кухню";
-        textNext = "Дивитись ванну";
-        break;
-      case 4:
-        textPrev = "Дивитись душ";
-        textNext = "Дивитись вітальню";
-        break;
-      default:
-        return;
-    }
-
-    $(".slick-prev-text").html(textPrev);
-    $(".slick-next-text").html(textNext);
-  });
-}
+  $(".slick-prev-text").html(textPrev);
+  $(".slick-next-text").html(textNext);
+});
 
 $(".choice").click(function (e) {
   if (!$("#appliancesBool").is(":checked"))
