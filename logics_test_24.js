@@ -1,5 +1,3 @@
-const vw = $(window).width();
-
 $("input").each(function () {
   $(this).attr("name", $(this).data("name"));
 });
