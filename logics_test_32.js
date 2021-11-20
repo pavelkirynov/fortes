@@ -22,12 +22,6 @@ $(".tab-new").click(function () {
   });
 });
 
-$(".slider-new-container").slick({
-  adaptiveHeight: true,
-  arrows: false,
-  dots: false,
-});
-
 $(".choiceactive.card").toggleClass("choiceActiveBorder");
 $("#laminat").prop("checked", !0);
 
