@@ -360,7 +360,7 @@ $(document).ready(function () {
       $(".calculator-slider-side").slick("refresh");
 
       rmActive($(".color-tab.active, .slide-nav.active"));
-      $(".tab-new").eq(index).click();
+      $(".tab-new").eq(e).click();
       $(".div-block-14 .color-tab").each(function () {
         if ($(this).index() == 0) setActive($(this));
       });
