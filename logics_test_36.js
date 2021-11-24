@@ -26,6 +26,8 @@ $(document).ready(function () {
       if ($(this).index() == index) setActive($(this));
     });
   });
+  
+  if ($(window).width() <= 480) { $(".tab-new").eq(1).click(); console.log("foo"); }
 
   $(".wrap-border.calculator-btn").click(() => {
     let t = {
