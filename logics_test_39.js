@@ -27,6 +27,30 @@ $(document).ready(function () {
     });
   });
 
+  const splide = new Splide(".splide", {
+    arrows: false,
+    pagination: false,
+    speed: 550,
+    flickPower: 400,
+    breakpoints: {
+      480: {
+        pagination: true,
+        speed: 650,
+        flickPower: 550,
+      },
+    },
+  });
+  splide.mount();
+
+  splide.on("move", () => {
+    setTimeout(() => {
+      $(".splide__track").css(
+        "height",
+        $(".splide__slide.is-active .active img").height()
+      );
+    }, 650);
+  });
+
   $(".wrap-border.calculator-btn").click(() => {
     let t = {
         _costPerMetre: $("#total").html(),
@@ -407,15 +431,15 @@ $(document).ready(function () {
   }
   if (vw > 480) {
     $(".slick-btn-prev, .slick-btn-next").click(function () {
-      let index = 0 /*splide.index*/,
+      let index = splide.index,
         textPrev,
         textNext;
       $(".slick-btn-prev, .slick-btn-next").removeClass("disabled");
       if ($(this).index() == 0) {
-        //splide.go("<");
+        splide.go("<");
         if (index-- - 1 == 0) $(this).addClass("disabled");
       } else {
-        //splide.go(">");
+        splide.go(">");
         if (index++ + 1 == 4) $(this).addClass("disabled");
       }
 
