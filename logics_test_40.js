@@ -43,12 +43,18 @@ $(document).ready(function () {
   splide.mount();
 
   splide.on("move", () => {
-    setTimeout(() => {
-      $(".splide__track").css(
-        "height",
-        $(".splide__slide.is-active .active img").height()
-      );
-    }, 650);
+    setTimeout(
+      () => {
+        let height =
+          vw > 480
+            ? $(".splide__slide.is-active .active img").height()
+            : $(".splide__slide.is-active .active img").height() +
+              $(".disclaimer.mobile").height();
+
+        $(".splide__track").css("height", height);
+      },
+      vw > 480 ? 650 : 750
+    );
   });
 
   $(".wrap-border.calculator-btn").click(() => {
