@@ -47,13 +47,10 @@ $(document).ready(function () {
   });
 
   function changeHeight() {
-    let height =
-      vw > 480
-        ? $(".splide__slide.is-active .active img").height()
-        : $(".splide__slide.is-active .active img").height() +
-          $(".disclaimer.mobile").height();
-
-    $(".splide__list").css("height", height);
+    $(".splide__list").css(
+      "height",
+      $(".splide__slide.is-active .active img").height()
+    );
   }
   changeHeight();
 
