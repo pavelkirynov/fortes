@@ -43,19 +43,19 @@ $(document).ready(function () {
   splide.mount();
 
   splide.on("move", () => {
-    setTimeout(
-      () => {
-        let height =
-          vw > 480
-            ? $(".splide__slide.is-active .active img").height()
-            : $(".splide__slide.is-active .active img").height() +
-              $(".disclaimer.mobile").height();
-
-        $(".splide__track").css("height", height);
-      },
-      vw > 480 ? 650 : 750
-    );
+    setTimeout(changeHeight, vw > 480 ? 650 : 750);
   });
+
+  function changeHeight() {
+    let height =
+      vw > 480
+        ? $(".splide__slide.is-active .active img").height()
+        : $(".splide__slide.is-active .active img").height() +
+          $(".disclaimer.mobile").height();
+
+    $(".splide__list").css("height", height);
+  }
+  changeHeight();
 
   $(".wrap-border.calculator-btn").click(() => {
     let t = {
