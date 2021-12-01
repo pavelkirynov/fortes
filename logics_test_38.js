@@ -1,4 +1,4 @@
-$(document).readt(function () {
+$(document).ready(function () {
   $("input").each(function () {
     $(this).attr("name", $(this).data("name"));
   });
