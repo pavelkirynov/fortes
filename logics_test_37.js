@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).readt(function () {
   $("input").each(function () {
     $(this).attr("name", $(this).data("name"));
   });
@@ -26,8 +26,6 @@ $(document).ready(function () {
       if ($(this).index() == index) setActive($(this));
     });
   });
-  
-  if ($(window).width() <= 480) { $(".tab-new").eq(1).click(); console.log("foo"); }
 
   $(".wrap-border.calculator-btn").click(() => {
     let t = {
@@ -285,12 +283,12 @@ $(document).ready(function () {
     $(".calculator-slider-side").slick(options2);
 
     $(".preview-image, .blackbg-text").hover(
-      () => opacity($(".video-cursor"), 1),
-      () => opacity($(".video-cursor"), 0)
+      () => $(".video-cursor").css("opacity", 1),
+      () => $(".video-cursor").css("opacity", 0)
     );
     $(".project-link-image").hover(
-      () => opacity($(".project-dot"), 1),
-      () => opacity($(".project-dot"), 0)
+      () => $(".project-dot").css("opacity", 1),
+      () => $(".project-dot").css("opacity", 0)
     );
     $(".arrow-right").hover(
       () => opacity($(".small-hover.right"), 1),
@@ -362,7 +360,7 @@ $(document).ready(function () {
       $(".calculator-slider-side").slick("refresh");
 
       rmActive($(".color-tab.active, .slide-nav.active"));
-      $(".tab-new").eq(e).click();
+      $(".tab-new").eq(index).click();
       $(".div-block-14 .color-tab").each(function () {
         if ($(this).index() == 0) setActive($(this));
       });
@@ -383,21 +381,6 @@ $(document).ready(function () {
       13 != e.keyCode || e.preventDefault();
     });
   }
-
-  const splide = new Splide(".splide", {
-    arrows: false,
-    pagination: false,
-    speed: 550,
-    flickPower: 400,
-    breakpoints: {
-      480: {
-        pagination: true,
-        speed: 650,
-        flickPower: 550,
-      },
-    },
-  });
-  splide.mount();
 
   if (vw <= 767) {
     $(".star").mouseleave(function () {
@@ -424,15 +407,15 @@ $(document).ready(function () {
   }
   if (vw > 480) {
     $(".slick-btn-prev, .slick-btn-next").click(function () {
-      let index = splide.index,
+      let index = 0 /*splide.index*/,
         textPrev,
         textNext;
       $(".slick-btn-prev, .slick-btn-next").removeClass("disabled");
       if ($(this).index() == 0) {
-        splide.go("<");
+        //splide.go("<");
         if (index-- - 1 == 0) $(this).addClass("disabled");
       } else {
-        splide.go(">");
+        //splide.go(">");
         if (index++ + 1 == 4) $(this).addClass("disabled");
       }
 
