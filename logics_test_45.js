@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
   });
 
-  const splide = new Splide(".splide", {
+  const splideOptions = {
     arrows: false,
     pagination: false,
     speed: 550,
@@ -38,8 +38,14 @@ $(document).ready(function () {
         speed: 650,
       },
     },
-  });
+  };
+  const splide = new Splide(".slider-wrapper.splide", splideOptions);
+  const splideCalc = new Splide(
+    ".calculator-slider-side.splide",
+    splideOptions
+  );
   splide.mount();
+  splideCalc.mount();
 
   splide.on("move", () => {
     setTimeout(changeHeight, vw > 480 ? 650 : 750);
