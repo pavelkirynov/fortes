@@ -355,7 +355,7 @@ $(document).ready(function () {
       );
       show(
         $(
-          ".calculator-slide.main .calculator-slide .color-1, .calculator-slide" +
+          ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
             `.${u}, .specification-${u}.color-1`
         )
       );
