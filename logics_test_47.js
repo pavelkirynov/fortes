@@ -296,21 +296,6 @@ $(document).ready(function () {
   });
 
   if (vw >= 992) {
-    let options2 = {
-      dots: !1,
-      speed: 425,
-      arrows: !1,
-      draggable: !1,
-      responsive: [
-        {
-          breakpoint: 991,
-          settings: "unslick",
-        },
-      ],
-    };
-
-    //$(".calculator-slider-side").slick(options2);
-
     $(".preview-image, .blackbg-text").hover(
       () => $(".video-cursor").css("opacity", 1),
       () => $(".video-cursor").css("opacity", 0)
@@ -327,11 +312,6 @@ $(document).ready(function () {
       () => opacity($(".small-hover.left"), 1),
       () => opacity($(".small-hover.left"), 0)
     );
-
-    $(".calculator-tab").click(function () {
-      $(".calculator-slider-side").slick("unslick");
-      $(".calculator-slider-side").slick(options2);
-    });
 
     $(".color-tab").click(function () {
       let index = $(this).index(),
@@ -357,15 +337,11 @@ $(document).ready(function () {
       }
     });
 
-    $(".calculator-button, .calculate").click(() => {
-      $(".calculator-slider-side").slick("refresh");
-    });
-
     $(".calculator-slider-option").click(function () {
       rmActive($(".calculator-slider-option.active"));
       setActive($(this));
       slideIndex = parseInt($(this).data("slider-index"));
-      //$(".calculator-slider-side").slick.slickGoTo(slideIndex);
+      splideCalc.go(slideIndex);
     });
 
     $(".calculator-tab").click(function () {
@@ -386,8 +362,6 @@ $(document).ready(function () {
       $(".calculator-tab.w--current").removeClass("w--current");
       $(`.calculator-tab:eq(${e})`).addClass("w--current");
 
-      //$(".calculator-slider-side").slick("refresh");
-
       rmActive($(".color-tab.active, .slide-nav.active"));
       $(".tab-new").eq(e).click();
       $(".div-block-14 .color-tab").each(function () {
@@ -397,13 +371,13 @@ $(document).ready(function () {
 
     $(".calculator-arrow").click(function () {
       if ($(this).is(".arrow-right")) {
-        //$(".calculator-slider-side").slick("slickNext");
+        splide.go(">");
       } else {
-        //$(".calculator-slider-side").slick("slickPrev");
+        splide.go("<");
       }
-      //let e = $(".calculator-slider-side").slick("slickCurrentSlide");
-      //rmActive($(".calculator-slider-option.active"));
-      //setActive($(`.calculator-slider-option:eq(${e})`));
+
+      rmActive($(".calculator-slider-option.active"));
+      setActive($(`.calculator-slider-option:eq(${splideCalc.index})`));
     });
 
     $("form input").keydown(function (e) {
