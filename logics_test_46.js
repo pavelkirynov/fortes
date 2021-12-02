@@ -40,10 +40,7 @@ $(document).ready(function () {
     },
   };
   const splide = new Splide(".slider-wrapper.splide", splideOptions);
-  const splideCalc = new Splide(
-    ".calculator-slider-side.splide",
-    splideOptions
-  );
+  const splideCalc = new Splide(".slider-container.splide", splideOptions);
   splide.mount();
   splideCalc.mount();
 
