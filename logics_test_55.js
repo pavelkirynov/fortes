@@ -58,6 +58,48 @@ $(document).ready(function () {
       );
     }
     changeHeight();
+
+    $(".slick-btn-prev, .slick-btn-next").click(function () {
+      let index = splide.index,
+        textPrev,
+        textNext;
+      $(".slick-btn-prev, .slick-btn-next").removeClass("disabled");
+      if ($(this).index() == 0) {
+        splide.go("<");
+        if (index-- - 1 == 0) $(this).addClass("disabled");
+      } else {
+        splide.go(">");
+        if (index++ + 1 == 4) $(this).addClass("disabled");
+      }
+
+      switch (index) {
+        case 0:
+          textPrev = "";
+          textNext = "Дивитись спальню";
+          break;
+        case 1:
+          textPrev = "Дивитись вітальню";
+          textNext = "Дивитись кухню";
+          break;
+        case 2:
+          textPrev = "Дивитись спальню";
+          textNext = "Дивитись душ";
+          break;
+        case 3:
+          textPrev = "Дивитись кухню";
+          textNext = "Дивитись ванну";
+          break;
+        case 4:
+          textPrev = "Дивитись душ";
+          textNext = "";
+          break;
+        default:
+          return;
+      }
+
+      $(".slick-prev-text").html(textPrev);
+      $(".slick-next-text").html(textNext);
+    });
   }
 
   $(".wrap-border.calculator-btn").click(() => {
@@ -411,49 +453,6 @@ $(document).ready(function () {
         $(this).addClass("hidden");
         $(this).siblings(".image-price").addClass("active");
       }
-    });
-  }
-  if (vw > 480) {
-    $(".slick-btn-prev, .slick-btn-next").click(function () {
-      let index = splide.index,
-        textPrev,
-        textNext;
-      $(".slick-btn-prev, .slick-btn-next").removeClass("disabled");
-      if ($(this).index() == 0) {
-        splide.go("<");
-        if (index-- - 1 == 0) $(this).addClass("disabled");
-      } else {
-        splide.go(">");
-        if (index++ + 1 == 4) $(this).addClass("disabled");
-      }
-
-      switch (index) {
-        case 0:
-          textPrev = "";
-          textNext = "Дивитись спальню";
-          break;
-        case 1:
-          textPrev = "Дивитись вітальню";
-          textNext = "Дивитись кухню";
-          break;
-        case 2:
-          textPrev = "Дивитись спальню";
-          textNext = "Дивитись душ";
-          break;
-        case 3:
-          textPrev = "Дивитись кухню";
-          textNext = "Дивитись ванну";
-          break;
-        case 4:
-          textPrev = "Дивитись душ";
-          textNext = "";
-          break;
-        default:
-          return;
-      }
-
-      $(".slick-prev-text").html(textPrev);
-      $(".slick-next-text").html(textNext);
     });
   }
 
