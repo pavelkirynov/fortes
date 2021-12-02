@@ -372,9 +372,9 @@ $(document).ready(function () {
 
     $(".calculator-arrow").click(function () {
       if ($(this).is(".arrow-right")) {
-        calcSplide.go(">");
+        splideCalc.go(">");
       } else {
-        calcSplide.go("<");
+        splideCalc.go("<");
       }
 
       rmActive($(".calculator-slider-option.active"));
