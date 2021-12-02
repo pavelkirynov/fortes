@@ -393,6 +393,7 @@ $(document).ready(function () {
     $(".calculator-tab").click(function () {
       let e = $(this).index(),
         u = getStyle(e);
+      splideCalc.refresh();
 
       hide(
         $(
