@@ -393,7 +393,6 @@ $(document).ready(function () {
     $(".calculator-tab").click(function () {
       let e = $(this).index(),
         u = getStyle(e);
-      splideCalc.refresh();
 
       hide(
         $(
@@ -415,6 +414,8 @@ $(document).ready(function () {
       $(".div-block-14 .color-tab").each(function () {
         if ($(this).index() == 0) setActive($(this));
       });
+
+      splideCalc.refresh();
     });
 
     $(".calculator-arrow").click(function () {
