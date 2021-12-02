@@ -6,27 +6,6 @@ $(document).ready(function () {
   $(".choiceactive.card").toggleClass("choiceActiveBorder");
   $("#laminat").prop("checked", !0);
 
-  $(".fact-link").click(function () {
-    if ($(this).is(".active")) return;
-
-    rmActive($(".fact-container.active"));
-    setActive($(".fact-container").eq($(this).index()));
-    rmActive($(".fact-link.active"));
-    setActive($(this));
-  });
-
-  $(".tab-new").click(function () {
-    if ($(this).is(".active")) return;
-    let index = $(this).index();
-
-    rmActive($(".tab-new.active"));
-    setActive($(this));
-    rmActive($(".slider-image-new"));
-    $(".slider-image-new").each(function () {
-      if ($(this).index() == index) setActive($(this));
-    });
-  });
-
   const splideOptions = {
     arrows: false,
     pagination: false,
@@ -39,22 +18,47 @@ $(document).ready(function () {
       },
     },
   };
-  const splide = new Splide(".slider-wrapper.splide", splideOptions);
+
   const splideCalc = new Splide(".slider-container.splide", splideOptions);
-  splide.mount();
+
   splideCalc.mount();
 
-  splide.on("move", () => {
-    setTimeout(changeHeight, vw > 480 ? 650 : 750);
-  });
+  if ($(".slider-wrapper.splide").length) {
+    $(".fact-link").click(function () {
+      if ($(this).is(".active")) return;
 
-  function changeHeight() {
-    $(".splide__list").css(
-      "height",
-      $(".splide__slide.is-active .active img").height()
-    );
+      rmActive($(".fact-container.active"));
+      setActive($(".fact-container").eq($(this).index()));
+      rmActive($(".fact-link.active"));
+      setActive($(this));
+    });
+
+    $(".tab-new").click(function () {
+      if ($(this).is(".active")) return;
+      let index = $(this).index();
+
+      rmActive($(".tab-new.active"));
+      setActive($(this));
+      rmActive($(".slider-image-new"));
+      $(".slider-image-new").each(function () {
+        if ($(this).index() == index) setActive($(this));
+      });
+    });
+    const splide = new Splide(".slider-wrapper.splide", splideOptions);
+    splide.mount();
+
+    splide.on("move", () => {
+      setTimeout(changeHeight, vw > 480 ? 650 : 750);
+    });
+
+    function changeHeight() {
+      $(".splide__list").css(
+        "height",
+        $(".splide__slide.is-active .active img").height()
+      );
+    }
+    changeHeight();
   }
-  changeHeight();
 
   $(".wrap-border.calculator-btn").click(() => {
     let t = {
