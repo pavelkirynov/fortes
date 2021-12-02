@@ -355,10 +355,11 @@ $(document).ready(function () {
       );
       show(
         $(
-          ".calculator-slide.splide__slide .calculator-slide,.calculator-slide.main .calculator-slide .color-1, .calculator-slide" +
+          ".calculator-slide.main .calculator-slide .color-1, .calculator-slide" +
             `.${u}, .specification-${u}.color-1`
         )
       );
+      show($(".calculator-slide.splide__slide .calculator-slide").eq(e));
       $(".calculator-tab.w--current").removeClass("w--current");
       $(`.calculator-tab:eq(${e})`).addClass("w--current");
 
