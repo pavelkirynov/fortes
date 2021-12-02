@@ -36,7 +36,6 @@ $(document).ready(function () {
       480: {
         pagination: true,
         speed: 650,
-        flickPower: 550,
       },
     },
   });
@@ -363,7 +362,7 @@ $(document).ready(function () {
       rmActive($(".calculator-slider-option.active"));
       setActive($(this));
       slideIndex = parseInt($(this).data("slider-index"));
-      i[0].slick.slickGoTo(slideIndex);
+      $(".calculator-slider-side").slick.slickGoTo(slideIndex);
     });
 
     $(".calculator-tab").click(function () {
@@ -387,7 +386,7 @@ $(document).ready(function () {
       $(".calculator-slider-side").slick("refresh");
 
       rmActive($(".color-tab.active, .slide-nav.active"));
-      $(".tab-new").eq(index).click();
+      $(".tab-new").eq(e).click();
       $(".div-block-14 .color-tab").each(function () {
         if ($(this).index() == 0) setActive($(this));
       });
