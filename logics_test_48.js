@@ -348,14 +348,10 @@ $(document).ready(function () {
       let e = $(this).index(),
         u = getStyle(e);
 
-      hide(
-        $(
-          ".calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
-        )
-      );
+      hide($(".calculator-slide.splide__slide calculator-slide"));
       show(
         $(
-          ".calculator-slide.main .calculator-slide .color-1, .calculator-slide" +
+          ".calculator-slide.splide__slide calculator-slide, .calculator-slide.main .calculator-slide .color-1, .calculator-slide" +
             `.${u}, .specification-${u}.color-1`
         )
       );
