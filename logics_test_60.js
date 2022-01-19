@@ -101,6 +101,34 @@ $(document).ready(function () {
       $(".slick-next-text").html(textNext);
     });
   }
+  
+    $(".calculator-tab").click(function () {
+    let e = $(this).index(),
+      u = getStyle(e);
+
+    hide(
+      $(
+        ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
+      )
+    );
+    show(
+      $(
+        ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
+          `.${u}, .specification-${u}.color-1`
+      )
+    );
+    show($(".calculator-slide.splide__slide .calculator-slide").eq(e));
+    $(".calculator-tab.w--current").removeClass("w--current");
+    $(`.calculator-tab:eq(${e})`).addClass("w--current");
+
+    rmActive($(".color-tab.active, .slide-nav.active"));
+    $(".tab-new").eq(e).click();
+    $(".div-block-14 .color-tab").each(function () {
+      if ($(this).index() == 0) setActive($(this));
+    });
+
+    splideCalc.refresh();
+  });
 
   $(".wrap-border.calculator-btn").click(() => {
     let t = {
@@ -377,34 +405,6 @@ $(document).ready(function () {
       setActive($(this));
       slideIndex = parseInt($(this).data("slider-index"));
       splideCalc.go(slideIndex);
-    });
-
-    $(".calculator-tab").click(function () {
-      let e = $(this).index(),
-        u = getStyle(e);
-
-      hide(
-        $(
-          ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
-        )
-      );
-      show(
-        $(
-          ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
-            `.${u}, .specification-${u}.color-1`
-        )
-      );
-      show($(".calculator-slide.splide__slide .calculator-slide").eq(e));
-      $(".calculator-tab.w--current").removeClass("w--current");
-      $(`.calculator-tab:eq(${e})`).addClass("w--current");
-
-      rmActive($(".color-tab.active, .slide-nav.active"));
-      $(".tab-new").eq(e).click();
-      $(".div-block-14 .color-tab").each(function () {
-        if ($(this).index() == 0) setActive($(this));
-      });
-
-      splideCalc.refresh();
     });
 
     $(".calculator-arrow").click(function () {
