@@ -24,7 +24,7 @@ $(document).ready(function () {
   splideCalc.mount();
 
   if ($(".slider-wrapper.splide").length) {
-    $(".fact-link").click(function () {
+    $(".fact-link").on("click", function () {
       if ($(this).is(".active")) return;
 
       rmActive($(".fact-container.active"));
@@ -33,7 +33,7 @@ $(document).ready(function () {
       setActive($(this));
     });
 
-    $(".tab-new").click(function () {
+    $(".tab-new").on("click", function () {
       if ($(this).is(".active")) return;
       let index = $(this).index();
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
     }
     changeHeight();
 
-    $(".slick-btn-prev, .slick-btn-next").click(function () {
+    $(".slick-btn-prev, .slick-btn-next").on("click", function () {
       let index = splide.index,
         textPrev,
         textNext;
@@ -101,8 +101,8 @@ $(document).ready(function () {
       $(".slick-next-text").html(textNext);
     });
   }
-  
-    $(".calculator-tab").click(function () {
+
+  $(".calculator-tab").on("click", function () {
     let e = $(this).index(),
       u = getStyle(e);
 
@@ -122,7 +122,7 @@ $(document).ready(function () {
     $(`.calculator-tab:eq(${e})`).addClass("w--current");
 
     rmActive($(".color-tab.active, .slide-nav.active"));
-    $(".tab-new").eq(e).click();
+    $(".tab-new").eq(e).trigger("click");
     $(".div-block-14 .color-tab").each(function () {
       if ($(this).index() == 0) setActive($(this));
     });
@@ -162,12 +162,12 @@ $(document).ready(function () {
       document.cookie = cookieText;
     }
   });
-  $(".increment-field .increment").click((e) => {
+  $(".increment-field .increment").on("click", () => {
     let sibling = $(this).siblings(".increment-input");
     if (sibling.val() <= 0) sibling.val(0);
   });
 
-  $("#wf-form-consult").submit(function () {
+  $("#wf-form-consult").on("submit", function () {
     if (!$("#agreementCheckbox").is(":checked")) {
       show($(".warning.agreementcheckbox"));
     } else {
@@ -197,7 +197,7 @@ $(document).ready(function () {
     }
   });
 
-  $(".choice").click(function (e) {
+  $(".choice").on("click", function (e) {
     if (!$("#appliancesBool").is(":checked"))
       return (
         e.preventDefault(),
@@ -211,13 +211,13 @@ $(document).ready(function () {
       $(this).parent().addClass("choiceActiveBorder"),
       $("#node").is(":checked") && $("#appliances").prop("checked", "checked"));
   });
-  $("#node").change(() => {
+  $("#node").on("change",() => {
     $("#node").is(":checked") &&
       $(".choiceActive") &&
       ($(".choiceActive").toggleClass("choiceActive"),
       $(".choiceActiveBorder").toggleClass("choiceActiveBorder"));
   });
-  $("#appliancesBool").change(function () {
+  $("#appliancesBool").on("change",function () {
     $(this).is(":checked") &&
       !document.querySelector(".choiceActiveBorder") &&
       ($(".choice").first().toggleClass("choiceActive"),
@@ -257,12 +257,12 @@ $(document).ready(function () {
     }
   });
 
-  $(".submit-container .button").click(function (e) {
+  $(".submit-container .button").on("click", function (e) {
     e.preventDefault();
+    let oldBtnName = $(this).html();
     $(this).html("Зачекайте...");
 
     let url = $(this).attr("href"),
-      oldBtnName = $(this).html(),
       fd = new FormData(),
       ukrStyle =
         data.style === "cozy"
@@ -337,14 +337,14 @@ $(document).ready(function () {
         body: fd,
       }
     )
-      .then((response) => {
+      .then(() => {
         $(this).html(oldBtnName);
         window.location = url;
       })
       .catch((error) => console.error("Error!", error.message));
   });
 
-  $(".closing-btn").click(function () {
+  $(".closing-btn").on("click", function () {
     let obj = $(this);
     obj.parent(".hover-modal").animate(
       {
@@ -359,24 +359,28 @@ $(document).ready(function () {
   });
 
   if (vw >= 992) {
-    $(".preview-image, .blackbg-text").hover(
+    $(".preview-image, .blackbg-text").on(
+      "hover",
       () => $(".video-cursor").css("opacity", 1),
       () => $(".video-cursor").css("opacity", 0)
     );
-    $(".project-link-image").hover(
+    $(".project-link-image").on(
+      "hover",
       () => $(".project-dot").css("opacity", 1),
       () => $(".project-dot").css("opacity", 0)
     );
-    $(".arrow-right").hover(
+    $(".arrow-right").on(
+      "hover",
       () => $(".small-hover.right").css("opacity", 1),
       () => $(".small-hover.right").css("opacity", 0)
     );
-    $(".arrow-left").hover(
+    $(".arrow-left").on(
+      "hover",
       () => $(".small-hover.left").css("opacity", 1),
       () => $(".small-hover.left").css("opacity", 0)
     );
 
-    $(".color-tab").click(function () {
+    $(".color-tab").on("click", function () {
       let index = $(this).index(),
         number = $(".calculator-tab.w--current").index(),
         style = getStyle(number);
@@ -400,14 +404,14 @@ $(document).ready(function () {
       }
     });
 
-    $(".calculator-slider-option").click(function () {
+    $(".calculator-slider-option").on("click", function () {
       rmActive($(".calculator-slider-option.active"));
       setActive($(this));
       slideIndex = parseInt($(this).data("slider-index"));
       splideCalc.go(slideIndex);
     });
 
-    $(".calculator-arrow").click(function () {
+    $(".calculator-arrow").on("click", function () {
       if ($(this).is(".arrow-right")) {
         splideCalc.go(">");
       } else {
@@ -418,25 +422,25 @@ $(document).ready(function () {
       setActive($(`.calculator-slider-option:eq(${splideCalc.index})`));
     });
 
-    $("form input").keydown(function (e) {
+    $("form input").on("keydown", function (e) {
       13 != e.keyCode || e.preventDefault();
     });
   }
 
   if (vw <= 767) {
-    $(".star").mouseleave(function () {
+    $(".star").on("mouseleave", function () {
       $(this).removeClass("hidden");
       $(this).siblings(".image-price").removeClass("active");
     });
 
-    $(".image-price").click(function () {
+    $(".image-price").on("click", function () {
       if ($(this).is(".active")) {
         $(this).siblings(".star").removeClass("hidden");
         $(this).removeClass("active");
       }
     });
 
-    $(".star").click(function () {
+    $(".star").on("click", function () {
       if ($(this).is(".hidden")) {
         $(this).removeClass("hidden");
         $(this).siblings(".image-price").removeClass("active");
@@ -504,9 +508,5 @@ $(document).ready(function () {
         (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
-  }
-
-  function opacity(obj, val) {
-    obj.css("opacity", val);
   }
 });
