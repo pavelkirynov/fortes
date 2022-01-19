@@ -230,18 +230,9 @@ $(document).ready(function () {
   });
 
   $(".submit-container .button").click(function (e) {
-    let isSafari =
-      /constructor/i.test(window.HTMLElement) ||
-      (function (p) {
-        return p.toString() === "[object SafariRemoteNotification]";
-      })(
-        !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification)
-      );
-    if (isSafari) {
-      e.preventDefault();
-      $(this).html("Зачекайте...");
-    }
+    e.preventDefault();
+    $(this).html("Зачекайте...");
+
     let url = $(this).attr("href"),
       oldBtnName = $(this).html(),
       fd = new FormData(),
@@ -319,10 +310,8 @@ $(document).ready(function () {
       }
     )
       .then((response) => {
-        if (isSafari) {
-          $(this).html(oldBtnName);
-          window.location = url;
-        }
+        $(this).html(oldBtnName);
+        window.location = url;
       })
       .catch((error) => console.error("Error!", error.message));
   });
