@@ -285,7 +285,7 @@ $(document).ready(function () {
           ? "Натяжна бесщелева матова"
           : "Гіпсокартон",
       flooring =
-        v$(":radio[name='flooring']:checked").val() == "laminat"
+        $(":radio[name='flooring']:checked").val() == "laminat"
           ? "Ламінат"
           : $(":radio[name='flooring']:checked").val() == "vynil"
           ? "Вінілова підлога"
