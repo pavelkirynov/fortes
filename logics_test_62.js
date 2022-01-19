@@ -358,6 +358,10 @@ $(document).ready(function () {
     );
   });
 
+  if (vw <= 480) {
+    $(".tab-new").eq(1).trigger("click");
+  }
+  
   if (vw >= 992) {
     $(".preview-image, .blackbg-text").on(
       "hover",
