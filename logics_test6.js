@@ -380,8 +380,6 @@ $(document).ready(function () {
     fd.append("Техніка", appliances);
     fd.append("Термін виконання робіт", months);
 
-    console.log(fd);
-
     fetch(
       "https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
       {
@@ -552,7 +550,7 @@ $(document).ready(function () {
   }
 
   function checkbox(obj) {
-    +obj.is(":checked");
+    return +obj.is(":checked");
   }
 
   function isInViewport(element) {
