@@ -413,26 +413,22 @@ $(document).ready(function () {
   }
 
   if (vw >= 992) {
-    $(".preview-image, .blackbg-text").on(
-      "hover",
-      () => $(".video-cursor").css("opacity", 1),
-      () => $(".video-cursor").css("opacity", 0)
-    );
-    $(".project-link-image").on(
-      "hover",
-      () => $(".project-dot").css("opacity", 1),
-      () => $(".project-dot").css("opacity", 0)
-    );
-    $(".arrow-right").on(
-      "hover",
-      () => $(".small-hover.right").css("opacity", 1),
-      () => $(".small-hover.right").css("opacity", 0)
-    );
-    $(".arrow-left").on(
-      "hover",
-      () => $(".small-hover.left").css("opacity", 1),
-      () => $(".small-hover.left").css("opacity", 0)
-    );
+    $(".preview-image, .blackbg-text").on({
+      mouseenter: () => $(".video-cursor").css("opacity", 1),
+      mouseleave: () => $(".video-cursor").css("opacity", 0),
+    });
+    $(".project-link-image").on({
+      mouseenter: () => $(".project-dot").css("opacity", 1),
+      mouseleave: () => $(".project-dot").css("opacity", 0),
+    });
+    $(".arrow-right").on({
+      mouseenter: () => $(".small-hover.right").css("opacity", 1),
+      mouseleave: () => $(".small-hover.right").css("opacity", 0),
+    });
+    $(".arrow-left").on({
+      mouseenter: () => $(".small-hover.left").css("opacity", 1),
+      mouseleave: () => $(".small-hover.left").css("opacity", 0),
+    });
 
     $(".color-tab").on("click", function () {
       let index = $(this).index();
