@@ -312,32 +312,32 @@ $(document).ready(function () {
     let oldBtnName = $(this).html();
     $(this).html("Зачекайте...");
 
-    let url = $(this).attr("href"),
-      fd = new FormData(),
-      ukrStyle =
-        data.style === "cozy"
-          ? "Козі"
-          : data.style === "japandi"
-          ? "Джапанді"
-          : data.style === "fusion"
-          ? "Фьюжн"
-          : data.style === "modern"
-          ? "Модерн"
-          : "Нео Класика",
-      months =
-        data.space < 60
-          ? 4
-          : data.space <= 80
-          ? 5
-          : data.space <= 100
-          ? 6
-          : data.space <= 130
-          ? 7
-          : data.space <= 150
-          ? 8
-          : data.space <= 175
-          ? 9
-          : 10;
+    let url = $(this).attr("href");
+    let fd = new FormData();
+    let ukrStyle =
+      data.style === "cozy"
+        ? "Козі"
+        : data.style === "japandi"
+        ? "Джапанді"
+        : data.style === "fusion"
+        ? "Фьюжн"
+        : data.style === "modern"
+        ? "Модерн"
+        : "Нео Класика";
+    let months =
+      data.space < 60
+        ? 4
+        : data.space <= 80
+        ? 5
+        : data.space <= 100
+        ? 6
+        : data.space <= 130
+        ? 7
+        : data.space <= 150
+        ? 8
+        : data.space <= 175
+        ? 9
+        : 10;
     fd.append("Стиль", ukrStyle);
     fd.append("Ціна за метр", $("#total").html());
     fd.append("Загальна ціна", $("#totalWhole").html());
@@ -533,11 +533,11 @@ $(document).ready(function () {
     obj.removeClass("hidden-elem");
   }
 
-  function getData(obj, data) {
-    if (isFinite(obj.data(data))) {
-      return parseInt(obj.data(data));
+  function getData(obj, dataVal) {
+    if (isFinite(obj.data(dataVal))) {
+      return parseInt(obj.data(dataVal));
     } else {
-      return obj.data(data);
+      return obj.data(dataVal);
     }
   }
 
@@ -550,7 +550,7 @@ $(document).ready(function () {
   }
 
   function checkbox(obj) {
-    Number(obj.is(":checked"));
+    +obj.is(":checked");
   }
 
   function isInViewport(element) {
