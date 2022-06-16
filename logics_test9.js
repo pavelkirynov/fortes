@@ -526,13 +526,13 @@ $(document).ready(function () {
   }
 
   function hide(obj) {
-    obj.addClass("hidden-elem");
-    //obj.css("display", "none");
+    //obj.addClass("hidden-elem");
+    obj.css("display", "none");
   }
 
   function show(obj) {
-    obj.removeClass("hidden-elem");
-    //obj.css("display", "");
+    //obj.removeClass("hidden-elem");
+    obj.css("display", "");
   }
 
   function getData(obj, dataVal) {
