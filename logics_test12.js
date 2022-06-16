@@ -169,7 +169,10 @@ $(document).ready(function () {
   $(".wrap-border.calculator-btn").on("click", function () {
     let t = {
         _costPerMetre: $("#total").html(),
-        _appliances: $(".choiceActiveBorder").data("appliances"),
+        _appliances:
+          $(".choiceActiveBorder").data("appliances") == undefined
+            ? 0
+            : $(".choiceActiveBorder").data("appliances"),
         _style: style,
         _bath: +$("#bathtub").is(":checked"),
         _shower: +$("#shower").is(":checked"),
@@ -177,7 +180,7 @@ $(document).ready(function () {
         _flooring: val($(":radio[name='flooring']:checked")),
         _hygienicShower: checkbox($("#hygienicShower")),
         _secondGypsumLayer: checkbox($("#secondGypsumLayer")),
-        _floorScreen: checkbox($("#floorscreed")),
+        _floorScreed: checkbox($("#floorscreed")),
         _heatedFlooring: val($("#heatedFlooring")),
         _denoising: checkbox($("#noise")),
         _entranceDoors: checkbox($("#doors")),
