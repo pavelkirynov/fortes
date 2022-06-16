@@ -90,10 +90,8 @@
                 $furniture = $("#furnitureList");
             let furnitureRate = 1 + parseFloat((parseData("S164") / 100)),
                 conditionerRate = 1 + parseFloat(parseData("S120") / 100),
-                workRate = parseData("S42"),
-                materialsRate = parseData("S72"),
                 months = ((style == "modern") || (style == "neoclassic")) ? parseData("G8", space) + 1 : parseData("G8", space);
-            console.log(hrnCourse);
+            //console.log(hrnCourse);
             $("#months").html(months);
 
             if (style == "cozy") {
@@ -112,12 +110,7 @@
                 letter = "Q";
                 letterModel = "E";
             }
-            let flooringNum, ceilingNum, flooringNum2, mouldings, laminat = 0,
-                parket = 0,
-                vynil = 0,
-                gapless = 0,
-                stretch = 0,
-                gypsum = 0;
+					let flooringNum, ceilingNum, flooringNum2, mouldings;
             if (flooring == "laminat") {
                 flooringNum = "60";
                 flooringNum2 = "91";

@@ -169,10 +169,7 @@ $(document).ready(function () {
   $(".wrap-border.calculator-btn").on("click", function () {
     let t = {
         _costPerMetre: $("#total").html(),
-        _appliances:
-          $(".choiceActiveBorder").data("appliances") == undefined
-            ? 0
-            : $(".choiceActiveBorder").data("appliances"),
+        _appliances: $(".choiceActiveBorder").data("appliances"),
         _style: style,
         _bath: +$("#bathtub").is(":checked"),
         _shower: +$("#shower").is(":checked"),

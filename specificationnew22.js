@@ -1024,10 +1024,10 @@ fetch(
       obj.append(text);
     }
 
-    let kitchenMontage = parseData(`${styleLetter + 127}`);
-    let kitchenDelivery = parseData(`${styleLetter + 128}`);
-    let kitchenPrice = parseData(`${styleLetter + 129}`);
-    let kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
+    const kitchenMontage = parseData(`${styleLetter + 127}`);
+    const kitchenDelivery = parseData(`${styleLetter + 128}`);
+    const kitchenPrice = parseData(`${styleLetter + 129}`);
+    const kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
     $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
     $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
     $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
@@ -1042,13 +1042,13 @@ fetch(
         Math.round(sum - sum * 0.9)
       )} грн.</span>`
     );
-    if (!furnitureBool && !appliancesBoolTotal) {
-      $("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
-    } else {
-      $("#totalPriceTotal").html(
-        spacedNum(
-          Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
-        )
-      );
-    }
+    //if (!furnitureBool && !appliancesBoolTotal) {
+    //$("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
+    //} else {
+    $("#totalPriceTotal").html(
+      spacedNum(
+        Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
+      )
+    );
+    //}
   });
