@@ -192,6 +192,7 @@ $(document).ready(function () {
       },
       cookieText = "";
     document.cookie = "";
+    console.log(t);
 
     for (let e in t) {
       cookieText = e + "=" + t[e] + ";";
