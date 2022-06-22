@@ -475,8 +475,8 @@ $(document).ready(function () {
       setActive($(`.calculator-slider-option:eq(${splideCalc.index})`));
     });
 
-    $("form input").on("keydown", function (e) {
-      if (13 != e.keyCode) {
+    $("form input").on("keydown", (e) => {
+      if (e.keyCode == 13) {
         e.preventDefault();
       }
     });

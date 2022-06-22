@@ -25,7 +25,7 @@ $("input").on("change", function () {
   updateUserData();
   returnValue(data.space);
 });
-$("#space").on("focusout", function (e) {
+$("#space").on("focusout", function () {
   $(this).val(
     $(this)
       .val()
@@ -39,11 +39,12 @@ $("#space").on("focusout", function (e) {
   }
   returnValue(data.space);
 });
-$(".slider-tab").click(function () {
+$(".slider-tab").on("click", function () {
   getUserStyle($(this).data("slider-index"));
   returnValue(data.space);
 });
 $("#space").on("focusout", function (e) {
+  console.log(parseInt($(this).val()));
   if (parseInt($(this).val()) < 30 || !$(this).val()) {
     $(this).val(30);
     data.space = +$("#space").val();
@@ -89,7 +90,7 @@ $("#calculate").on("click", function () {
     "w--current"
   );
   returnValue(data.space);
-  $(".calculator-slider-side").slick("slickGoTo", 0);
+  //$(".calculator-slider-side").slick("slickGoTo", 0);
   $(".calculator-slide").toggle(false);
   $(".calculator-slide.main").toggle(true);
   $(".calculator-slide." + style).toggle(true);
@@ -106,7 +107,7 @@ $(".calculatecozy").on("click", function () {
   $(".calculator-tab").removeClass("w--current");
   $(".calculator-tab:eq(0)").addClass("w--current");
   returnValue(data.space);
-  $(".calculator-slider-side").slick("slickGoTo", 0);
+  //$(".calculator-slider-side").slick("slickGoTo", 0);
   $(".calculator-slide").toggle(false);
   $(".calculator-slide.main, .calculator-slide.cozy").toggle(true);
   $(".calculator-slider-option.active").removeClass("active");
