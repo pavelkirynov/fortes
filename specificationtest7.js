@@ -445,6 +445,8 @@ fetch(
       parseFloat(hrnCourse) * parseFloat(parseData("G37")) * parseFloat(space)
     )} грн.</span></div></div>`;
     console.log("G37", parseData("G37"));
+    console.log("space", space);
+    console.log("course", hrnCourse);
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F213"
