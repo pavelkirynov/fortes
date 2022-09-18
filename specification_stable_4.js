@@ -1058,6 +1058,12 @@ fetch(
       parseData(`${styleLetter + 126}`) *
         (1 + parseFloat(parseData("S163")) / 100)
     );
+    console.log(
+      parseData(`${styleLetter + 126}`),
+      parseData(`${styleLetter + 127}`),
+      parseData(`${styleLetter + 127}`),
+      1 + parseFloat(parseData("S163")) / 100
+    );
     const kitchenMontage = Math.round(
       parseData(`${styleLetter + 127}`) *
         (1 + parseFloat(parseData("S163")) / 100)
@@ -1071,7 +1077,7 @@ fetch(
     $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
     $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
     $("#kitchenTotal").html(spacedNum(kitchenTotal) + " грн");
-    $("#kitchenTotalPrice").html(spacedNum(sum) + " грн");
+    $("#kitchenTotalPrice").html(spacedNum(sum) + " грн.");
     if (furnitureBool) {
       furnitureSum = 0;
     }
