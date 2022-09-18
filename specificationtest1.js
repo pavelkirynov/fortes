@@ -23,9 +23,9 @@ fetch(
     }
 
     //first cell of furniture price column + amount of items to count
-    let gorenje = [168, 8],
-      bosch = [182, 9],
-      miele = [197, 8];
+    let gorenje = [167, 9],
+      bosch = [181, 10],
+      miele = [196, 9];
     let cookies = document.cookie
       .split(";")
       .map((cookie) => cookie.split("="))
