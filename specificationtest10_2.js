@@ -790,13 +790,13 @@ fetch(
     }
 
     let optionsPriceArray = [
-      space * parseFloat(parseData(`${letter + 109}`)) * 1.25,
-      +hygienicShower * parseFloat(parseData(`${letter + 110}`)) * 1.25,
-      parseFloat(parseData(`${letter + 111}`)) * 1.25,
+      space * parseFloat(parseData(`${letter + 108}`)) * 1.25,
+      +hygienicShower * parseFloat(parseData(`${letter + 109}`)) * 1.25,
+      parseFloat(parseData(`${letter + 110}`)) * 1.25,
       space *
         1.25 *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 112}`))
+          ? parseFloat(parseData(`${letter + 111}`))
           : space <= 95
           ? 246.43
           : space <= 125
@@ -806,7 +806,7 @@ fetch(
         space *
         1.25 *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 113}`))
+          ? parseFloat(parseData(`${letter + 112}`))
           : space <= 95
           ? 64.57
           : space <= 125
@@ -814,21 +814,21 @@ fetch(
           : 66.24) +
         (+denoising + mouldings === 1 ? 1 : 0) *
           space *
-          parseFloat(parseData(`${letter + 114}`)) *
+          parseFloat(parseData(`${letter + 113}`)) *
           1.25 +
         space *
           1.25 *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 115}`))
+            ? parseFloat(parseData(`${letter + 114}`))
             : space <= 95
             ? 60.78
             : space <= 125
             ? 58.29
             : 79.01),
-      parseFloat(parseData(`${letter + 116}`)) * 1.1 +
-        parseFloat(parseData(`${letter + 117}`)) * 1.25,
+      parseFloat(parseData(`${letter + 115}`)) * 1.1 +
+        parseFloat(parseData(`${letter + 116}`)) * 1.25,
       (space <= 60
-        ? parseFloat(parseData(`${letter + 119}`))
+        ? parseFloat(parseData(`${letter + 118}`))
         : space <= 100
         ? 168.22
         : space <= 130
@@ -836,8 +836,8 @@ fetch(
         : 64.35) *
         space *
         1.25 +
-        parseFloat(parseData(`${letter + 120}`)) * conditionerRate +
-        parseFloat(parseData(`${letter + 120}`)) * conditionerRate * 0.05,
+        parseFloat(parseData(`${letter + 119}`)) * conditionerRate +
+        parseFloat(parseData(`${letter + 119}`)) * conditionerRate * 0.05,
     ];
     let optionsAmountArray = [
       +floorScreed,
@@ -848,7 +848,7 @@ fetch(
       +entranceDoors,
       +conditioning,
     ];
-    let optionsAdressesArray = [109, 110, 111, 112, 113, 116, 120];
+    let optionsAdressesArray = [108, 109, 110, 111, 112, 115, 119];
 
     for (let i = 0; i < optionsAdressesArray.length; i++) {
       let price = optionsPriceArray[i] * optionsAmountArray[i];
