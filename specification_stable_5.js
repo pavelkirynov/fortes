@@ -1054,25 +1054,11 @@ fetch(
       obj.append(text);
     }
 
-    const kitchenPrice = Math.round(
-      parseData(`${styleLetter + 126}`) *
-        (1 + parseFloat(parseData("S163")) / 100)
-    );
-    console.log(
-      parseData(`${styleLetter + 126}`),
-      parseData(`${styleLetter + 127}`),
-      parseData(`${styleLetter + 127}`),
-      1 + parseFloat(parseData("S163")) / 100
-    );
-    const kitchenMontage = Math.round(
-      parseData(`${styleLetter + 127}`) *
-        (1 + parseFloat(parseData("S163")) / 100)
-    );
-    const kitchenDelivery = Math.round(
-      parseData(`${styleLetter + 128}`) *
-        (1 + parseFloat(parseData("S163")) / 100)
-    );
+    const kitchenPrice = Math.round(parseData(`${styleLetter + 126}`));
+    const kitchenMontage = Math.round(parseData(`${styleLetter + 127}`));
+    const kitchenDelivery = Math.round(parseData(`${styleLetter + 128}`));
     const kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
+
     $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
     $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
     $("#kitchenDelivery").html(spacedNum(kitchenDelivery) + " грн.");
