@@ -993,16 +993,16 @@ fetch(
               parseFloat(quantity) * parseFloat(parseData("G36"))
             } грн.</span>`
           );
-        // $appliances.append(
-        //   '<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"></div></div>'
-        // );
-        // $("#appliancesList .option-block .list-option-container.appliances")
-        //   .last()
-        //   .append(
-        //     `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${
-        //       parseFloat(quantity) * parseFloat(parseData("G36"))
-        //     } грн.</span>`
-        //   );
+        $appliances.append(
+          '<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"></div></div>'
+        );
+        $("#appliancesList .option-block .list-option-container.appliances")
+          .last()
+          .append(
+            `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${
+              parseFloat(quantity) * parseFloat(parseData("G36"))
+            } грн.</span>`
+          );
         $appliancesList.append(
           '<div class="division-block pricelist"></div><div class="list-option-container summary"></div>'
         );
