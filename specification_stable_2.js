@@ -4,29 +4,22 @@ fetch(
   .then((res) => res.text())
   .then((text) => {
     let json = JSON.parse(text.substr(47).slice(0, -2));
-
     function parseData(args) {
-      let col = +alphabetPosition(args.slice(0, 1)) - 1;
-      let row = +args.slice(1) - 2;
+      let col = +alphabetPosition(args.slice(0, 1)) - 1,
+        row = +args.slice(1) - 2;
 
       function alphabetPosition(text) {
-        let result = "";
-
-        for (let i = 0; i < text.length; i++) {
-          let code = text.toUpperCase().charCodeAt(i);
-          if (code > 64 && code < 91) {
-            result += code - 64 + " ";
-          }
+        var result = "";
+        for (var i = 0; i < text.length; i++) {
+          var code = text.toUpperCase().charCodeAt(i);
+          if (code > 64 && code < 91) result += code - 64 + " ";
         }
 
         return result.slice(0, result.length - 1);
       }
-
       if (json.table.rows[row].c[col] !== null) {
         return json.table.rows[row].c[col].v;
-      } else {
-        return "";
-      }
+      } else return "";
     }
 
     //first cell of furniture price column + amount of items to count
@@ -69,29 +62,25 @@ fetch(
       workSum = 0,
       furnitureSum = 0,
       $furniture = $("#furnitureList");
-
-    //
-    const furnitureRate = 1 + parseFloat(parseData("S163") / 100);
-    const conditionerRate = 1 + parseFloat(parseData("S119") / 100);
-    const months =
-      space <= 45
-        ? 3
-        : space <= 60
-        ? 4
-        : space <= 80
-        ? 5
-        : space <= 100
-        ? 6
-        : space <= 130
-        ? 7
-        : space <= 150
-        ? 8
-        : space <= 175
-        ? 9
-        : 10 + (style == "modern" || style == "neoclassic")
-        ? 1
-        : 0;
-
+    let furnitureRate = 1 + parseFloat(parseData("S163") / 100),
+      conditionerRate = 1 + parseFloat(parseData("S119") / 100),
+      months =
+        space <= 45
+          ? 3
+          : space <= 60
+          ? 4
+          : space <= 80
+          ? 5
+          : space <= 100
+          ? 6
+          : space <= 130
+          ? 7
+          : space <= 150
+          ? 8
+          : space <= 175
+          ? 9
+          : 10;
+    if (style == "modern" || style == "neoclassic") months += 1;
     $("#months").html(months);
 
     if (style == "cozy") {
@@ -365,7 +354,7 @@ fetch(
       bath,
       shower,
       shower,
-      (bath > 0 ? 1 : 0) + (shower > 0 ? 1 : 0),
+      amountOfBathrooms,
       amountOfBathrooms,
       amountOfBathrooms,
       amountOfBathrooms,
@@ -1065,9 +1054,18 @@ fetch(
       obj.append(text);
     }
 
-    const kitchenMontage = parseData(`${styleLetter + 127}`);
-    const kitchenDelivery = parseData(`${styleLetter + 128}`);
-    const kitchenPrice = parseData(`${styleLetter + 129}`);
+    const kitchenMontage = Math.round(
+      parseData(`${styleLetter + 126}`) *
+        (1 + parseFloat(parseData("S163")) / 100)
+    );
+    const kitchenDelivery = Math.round(
+      parseData(`${styleLetter + 127}`) *
+        (1 + parseFloat(parseData("S163")) / 100)
+    );
+    const kitchenPrice = Math.round(
+      parseData(`${styleLetter + 128}`) *
+        (1 + parseFloat(parseData("S163")) / 100)
+    );
     const kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
     $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
     $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
