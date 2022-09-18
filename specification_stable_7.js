@@ -1081,5 +1081,6 @@ fetch(
         Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
       )
     );
+    $("#course").html(hrnCourse.toFixed(2).toString().replace(/./gi, ","));
     //}
   });
