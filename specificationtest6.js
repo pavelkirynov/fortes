@@ -442,10 +442,9 @@ fetch(
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F211"
     )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(
-      parseFloat(hrnCourse) *
-        parseInt(parseData("G37")) *
-        parseFloat(parseData("H211"))
+      parseFloat(hrnCourse) * parseFloat(parseData("G37")) * parseFloat(space)
     )} грн.</span></div></div>`;
+    console.log("G37", parseData("G37"));
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F213"
