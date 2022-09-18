@@ -4,22 +4,29 @@ fetch(
   .then((res) => res.text())
   .then((text) => {
     let json = JSON.parse(text.substr(47).slice(0, -2));
+
     function parseData(args) {
-      let col = +alphabetPosition(args.slice(0, 1)) - 1,
-        row = +args.slice(1) - 2;
+      let col = +alphabetPosition(args.slice(0, 1)) - 1;
+      let row = +args.slice(1) - 2;
 
       function alphabetPosition(text) {
-        var result = "";
-        for (var i = 0; i < text.length; i++) {
-          var code = text.toUpperCase().charCodeAt(i);
-          if (code > 64 && code < 91) result += code - 64 + " ";
+        let result = "";
+
+        for (let i = 0; i < text.length; i++) {
+          let code = text.toUpperCase().charCodeAt(i);
+          if (code > 64 && code < 91) {
+            result += code - 64 + " ";
+          }
         }
 
         return result.slice(0, result.length - 1);
       }
+
       if (json.table.rows[row].c[col] !== null) {
         return json.table.rows[row].c[col].v;
-      } else return "";
+      } else {
+        return "";
+      }
     }
 
     //first cell of furniture price column + amount of items to count
@@ -37,10 +44,11 @@ fetch(
         {}
       );
     let appliances = cookies._appliances;
-    let hrnCourse = parseFloat(parseData("G7").replace(",", "."));
+    const hrnCourse = parseFloat(parseData("G7").replace(",", "."));
 
-    let styleURL = window.location.href.split("/");
-    let style = styleURL[styleURL.length - 1].split("-")[0];
+    let style = window.location.href
+      .split("/")
+      [styleURL.length - 1].split("-")[0];
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
       furnitureBool = +cookies._furnitureBool,
       space = +cookies._space,
@@ -62,25 +70,29 @@ fetch(
       workSum = 0,
       furnitureSum = 0,
       $furniture = $("#furnitureList");
-    let furnitureRate = 1 + parseFloat(parseData("S163") / 100),
-      conditionerRate = 1 + parseFloat(parseData("S119") / 100),
-      months =
-        space <= 45
-          ? 3
-          : space <= 60
-          ? 4
-          : space <= 80
-          ? 5
-          : space <= 100
-          ? 6
-          : space <= 130
-          ? 7
-          : space <= 150
-          ? 8
-          : space <= 175
-          ? 9
-          : 10;
-    if (style == "modern" || style == "neoclassic") months += 1;
+
+    //
+    const furnitureRate = 1 + parseFloat(parseData("S163") / 100);
+    const conditionerRate = 1 + parseFloat(parseData("S119") / 100);
+    const months =
+      space <= 45
+        ? 3
+        : space <= 60
+        ? 4
+        : space <= 80
+        ? 5
+        : space <= 100
+        ? 6
+        : space <= 130
+        ? 7
+        : space <= 150
+        ? 8
+        : space <= 175
+        ? 9
+        : 10 + (style == "modern" || style == "neoclassic")
+        ? 1
+        : 0;
+
     $("#months").html(months);
 
     if (style == "cozy") {
@@ -354,7 +366,7 @@ fetch(
       bath,
       shower,
       shower,
-      amountOfBathrooms,
+      (bath > 0 ? 1 : 0) + (shower > 0 ? 1 : 0),
       amountOfBathrooms,
       amountOfBathrooms,
       amountOfBathrooms,

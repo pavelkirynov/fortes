@@ -4,22 +4,29 @@ fetch(
   .then((res) => res.text())
   .then((text) => {
     let json = JSON.parse(text.substr(47).slice(0, -2));
+
     function parseData(args) {
-      let col = +alphabetPosition(args.slice(0, 1)) - 1,
-        row = +args.slice(1) - 2;
+      let col = +alphabetPosition(args.slice(0, 1)) - 1;
+      let row = +args.slice(1) - 2;
 
       function alphabetPosition(text) {
-        var result = "";
-        for (var i = 0; i < text.length; i++) {
-          var code = text.toUpperCase().charCodeAt(i);
-          if (code > 64 && code < 91) result += code - 64 + " ";
+        let result = "";
+
+        for (let i = 0; i < text.length; i++) {
+          let code = text.toUpperCase().charCodeAt(i);
+          if (code > 64 && code < 91) {
+            result += code - 64 + " ";
+          }
         }
 
         return result.slice(0, result.length - 1);
       }
+
       if (json.table.rows[row].c[col] !== null) {
         return json.table.rows[row].c[col].v;
-      } else return "";
+      } else {
+        return "";
+      }
     }
 
     //first cell of furniture price column + amount of items to count
@@ -37,10 +44,11 @@ fetch(
         {}
       );
     let appliances = cookies._appliances;
-    let hrnCourse = parseFloat(parseData("G7").replace(",", "."));
+    const hrnCourse = parseFloat(parseData("G7").replace(",", "."));
 
-    let styleURL = window.location.href.split("/");
-    let style = styleURL[styleURL.length - 1].split("-")[0];
+    let style = window.location.href
+      .split("/")
+      [styleURL.length - 1].split("-")[0];
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
       furnitureBool = +cookies._furnitureBool,
       space = +cookies._space,
@@ -62,25 +70,29 @@ fetch(
       workSum = 0,
       furnitureSum = 0,
       $furniture = $("#furnitureList");
-    let furnitureRate = 1 + parseFloat(parseData("S163") / 100),
-      conditionerRate = 1 + parseFloat(parseData("S120") / 100),
-      months =
-        space <= 45
-          ? 3
-          : space <= 60
-          ? 4
-          : space <= 80
-          ? 5
-          : space <= 100
-          ? 6
-          : space <= 130
-          ? 7
-          : space <= 150
-          ? 8
-          : space <= 175
-          ? 9
-          : 10;
-    if (style == "modern" || style == "neoclassic") months += 1;
+
+    //
+    const furnitureRate = 1 + parseFloat(parseData("S163") / 100);
+    const conditionerRate = 1 + parseFloat(parseData("S119") / 100);
+    const months =
+      space <= 45
+        ? 3
+        : space <= 60
+        ? 4
+        : space <= 80
+        ? 5
+        : space <= 100
+        ? 6
+        : space <= 130
+        ? 7
+        : space <= 150
+        ? 8
+        : space <= 175
+        ? 9
+        : 10 + (style == "modern" || style == "neoclassic")
+        ? 1
+        : 0;
+
     $("#months").html(months);
 
     if (style == "cozy") {
@@ -112,38 +124,38 @@ fetch(
       stretch = 0,
       gypsum = 0;
     if (flooring == "laminat") {
-      flooringNum = "60";
-      flooringNum2 = "91";
+      flooringNum = "59";
+      flooringNum2 = "90";
       laminat = 1;
       flooringPrice =
         space *
-        (space <= 70 ? parseFloat(parseData(`${letter + 60}`)) : 198.81);
+        (space <= 70 ? parseFloat(parseData(`${letter + 59}`)) : 198.81);
     } else if (flooring == "vynil") {
-      flooringNum = "61";
+      flooringNum = "60";
       vynil = 1;
+      flooringNum2 = "91";
+      ceilingPrice =
+        space * (space <= 70 ? parseFloat(parseData(`${letter + 60}`)) : 161.8);
+    } else if (flooring == "parket") {
+      flooringNum = "61";
+      parket = 1;
       flooringNum2 = "92";
       ceilingPrice =
-        space * (space <= 70 ? parseFloat(parseData(`${letter + 61}`)) : 161.8);
-    } else if (flooring == "parket") {
-      flooringNum = "62";
-      parket = 1;
-      flooringNum2 = "93";
-      ceilingPrice =
         space *
-        (space <= 80 ? parseFloat(parseData(`${letter + 62}`)) : 240.31);
+        (space <= 80 ? parseFloat(parseData(`${letter + 61}`)) : 240.31);
     }
 
     if (ceiling == "stretch ceiling") {
-      ceilingNum = "56";
+      ceilingNum = "55";
       mouldings = 0;
-      ceilingPrice = parseFloat(parseData(`${letter + 56}`)) * space;
+      ceilingPrice = parseFloat(parseData(`${letter + 55}`)) * space;
     } else if (ceiling == "gapless") {
-      ceilingNum = "57";
+      ceilingNum = "56";
       mouldings = 0;
       ceilingPrice =
         space * (space <= 60 ? 611.64 : space <= 95 ? 548.9 : 581.94);
     } else if (ceiling == "gypsum") {
-      ceilingNum = "58";
+      ceilingNum = "57";
       mouldings = 1;
       ceilingPrice =
         space *
@@ -158,30 +170,36 @@ fetch(
     let $work = $("#workList"),
       textObject = "",
       water =
-        space *
-        (space <= 60
-          ? parseFloat(parseData(`${letter + 42}`))
-          : space <= 100
-          ? 401.12
-          : space <= 140
-          ? 323.29
-          : 359.73),
-      canalisation = parseFloat(parseData(`${letter + 43}`)) * space,
+        2523 *
+        ((amountOfRooms > 0 ? 6 : 0) +
+          (bath > 0 ? 2 : 0) +
+          (shower > 0 ? 2 : 0) +
+          amountOfBathrooms * 2) *
+        //inflation
+        parseFloat(parseData("S43")),
+      canalisation =
+        1974 *
+        ((amountOfRooms > 0 ? 3 : 0) +
+          (bath > 0 ? 1 : 0) +
+          (shower > 0 ? 1 : 0) +
+          amountOfBathrooms * 2) *
+        //inflation
+        parseFloat(parseData("S43")),
       vents =
         space *
         parseInt(amountOfBathrooms) *
-        (space <= 100 ? parseFloat(parseData(`${letter + 44}`)) : 33.98),
-      electricity = parseFloat(parseData(`${letter + 45}`)) * space,
+        (space <= 100 ? parseFloat(parseData(`${letter + 43}`)) : 33.98),
+      electricity = parseFloat(parseData(`${letter + 44}`)) * space,
       workPriceArray = [
         water,
         canalisation,
         vents,
         electricity,
+        parseFloat(parseData(`${letter + 45}`)) * parseInt(amountOfBathrooms),
         parseFloat(parseData(`${letter + 46}`)) * parseInt(amountOfBathrooms),
-        parseFloat(parseData(`${letter + 47}`)) * parseInt(amountOfBathrooms),
         space *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 48}`))
+            ? parseFloat(parseData(`${letter + 47}`))
             : space <= 95
             ? 883.87
             : space <= 125
@@ -189,22 +207,22 @@ fetch(
             : 925.61),
         space *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 49}`))
+            ? parseFloat(parseData(`${letter + 48}`))
             : space <= 100
             ? 687.36
             : space <= 130
             ? 341.25
             : 317.36),
-        parseFloat(parseData(`${letter + 50}`)),
+        parseFloat(parseData(`${letter + 49}`)),
         space *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 52}`))
+            ? parseFloat(parseData(`${letter + 51}`))
             : space <= 95
             ? 1201.64
             : 1251.84),
         140 *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 54}`))
+            ? parseFloat(parseData(`${letter + 53}`))
             : space <= 80
             ? 50
             : space <= 120
@@ -214,7 +232,7 @@ fetch(
             : 162),
         space *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 53}`))
+            ? parseFloat(parseData(`${letter + 52}`))
             : space <= 100
             ? 416.29
             : space <= 135
@@ -222,8 +240,8 @@ fetch(
             : 481.67),
         ceilingPrice,
         flooringPrice,
-        space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 86.84),
-        space * (space <= 70 ? parseFloat(parseData(`${letter + 65}`)) : 170),
+        space * (space <= 70 ? parseFloat(parseData(`${letter + 63}`)) : 86.84),
+        space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 170),
       ];
     let workAmountArray = [
       1,
@@ -244,6 +262,7 @@ fetch(
       1,
     ];
     let workAdressesArray = [
+      41,
       42,
       43,
       44,
@@ -252,45 +271,56 @@ fetch(
       47,
       48,
       49,
-      50,
-      52,
-      54,
+      51,
       53,
+      52,
       ceilingNum,
       flooringNum,
+      63,
       64,
-      65,
     ];
 
     for (let i = 0; i < workAdressesArray.length; i++) {
-      let price = workPriceArray[i] * workAmountArray[i] * parseData("S42");
+      let price = workPriceArray[i] * workAmountArray[i] * parseData("S41");
+
+      console.log(
+        parseData("F" + workAdressesArray[i]),
+        workPriceArray[i],
+        workAmountArray[i],
+        parseData("S41")
+      );
+
       if (price === 0 || price == NaN) {
         continue;
       }
+
       workSum += price;
       textObject = returnObject(
         parseData("F" + workAdressesArray[i]),
         "",
         Math.round(price) + " грн."
       );
+
       $("#workList").append(textObject);
     }
     textObject = returnObject(
-      parseData("F" + 66),
+      parseData("F" + 65),
       "",
-      Math.round(workSum * 0.022 * parseData("S42")) + " грн."
+      Math.round(workSum * 0.022 * parseData("S41")) + " грн."
     );
     $("#workList").append(textObject);
-    workSum += workSum * 0.022 * parseData("S42");
+    workSum += workSum * 0.022 * parseData("S41");
 
     textObject = returnObject(
-      parseData("F" + 67),
+      parseData("F" + 66),
       "",
-      Math.round((months * 2 * 1200 + 3000 + space * 100) * parseData("S42")) +
-        " грн."
+      Math.round(
+        (months * 2 * 1200 + 3000 + space * 100 + space * 120) *
+          parseData("S41")
+      ) + " грн."
     );
     $("#workList").append(textObject);
-    workSum += (months * 2 * 1200 + 3000 + space * 100) * parseData("S42");
+    workSum += (months * 2 * 1200 + 3000 + space * 100) * parseData("S41");
 
     $("#workList").append(
       '</div><div class="list-option-container margined"></div>'
@@ -302,12 +332,13 @@ fetch(
       );
 
     let materialsPriceArray = [
+      parseFloat(parseData(`${letter + 71}`, space)),
       parseFloat(parseData(`${letter + 72}`, space)),
       parseFloat(parseData(`${letter + 73}`, space)),
       parseFloat(parseData(`${letter + 74}`, space)),
       parseFloat(parseData(`${letter + 75}`, space)),
       parseFloat(parseData(`${letter + 76}`, space)),
-      parseFloat(parseData(`${letter + 77}`, space)),
+      parseFloat(parseData(`${letter + 78}`, space)),
       parseFloat(parseData(`${letter + 79}`, space)),
       parseFloat(parseData(`${letter + 80}`, space)),
       parseFloat(parseData(`${letter + 81}`, space)),
@@ -318,9 +349,8 @@ fetch(
       parseFloat(parseData(`${letter + 86}`, space)),
       parseFloat(parseData(`${letter + 87}`, space)),
       parseFloat(parseData(`${letter + 88}`, space)),
-      parseFloat(parseData(`${letter + 89}`, space)),
       parseFloat(parseData(`${letter + flooringNum2}`, space)),
-      space * 100,
+      space * 100 * parseFloat(parseData("S73")),
     ];
     let materialsAmountArray = [
       parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms),
@@ -336,7 +366,7 @@ fetch(
       bath,
       shower,
       shower,
-      amountOfBathrooms,
+      (bath > 0 ? 1 : 0) + (shower > 0 ? 1 : 0),
       amountOfBathrooms,
       amountOfBathrooms,
       amountOfBathrooms,
@@ -346,12 +376,13 @@ fetch(
       1,
     ];
     let materialsAdressesArray = [
+      71,
       72,
       73,
       74,
       75,
       76,
-      77,
+      78,
       79,
       80,
       81,
@@ -362,9 +393,8 @@ fetch(
       86,
       87,
       88,
-      89,
       flooringNum2,
-      94,
+      93,
     ];
     let materialsDimArray = [
       null,
@@ -373,6 +403,7 @@ fetch(
       null,
       null,
       null,
+      78,
       79,
       80,
       81,
@@ -383,23 +414,25 @@ fetch(
       86,
       87,
       88,
-      89,
       flooringNum2,
-      94,
+      93,
     ];
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
       let price =
-        materialsPriceArray[i] * materialsAmountArray[i] * parseData("S72");
+        materialsPriceArray[i] * materialsAmountArray[i] * parseData("S71");
+
       if (price === 0 || price == NaN) {
         continue;
       }
+
       workSum += price;
       textObject = returnObject(
         parseData("F" + materialsAdressesArray[i]),
         "",
         Math.round(price) + " грн."
       );
+
       $("#workList").append(textObject);
     }
 
@@ -769,13 +802,13 @@ fetch(
     }
 
     let optionsPriceArray = [
-      space * parseFloat(parseData(`${letter + 109}`)) * 1.25,
-      +hygienicShower * parseFloat(parseData(`${letter + 110}`)) * 1.25,
-      parseFloat(parseData(`${letter + 111}`)) * 1.25,
+      space * parseFloat(parseData(`${letter + 108}`)) * 1.25,
+      +hygienicShower * parseFloat(parseData(`${letter + 109}`)) * 1.25,
+      parseFloat(parseData(`${letter + 110}`)) * 1.25,
       space *
         1.25 *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 112}`))
+          ? parseFloat(parseData(`${letter + 111}`))
           : space <= 95
           ? 246.43
           : space <= 125
@@ -785,7 +818,7 @@ fetch(
         space *
         1.25 *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 113}`))
+          ? parseFloat(parseData(`${letter + 112}`))
           : space <= 95
           ? 64.57
           : space <= 125
@@ -793,21 +826,21 @@ fetch(
           : 66.24) +
         (+denoising + mouldings === 1 ? 1 : 0) *
           space *
-          parseFloat(parseData(`${letter + 114}`)) *
+          parseFloat(parseData(`${letter + 113}`)) *
           1.25 +
         space *
           1.25 *
           (space <= 60
-            ? parseFloat(parseData(`${letter + 115}`))
+            ? parseFloat(parseData(`${letter + 114}`))
             : space <= 95
             ? 60.78
             : space <= 125
             ? 58.29
             : 79.01),
-      parseFloat(parseData(`${letter + 116}`)) * 1.1 +
-        parseFloat(parseData(`${letter + 117}`)) * 1.25,
+      parseFloat(parseData(`${letter + 115}`)) * 1.1 +
+        parseFloat(parseData(`${letter + 116}`)) * 1.25,
       (space <= 60
-        ? parseFloat(parseData(`${letter + 119}`))
+        ? parseFloat(parseData(`${letter + 118}`))
         : space <= 100
         ? 168.22
         : space <= 130
@@ -815,8 +848,8 @@ fetch(
         : 64.35) *
         space *
         1.25 +
-        parseFloat(parseData(`${letter + 120}`)) * conditionerRate +
-        parseFloat(parseData(`${letter + 120}`)) * conditionerRate * 0.05,
+        parseFloat(parseData(`${letter + 119}`)) * conditionerRate +
+        parseFloat(parseData(`${letter + 119}`)) * conditionerRate * 0.05,
     ];
     let optionsAmountArray = [
       +floorScreed,
@@ -827,7 +860,7 @@ fetch(
       +entranceDoors,
       +conditioning,
     ];
-    let optionsAdressesArray = [109, 110, 111, 112, 113, 116, 120];
+    let optionsAdressesArray = [108, 109, 110, 111, 112, 115, 119];
 
     for (let i = 0; i < optionsAdressesArray.length; i++) {
       let price = optionsPriceArray[i] * optionsAmountArray[i];
