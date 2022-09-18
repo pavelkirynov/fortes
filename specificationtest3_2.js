@@ -158,15 +158,23 @@ fetch(
     let $work = $("#workList"),
       textObject = "",
       water =
-        space *
+        2523 *
+        (amountOfRooms > 0
+          ? 6
+          : 0 + bath * 2 + shower * 2 + amountOfBathrooms * 2),
+      /*space *
         (space <= 60
           ? parseFloat(parseData(`${letter + 41}`))
           : space <= 100
           ? 401.12
           : space <= 140
           ? 323.29
-          : 359.73),
-      canalisation = parseFloat(parseData(`${letter + 42}`)) * space,
+          : 359.73)*/ canalisation =
+        1974 *
+        (amountOfRooms > 0
+          ? 3
+          : 0 + bath * 1 + shower * 1 + amountOfBathrooms * 2),
+      //parseFloat(parseData(`${letter + 42}`)) * space,
       vents =
         space *
         parseInt(amountOfBathrooms) *
