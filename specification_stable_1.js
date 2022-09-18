@@ -46,9 +46,8 @@ fetch(
     let appliances = cookies._appliances;
     const hrnCourse = parseFloat(parseData("G7").replace(",", "."));
 
-    let style = window.location.href
-      .split("/")
-      [styleURL.length - 1].split("-")[0];
+    let styleURL = window.location.href.split("/");
+    let style = styleURL[styleURL.length - 1].split("-")[0];
     let appliancesBoolTotal = +cookies._appliancesBoolTotal,
       furnitureBool = +cookies._furnitureBool,
       space = +cookies._space,
