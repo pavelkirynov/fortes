@@ -22,6 +22,8 @@ fetch(
       } else return "";
     }
 
+    $("#course").html(hrnCourse.toFixed(2).toString().replace(".", ","));
+
     //first cell of furniture price column + amount of items to count
     let gorenje = [167, 9],
       bosch = [181, 10],
@@ -1081,6 +1083,6 @@ fetch(
         Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
       )
     );
-    $("#course").html(hrnCourse.toFixed(2));
+
     //}
   });
