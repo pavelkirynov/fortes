@@ -509,6 +509,13 @@ fetch(
         );
 
       appendFurnitureOption(
+        parseData("F129"),
+        parseData(letterModel + "129"),
+        1,
+        parseFloat(parseData(`${letter + 129}`)),
+        parseData("G129")
+      );
+      appendFurnitureOption(
         parseData("F130"),
         parseData(letterModel + "130"),
         1,
@@ -519,29 +526,22 @@ fetch(
         parseData("F131"),
         parseData(letterModel + "131"),
         1,
-        parseFloat(parseData(`${letter + 131}`)),
+        parseFloat(parseData(`${letter + 131}`, space)),
         parseData("G131")
       );
       appendFurnitureOption(
         parseData("F132"),
         parseData(letterModel + "132"),
-        1,
+        4,
         parseFloat(parseData(`${letter + 132}`, space)),
         parseData("G132")
       );
       appendFurnitureOption(
         parseData("F133"),
         parseData(letterModel + "133"),
-        4,
+        1,
         parseFloat(parseData(`${letter + 133}`, space)),
         parseData("G133")
-      );
-      appendFurnitureOption(
-        parseData("F134"),
-        parseData(letterModel + "134"),
-        1,
-        parseFloat(parseData(`${letter + 134}`, space)),
-        parseData("G134")
       );
 
       appendObject(
