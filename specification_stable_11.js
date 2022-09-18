@@ -179,67 +179,68 @@ fetch(
         space *
         parseInt(amountOfBathrooms) *
         (space <= 100 ? parseFloat(parseData(`${letter + 43}`)) : 33.98),
-      electricity = parseFloat(parseData(`${letter + 44}`)) * space,
-      workPriceArray = [
-        water,
-        canalisation,
-        vents,
-        electricity,
-        parseFloat(parseData(`${letter + 45}`)) * parseInt(amountOfBathrooms),
-        parseFloat(parseData(`${letter + 46}`)) * parseInt(amountOfBathrooms),
-        space *
-          (space <= 60
-            ? parseFloat(parseData(`${letter + 47}`))
-            : space <= 95
-            ? 883.87
-            : space <= 125
-            ? 819.43
-            : 925.61),
-        space *
-          (space <= 60
-            ? parseFloat(parseData(`${letter + 48}`))
-            : space <= 100
-            ? 687.36
-            : space <= 130
-            ? 341.25
-            : 317.36),
-        parseFloat(parseData(`${letter + 49}`)),
-        space *
-          (space <= 60
-            ? parseFloat(parseData(`${letter + 51}`))
-            : space <= 95
-            ? 1201.64
-            : 1251.84),
-        140 *
-          (space <= 60
-            ? parseFloat(parseData(`${letter + 53}`))
-            : space <= 80
-            ? 50
-            : space <= 120
-            ? 78
-            : space <= 180
-            ? 114
-            : 162),
-        space *
-          (space <= 60
-            ? parseFloat(parseData(`${letter + 52}`))
-            : space <= 100
-            ? 416.29
-            : space <= 135
-            ? 443.73
-            : 481.67),
-        ceilingPrice,
-        flooringPrice,
-        space * (space <= 70 ? parseFloat(parseData(`${letter + 63}`)) : 86.84),
-        space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 170),
-      ];
-    let workAmountArray = [
-      1,
-      1,
-      1,
-      1,
-      parseInt(shower),
-      parseInt(bath),
+      electricity = parseFloat(parseData(`${letter + 44}`)) * space;
+
+    const workPriceArray = [
+      //water,
+      //canalisation,
+      //vents,
+      //electricity,
+      //parseFloat(parseData(`${letter + 45}`)) * parseInt(amountOfBathrooms),
+      //parseFloat(parseData(`${letter + 46}`)) * parseInt(amountOfBathrooms),
+      space *
+        (space <= 60
+          ? parseFloat(parseData(`${letter + 47}`))
+          : space <= 95
+          ? 883.87
+          : space <= 125
+          ? 819.43
+          : 925.61),
+      space *
+        (space <= 60
+          ? parseFloat(parseData(`${letter + 48}`))
+          : space <= 100
+          ? 687.36
+          : space <= 130
+          ? 341.25
+          : 317.36),
+      parseFloat(parseData(`${letter + 49}`)),
+      space *
+        (space <= 60
+          ? parseFloat(parseData(`${letter + 51}`))
+          : space <= 95
+          ? 1201.64
+          : 1251.84),
+      140 *
+        (space <= 60
+          ? parseFloat(parseData(`${letter + 53}`))
+          : space <= 80
+          ? 50
+          : space <= 120
+          ? 78
+          : space <= 180
+          ? 114
+          : 162),
+      space *
+        (space <= 60
+          ? parseFloat(parseData(`${letter + 52}`))
+          : space <= 100
+          ? 416.29
+          : space <= 135
+          ? 443.73
+          : 481.67),
+      ceilingPrice,
+      flooringPrice,
+      space * (space <= 70 ? parseFloat(parseData(`${letter + 63}`)) : 86.84),
+      space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 170),
+    ];
+    const workAmountArray = [
+      //1,
+      //1,
+      //1,
+      //1,
+      //parseInt(shower),
+      //parseInt(bath),
       1,
       amountOfBathrooms,
       parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms),
@@ -251,13 +252,13 @@ fetch(
       1,
       1,
     ];
-    let workAdressesArray = [
-      41,
-      42,
-      43,
-      44,
-      45,
-      46,
+    const workAdressesArray = [
+      //41,
+      //42,
+      //43,
+      //44,
+      //45,
+      //46,
       47,
       48,
       49,
@@ -270,15 +271,67 @@ fetch(
       64,
     ];
 
+    workSum += water * parseData("S41");
+    textObject = returnObject(
+      parseData("F41"),
+      "",
+      Math.round(water * parseData("S41")) + " грн."
+    );
+    $("#workList").append(textObject);
+
+    workSum += canalisation * parseData("S41");
+    textObject = returnObject(
+      parseData("F42"),
+      "",
+      Math.round(canalisation * parseData("S41")) + " грн."
+    );
+    $("#workList").append(textObject);
+
+    workSum += vents * parseData("S41");
+    textObject = returnObject(
+      parseData("F43"),
+      "",
+      Math.round(vents * parseData("S41")) + " грн."
+    );
+    $("#workList").append(textObject);
+
+    workSum += electricity * parseData("S41");
+    textObject = returnObject(
+      parseData("F44"),
+      "",
+      Math.round(electricity * parseData("S41")) + " грн."
+    );
+    $("#workList").append(textObject);
+
+    if (parseInt(shower) > 0) {
+      workSum += Math.round(parseInt(shower) * parseData("S41"));
+      textObject = returnObject(
+        parseData(getRightStyleLetter(style) + workAdressesArray[i]),
+        "",
+        Math.round(parseInt(shower) * parseData("S41")) + " грн."
+      );
+      $("#workList").append(textObject);
+    }
+
+    if (parseInt(bath) > 0) {
+      workSum += Math.round(parseInt(bath) * parseData("S41"));
+      textObject = returnObject(
+        parseData(getRightStyleLetter(style) + workAdressesArray[i]),
+        "",
+        Math.round(parseInt(bath) * parseData("S41")) + " грн."
+      );
+      $("#workList").append(textObject);
+    }
+
     for (let i = 0; i < workAdressesArray.length; i++) {
       let price = workPriceArray[i] * workAmountArray[i] * parseData("S41");
 
-      console.log(
-        parseData("F" + workAdressesArray[i]),
-        workPriceArray[i],
-        workAmountArray[i],
-        parseData("S41")
-      );
+      // console.log(
+      //   parseData("F" + workAdressesArray[i]),
+      //   workPriceArray[i],
+      //   workAmountArray[i],
+      //   parseData("S41")
+      // );
 
       if (price === 0 || price == NaN) {
         continue;
@@ -1031,18 +1084,7 @@ fetch(
       $("#appliancesListTotal").toggle(false);
     }
 
-    let styleLetter = "J";
-    if (style == "cozy") {
-      styleLetter = "J";
-    } else if (style == "japandi") {
-      styleLetter = "L";
-    } else if (style == "fusion") {
-      styleLetter = "N";
-    } else if (style == "modern") {
-      styleLetter = "P";
-    } else if (style == "neoclassic") {
-      styleLetter = "R";
-    }
+    const styleLetter = getRightStyleLetter(style);
 
     function spacedNum(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -1054,6 +1096,24 @@ fetch(
 
     function appendObject(obj, text) {
       obj.append(text);
+    }
+
+    function getRightStyleLetter(style) {
+      let styleLetter = "J";
+
+      if (style == "cozy") {
+        styleLetter = "J";
+      } else if (style == "japandi") {
+        styleLetter = "L";
+      } else if (style == "fusion") {
+        styleLetter = "N";
+      } else if (style == "modern") {
+        styleLetter = "P";
+      } else if (style == "neoclassic") {
+        styleLetter = "R";
+      }
+
+      return styleLetter;
     }
 
     const kitchenPrice = Math.round(parseData(`${styleLetter + 126}`));
