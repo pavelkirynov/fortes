@@ -554,18 +554,18 @@ fetch(
       );
 
       appendFurnitureOption(
+        parseData("F137"),
+        parseData(letterModel + "137"),
+        1,
+        parseFloat(parseData(`${letter + 137}`, space)),
+        parseData("G137")
+      );
+      appendFurnitureOption(
         parseData("F138"),
         parseData(letterModel + "138"),
         1,
         parseFloat(parseData(`${letter + 138}`, space)),
         parseData("G138")
-      );
-      appendFurnitureOption(
-        parseData("F139"),
-        parseData(letterModel + "139"),
-        1,
-        parseFloat(parseData(`${letter + 139}`, space)),
-        parseData("G139")
       );
 
       appendObject(
@@ -578,6 +578,13 @@ fetch(
       );
 
       appendFurnitureOption(
+        parseData("F140"),
+        parseData(letterModel + "140"),
+        1,
+        parseFloat(parseData(`${letter + 140}`, space)),
+        parseData("G140")
+      );
+      appendFurnitureOption(
         parseData("F141"),
         parseData(letterModel + "141"),
         1,
@@ -587,18 +594,18 @@ fetch(
       appendFurnitureOption(
         parseData("F142"),
         parseData(letterModel + "142"),
-        1,
+        2,
         parseFloat(parseData(`${letter + 142}`, space)),
         parseData("G142")
       );
+
       appendFurnitureOption(
         parseData("F143"),
         parseData(letterModel + "143"),
-        2,
+        1,
         parseFloat(parseData(`${letter + 143}`, space)),
         parseData("G143")
       );
-
       appendFurnitureOption(
         parseData("F144"),
         parseData(letterModel + "144"),
@@ -612,13 +619,6 @@ fetch(
         1,
         parseFloat(parseData(`${letter + 145}`, space)),
         parseData("G145")
-      );
-      appendFurnitureOption(
-        parseData("F146"),
-        parseData(letterModel + "146"),
-        1,
-        parseFloat(parseData(`${letter + 146}`, space)),
-        parseData("G146")
       );
 
       appendObject(
