@@ -473,8 +473,11 @@ fetch(
       );
       console.log(
         "f127",
+        ";",
         parseData("F127"),
+        ";",
         parseData(letterModel + "127"),
+        ";",
         parseData("G120")
       );
       furnitureSum +=
