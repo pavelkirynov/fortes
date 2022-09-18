@@ -261,6 +261,8 @@ fetch(
       63,
       64,
     ];
+    console.log(parseFloat(parseData(`${letter + 41}`)));
+    console.log(parseFloat(parseData(`${letter + 42}`)));
 
     for (let i = 0; i < workAdressesArray.length; i++) {
       let price = workPriceArray[i] * workAmountArray[i] * parseData("S41");
