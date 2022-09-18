@@ -23,9 +23,9 @@ fetch(
     }
 
     //first cell of furniture price column + amount of items to count
-    let gorenje = [168, 9],
-      bosch = [182, 10],
-      miele = [197, 9];
+    let gorenje = [168, 8],
+      bosch = [182, 9],
+      miele = [197, 8];
     let cookies = document.cookie
       .split(";")
       .map((cookie) => cookie.split("="))
@@ -947,12 +947,12 @@ fetch(
             );
         }
         sum += parseFloat(parseData("D" + (array[0] + i)));
-        sum += parseFloat(parseData("G37"));
+        sum += parseFloat(parseData("G36"));
         quantity++;
       }
 
       if (appliancesBoolTotal) {
-        sum += parseFloat(parseData("G37"));
+        sum += parseFloat(parseData("G36"));
         $appliancesList.append(
           '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
         );
