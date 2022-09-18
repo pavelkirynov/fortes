@@ -471,6 +471,12 @@ fetch(
         parseFloat(parseData(`${letter + 127}`)),
         parseData("G120")
       );
+      console.log(
+        "f127",
+        parseData("F127"),
+        parseData(letterModel + "127"),
+        parseData("G120")
+      );
       furnitureSum +=
         Math.round(parseFloat(parseData(`${letter + 129}`) * furnitureRate)) +
         Math.round(parseFloat(parseData(`${letter + 128}`) * furnitureRate));
