@@ -388,11 +388,11 @@ $(document).ready(function () {
         body: fd,
       }
     )
-      .then(() => {
+      .catch((error) => console.error("Error!", error.message))
+      .finally(() => {
         $(this).html(oldBtnName);
         window.location = url;
-      })
-      .catch((error) => console.error("Error!", error.message));
+      });
   });
 
   $(".closing-btn").on("click", function () {
