@@ -22,8 +22,6 @@ fetch(
       } else return "";
     }
 
-    $("#course").html(hrnCourse.toFixed(2).toString().replace(".", ","));
-
     //first cell of furniture price column + amount of items to count
     let gorenje = [167, 9],
       bosch = [181, 10],
@@ -39,7 +37,9 @@ fetch(
         {}
       );
     let appliances = cookies._appliances;
+
     const hrnCourse = parseFloat(parseData("G7").replace(",", "."));
+    $("#course").html(hrnCourse.toFixed(2).toString().replace(".", ","));
 
     let styleURL = window.location.href.split("/");
     let style = styleURL[styleURL.length - 1].split("-")[0];
