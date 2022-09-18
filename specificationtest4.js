@@ -437,20 +437,20 @@ fetch(
       $("#workList").append(textObject);
     }
     workSum +=
-      parseFloat(hrnCourse) * parseInt(space) * parseInt(parseData("G38")) +
-      months * parseInt(parseData(`${letter + 214}`));
+      parseFloat(hrnCourse) * parseInt(space) * parseInt(parseData("G37")) +
+      months * parseInt(parseData(`${letter + 213}`));
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
-      "F212"
+      "F211"
     )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(
-      parseFloat(hrnCourse) * space * parseInt(parseData("G38"))
+      parseFloat(hrnCourse) * space * parseInt(parseData("G37"))
     )} грн.</span></div></div>`;
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
-      "F214"
+      "F213"
     )}</span><span class=\'list-text amount\'>${parseData(
-      `${letter + 214}`
+      `${letter + 213}`
     )} грн./місяць</span><span class=\'list-text\'>${Math.round(
-      months * parseInt(parseData(`${letter + 214}`))
+      months * parseInt(parseData(`${letter + 213}`))
     )} грн.</span></div></div>`;
     $("#workList").append(textObject);
 
