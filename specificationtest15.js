@@ -632,25 +632,32 @@ fetch(
         );
 
       appendFurnitureOption(
+        parseData("F147"),
+        parseData(letterModel + "147"),
+        Math.ceil(space * 0.48),
+        parseFloat(parseData(`${letter + 147}`, space)),
+        parseData("G147")
+      );
+      appendFurnitureOption(
         parseData("F148"),
         parseData(letterModel + "148"),
-        Math.ceil(space * 0.48),
+        1,
         parseFloat(parseData(`${letter + 148}`, space)),
         parseData("G148")
       );
       appendFurnitureOption(
-        parseData("F149"),
-        parseData(letterModel + "149"),
+        parseData("F150"),
+        parseData(letterModel + "150"),
         1,
-        parseFloat(parseData(`${letter + 149}`, space)),
-        parseData("G149")
+        parseFloat(parseData(`${letter + 150}`, space)),
+        parseData("G150")
       );
       appendFurnitureOption(
-        parseData("F151"),
-        parseData(letterModel + "151"),
+        parseData("F152"),
+        parseData(letterModel + "152"),
         1,
-        parseFloat(parseData(`${letter + 151}`, space)),
-        parseData("G151")
+        parseFloat(parseData(`${letter + 152}`, space)),
+        parseData("G152")
       );
       appendFurnitureOption(
         parseData("F153"),
@@ -659,27 +666,20 @@ fetch(
         parseFloat(parseData(`${letter + 153}`, space)),
         parseData("G153")
       );
-      appendFurnitureOption(
-        parseData("F154"),
-        parseData(letterModel + "154"),
-        1,
-        parseFloat(parseData(`${letter + 154}`, space)),
-        parseData("G154")
-      );
 
       appendFurnitureOption(
-        parseData("F150"),
-        parseData(letterModel + "150"),
+        parseData("F149"),
+        parseData(letterModel + "149"),
         amountOfRooms > 1 ? 1 : 0,
-        parseFloat(parseData(`${letter + 150}`, space)),
-        parseData("G150")
+        parseFloat(parseData(`${letter + 149}`, space)),
+        parseData("G149")
       );
       appendFurnitureOption(
-        parseData("F152"),
-        parseData(letterModel + "152"),
+        parseData("F151"),
+        parseData(letterModel + "151"),
         2,
-        parseFloat(parseData(`${letter + 152}`, space)),
-        parseData("G152")
+        parseFloat(parseData(`${letter + 151}`, space)),
+        parseData("G151")
       );
 
       $("#furnitureList").append(
@@ -691,6 +691,13 @@ fetch(
           `<h4 class=\"pricelist-header small no-padding\">Декор</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
         );
 
+      appendFurnitureOption(
+        parseData("F155"),
+        parseData(letterModel + "155"),
+        amountOfRooms,
+        parseFloat(parseData(`${letter + 155}`)),
+        parseData("G155")
+      );
       appendFurnitureOption(
         parseData("F156"),
         parseData(letterModel + "156"),
@@ -705,33 +712,26 @@ fetch(
         parseFloat(parseData(`${letter + 157}`)),
         parseData("G157")
       );
+
       appendFurnitureOption(
         parseData("F158"),
         parseData(letterModel + "158"),
-        amountOfRooms,
+        1,
         parseFloat(parseData(`${letter + 158}`)),
         parseData("G158")
       );
-
       appendFurnitureOption(
         parseData("F159"),
         parseData(letterModel + "159"),
-        1,
+        amountOfRooms - 1,
         parseFloat(parseData(`${letter + 159}`)),
         parseData("G159")
-      );
-      appendFurnitureOption(
-        parseData("F160"),
-        parseData(letterModel + "160"),
-        amountOfRooms - 1,
-        parseFloat(parseData(`${letter + 160}`)),
-        parseData("G160")
       );
 
       appendObject(
         $("#furnitureList"),
         returnObject(
-          parseData("F" + 162),
+          parseData("F" + 161),
           " ",
           Math.round(furnitureSum * 0.03 * furnitureRate) + " грн."
         )
