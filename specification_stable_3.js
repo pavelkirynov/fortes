@@ -1054,15 +1054,15 @@ fetch(
       obj.append(text);
     }
 
-    const kitchenMontage = Math.round(
+    const kitchenPrice = Math.round(
       parseData(`${styleLetter + 126}`) *
         (1 + parseFloat(parseData("S163")) / 100)
     );
-    const kitchenDelivery = Math.round(
+    const kitchenMontage = Math.round(
       parseData(`${styleLetter + 127}`) *
         (1 + parseFloat(parseData("S163")) / 100)
     );
-    const kitchenPrice = Math.round(
+    const kitchenDelivery = Math.round(
       parseData(`${styleLetter + 128}`) *
         (1 + parseFloat(parseData("S163")) / 100)
     );
