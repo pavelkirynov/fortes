@@ -306,7 +306,7 @@ fetch(
     if (parseInt(shower) > 0) {
       workSum += Math.round(parseInt(shower) * parseData("S41"));
       textObject = returnObject(
-        parseData(getRightStyleLetter(style) + workAdressesArray[i]),
+        parseData(getRightStyleLetter(style) + 45),
         "",
         Math.round(parseInt(shower) * parseData("S41")) + " грн."
       );
@@ -316,7 +316,7 @@ fetch(
     if (parseInt(bath) > 0) {
       workSum += Math.round(parseInt(bath) * parseData("S41"));
       textObject = returnObject(
-        parseData(getRightStyleLetter(style) + workAdressesArray[i]),
+        parseData(getRightStyleLetter(style) + 46),
         "",
         Math.round(parseInt(bath) * parseData("S41")) + " грн."
       );
