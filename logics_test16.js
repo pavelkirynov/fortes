@@ -228,14 +228,16 @@ $(document).ready(function () {
     if ($(".warning").is(":visible")) {
       return false;
     } else {
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbxaZQTrmT0wZsVWErYh9k8yxgTqUn1v9NfBTXyZCv01dFmRsp-4/exec";
       let fd = new FormData($("#wf-form-consult").get(0));
 
-      fetch(scriptURL, {
-        method: "POST",
-        body: fd,
-      }).catch((error) => console.error("Error!", error.message));
+      //заявки на консультацию
+      fetch(
+        "https://script.google.com/macros/s/AKfycbxaZQTrmT0wZsVWErYh9k8yxgTqUn1v9NfBTXyZCv01dFmRsp-4/exec",
+        {
+          method: "POST",
+          body: fd,
+        }
+      ).catch((error) => console.error("Error!", error.message));
     }
   });
 
@@ -382,15 +384,19 @@ $(document).ready(function () {
     fd.append("Термін виконання робіт", months);
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
+      //"https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
+      "https://script.google.com/macros/s/AKfycbyt7QOcA0Dp_2voHy2w1rVGCllwvW_SX_V8iDTD5E7zJohqH0C4/exec",
       {
         method: "POST",
         body: fd,
       }
     )
+      .then(() => {
+        $(this).html(oldBtnName);
+        window.location = url;
+      })
       .catch((error) => console.error("Error!", error.message))
       .finally(() => {
-        $(this).html(oldBtnName);
         window.location = url;
       });
   });
