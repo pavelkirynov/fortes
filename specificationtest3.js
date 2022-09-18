@@ -413,16 +413,16 @@ fetch(
         `<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
       );
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
-      "F100"
+      "F99"
     )}</span><span class=\'list-text amount\'>${months} міс.</span><span class=\'list-text\'> </span></div></div>`;
     $("#workList").append(textObject);
 
     let casualtiesPriceArray = [
+      parseData(`${letter + 100}`),
       parseData(`${letter + 101}`),
-      parseData(`${letter + 102}`),
     ];
     let casualtiesAmountArray = [months, months];
-    let casualtiesAdressesArray = [101, 102];
+    let casualtiesAdressesArray = [100, 101];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
       let price = casualtiesPriceArray[i] * casualtiesAmountArray[i];
