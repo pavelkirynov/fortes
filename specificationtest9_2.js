@@ -302,8 +302,10 @@ fetch(
     textObject = returnObject(
       parseData("F" + 66),
       "",
-      Math.round((months * 2 * 1200 + 3000 + space * 100) * parseData("S41")) +
-        " грн."
+      Math.round(
+        (months * 2 * 1200 + 3000 + space * 100 + space * 120) *
+          parseData("S41")
+      ) + " грн."
     );
     $("#workList").append(textObject);
     workSum += (months * 2 * 1200 + 3000 + space * 100) * parseData("S41");
@@ -336,7 +338,7 @@ fetch(
       parseFloat(parseData(`${letter + 87}`, space)),
       parseFloat(parseData(`${letter + 88}`, space)),
       parseFloat(parseData(`${letter + flooringNum2}`, space)),
-      space * 100,
+      space * 100 * parseFloat(parseData("S73")),
     ];
     let materialsAmountArray = [
       parseFloat(amountOfBathrooms) + parseFloat(amountOfRooms),
