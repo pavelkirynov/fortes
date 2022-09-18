@@ -62,7 +62,7 @@ fetch(
       workSum = 0,
       furnitureSum = 0,
       $furniture = $("#furnitureList");
-    let furnitureRate = 1 + parseFloat(parseData("S164") / 100),
+    let furnitureRate = 1 + parseFloat(parseData("S163") / 100),
       conditionerRate = 1 + parseFloat(parseData("S120") / 100),
       months =
         space <= 45
@@ -894,7 +894,7 @@ fetch(
       appendObject(
         $("#furnitureList .option-block .list-option-container").last(),
         `<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${spacedNum(
-          Math.round(price * amount * (1 + parseFloat(parseData("S164") / 100)))
+          Math.round(price * amount * (1 + parseFloat(parseData("S163") / 100)))
         )} грн.</span>`
       );
     }
