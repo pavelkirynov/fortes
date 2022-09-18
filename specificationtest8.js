@@ -37,7 +37,7 @@ fetch(
         {}
       );
     let appliances = cookies._appliances;
-    let hrnCourse = parseFloat(parseData("G8").replace(",", "."));
+    let hrnCourse = parseFloat(parseData("G7").replace(",", "."));
 
     let styleURL = window.location.href.split("/");
     let style = styleURL[styleURL.length - 1].split("-")[0];
@@ -442,11 +442,8 @@ fetch(
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F211"
     )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Math.round(
-      parseFloat(hrnCourse) * parseFloat(parseData("G37")) * parseFloat(space)
+      hrnCourse * parseFloat(parseData("G37")) * parseFloat(space)
     )} грн.</span></div></div>`;
-    console.log("G37", parseData("G37"));
-    console.log("space", space);
-    console.log("course", hrnCourse);
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F213"
