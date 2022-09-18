@@ -275,7 +275,9 @@ fetch(
     console.log(parseFloat(parseData(`${letter + 42}`)));
 
     for (let i = 0; i < workAdressesArray.length; i++) {
-      let price = workPriceArray[i] * workAmountArray[i] * parseData("S41");
+      const inflation = parseFloat(parseData("S43"));
+      let price =
+        workPriceArray[i] * workAmountArray[i] * inflation * parseData("S41");
       console.log(
         workAdressesArray[i],
         parseData("F" + workAdressesArray[i]),
@@ -283,6 +285,7 @@ fetch(
         workAmountArray[i],
         parseData("S41")
       );
+      console.log();
       if (price === 0 || price == NaN) {
         continue;
       }
@@ -408,8 +411,12 @@ fetch(
     ];
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
+      const inflation = parseFloat(parseData("S73"));
       let price =
-        materialsPriceArray[i] * materialsAmountArray[i] * parseData("S71");
+        materialsPriceArray[i] *
+        materialsAmountArray[i] *
+        parseData("S71") *
+        inflation;
       if (price === 0 || price == NaN) {
         continue;
       }
