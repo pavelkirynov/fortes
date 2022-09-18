@@ -159,9 +159,10 @@ fetch(
       textObject = "",
       water =
         2523 *
-        (amountOfRooms > 0
-          ? 6
-          : 0 + bath * 2 + shower * 2 + amountOfBathrooms * 2),
+        ((amountOfRooms > 0 ? 6 : 0) +
+          (bath > 0 ? 2 : 0) +
+          (shower > 0 ? 2 : 0) +
+          amountOfBathrooms * 2),
       /*space *
         (space <= 60
           ? parseFloat(parseData(`${letter + 41}`))
@@ -171,9 +172,10 @@ fetch(
           ? 323.29
           : 359.73)*/ canalisation =
         1974 *
-        (amountOfRooms > 0
-          ? 3
-          : 0 + bath * 1 + shower * 1 + amountOfBathrooms * 2),
+        ((amountOfRooms > 0 ? 3 : 0) +
+          (bath > 0 ? 1 : 0) +
+          (shower > 0 ? 1 : 0) +
+          amountOfBathrooms * 2),
       //parseFloat(parseData(`${letter + 42}`)) * space,
       vents =
         space *
