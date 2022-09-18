@@ -162,21 +162,17 @@ fetch(
         ((amountOfRooms > 0 ? 6 : 0) +
           (bath > 0 ? 2 : 0) +
           (shower > 0 ? 2 : 0) +
-          amountOfBathrooms * 2),
-      /*space *
-        (space <= 60
-          ? parseFloat(parseData(`${letter + 41}`))
-          : space <= 100
-          ? 401.12
-          : space <= 140
-          ? 323.29
-          : 359.73)*/ canalisation =
+          amountOfBathrooms * 2) *
+        //inflation
+        parseFloat(parseData("S43")),
+      canalisation =
         1974 *
         ((amountOfRooms > 0 ? 3 : 0) +
           (bath > 0 ? 1 : 0) +
           (shower > 0 ? 1 : 0) +
-          amountOfBathrooms * 2),
-      //parseFloat(parseData(`${letter + 42}`)) * space,
+          amountOfBathrooms * 2) *
+        //inflation
+        parseFloat(parseData("S43")),
       vents =
         space *
         parseInt(amountOfBathrooms) *
@@ -275,9 +271,8 @@ fetch(
     console.log(parseFloat(parseData(`${letter + 42}`)));
 
     for (let i = 0; i < workAdressesArray.length; i++) {
-      const inflation = parseFloat(parseData("S43"));
-      let price =
-        workPriceArray[i] * workAmountArray[i] * inflation * parseData("S41");
+      //const inflation = parseFloat(parseData("S43"));
+      let price = workPriceArray[i] * workAmountArray[i] * parseData("S41");
       console.log(
         workAdressesArray[i],
         parseData("F" + workAdressesArray[i]),
@@ -411,7 +406,7 @@ fetch(
     ];
 
     for (let i = 0; i < materialsAdressesArray.length; i++) {
-      const inflation = parseFloat(parseData("S73"));
+      //const inflation = parseFloat(parseData("S73"));
       let price =
         materialsPriceArray[i] *
         materialsAmountArray[i] *
