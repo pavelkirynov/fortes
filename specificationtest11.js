@@ -465,11 +465,11 @@ fetch(
         );
 
       appendFurnitureOption(
-        parseData("F127"),
-        parseData(letterModel + "127"),
+        parseData("F126"),
+        parseData(letterModel + "126"),
         1,
-        parseFloat(parseData(`${letter + 127}`)),
-        parseData("G120")
+        parseFloat(parseData(`${letter + 126}`)),
+        parseData("G119")
       );
       console.log(
         "f127",
@@ -490,9 +490,9 @@ fetch(
         .last()
         .append(
           `<span class=\'name\'>${parseData(
-            "F128"
+            "F127"
           )}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(
-            Math.round(parseFloat(parseData(`${letter + 128}`) * furnitureRate))
+            Math.round(parseFloat(parseData(`${letter + 127}`) * furnitureRate))
           )} грн.</span>`
         );
       $furniture.append(
