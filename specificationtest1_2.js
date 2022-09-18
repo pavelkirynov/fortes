@@ -264,6 +264,13 @@ fetch(
 
     for (let i = 0; i < workAdressesArray.length; i++) {
       let price = workPriceArray[i] * workAmountArray[i] * parseData("S41");
+      console.log(
+        workAdressesArray[i],
+        parseData("F" + workAdressesArray[i]),
+        workPriceArray[i],
+        workAmountArray[i],
+        parseData("S41")
+      );
       if (price === 0 || price == NaN) {
         continue;
       }
