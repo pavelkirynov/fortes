@@ -306,9 +306,11 @@ fetch(
     if (parseInt(shower) > 0) {
       workSum += Math.round(parseInt(shower) * parseData("S41"));
       textObject = returnObject(
-        parseData(getRightStyleLetter(style) + 45),
+        parseData("F45"),
         "",
-        Math.round(parseInt(shower) * parseData("S41")) + " грн."
+        Math.round(
+          parseData(getRightStyleLetter(style) + 45) * parseData("S41")
+        ) + " грн."
       );
       $("#workList").append(textObject);
     }
@@ -316,9 +318,11 @@ fetch(
     if (parseInt(bath) > 0) {
       workSum += Math.round(parseInt(bath) * parseData("S41"));
       textObject = returnObject(
-        parseData(getRightStyleLetter(style) + 46),
+        parseData("F46"),
         "",
-        Math.round(parseInt(bath) * parseData("S41")) + " грн."
+        Math.round(
+          parseData(getRightStyleLetter(style) + 46) * parseData("S41")
+        ) + " грн."
       );
       $("#workList").append(textObject);
     }
