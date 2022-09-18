@@ -502,9 +502,9 @@ fetch(
         .last()
         .append(
           `<span class=\'name\'>${parseData(
-            "F129"
+            "F128"
           )}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${spacedNum(
-            Math.round(parseFloat(parseData(`${letter + 129}`) * furnitureRate))
+            Math.round(parseFloat(parseData(`${letter + 128}`) * furnitureRate))
           )} грн.</span>`
         );
 
