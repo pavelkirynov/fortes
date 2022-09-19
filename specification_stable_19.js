@@ -84,6 +84,7 @@ fetch(
           : 10;
     if (style == "modern" || style == "neoclassic") months += 1;
     $("#months").html(months);
+    const workInflation = parseFloat(parseData("S43"));
 
     if (style == "cozy") {
       letter = "I";
@@ -117,22 +118,17 @@ fetch(
       flooringNum = "59";
       flooringNum2 = "90";
       laminat = 1;
-      flooringPrice =
-        space *
-        (space <= 70 ? parseFloat(parseData(`${letter + 59}`)) : 198.81);
+      flooringPrice = space * (space <= 70 ? 201.26 : 198.81) * workInflation;
     } else if (flooring == "vynil") {
       flooringNum = "60";
       vynil = 1;
       flooringNum2 = "91";
-      ceilingPrice =
-        space * (space <= 70 ? parseFloat(parseData(`${letter + 60}`)) : 161.8);
+      ceilingPrice = space * (space <= 70 ? 220.33 : 161.8) * workInflation;
     } else if (flooring == "parket") {
       flooringNum = "61";
       parket = 1;
       flooringNum2 = "92";
-      ceilingPrice =
-        space *
-        (space <= 80 ? parseFloat(parseData(`${letter + 61}`)) : 240.31);
+      ceilingPrice = space * (space <= 80 ? 396.96 : 240.31) * workInflation;
     }
 
     if (ceiling == "stretch ceiling") {
@@ -182,27 +178,25 @@ fetch(
     const workPriceArray = [
       space *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 47}`))
+          ? 1142.78
           : space <= 95
           ? 883.87
           : space <= 125
           ? 819.43
-          : 925.61),
+          : 925.61) *
+        workInflation,
       space *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 48}`))
+          ? 700.67
           : space <= 100
           ? 687.36
           : space <= 130
           ? 341.25
-          : 317.36),
+          : 317.36) *
+        workInflation *
+        1.1,
       parseFloat(parseData(`${letter + 49}`)),
-      space *
-        (space <= 60
-          ? parseFloat(parseData(`${letter + 51}`))
-          : space <= 95
-          ? 1201.64
-          : 1251.84),
+      space * (space <= 50 ? 1000 : 990) * workInflation,
       140 *
         (space <= 60
           ? parseFloat(parseData(`${letter + 53}`))
@@ -212,19 +206,25 @@ fetch(
           ? 78
           : space <= 180
           ? 114
-          : 162),
+          : 162) *
+        style ==
+        "modern" || style == "neoclassic"
+        ? 1
+        : 0,
       space *
         (space <= 60
-          ? parseFloat(parseData(`${letter + 52}`))
+          ? 418.86
           : space <= 100
           ? 416.29
           : space <= 135
           ? 443.73
-          : 481.67),
+          : 481.67) *
+        (ceiling == "gypsum" ? 1 : 0) *
+        workInflation,
       ceilingPrice,
       flooringPrice,
-      space * (space <= 70 ? parseFloat(parseData(`${letter + 63}`)) : 86.84),
-      space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 170),
+      space * (space <= 70 ? 114.47 : 86.84) * workInflation,
+      space * (space <= 70 ? 206.59 : 170) * workInflation,
     ];
     const workAmountArray = [
       1,
@@ -250,9 +250,6 @@ fetch(
       63,
       64,
     ];
-
-    const workInflation = parseFloat(parseData("S43"));
-    console.log("water", water);
 
     workSum +=
       water * parseData("S41") +
