@@ -258,10 +258,10 @@ fetch(
 
     workSum +=
       water * parseData("S41") +
-      (parseInt(bath) > 0 ? amountOfBathrooms * parseData(letter + 47) : 0) *
-        parseData("S41") -
-      800 * workInflation +
-      (parseInt(shower) > 0 ? amountOfBathrooms * parseData(letter + 46) : 0) *
+      ((parseInt(bath) > 0 ? amountOfBathrooms * parseData(letter + 46) : 0) +
+        (parseInt(shower) > 0
+          ? amountOfBathrooms * parseData(letter + 45)
+          : 0)) *
         parseData("S41") -
       (800 + 950) * workInflation;
     textObject = returnObject(
@@ -269,14 +269,12 @@ fetch(
       "",
       Math.round(
         water * parseData("S41") +
-          (parseInt(bath) > 0
-            ? amountOfBathrooms * parseData(letter + 47)
-            : 0) *
-            parseData("S41") -
-          800 * workInflation +
-          (parseInt(shower) > 0
+          ((parseInt(bath) > 0
             ? amountOfBathrooms * parseData(letter + 46)
-            : 0) *
+            : 0) +
+            (parseInt(shower) > 0
+              ? amountOfBathrooms * parseData(letter + 45)
+              : 0)) *
             parseData("S41") -
           (800 + 950) * workInflation
       ) + " грн."
