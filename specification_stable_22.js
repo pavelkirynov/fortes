@@ -874,8 +874,9 @@ fetch(
         (+denoising + mouldings === 1 ? 1 : 0) *
           space *
           parseFloat(parseData(`${letter + 113}`)) *
-          1.25 +
-        space *
+          1.25,
+      +denoising > 0
+        ? space *
           1.25 *
           (space <= 60
             ? 90.02
@@ -884,7 +885,8 @@ fetch(
             : space <= 125
             ? 58.29
             : 79.01) *
-          optionInflation,
+          optionInflation
+        : 0,
       parseFloat(parseData(`${letter + 115}`)) * 1.1 +
         parseFloat(parseData(`${letter + 116}`)) * 1.25,
       parseFloat(parseData(`${letter + 118}`)) * space * 1.25 +
@@ -896,10 +898,11 @@ fetch(
       +heatedFlooring,
       +secondGypsumLayer,
       !!+denoising,
+      !!+denoising,
       +entranceDoors,
       +conditioning,
     ];
-    let optionsAdressesArray = [108, 109, 110, 111, 112, 115, 119];
+    let optionsAdressesArray = [108, 109, 110, 111, 112, 114, 115, 119];
 
     for (let i = 0; i < optionsAdressesArray.length; i++) {
       let price = optionsPriceArray[i] * optionsAmountArray[i];
