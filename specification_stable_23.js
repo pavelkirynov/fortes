@@ -1137,6 +1137,10 @@ fetch(
     //if (!furnitureBool && !appliancesBoolTotal) {
     //$("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
     //} else {
-
+    $("#totalPriceTotal").html(
+      spacedNum(
+        Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
+      )
+    );
     //}
   });
