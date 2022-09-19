@@ -176,9 +176,7 @@ fetch(
         //inflation
         parseFloat(parseData("S43")),
       vents =
-        space *
-        parseInt(amountOfBathrooms) *
-        (space <= 100 ? parseFloat(parseData(`${letter + 43}`)) : 33.98),
+        space * parseInt(amountOfBathrooms) * (space <= 100 ? 83.2 : 33.98),
       electricity = parseFloat(parseData(`${letter + 44}`)) * space;
 
     const workPriceArray = [
@@ -289,11 +287,11 @@ fetch(
     );
     $("#workList").append(textObject);
 
-    workSum += vents * parseData("S41");
+    workSum += vents * parseData("S41") * workInflation;
     textObject = returnObject(
       parseData("F43"),
       "",
-      Math.round(vents * parseData("S41")) + " грн."
+      Math.round(vents * parseData("S41") * workInflation) + " грн."
     );
     $("#workList").append(textObject);
 
@@ -306,25 +304,21 @@ fetch(
     $("#workList").append(textObject);
 
     if (parseInt(shower) > 0) {
-      workSum += Math.round(parseInt(shower) * parseData("S41"));
+      workSum += Math.round(parseInt(shower));
       textObject = returnObject(
         parseData("F45"),
         "",
-        Math.round(
-          parseData(getRightStyleLetter(style) + 45) * parseData("S41")
-        ) + " грн."
+        Math.round(parseData(getRightStyleLetter(style) + 45)) + " грн."
       );
       $("#workList").append(textObject);
     }
 
     if (parseInt(bath) > 0) {
-      workSum += Math.round(parseInt(bath) * parseData("S41"));
+      workSum += Math.round(parseInt(bath));
       textObject = returnObject(
         parseData("F46"),
         "",
-        Math.round(
-          parseData(getRightStyleLetter(style) + 46) * parseData("S41")
-        ) + " грн."
+        Math.round(parseData(getRightStyleLetter(style) + 46)) + " грн."
       );
       $("#workList").append(textObject);
     }
