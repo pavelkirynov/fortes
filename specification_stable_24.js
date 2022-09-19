@@ -67,21 +67,19 @@ fetch(
     let furnitureRate = 1 + parseFloat(parseData("S163") / 100),
       conditionerRate = 1 + parseFloat(parseData("S119") / 100),
       months =
-        space <= 45
+        space <= 40
           ? 3
-          : space <= 60
-          ? 4
           : space <= 80
-          ? 5
+          ? 4
           : space <= 100
-          ? 6
+          ? 5
           : space <= 130
-          ? 7
+          ? 6
           : space <= 150
-          ? 8
+          ? 7
           : space <= 175
-          ? 9
-          : 10;
+          ? 8
+          : 9;
     if (style == "modern" || style == "neoclassic") {
       months += 1;
     }
