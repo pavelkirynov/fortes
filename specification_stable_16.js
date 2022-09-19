@@ -254,28 +254,31 @@ fetch(
     ];
 
     const workInflation = parseFloat(parseData("S43"));
+    console.log("water", water);
 
     workSum +=
-      water * parseData("S41") -
-      950 * workInflation +
-      (bath ? amountOfBathrooms * parseData(letter + 47) : 0) *
+      water * parseData("S41") +
+      (parseInt(bath) > 0 ? amountOfBathrooms * parseData(letter + 47) : 0) *
         parseData("S41") -
       800 * workInflation +
-      (shower ? amountOfBathrooms * parseData(letter + 46) : 0) *
+      (parseInt(shower) > 0 ? amountOfBathrooms * parseData(letter + 46) : 0) *
         parseData("S41") -
-      800 * workInflation;
+      (800 + 950) * workInflation;
     textObject = returnObject(
       parseData("F41"),
       "",
       Math.round(
-        water * parseData("S41") -
-          950 * workInflation +
-          (bath ? amountOfBathrooms * parseData(letter + 47) : 0) *
+        water * parseData("S41") +
+          (parseInt(bath) > 0
+            ? amountOfBathrooms * parseData(letter + 47)
+            : 0) *
             parseData("S41") -
           800 * workInflation +
-          (shower ? amountOfBathrooms * parseData(letter + 46) : 0) *
+          (parseInt(shower) > 0
+            ? amountOfBathrooms * parseData(letter + 46)
+            : 0) *
             parseData("S41") -
-          800 * workInflation
+          (800 + 950) * workInflation
       ) + " грн."
     );
     $("#workList").append(textObject);
