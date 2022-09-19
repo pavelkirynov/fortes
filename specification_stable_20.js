@@ -844,7 +844,7 @@ fetch(
         );
     }
 
-    const optionInflation = parseFloat(parseData("T109"));
+    const optionInflation = parseFloat(parseData("T108"));
 
     let optionsPriceArray = [
       space * parseFloat(parseData(`${letter + 108}`)) * 1.25,
