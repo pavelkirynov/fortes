@@ -182,12 +182,6 @@ fetch(
       electricity = parseFloat(parseData(`${letter + 44}`)) * space;
 
     const workPriceArray = [
-      //water,
-      //canalisation,
-      //vents,
-      //electricity,
-      //parseFloat(parseData(`${letter + 45}`)) * parseInt(amountOfBathrooms),
-      //parseFloat(parseData(`${letter + 46}`)) * parseInt(amountOfBathrooms),
       space *
         (space <= 60
           ? parseFloat(parseData(`${letter + 47}`))
@@ -235,12 +229,6 @@ fetch(
       space * (space <= 70 ? parseFloat(parseData(`${letter + 64}`)) : 170),
     ];
     const workAmountArray = [
-      //1,
-      //1,
-      //1,
-      //1,
-      //parseInt(shower),
-      //parseInt(bath),
       1,
       amountOfBathrooms,
       parseFloat(amountOfRooms) + parseFloat(amountOfBathrooms),
@@ -253,12 +241,6 @@ fetch(
       1,
     ];
     const workAdressesArray = [
-      //41,
-      //42,
-      //43,
-      //44,
-      //45,
-      //46,
       47,
       48,
       49,
@@ -271,21 +253,29 @@ fetch(
       64,
     ];
 
+    const workInflation = parseFloat(parseData("S43"));
+
     workSum +=
-      water * parseData("S41") - 950 * parseData("S43") + bath
-        ? amountOfBathrooms * parseData(letter + 47)
-        : 0 * parseData("S41") - 800 * parseData("S43") + shower
-        ? amountOfBathrooms * parseData(letter + 46)
-        : 0 * parseData("S41") - 800 * parseData("S43");
+      water * parseData("S41") -
+      950 * workInflation +
+      (bath ? amountOfBathrooms * parseData(letter + 47) : 0) *
+        parseData("S41") -
+      800 * workInflation +
+      (shower ? amountOfBathrooms * parseData(letter + 46) : 0) *
+        parseData("S41") -
+      800 * workInflation;
     textObject = returnObject(
       parseData("F41"),
       "",
       Math.round(
-        water * parseData("S41") - 950 * parseData("S43") + bath
-          ? amountOfBathrooms * parseData(letter + 47)
-          : 0 * parseData("S41") - 800 * parseData("S43") + shower
-          ? amountOfBathrooms * parseData(letter + 46)
-          : 0 * parseData("S41") - 800 * parseData("S43")
+        water * parseData("S41") -
+          950 * workInflation +
+          (bath ? amountOfBathrooms * parseData(letter + 47) : 0) *
+            parseData("S41") -
+          800 * workInflation +
+          (shower ? amountOfBathrooms * parseData(letter + 46) : 0) *
+            parseData("S41") -
+          800 * workInflation
       ) + " грн."
     );
     $("#workList").append(textObject);
