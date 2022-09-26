@@ -123,12 +123,12 @@ fetch(
       flooringNum = "60";
       vynil = 1;
       flooringNum2 = "91";
-      ceilingPrice = space * (space <= 70 ? 220.33 : 161.8) * workInflation;
+      flooringPrice = space * (space <= 70 ? 220.33 : 161.8) * workInflation;
     } else if (flooring == "parket") {
       flooringNum = "61";
       parket = 1;
       flooringNum2 = "92";
-      ceilingPrice = space * (space <= 80 ? 396.96 : 240.31) * workInflation;
+      flooringPrice = space * (space <= 80 ? 396.96 : 240.31) * workInflation;
     }
 
     if (ceiling == "stretch ceiling") {
