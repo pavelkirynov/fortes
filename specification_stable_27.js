@@ -67,21 +67,19 @@ fetch(
     let furnitureRate = 1 + parseFloat(parseData("S163") / 100),
       conditionerRate = 1 + parseFloat(parseData("S119") / 100),
       months =
-        space <= 45
+        space <= 40
           ? 3
-          : space <= 60
-          ? 4
           : space <= 80
-          ? 5
+          ? 4
           : space <= 100
-          ? 6
+          ? 5
           : space <= 130
-          ? 7
+          ? 6
           : space <= 150
-          ? 8
+          ? 7
           : space <= 175
-          ? 9
-          : 10;
+          ? 8
+          : 9;
     if (style == "modern" || style == "neoclassic") {
       months += 1;
     }
@@ -141,7 +139,16 @@ fetch(
       ceilingNum = "56";
       mouldings = 0;
       ceilingPrice =
-        space * (space <= 60 ? 611.64 : space <= 95 ? 548.9 : 581.94);
+        space *
+        (space <= 60
+          ? 611.64
+          : space <= 95
+          ? 548.9
+          : space <= 1000
+          ? 581.94
+          : 0) *
+        workInflation *
+        1.65;
     } else if (ceiling == "gypsum") {
       ceilingNum = "57";
       mouldings = 1;
@@ -153,7 +160,9 @@ fetch(
           ? 281.22
           : space <= 125
           ? 338.33
-          : 362.47);
+          : 362.47) *
+        1.35 *
+        workInflation;
     }
     let $work = $("#workList"),
       textObject = "",
@@ -255,6 +264,7 @@ fetch(
       63,
       64,
     ];
+    console.log(flooringNum, flooringPrice);
 
     workSum +=
       water * parseData("S41") +
@@ -1139,10 +1149,15 @@ fetch(
     //if (!furnitureBool && !appliancesBoolTotal) {
     //$("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
     //} else {
-    $("#totalPriceTotal").html(
-      spacedNum(
-        Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
-      )
-    );
+
+    if (Math.round(parseInt(cookies._summedPrice) * hrnCourse) < workSum) {
+      $("#totalPriceTotal").html(spacedNum(Math.round(workSum) + " грн. *"));
+    } else {
+      $("#totalPriceTotal").html(
+        spacedNum(
+          Math.round(parseInt(cookies._summedPrice) * hrnCourse) + " грн. *"
+        )
+      );
+    }
     //}
   });
