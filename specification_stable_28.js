@@ -104,31 +104,20 @@ fetch(
     }
     let ceilingPrice = 0,
       flooringPrice = 0;
-    let flooringNum,
-      ceilingNum,
-      flooringNum2,
-      mouldings,
-      laminat = 0,
-      parket = 0,
-      vynil = 0,
-      gapless = 0,
-      stretch = 0,
-      gypsum = 0;
+    let flooringNum, ceilingNum, flooringNum2, mouldings;
+
     if (flooring == "laminat") {
       flooringNum = "59";
       flooringNum2 = "90";
-      laminat = 1;
       flooringPrice = space * (space <= 70 ? 201.26 : 198.81) * workInflation;
     } else if (flooring == "vynil") {
       flooringNum = "60";
-      vynil = 1;
       flooringNum2 = "91";
       flooringPrice = space * (space <= 70 ? 220.33 : 161.8) * workInflation;
     } else if (flooring == "parket") {
       flooringNum = "61";
-      parket = 1;
       flooringNum2 = "92";
-      flooringPrice = space * (space <= 80 ? 396.96 : 240.31) * workInflation;
+      flooringPrice = space * (space <= 80 ? 369.96 : 240.31) * workInflation;
     }
 
     if (ceiling == "stretch ceiling") {
@@ -264,7 +253,6 @@ fetch(
       63,
       64,
     ];
-    console.log(flooringNum, flooringPrice);
 
     workSum +=
       water * parseData("S41") +
