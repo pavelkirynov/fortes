@@ -1115,16 +1115,11 @@ fetch(
       return styleLetter;
     }
 
-    const kitchenPrice = Math.round(parseData(`${styleLetter + 126}`));
-    const kitchenMontage = Math.round(parseData(`${styleLetter + 127}`));
-    const kitchenDelivery = Math.round(parseData(`${styleLetter + 128}`));
+    const rightStyleLetter = getRightStyleLetter(style);
+    const kitchenPrice = Math.round(parseData(`${rightStyleLetter + 126}`));
+    const kitchenMontage = Math.round(parseData(`${rightStyleLetter + 127}`));
+    const kitchenDelivery = Math.round(parseData(`${rightStyleLetter + 128}`));
     const kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
-    console.log(
-      parseData(`${styleLetter + 126}`),
-      parseData(`${styleLetter + 127}`),
-      parseData(`${styleLetter + 128}`),
-      parseData(`${styleLetter + 129}`)
-    );
 
     $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
     $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
