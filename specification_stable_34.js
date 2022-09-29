@@ -557,8 +557,8 @@ fetch(
         parseData("G120")
       );
       furnitureSum +=
-        Math.round(parseFloat(parseData(`${letter + 129}`) * furnitureRate)) +
-        Math.round(parseFloat(parseData(`${letter + 128}`) * furnitureRate));
+        parseFloat(parseData(`${letter + 129}`) * furnitureRate) +
+        parseFloat(parseData(`${letter + 128}`) * furnitureRate);
       $furniture.append(
         '<div class="option-block"><div class="division-block pricelist small-heading"></div><div class="list-option-container"></div></div>'
       );
@@ -813,6 +813,7 @@ fetch(
         )
       );
       furnitureSum += furnitureSum * 0.03 * furnitureRate;
+      console.log(furnitureSum);
       appendObject(
         $("#furnitureList"),
         '<div class="division-block pricelist"></div><div class="list-option-container summary"></div>'
