@@ -954,6 +954,11 @@ fetch(
       if (amount == 0 || !amount || !price) {
         return;
       }
+      console.log(
+        `sum: ${furnitureSum} : price: ${
+          price * furnitureRate * amount * furnitureBool
+        }`
+      );
       furnitureSum += price * furnitureRate * amount * furnitureBool;
       appendObject(
         $furniture,
