@@ -1119,6 +1119,12 @@ fetch(
     const kitchenMontage = Math.round(parseData(`${styleLetter + 127}`));
     const kitchenDelivery = Math.round(parseData(`${styleLetter + 128}`));
     const kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
+    console.log(
+      `${styleLetter + 126}`,
+      `${styleLetter + 127}`,
+      `${styleLetter + 128}`,
+      `${styleLetter + 129}`
+    );
 
     $("#kitchenPrice").html(spacedNum(kitchenPrice) + " грн.");
     $("#kitchenMontage").html(spacedNum(kitchenMontage) + " грн.");
