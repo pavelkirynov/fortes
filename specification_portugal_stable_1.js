@@ -371,7 +371,9 @@ fetch(
     $("#workList .list-option-container")
       .last()
       .append(
-        `<h4 class=\"pricelist-header small no-padding\">Комплектуючі та чистові матеріали</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`
+        `<h4 class=\"pricelist-header small no-padding\">${parseData(
+          "F70"
+        )}</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`
       );
 
     let materialsPriceArray = [
@@ -486,7 +488,9 @@ fetch(
     $("#workList .list-option-container")
       .last()
       .append(
-        `<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+        `<h4 class=\"pricelist-header small no-padding\">${parseData(
+          "F98"
+        )}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
       );
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${parseData(
       "F99"
@@ -537,7 +541,9 @@ fetch(
       $("#furnitureList .list-option-container")
         .last()
         .append(
-          `<h4 class=\"pricelist-header small no-padding\">Кухня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+          `<h4 class=\"pricelist-header small no-padding\">${parseData(
+            "F125"
+          )}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
         );
 
       appendFurnitureOption(
@@ -626,7 +632,9 @@ fetch(
       );
       appendObject(
         $("#furnitureList .list-option-container").last(),
-        `<h4 class=\"pricelist-header small no-padding\">Вітальня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+        `<h4 class=\"pricelist-header small no-padding\">${parseData(
+          "F136"
+        )}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
       );
 
       appendFurnitureOption(
@@ -650,7 +658,9 @@ fetch(
       );
       appendObject(
         $("#furnitureList .list-option-container").last(),
-        `<h4 class=\"pricelist-header small no-padding\">Спальня</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+        `<h4 class=\"pricelist-header small no-padding\">${parseData(
+          "F139"
+        )}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
       );
 
       appendFurnitureOption(
@@ -704,7 +714,9 @@ fetch(
       $("#furnitureList .list-option-container")
         .last()
         .append(
-          `<h4 class=\"pricelist-header small no-padding\">Світильники</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+          `<h4 class=\"pricelist-header small no-padding\">${parseData(
+            "F146"
+          )}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
         );
 
       appendFurnitureOption(
@@ -764,7 +776,9 @@ fetch(
       $("#furnitureList .list-option-container")
         .last()
         .append(
-          `<h4 class=\"pricelist-header small no-padding\">Декор</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+          `<h4 class=\"pricelist-header small no-padding\">${parseData(
+            "F154"
+          )}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
         );
 
       appendFurnitureOption(
@@ -841,7 +855,9 @@ fetch(
       $("#workList .list-option-container")
         .last()
         .append(
-          `<h4 class=\"pricelist-header small no-padding\"> Опції</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`
+          `<h4 class=\"pricelist-header small no-padding\">${parseData(
+            "F107"
+          )}</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`
         );
     }
 
@@ -1049,7 +1065,9 @@ fetch(
         $("#appliancesListTotal .option-block .list-option-container")
           .last()
           .append(
-            `<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${
+            `<span class=\'name\'>${parseData(
+              "F176"
+            )}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${
               parseFloat(quantity) * parseFloat(parseData("G36"))
             } грн.</span>`
           );
@@ -1059,7 +1077,9 @@ fetch(
         $("#appliancesList .option-block .list-option-container.appliances")
           .last()
           .append(
-            `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${
+            `<span class=\'name white\'>${parseData(
+              "F176"
+            )}</span><span class=\'list-text white\'>${
               parseFloat(quantity) * parseFloat(parseData("G36"))
             } грн.</span>`
           );
