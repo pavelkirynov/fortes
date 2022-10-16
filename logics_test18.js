@@ -232,7 +232,6 @@ $(document).ready(function () {
       let oldBtnName = $(this).html();
       $(this).html("Зачекайте...");
 
-      let url = $(this).attr("href");
       let fd = new FormData($("#wf-form-consult").get(0));
 
       //заявки на консультацию
@@ -249,7 +248,7 @@ $(document).ready(function () {
         })
         .catch((error) => console.error("Error!", error.message))
         .finally(() => {
-          window.location = url;
+          window.location = "/kdyakuiemo";
         });
     }
   });
