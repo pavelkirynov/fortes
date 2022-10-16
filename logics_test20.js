@@ -230,8 +230,8 @@ $(document).ready(function () {
       return false;
     } else {
       e.preventDefault();
-      let oldBtnName = $(this).html();
-      $(this).html("Зачекайте...");
+      let oldBtnName = $("#submitBtn").html();
+      $("#submitBtn").html("Зачекайте...");
 
       let fd = new FormData($("#wf-form-consult").get(0));
 
@@ -244,7 +244,7 @@ $(document).ready(function () {
         }
       )
         .then(() => {
-          $(this).html(oldBtnName);
+          $("#submitBtn").html(oldBtnName);
           window.location = url;
         })
         .catch((error) => console.error("Error!", error.message))
