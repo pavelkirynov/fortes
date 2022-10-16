@@ -245,11 +245,14 @@ $(document).ready(function () {
       )
         .then(() => {
           $("#submitBtn").html(oldBtnName);
-          window.location = url;
         })
         .catch((error) => console.error("Error!", error.message))
         .finally(() => {
-          window.location = "/kdyakuiemo";
+          if (window.location.href.includes("/ru")) {
+            window.location = "/ru/kdyakuiemo";
+          } else {
+            window.location = "/kdyakuiemo";
+          }
         });
     }
   });
