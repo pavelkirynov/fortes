@@ -229,7 +229,7 @@ $(document).ready(function () {
       e.preventDefault();
       return false;
     } else {
-      e.preventDefault();
+      /*e.preventDefault();
       let oldBtnName = $("#submitBtn").html();
       $("#submitBtn").html("Зачекайте...");
 
@@ -253,7 +253,7 @@ $(document).ready(function () {
           } else {
             window.location = "/kdyakuiemo";
           }
-        });
+        });*/
     }
   });
 
