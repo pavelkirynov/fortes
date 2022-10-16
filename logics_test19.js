@@ -206,7 +206,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#wf-form-consult").on("submit", function () {
+  $("#wf-form-consult").on("submit", (e) => {
     if (!$("#agreementCheckbox").is(":checked")) {
       show($(".warning.agreementcheckbox"));
     } else {
@@ -226,6 +226,7 @@ $(document).ready(function () {
     }
 
     if ($(".warning").is(":visible")) {
+      e.preventDefault();
       return false;
     } else {
       e.preventDefault();
