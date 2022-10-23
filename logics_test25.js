@@ -196,7 +196,6 @@ $(function () {
       },
       cookieText = "";
     document.cookie = "";
-    console.log(t);
 
     for (let e in t) {
       cookieText = e + "=" + t[e] + ";";
@@ -337,13 +336,13 @@ $(function () {
   //form logics
   $(".from-2 :radio").on("change", function () {
     if ($(".form-2 :radio:checked").is("#emailCheckbox")) {
-      $("#email").toggle(true);
-      $("#phone").toggle(false);
-      $("#phone").val("");
+      $("#sEmail").toggle(true);
+      $("#sPhone").toggle(false);
+      $("#sPhone").val("");
     } else {
-      $("#phone").toggle(true);
-      $("#email").toggle(false);
-      $("#email").val("");
+      $("#sPhone").toggle(true);
+      $("#sEmail").toggle(false);
+      $("#sEmail").val("");
     }
   });
 
@@ -354,19 +353,19 @@ $(function () {
     } else {
       $(".warning.agreementcheckbox").toggle(false);
     }
-    if (!$("#phone").val() && !$("#email").val()) {
+    if (!$("#sPhone").val() && !$("#sEmail").val()) {
       $(".warning.inputs.second").toggle(true);
       e.preventDefault();
     } else {
       $(".warning.inputs.second").toggle(false);
     }
-    if (!$("#name").val()) {
+    if (!$("#sName").val()) {
       $(".warning.inputs.first").toggle(true);
       e.preventDefault();
     } else {
       $(".warning.inputs.first").toggle(false);
     }
-    if (!!$("#email").val() && !emailRegex.test($("#email").val())) {
+    if (!!$("#sEmail").val() && !emailRegex.test($("#sEmail").val())) {
       $(".warning.inputs.email").toggle(true);
       e.preventDefault();
     } else {
