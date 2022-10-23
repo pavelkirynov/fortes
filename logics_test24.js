@@ -1,7 +1,6 @@
-$(document).ready(function () {
-  $("input").each(function () {
-    $(this).attr("name", $(this).data("name"));
-  });
+$(function () {
+  const emailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   $(".choiceactive.card").toggleClass("choiceActiveBorder");
   $("#laminat").prop("checked", !0);
@@ -22,6 +21,10 @@ $(document).ready(function () {
   const splideCalc = new Splide(".slider-container.splide", splideOptions);
 
   splideCalc.mount();
+
+  $("input").each(function () {
+    $(this).attr("name", $(this).data("name"));
+  });
 
   if ($(".slider-wrapper.splide").length) {
     $(".fact-link").on("click", function () {
@@ -87,6 +90,7 @@ $(document).ready(function () {
         $(".splide__slide.is-active .active img").height()
       );
     }
+
     changeHeight();
 
     $(".slick-btn-prev, .slick-btn-next").on("click", function () {
@@ -206,7 +210,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#wf-form-consult").on("submit", function () {
+  $("#wf-form-consult").on("submit", (e) => {
     if (!$("#agreementCheckbox").is(":checked")) {
       show($(".warning.agreementcheckbox"));
     } else {
@@ -226,8 +230,13 @@ $(document).ready(function () {
     }
 
     if ($(".warning").is(":visible")) {
+      e.preventDefault();
       return false;
     } else {
+      e.preventDefault();
+      let oldBtnName = $("#submitBtn").html();
+      $("#submitBtn").html("Зачекайте...");
+
       let fd = new FormData($("#wf-form-consult").get(0));
 
       //заявки на консультацию
@@ -237,7 +246,18 @@ $(document).ready(function () {
           method: "POST",
           body: fd,
         }
-      ).catch((error) => console.error("Error!", error.message));
+      )
+        .then(() => {
+          $("#submitBtn").html(oldBtnName);
+        })
+        .catch((error) => console.error("Error!", error.message))
+        .finally(() => {
+          if (window.location.href.includes("/ru")) {
+            window.location = "/ru/kdyakuiemo";
+          } else {
+            window.location = "/kdyakuiemo";
+          }
+        });
     }
   });
 
@@ -312,93 +332,135 @@ $(document).ready(function () {
 
   $(".submit-container .button").on("click", function (e) {
     e.preventDefault();
-    let oldBtnName = $(this).html();
-    $(this).html("Зачекайте...");
+  });
 
-    let url = $(this).attr("href");
-    let fd = new FormData();
-    let ukrStyle =
-      data.style === "cozy"
-        ? "Козі"
-        : data.style === "japandi"
-        ? "Джапанді"
-        : data.style === "fusion"
-        ? "Фьюжн"
-        : data.style === "modern"
-        ? "Модерн"
-        : "Нео Класика";
-    let months =
-      data.space < 60
-        ? 4
-        : data.space <= 80
-        ? 5
-        : data.space <= 100
-        ? 6
-        : data.space <= 130
-        ? 7
-        : data.space <= 150
-        ? 8
-        : data.space <= 175
-        ? 9
-        : 10;
-    fd.append("Стиль", ukrStyle);
-    fd.append("Ціна за метр", $("#total").html());
-    fd.append("Загальна ціна", $("#totalWhole").html());
-    fd.append("Площа", val($("#space")));
-    fd.append("Кількість кімнат", val($("#amountOfRooms")));
-    fd.append("Кількість санвузлів", val($("#amountOfBathrooms")));
-    fd.append("Ванна", checkbox($("#bathtub")));
-    fd.append("Душ", checkbox($("#shower")));
+  //form logics
+  $(".from-2 :radio").on("change", function () {
+    if ($(".form-2 :radio:checked").is("#emailCheckbox")) {
+      $("#email").toggle(true);
+      $("#phone").toggle(false);
+      $("#phone").val("");
+    } else {
+      $("#phone").toggle(true);
+      $("#email").toggle(false);
+      $("#email").val("");
+    }
+  });
 
-    let ceiling =
-        $(":radio[name='ceiling']:checked").val() == "stretch ceiling"
-          ? "Натяжна матова"
-          : $(":radio[name='ceiling']:checked").val() == "gapless"
-          ? "Натяжна бесщелева матова"
-          : "Гіпсокартон",
-      flooring =
-        $(":radio[name='flooring']:checked").val() == "laminat"
-          ? "Ламінат"
-          : $(":radio[name='flooring']:checked").val() == "vynil"
-          ? "Вінілова підлога"
-          : "Паркет",
-      appliances =
-        getData($(".choiceActiveBorder"), "appliances") == undefined
-          ? "Не обрано"
-          : getData($(".choiceActiveBorder"), "appliances")
-              .substr(0, 1)
-              .toUpperCase() +
-            getData($(".choiceActiveBorder"), "appliances").substr(1);
+  $(".form-2").on("submit", function (e) {
+    if (!$("#agreementCheckbox").is(":checked")) {
+      $(".warning.agreementcheckbox").toggle(true);
+      e.preventDefault();
+    } else {
+      $(".warning.agreementcheckbox").toggle(false);
+    }
+    if (!$("#phone").val() && !$("#email").val()) {
+      $(".warning.inputs.second").toggle(true);
+      e.preventDefault();
+    } else {
+      $(".warning.inputs.second").toggle(false);
+    }
+    if (!$("#name").val()) {
+      $(".warning.inputs.first").toggle(true);
+      e.preventDefault();
+    } else {
+      $(".warning.inputs.first").toggle(false);
+    }
+    if (!!$("#email").val() && !emailRegex.test($("#email").val())) {
+      $(".warning.inputs.email").toggle(true);
+      e.preventDefault();
+    } else {
+      $(".warning.inputs.email").toggle(false);
+    }
+    if (!$(".warning").is(":visible")) {
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzymV7zIns6N9AdE882E44BwQAFZ_wy0JNIahqsoDWx3kqLi-U/exec";
 
-    fd.append("Стеля", ceiling);
-    fd.append("Підлогове покриття", flooring);
-    fd.append("Стяжка підлоги", checkbox($("#floorscreed")));
-    fd.append("Шумоізоляція", checkbox($("#noise")));
-    fd.append("Вхідні двері", checkbox($("#doors")));
-    fd.append("Другий шар гіпсокартону", checkbox($("#secondGypsumLayer")));
-    fd.append("Гігієнічний душ", checkbox($("#hygienicShower")));
-    fd.append("Тепла підлога", val($("#heatedFlooring")));
-    fd.append("Кондиціювання", val($("#conditioning")));
-    fd.append("Меблі", checkbox($("#furnitureBool")));
-    fd.append("Техніка", appliances);
-    fd.append("Термін виконання робіт", months);
-
-    fetch(
-      //"https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
-      "https://script.google.com/macros/s/AKfycbyt7QOcA0Dp_2voHy2w1rVGCllwvW_SX_V8iDTD5E7zJohqH0C4/exec",
-      {
+      fetch(scriptURL, {
         method: "POST",
-        body: fd,
-      }
-    )
-      .then(() => {
-        $(this).html(oldBtnName);
-        window.location = url;
-      })
-      .catch((error) => console.error("Error!", error.message))
-      .finally(() => {
-        window.location = url;
+        body: new FormData($("#wf-form-client-info").get(0)),
       });
+
+      let fd = new FormData();
+      let ukrStyle =
+        data.style === "cozy"
+          ? "Козі"
+          : data.style === "japandi"
+          ? "Джапанді"
+          : data.style === "fusion"
+          ? "Фьюжн"
+          : data.style === "modern"
+          ? "Модерн"
+          : "Нео Класика";
+
+      let months =
+        data.space < 60
+          ? 4
+          : data.space <= 80
+          ? 5
+          : data.space <= 100
+          ? 6
+          : data.space <= 130
+          ? 7
+          : data.space <= 150
+          ? 8
+          : data.space <= 175
+          ? 9
+          : 10;
+
+      fd.append("Стиль", ukrStyle);
+      fd.append("Ціна за метр", $("#total").html());
+      fd.append("Загальна ціна", $("#totalWhole").html());
+      fd.append("Площа", val($("#space")));
+      fd.append("Кількість кімнат", val($("#amountOfRooms")));
+      fd.append("Кількість санвузлів", val($("#amountOfBathrooms")));
+      fd.append("Ванна", checkbox($("#bathtub")));
+      fd.append("Душ", checkbox($("#shower")));
+
+      let ceiling =
+          $(":radio[name='ceiling']:checked").val() == "stretch ceiling"
+            ? "Натяжна матова"
+            : $(":radio[name='ceiling']:checked").val() == "gapless"
+            ? "Натяжна бесщелева матова"
+            : "Гіпсокартон",
+        flooring =
+          $(":radio[name='flooring']:checked").val() == "laminat"
+            ? "Ламінат"
+            : $(":radio[name='flooring']:checked").val() == "vynil"
+            ? "Вінілова підлога"
+            : "Паркет",
+        appliances =
+          getData($(".choiceActiveBorder"), "appliances") == undefined
+            ? "Не обрано"
+            : getData($(".choiceActiveBorder"), "appliances")
+                .substr(0, 1)
+                .toUpperCase() +
+              getData($(".choiceActiveBorder"), "appliances").substr(1);
+
+      fd.append("Стеля", ceiling);
+      fd.append("Підлогове покриття", flooring);
+      fd.append("Стяжка підлоги", checkbox($("#floorscreed")));
+      fd.append("Шумоізоляція", checkbox($("#noise")));
+      fd.append("Вхідні двері", checkbox($("#doors")));
+      fd.append("Другий шар гіпсокартону", checkbox($("#secondGypsumLayer")));
+      fd.append("Гігієнічний душ", checkbox($("#hygienicShower")));
+      fd.append("Тепла підлога", val($("#heatedFlooring")));
+      fd.append("Кондиціювання", val($("#conditioning")));
+      fd.append("Меблі", checkbox($("#furnitureBool")));
+      fd.append("Техніка", appliances);
+      fd.append("Термін виконання робіт", months);
+
+      fetch(
+        //"https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
+        "https://script.google.com/macros/s/AKfycbyt7QOcA0Dp_2voHy2w1rVGCllwvW_SX_V8iDTD5E7zJohqH0C4/exec",
+        {
+          method: "POST",
+          body: fd,
+        }
+      );
+    } else {
+      return false;
+    }
   });
 
   $(".closing-btn").on("click", function () {
