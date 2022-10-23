@@ -334,8 +334,8 @@ $(function () {
   });
 
   //form logics
-  $(".from-2 :radio").on("change", function () {
-    if ($(".form-2 :radio:checked").is("#emailCheckbox")) {
+  $(".form-2 :radio").on("change", function () {
+    if ($(".form-2 :radio:checked").is("#sEmailCheckbox")) {
       $("#sEmail").toggle(true);
       $("#sPhone").toggle(false);
       $("#sPhone").val("");
