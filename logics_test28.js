@@ -461,6 +461,7 @@ $(function () {
 
       localStorage.setItem("email", $("#sEmail").val());
       localStorage.setItem("phone", $("#sPhone").val());
+      localStorage.setItem("use_telegram", $("#telegram").is(":checked"));
 
       window.open(
         $('.calculator-btn:not([style*="display: none"]) a').data("href"),
