@@ -494,6 +494,7 @@ $(function () {
           $(".final-btn.telegram").attr("target", "_blank");
           $(".final-btn.telegram").on("click", () => {
             window.open(telegramLink);
+            localStorage.clear();
             window.location = "/sdyakuiemo";
           });
         } else {
@@ -513,6 +514,7 @@ $(function () {
             },
           }).finally(() => {
             setTimeout(() => {
+              localStorage.clear();
               window.location = "/sdyakuiemo";
             }, 2000);
           });
