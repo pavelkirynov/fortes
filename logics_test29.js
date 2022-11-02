@@ -346,7 +346,7 @@ $(function () {
     }
   });
 
-  $(".form-2").on("submit", function (e) {
+  $(".form-2").on("submit", async function (e) {
     if (!$("#agreementCheckbox").is(":checked")) {
       $(".warning.agreementcheckbox").toggle(true);
       e.preventDefault();
@@ -459,14 +459,49 @@ $(function () {
         }
       );
 
-      localStorage.setItem("email", $("#sEmail").val());
-      localStorage.setItem("phone", $("#sPhone").val());
-      localStorage.setItem("use_telegram", $("#telegram").is(":checked"));
+      localStorage.setItem("convert_id", "false");
 
       window.open(
         $('.calculator-btn:not([style*="display: none"]) a').data("href"),
         "_blank"
       );
+
+      while (localStorage.getItem("convert_id") == "false") {
+        await new Promise((r) => setTimeout(r, 200));
+      }
+
+      if (localStorage.getItem("convert_id") != "") {
+        const convertId = localStorage.getItem("convert_id");
+
+        if ($("#telegram").is(":checked")) {
+          window.open(
+            "telegram_link",
+            `https://t.me/fortesagency_bot/?start=${convertId}_${$("#sPhone")
+              .val()
+              .replaceAll("", "")
+              .replace("+", "")
+              .replace("(", "")
+              .replace(")", "")
+              .trim()}-${data.style}`
+          );
+
+          document.location.href = "/sdyakuiemo";
+        } else {
+          fetch("https://api.fortes.agency/mail", {
+            method: "POST",
+            body: JSON.stringify({
+              fileId: convertId,
+              fileName: data.style,
+              recipientMail: $("#sEmail").val(),
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }).finally(() => {
+            document.location.href = "/sdyakuiemo";
+          });
+        }
+      }
     } else {
       return false;
     }
