@@ -474,18 +474,26 @@ $(function () {
         const convertId = localStorage.getItem("convert_id");
 
         if ($("#telegram").is(":checked")) {
-          window.open(
-            "telegram_link",
-            `https://t.me/fortesagency_bot/?start=${convertId}_${$("#sPhone")
-              .val()
-              .replaceAll("", "")
-              .replace("+", "")
-              .replace("(", "")
-              .replace(")", "")
-              .trim()}-${data.style}`
-          );
+          const telegramLink = `https://t.me/fortesagency_bot/?start=${convertId}_${$(
+            "#sPhone"
+          )
+            .val()
+            .replaceAll("", "")
+            .replace("+", "")
+            .replace("(", "")
+            .replace(")", "")
+            .trim()}-${data.style}`;
 
-          document.location.href = "/sdyakuiemo";
+          $(".wrap-border.telegram").toggle();
+          $(".modal-note").html(
+            `Для того, аби отримати специфікацію, перейдіть за посиланням до нашого бота.`
+          );
+          $(".final-btn.telegram").attr("href", telegramLink);
+          $(".final-btn.telegram").attr("target", "_blank");
+          $(".final-btn.telegram").on("click", (e) => {
+            window.open(telegramLink);
+            window.location = "/sdyakuiemo";
+          });
         } else {
           fetch("https://api.fortes.agency/mail", {
             method: "POST",
@@ -498,7 +506,12 @@ $(function () {
               "Content-Type": "application/json",
             },
           }).finally(() => {
-            document.location.href = "/sdyakuiemo";
+            $(".modal-note").html(
+              "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
+            );
+            setTimeout(() => {
+              window.location = "/sdyakuiemo";
+            }, 2000);
           });
         }
       }
