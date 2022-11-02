@@ -466,6 +466,8 @@ $(function () {
         "_blank"
       );
 
+      $(".modal-note").html("Зачекайте...");
+
       while (localStorage.getItem("convert_id") == "false") {
         await new Promise((r) => setTimeout(r, 200));
       }
@@ -490,11 +492,15 @@ $(function () {
           );
           $(".final-btn.telegram").attr("href", telegramLink);
           $(".final-btn.telegram").attr("target", "_blank");
-          $(".final-btn.telegram").on("click", (e) => {
+          $(".final-btn.telegram").on("click", () => {
             window.open(telegramLink);
             window.location = "/sdyakuiemo";
           });
         } else {
+          $(".modal-note").html(
+            "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
+          );
+
           fetch("https://api.fortes.agency/mail", {
             method: "POST",
             body: JSON.stringify({
@@ -506,9 +512,6 @@ $(function () {
               "Content-Type": "application/json",
             },
           }).finally(() => {
-            $(".modal-note").html(
-              "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
-            );
             setTimeout(() => {
               window.location = "/sdyakuiemo";
             }, 2000);
