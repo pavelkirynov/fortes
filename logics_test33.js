@@ -347,181 +347,183 @@ $(function () {
   });
 
   $(".form-2").on("submit", async function (e) {
+    e.preventDefault();
+
     if (!$("#agreementCheckbox").is(":checked")) {
       $(".warning.agreementcheckbox").toggle(true);
-      e.preventDefault();
     } else {
       $(".warning.agreementcheckbox").toggle(false);
     }
     if (!$("#sPhone").val() && !$("#sEmail").val()) {
       $(".warning.inputs.second").toggle(true);
-      e.preventDefault();
     } else {
       $(".warning.inputs.second").toggle(false);
     }
     if (!$("#sName").val()) {
       $(".warning.inputs.first").toggle(true);
-      e.preventDefault();
     } else {
       $(".warning.inputs.first").toggle(false);
     }
     if (!!$("#sEmail").val() && !emailRegex.test($("#sEmail").val())) {
       $(".warning.inputs.email").toggle(true);
-      e.preventDefault();
     } else {
       $(".warning.inputs.email").toggle(false);
     }
 
-    if (!$(".warning").is(":visible")) {
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbzymV7zIns6N9AdE882E44BwQAFZ_wy0JNIahqsoDWx3kqLi-U/exec";
+    if ($(".warning").is(":visible")) {
+      e.preventDefault();
+      return false;
+    }
 
-      fetch(scriptURL, {
+    $("#wf-form-client-info").toggle(false);
+    $(".specification-modal .modal-success").toggle(true);
+
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbzymV7zIns6N9AdE882E44BwQAFZ_wy0JNIahqsoDWx3kqLi-U/exec";
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: new FormData($("#wf-form-client-info").get(0)),
+    });
+
+    let fd = new FormData();
+    let ukrStyle =
+      data.style === "cozy"
+        ? "Козі"
+        : data.style === "japandi"
+        ? "Джапанді"
+        : data.style === "fusion"
+        ? "Фьюжн"
+        : data.style === "modern"
+        ? "Модерн"
+        : "Нео Класика";
+
+    let months =
+      data.space < 60
+        ? 4
+        : data.space <= 80
+        ? 5
+        : data.space <= 100
+        ? 6
+        : data.space <= 130
+        ? 7
+        : data.space <= 150
+        ? 8
+        : data.space <= 175
+        ? 9
+        : 10;
+
+    fd.append("Стиль", ukrStyle);
+    fd.append("Ціна за метр", $("#total").html());
+    fd.append("Загальна ціна", $("#totalWhole").html());
+    fd.append("Площа", val($("#space")));
+    fd.append("Кількість кімнат", val($("#amountOfRooms")));
+    fd.append("Кількість санвузлів", val($("#amountOfBathrooms")));
+    fd.append("Ванна", checkbox($("#bathtub")));
+    fd.append("Душ", checkbox($("#shower")));
+
+    let ceiling =
+        $(":radio[name='ceiling']:checked").val() == "stretch ceiling"
+          ? "Натяжна матова"
+          : $(":radio[name='ceiling']:checked").val() == "gapless"
+          ? "Натяжна бесщелева матова"
+          : "Гіпсокартон",
+      flooring =
+        $(":radio[name='flooring']:checked").val() == "laminat"
+          ? "Ламінат"
+          : $(":radio[name='flooring']:checked").val() == "vynil"
+          ? "Вінілова підлога"
+          : "Паркет",
+      appliances =
+        getData($(".choiceActiveBorder"), "appliances") == undefined
+          ? "Не обрано"
+          : getData($(".choiceActiveBorder"), "appliances")
+              .substr(0, 1)
+              .toUpperCase() +
+            getData($(".choiceActiveBorder"), "appliances").substr(1);
+
+    fd.append("Стеля", ceiling);
+    fd.append("Підлогове покриття", flooring);
+    fd.append("Стяжка підлоги", checkbox($("#floorscreed")));
+    fd.append("Шумоізоляція", checkbox($("#noise")));
+    fd.append("Вхідні двері", checkbox($("#doors")));
+    fd.append("Другий шар гіпсокартону", checkbox($("#secondGypsumLayer")));
+    fd.append("Гігієнічний душ", checkbox($("#hygienicShower")));
+    fd.append("Тепла підлога", val($("#heatedFlooring")));
+    fd.append("Кондиціювання", val($("#conditioning")));
+    fd.append("Меблі", checkbox($("#furnitureBool")));
+    fd.append("Техніка", appliances);
+    fd.append("Термін виконання робіт", months);
+
+    fetch(
+      //"https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
+      "https://script.google.com/macros/s/AKfycbyt7QOcA0Dp_2voHy2w1rVGCllwvW_SX_V8iDTD5E7zJohqH0C4/exec",
+      {
         method: "POST",
-        body: new FormData($("#wf-form-client-info").get(0)),
-      });
-
-      let fd = new FormData();
-      let ukrStyle =
-        data.style === "cozy"
-          ? "Козі"
-          : data.style === "japandi"
-          ? "Джапанді"
-          : data.style === "fusion"
-          ? "Фьюжн"
-          : data.style === "modern"
-          ? "Модерн"
-          : "Нео Класика";
-
-      let months =
-        data.space < 60
-          ? 4
-          : data.space <= 80
-          ? 5
-          : data.space <= 100
-          ? 6
-          : data.space <= 130
-          ? 7
-          : data.space <= 150
-          ? 8
-          : data.space <= 175
-          ? 9
-          : 10;
-
-      fd.append("Стиль", ukrStyle);
-      fd.append("Ціна за метр", $("#total").html());
-      fd.append("Загальна ціна", $("#totalWhole").html());
-      fd.append("Площа", val($("#space")));
-      fd.append("Кількість кімнат", val($("#amountOfRooms")));
-      fd.append("Кількість санвузлів", val($("#amountOfBathrooms")));
-      fd.append("Ванна", checkbox($("#bathtub")));
-      fd.append("Душ", checkbox($("#shower")));
-
-      let ceiling =
-          $(":radio[name='ceiling']:checked").val() == "stretch ceiling"
-            ? "Натяжна матова"
-            : $(":radio[name='ceiling']:checked").val() == "gapless"
-            ? "Натяжна бесщелева матова"
-            : "Гіпсокартон",
-        flooring =
-          $(":radio[name='flooring']:checked").val() == "laminat"
-            ? "Ламінат"
-            : $(":radio[name='flooring']:checked").val() == "vynil"
-            ? "Вінілова підлога"
-            : "Паркет",
-        appliances =
-          getData($(".choiceActiveBorder"), "appliances") == undefined
-            ? "Не обрано"
-            : getData($(".choiceActiveBorder"), "appliances")
-                .substr(0, 1)
-                .toUpperCase() +
-              getData($(".choiceActiveBorder"), "appliances").substr(1);
-
-      fd.append("Стеля", ceiling);
-      fd.append("Підлогове покриття", flooring);
-      fd.append("Стяжка підлоги", checkbox($("#floorscreed")));
-      fd.append("Шумоізоляція", checkbox($("#noise")));
-      fd.append("Вхідні двері", checkbox($("#doors")));
-      fd.append("Другий шар гіпсокартону", checkbox($("#secondGypsumLayer")));
-      fd.append("Гігієнічний душ", checkbox($("#hygienicShower")));
-      fd.append("Тепла підлога", val($("#heatedFlooring")));
-      fd.append("Кондиціювання", val($("#conditioning")));
-      fd.append("Меблі", checkbox($("#furnitureBool")));
-      fd.append("Техніка", appliances);
-      fd.append("Термін виконання робіт", months);
-
-      fetch(
-        //"https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
-        "https://script.google.com/macros/s/AKfycbyt7QOcA0Dp_2voHy2w1rVGCllwvW_SX_V8iDTD5E7zJohqH0C4/exec",
-        {
-          method: "POST",
-          body: fd,
-        }
-      );
-
-      localStorage.setItem("convert_id", "false");
-
-      window.open(
-        $('.calculator-btn:not([style*="display: none"]) a').data("href"),
-        "_blank"
-      );
-
-      $(".modal-note").html("Зачекайте...");
-
-      while (localStorage.getItem("convert_id") == "false") {
-        await new Promise((r) => setTimeout(r, 200));
+        body: fd,
       }
+    );
 
-      if (localStorage.getItem("convert_id") != "") {
-        const convertId = localStorage.getItem("convert_id");
+    localStorage.setItem("convert_id", "false");
 
-        if ($("#telegram").is(":checked")) {
-          const telegramLink = `https://t.me/fortesagency_bot/?start=${convertId}_${$(
-            "#sPhone"
-          )
-            .val()
-            .replaceAll("", "")
-            .replace("+", "")
-            .replace("(", "")
-            .replace(")", "")
-            .trim()}-${data.style}`;
+    window.open(
+      $('.calculator-btn:not([style*="display: none"]) a').data("href"),
+      "_blank"
+    );
 
-          $(".wrap-border.telegram").toggle();
-          $(".modal-note").html(
-            `Для того, аби отримати специфікацію, перейдіть за посиланням до нашого бота.`
-          );
-          $(".final-btn.telegram").attr("href", telegramLink);
-          $(".final-btn.telegram").attr("target", "_blank");
-          $(".final-btn.telegram").on("click", () => {
-            window.open(telegramLink);
+    $(".modal-note").html("Зачекайте...");
+
+    while (localStorage.getItem("convert_id") == "false") {
+      await new Promise((r) => setTimeout(r, 200));
+    }
+
+    if (localStorage.getItem("convert_id") != "") {
+      const convertId = localStorage.getItem("convert_id");
+
+      if ($("#telegram").is(":checked")) {
+        const telegramLink = `https://t.me/fortesagency_bot/?start=${convertId}_${$(
+          "#sPhone"
+        )
+          .val()
+          .replaceAll("", "")
+          .replace("+", "")
+          .replace("(", "")
+          .replace(")", "")
+          .trim()}-${data.style}`;
+
+        $(".wrap-border.telegram").toggle();
+        $(".modal-note").html(
+          `Для того, аби отримати специфікацію, перейдіть за посиланням до нашого бота.`
+        );
+        $(".final-btn.telegram").attr("href", telegramLink);
+        $(".final-btn.telegram").attr("target", "_blank");
+        $(".final-btn.telegram").on("click", () => {
+          window.open(telegramLink);
+          localStorage.clear();
+          window.location = "/sdyakuiemo";
+        });
+      } else {
+        $(".modal-note").html(
+          "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
+        );
+
+        fetch("https://api.fortes.agency/mail", {
+          method: "POST",
+          body: JSON.stringify({
+            fileId: convertId,
+            fileName: data.style,
+            recipientMail: $("#sEmail").val(),
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).finally(() => {
+          setTimeout(() => {
             localStorage.clear();
             window.location = "/sdyakuiemo";
-          });
-        } else {
-          $(".modal-note").html(
-            "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
-          );
-
-          fetch("https://api.fortes.agency/mail", {
-            method: "POST",
-            body: JSON.stringify({
-              fileId: convertId,
-              fileName: data.style,
-              recipientMail: $("#sEmail").val(),
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }).finally(() => {
-            setTimeout(() => {
-              localStorage.clear();
-              window.location = "/sdyakuiemo";
-            }, 2000);
-          });
-        }
+          }, 2000);
+        });
       }
-    } else {
-      return false;
     }
   });
 
