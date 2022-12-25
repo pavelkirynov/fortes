@@ -197,7 +197,7 @@ $(function () {
   });
 
   function calculate() {
-    const callback = Utils.asyncThrottle(async function () {
+    Utils.asyncThrottle(async function () {
       updateUserData();
 
       return fetch("https://api.fortes.agency/calc", {
@@ -219,9 +219,7 @@ $(function () {
             Formatter.formatCurrency(cost * storage.get("space"))
           );
         });
-    }, 300);
-
-    callback();
+    }, 1000).call(this);
   }
 
   if ($(window).width() < 992) {
