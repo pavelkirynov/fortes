@@ -1,8 +1,30 @@
 import { Cell } from "./models/Cell";
 import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
-import * as $ from "jquery";
 import { Utils } from "./helpers/Utils";
+
+import * as $ from "jquery";
+
+let data = {
+  style: "cozy",
+  bath: 1,
+  shower: 0,
+  ceiling: "stretch ceiling",
+  flooring: "laminat",
+  hygienic_shower: 0,
+  second_gypsum_layer: 0,
+  floor_screed: 0,
+  heated_flooring: 0,
+  denoising: 0,
+  entrance_doors: 0,
+  conditioning: 0,
+  amount_of_rooms: 2,
+  amount_of_bathrooms: 1,
+  appliances: "gorenje",
+  appliances_bool_total: 0,
+  furniture_bool: 1,
+  space: 50,
+};
 
 $(function () {
   fetch(
@@ -37,32 +59,13 @@ $(function () {
           .reduce((pv, cv) => [...pv, ...cv])
       );
 
-      $("#dollarCourse").html(table.getCell("C6").formattedNumerical());
+      $("#dollarCourse").html(table.getCell("G6").formattedNumerical());
     });
 
   let style = "cozy";
   let appliancesCookie = "";
   $("#space").val(50);
-  let data = {
-    style: "cozy",
-    bath: 1,
-    shower: 0,
-    ceiling: "stretch ceiling",
-    flooring: "laminat",
-    hygienic_shower: 0,
-    second_gypsum_layer: 0,
-    floor_screed: 0,
-    heated_flooring: 0,
-    denoising: 0,
-    entrance_doors: 0,
-    conditioning: 0,
-    amount_of_rooms: 2,
-    amount_of_bathrooms: 1,
-    appliances: "gorenje",
-    appliances_bool_total: 0,
-    furniture_bool: 1,
-    space: 50,
-  };
+
   $(".calculator input")
     .not(".form-2 input")
     .on("change", function () {
