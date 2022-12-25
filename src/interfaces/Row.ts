@@ -1,3 +1,5 @@
-export interface Row {
+interface ResponseRow {
   c: Array<any>;
 }
+
+export { ResponseRow };

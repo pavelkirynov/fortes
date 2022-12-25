@@ -5,3 +5,9 @@ enum DesignStyle {
   Fusion = "fusion",
   NeoClassic = "neoclassic",
 }
+
+namespace DesignStyle {
+  export function name(style: DesignStyle): string {
+    return DesignStyle[style];
+  }
+}

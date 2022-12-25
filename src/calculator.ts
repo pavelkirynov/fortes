@@ -1,5 +1,5 @@
 import { Cell } from "./models/Cell";
-import { Row } from "./interfaces/Row";
+import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
 import * as $ from "jquery";
 import { Utils } from "./helpers/Utils";
@@ -16,11 +16,11 @@ $(function () {
           .replace(`/*O_o*/\ngoogle.visualization.Query.setResponse(`, "")
       );
 
-      const responseRows: Array<Row> = response.table.rows;
+      const responseRows: Array<ResponseRow> = response.table.rows;
 
       const table: Table = new Table(
         responseRows
-          .map((row: Row, outerIndex: number) => {
+          .map((row: ResponseRow, outerIndex: number) => {
             return row.c
               .map(function (cell, index: number): Cell {
                 if (cell === null || cell.v === null) {
