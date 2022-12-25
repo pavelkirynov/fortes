@@ -90,7 +90,7 @@ fetch(
       months += 1;
     }
     $("#months").html(months.toString());
-    const workInflation = table.getCell("S43").numeric;
+    const workInflation = table.getCell("S44").numeric;
 
     if (style == "cozy") {
       letter = "I";
