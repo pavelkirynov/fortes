@@ -6,7 +6,7 @@ $(function () {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   $(".choiceactive.card").toggleClass("choiceActiveBorder");
-  $("#laminat").prop("checked", !0);
+  $("#laminat").prop("checked", true);
 
   const splideOptions = {
     arrows: false,
@@ -614,7 +614,7 @@ $(function () {
     });
 
     $("form input").on("keydown", (e) => {
-      if (e.keyCode == 13) {
+      if (e.key == "Enter") {
         e.preventDefault();
       }
     });
