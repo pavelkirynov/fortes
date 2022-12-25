@@ -521,12 +521,12 @@ fetch(
       $("#workList").append(textObject);
     }
     workSum +=
-      hrnCourse * space * table.getCell("G38").numeric() +
+      hrnCourse * space * table.getCell("G37").numeric() +
       months * table.getCell(`${letter}214`).numeric();
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
       .getCell(`${letter}212`)
       .value()}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
-      hrnCourse * table.getCell("G38").numeric() * space
+      hrnCourse * table.getCell("G37").numeric() * space
     )} грн.</span></div></div>`;
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table

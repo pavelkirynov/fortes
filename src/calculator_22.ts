@@ -210,7 +210,7 @@ $(function () {
         const cost = parseFloat(json.cost_per_meter);
 
         storage.set("costPerMetre", cost);
-        storage.set("summedPrice", storage.get("space"));
+        storage.set("summedPrice", json.cost_per_meter * storage.get("space"));
 
         $("#total").html(Formatter.formatCurrency(cost));
         $("#totalWhole").html(
