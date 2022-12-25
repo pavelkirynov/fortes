@@ -40,12 +40,11 @@ $(function () {
           .reduce((pv, cv) => [...pv, ...cv])
       );
 
-      $("#dollarCourse").html(table.getCell("G6").formattedNumerical());
+      $("#dollarCourse").html(table.getCell("G7").formattedNumerical());
     });
 
   const storage: LocalStorageHandler = new LocalStorageHandler();
   storage.init();
-  $("#space").val(50);
   calculate();
 
   $(".calculator input")
@@ -87,6 +86,7 @@ $(function () {
 
   $(".increment-field .increment").on("click", function (e) {
     e.preventDefault();
+
     $(this)
       .siblings(".increment-input")
       .val(
@@ -105,11 +105,13 @@ $(function () {
     ) {
       $(this).siblings(".disabled").toggleClass("disabled");
     }
+
     if (storage.get("amount_of_rooms") == 0) {
       $("#total").html("0");
       $("#totalWhole").html("0");
       return;
     }
+
     calculate();
   });
 
