@@ -1,4 +1,5 @@
 import Splide from "@splidejs/splide";
+import { LocalStorageHandler } from "./helpers/LocalStoragehandler";
 
 $(function () {
   const vw: number = $(window).width();
@@ -20,6 +21,7 @@ $(function () {
       },
     },
   };
+  const storage: LocalStorageHandler = new LocalStorageHandler();
 
   const splideCalc = new Splide(".slider-container.splide", splideOptions);
 
@@ -388,30 +390,32 @@ $(function () {
       body: new FormData($("#wf-form-client-info").get(0) as HTMLFormElement),
     });
 
-    let fd = new FormData();
-    let ukrStyle =
-      data.style === "cozy"
+    const fd = new FormData();
+    const space: number = storage.get("space");
+    const style: string = storage.get("style");
+    const ukrStyle =
+      storage.get("style") === "cozy"
         ? "Козі"
-        : data.style === "japandi"
+        : style === "japandi"
         ? "Джапанді"
-        : data.style === "fusion"
+        : style === "fusion"
         ? "Фьюжн"
-        : data.style === "modern"
+        : style === "modern"
         ? "Модерн"
         : "Нео Класика";
 
     let months =
-      data.space < 60
+      space < 60
         ? 4
-        : data.space <= 80
+        : space <= 80
         ? 5
-        : data.space <= 100
+        : space <= 100
         ? 6
-        : data.space <= 130
+        : space <= 130
         ? 7
-        : data.space <= 150
+        : space <= 150
         ? 8
-        : data.space <= 175
+        : space <= 175
         ? 9
         : 10;
 
@@ -507,7 +511,7 @@ $(function () {
         method: "POST",
         body: JSON.stringify({
           fileId: convertId,
-          fileName: data.style,
+          fileName: storage.get("style"),
           recipientMail: $("#sEmail").val(),
         }),
         headers: {
