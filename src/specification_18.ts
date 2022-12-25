@@ -590,7 +590,7 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F130").value(),
-        table.getCell(letterModel + "130").numeric(),
+        table.getCell(`${letterModel}130`).numeric(),
         1,
         table.getCell(`${letter}130`).numeric(),
         table.getCell("G130").value()
