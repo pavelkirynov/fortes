@@ -49,27 +49,28 @@ fetch(
     $("#course").html(Formatter.formatCurrency(hrnCourse));
 
     const style: string = storage.get("style");
-    let appliancesBoolTotal = Boolean(storage.get("appliancesBoolTotal")),
-      furnitureBool: boolean = Boolean(storage.get("furnitureBool")),
+    let appliancesBoolTotal = Boolean(storage.get("appliances_bool_total")),
+      furnitureBool: boolean = Boolean(storage.get("furniture_bool")),
       space: number = storage.get("space"),
-      bath: boolean = Boolean(storage.get("appliancesBoolTotal")),
-      shower: boolean = Boolean(storage.get("appliancesBoolTotal")),
-      amountOfRooms: number = storage.get("amountOfRooms"),
-      amountOfBathrooms: number = storage.get("amountOfBathrooms"),
+      bath: boolean = Boolean(storage.get("bath")),
+      shower: boolean = Boolean(storage.get("shower")),
+      amountOfRooms: number = storage.get("amount_of_rooms"),
+      amountOfBathrooms: number = storage.get("amount_of_bathrooms"),
       letter: string = "",
       letterModel: string = "",
       ceiling: string = storage.get("ceiling"),
-      hygienicShower: boolean = storage.get("hygienicShower"),
-      secondGypsumLayer: boolean = storage.get("secondGypsumLayer"),
-      floorScreed: boolean = storage.get("floorScreed"),
-      heatedFlooring: number = storage.get("heatedFlooring"),
+      hygienicShower: boolean = storage.get("hygienic_shower"),
+      secondGypsumLayer: boolean = storage.get("second_gypsum_layer"),
+      floorScreed: boolean = storage.get("floor_screed"),
+      heatedFlooring: number = storage.get("heated_flooring"),
       denoising: boolean = storage.get("denoising"),
-      entranceDoors: boolean = storage.get("entranceDoors"),
+      entranceDoors: boolean = storage.get("entrance_doors"),
       conditioning: number = storage.get("conditioning"),
       flooring = storage.get("flooring"),
       workSum = 0,
       furnitureSum = 0,
       $furniture = $("#furnitureList");
+
     const furnitureRate = 1 + table.getCell("S164").numeric() / 100;
     const conditionerRate = 1 + table.getCell("S120").numeric() / 100;
     let months =
