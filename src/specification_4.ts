@@ -7,7 +7,7 @@ import { Utils } from "./utils/Utils";
 import { Formatter } from "./utils/Formatter";
 
 fetch(
-  "https://docs.google.com/spreadsheets/d/1KkkpKbytztt48mwP1RGgpVFpfke8-IqB0KLWA8Sn2FE/gviz/tq?tqx=out:json&gid=602865824"
+  "https://docs.google.com/spreadsheets/d/1KkkpKbytztt48mwP1RGgpVFpfke8-IqB0KLWA8Sn2FE/gviz/tq?tqx=out:json"
 )
   .then((res: Response) => res.text())
   .then((text: string) => {
