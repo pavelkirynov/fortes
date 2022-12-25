@@ -37,10 +37,10 @@ class LocalStorageHandler {
       }
 
       if (String(storage[key]) === "true") {
-        result[key] = "1";
+        result[key] = 1;
         continue;
       } else if (String(storage[key]) === "false") {
-        result[key] = "0";
+        result[key] = 0;
         continue;
       }
 

@@ -1,9 +1,9 @@
 import { Cell } from "./models/Cell";
 import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
-import { Utils } from "./helpers/Utils";
-import { Formatter } from "./helpers/Formatter";
-import { LocalStorageHandler } from "./helpers/LocalStoragehandler";
+import { Utils } from "./utils/Utils";
+import { Formatter } from "./utils/Formatter";
+import { LocalStorageHandler } from "./utils/LocalStoragehandler";
 
 import * as $ from "jquery";
 

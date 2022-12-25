@@ -1,5 +1,5 @@
 import Splide from "@splidejs/splide";
-import { LocalStorageHandler } from "./helpers/LocalStoragehandler";
+import { LocalStorageHandler } from "./utils/LocalStoragehandler";
 
 $(function () {
   const vw: number = $(window).width();
@@ -59,7 +59,7 @@ $(function () {
         }
       });
 
-      let style = getStyle(index);
+      const style: DesignStyle = DesignStyle.fromNumber(index);
 
       $(
         ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
@@ -155,8 +155,8 @@ $(function () {
   }
 
   $(".calculator-tab").on("click", function () {
-    let index = $(this).index();
-    let style = getStyle(index);
+    const index: number = $(this).index();
+    const style: DesignStyle = DesignStyle.fromNumber(index);
 
     $(
       ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
@@ -181,39 +181,6 @@ $(function () {
     });
 
     splideCalc.refresh();
-  });
-
-  $(".wrap-border.calculator-btn").on("click", function () {
-    let t = {
-        _costPerMetre: $("#total").html(),
-        _appliances: $(".choiceActiveBorder").data("appliances"),
-        _style: style,
-        _bath: +$("#bathtub").is(":checked"),
-        _shower: +$("#shower").is(":checked"),
-        _ceiling: val($(":radio[name='ceiling']:checked")),
-        _flooring: val($(":radio[name='flooring']:checked")),
-        _hygienicShower: checkbox($("#hygienicShower")),
-        _secondGypsumLayer: checkbox($("#secondGypsumLayer")),
-        _floorScreed: checkbox($("#floorscreed")),
-        _heatedFlooring: val($("#heatedFlooring")),
-        _denoising: checkbox($("#noise")),
-        _entranceDoors: checkbox($("#doors")),
-        _conditioning: val($("#conditioning")),
-        _amountOfRooms: val($("#amountOfRooms")),
-        _amountOfBathrooms: val($("#amountOfBathrooms")),
-        _summedPrice: parseInt($("#totalWhole").html().replace(/ /, "")),
-        _appliancesBoolTotal: checkbox($("#appliancesBool")),
-        _furnitureBool: checkbox($("#furnitureBool")),
-        _space: val($("#space")),
-        _color: $(".div-block-14 .color-tab.active").index(),
-      },
-      cookieText = "";
-    document.cookie = "";
-
-    for (let e in t) {
-      cookieText = e + "=" + t[e] + ";";
-      document.cookie = cookieText;
-    }
   });
 
   $(".increment-field .increment").on("click", function () {
@@ -424,11 +391,11 @@ $(function () {
     fd.append("Стиль", ukrStyle);
     fd.append("Ціна за метр", $("#total").html());
     fd.append("Загальна ціна", $("#totalWhole").html());
-    fd.append("Площа", val($("#space")) as string);
-    fd.append("Кількість кімнат", val($("#amountOfRooms")) as string);
-    fd.append("Кількість санвузлів", val($("#amountOfBathrooms")) as string);
-    fd.append("Ванна", checkbox($("#bathtub")));
-    fd.append("Душ", checkbox($("#shower")));
+    fd.append("Площа", val($("#space")).toString());
+    fd.append("Кількість кімнат", val($("#amountOfRooms")).toString());
+    fd.append("Кількість санвузлів", val($("#amountOfBathrooms")).toString());
+    fd.append("Ванна", $("#bathtub").is(":checked").toString());
+    fd.append("Душ", $("#shower").is(":checked").toString());
 
     let ceiling =
         $(":radio[name='ceiling']:checked").val() == "stretch ceiling"
@@ -454,14 +421,20 @@ $(function () {
 
     fd.append("Стеля", ceiling);
     fd.append("Підлогове покриття", flooring);
-    fd.append("Стяжка підлоги", checkbox($("#floorscreed")));
-    fd.append("Шумоізоляція", checkbox($("#noise")));
-    fd.append("Вхідні двері", checkbox($("#doors")));
-    fd.append("Другий шар гіпсокартону", checkbox($("#secondGypsumLayer")));
-    fd.append("Гігієнічний душ", checkbox($("#hygienicShower")));
+    fd.append("Стяжка підлоги", $("#floorscreed").is(":checked").toString());
+    fd.append("Шумоізоляція", $("#noise").is(":checked").toString());
+    fd.append("Вхідні двері", $("#doors").is(":checked").toString());
+    fd.append(
+      "Другий шар гіпсокартону",
+      $("#secondGypsumLayer").is(":checked").toString()
+    );
+    fd.append(
+      "Гігієнічний душ",
+      $("#hygienicShower").is(":checked").toString()
+    );
     fd.append("Тепла підлога", `${val($("#heatedFlooring"))}`);
     fd.append("Кондиціювання", `${val($("#conditioning"))}`);
-    fd.append("Меблі", checkbox($("#furnitureBool")));
+    fd.append("Меблі", $("#furnitureBool").is(":checked").toString());
     fd.append("Техніка", appliances);
     fd.append("Термін виконання робіт", `${months}`);
 
@@ -568,7 +541,7 @@ $(function () {
     $(".color-tab").on("click", function () {
       let index = $(this).index();
       let number = $(".calculator-tab.w--current").index();
-      let style = getStyle(number);
+      const style: DesignStyle = DesignStyle.fromNumber(number);
 
       if ($(this).not(".active")) {
         $(".color-tab.active").removeClass("active");
@@ -638,18 +611,6 @@ $(function () {
     });
   }
 
-  function getStyle(number: number): string {
-    return number === 0
-      ? "cozy"
-      : number === 1
-      ? "japandi"
-      : number === 2
-      ? "fusion"
-      : number === 3
-      ? "modern"
-      : "neoclassic";
-  }
-
   function getData(obj: JQuery<HTMLElement>, dataVal: string): string | number {
     if (isFinite(Number(obj.data(dataVal)))) {
       return parseInt(obj.data(dataVal));
@@ -664,10 +625,6 @@ $(function () {
     } else {
       return object.val();
     }
-  }
-
-  function checkbox(object: JQuery<HTMLElement>): string {
-    return `${object.is(":checked")}`;
   }
 
   function isInViewport(element: HTMLElement): boolean {

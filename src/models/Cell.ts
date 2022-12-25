@@ -1,4 +1,4 @@
-import { Formatter } from "../helpers/Formatter";
+import { Formatter } from "../utils/Formatter";
 
 class Cell {
   public readonly address: string;
