@@ -180,7 +180,7 @@ $(function () {
     updateUserData();
 
     let response = await fetch("https://api.fortes.agency/calc", {
-      body: JSON.stringify(data),
+      body: JSON.stringify(localStorage),
       headers: {
         "Content-Type": "application/json",
       },
