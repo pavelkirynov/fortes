@@ -91,6 +91,7 @@ fetch(
     }
     $("#months").html(months.toString());
     const workInflation = table.getCell("S44").numeric();
+    const s42 = table.getCell("S42").numeric();
 
     if (style == "cozy") {
       letter = "I";
@@ -160,29 +161,25 @@ fetch(
         workInflation;
     }
 
-    let $work = $("#workList"),
-      textObject = "",
-      water =
-        2523 *
-        ((amountOfRooms > 0 ? 6 : 0) +
-          (bath ? 2 : 0) +
-          (shower ? 2 : 0) +
-          amountOfBathrooms * 2) *
-        //inflation
-        workInflation,
-      canalisation =
-        1974 *
-        ((amountOfRooms > 0 ? 3 : 0) +
-          (bath ? 1 : 0) +
-          (shower ? 1 : 0) +
-          amountOfBathrooms * 2) *
-        //inflation
-        workInflation,
-      vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98);
-    console.log(`${letter}45`);
-    console.log(table.getCell(`${letter}45`));
-    console.log(table.getCell(`${letter}45`).value());
-    console.log(table.getCell(`${letter}45`).numeric());
+    let $work = $("#workList");
+    let textObject = "";
+    let water =
+      2523 *
+      ((amountOfRooms > 0 ? 6 : 0) +
+        (bath ? 2 : 0) +
+        (shower ? 2 : 0) +
+        amountOfBathrooms * 2) *
+      //inflation
+      workInflation;
+    let canalisation =
+      1974 *
+      ((amountOfRooms > 0 ? 3 : 0) +
+        (bath ? 1 : 0) +
+        (shower ? 1 : 0) +
+        amountOfBathrooms * 2) *
+      //inflation
+      workInflation;
+    let vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98);
     const electricity = table.getCell(`${letter}45`).numeric() * space;
 
     const workPriceArray = [
@@ -260,8 +257,6 @@ fetch(
       64,
       66,
     ];
-
-    const s42 = table.getCell("S42").numeric();
 
     workSum +=
       water * s42 +
@@ -523,11 +518,11 @@ fetch(
     workSum +=
       hrnCourse * space * table.getCell("G37").numeric() +
       months * table.getCell(`${letter}214`).numeric();
-    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
-      .getCell(`${letter}212`)
-      .value()}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
-      hrnCourse * table.getCell("G37").numeric() * space
-    )} грн.</span></div></div>`;
+    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>
+		${table.getCell(`F212`).value()}
+			</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
+        hrnCourse * table.getCell("G37").numeric() * space
+      )} грн.</span></div></div>`;
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
       .getCell("F214")
