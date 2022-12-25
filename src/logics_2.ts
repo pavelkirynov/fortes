@@ -511,10 +511,6 @@ $(function () {
           window.location.assign("/sdyakuiemo");
         });
       } else {*/
-      $(".modal-note").html(
-        "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
-      );
-
       fetch("https://api.fortes.agency/mail", {
         method: "POST",
         body: JSON.stringify({
