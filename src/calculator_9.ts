@@ -2,10 +2,10 @@ import { Cell } from "./models/Cell";
 import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
 import { Utils } from "./helpers/Utils";
-
-import * as $ from "jquery";
 import { Formatter } from "./helpers/Formatter";
 import { LocalStorageHandler } from "./helpers/LocalStoragehandler";
+
+import * as $ from "jquery";
 
 $(function () {
   fetch(
@@ -171,6 +171,7 @@ $(function () {
 
   $("#node").on("click", function () {
     storage.set("appliances_bool_total", false);
+
     calculate();
   });
 
@@ -179,8 +180,9 @@ $(function () {
       return;
     }
     if (!document.querySelector(".choiceActiveBorder")) {
-      localStorage.seetItem("appliances_bool_total", 1);
-      localStorage.seetItem("appliances", "gorenje");
+      storage.set("appliances_bool_total", 1);
+      storage.set("appliances", "gorenje");
+
       calculate();
     }
   });
