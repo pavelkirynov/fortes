@@ -187,7 +187,7 @@ $(function () {
     updateUserData();
 
     let response = await fetch("https://api.fortes.agency/calc", {
-      body: JSON.stringify(localStorage),
+      body: storageToRequestBody(localStorage),
       headers: {
         "Content-Type": "application/json",
       },
@@ -279,5 +279,25 @@ $(function () {
     setStorage("appliances_bool_total", false);
     setStorage("furniture_bool", true);
     setStorage("space", 50);
+  }
+
+  function storageToRequestBody(storage: Storage): string {
+    const result = {};
+
+    for (const key in storage) {
+      if (key === "length") {
+        continue;
+      }
+
+      if (String(storage[key]) === "true") {
+        result[key] = "1";
+      } else if (String(storage[key]) === "false") {
+        result[key] = "0";
+      }
+
+      result[key] = storage[key];
+    }
+
+    return JSON.stringify(result);
   }
 });
