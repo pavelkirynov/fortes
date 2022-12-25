@@ -556,7 +556,7 @@ fetch(
         table.getCell("F127").value(),
         table.getCell(`${letterModel}127`),
         1,
-        table.getCell(`${letterModel}127`).numeric(),
+        table.getCell(`${letter}127`).numeric(),
         table.getCell("G120").value()
       );
 
