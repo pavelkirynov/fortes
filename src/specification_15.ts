@@ -181,6 +181,11 @@ fetch(
       workInflation;
     let vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98);
     const electricity = table.getCell(`${letter}45`).numeric() * space;
+    console.log(`inflation: ${workInflation}`);
+    console.log(`rooms: ${amountOfRooms}`);
+    console.log(`baths: ${amountOfBathrooms}`);
+    console.log(`bath: ${bath}`);
+    console.log(`shower: ${shower}`);
     console.log(`vents: ${vents}`);
     console.log(`canalisation: ${canalisation}`);
     console.log(`water: ${water}`);
@@ -284,19 +289,6 @@ fetch(
           (800 + 950) * workInflation
       ) + " грн."
     );
-    console.log(
-      Math.round(
-        water * s42 +
-          ((bath
-            ? amountOfBathrooms * table.getCell(`${letter}47`).numeric()
-            : 0) +
-            (shower
-              ? amountOfBathrooms * table.getCell(`${letter}46`).numeric()
-              : 0)) *
-            s42 -
-          (800 + 950) * workInflation
-      ) + " грн."
-    );
     $("#workList").append(textObject);
 
     workSum += canalisation * s42;
@@ -306,7 +298,6 @@ fetch(
       Math.round(canalisation * s42) + " грн."
     );
     $("#workList").append(textObject);
-    console.log(Math.round(canalisation * s42) + " грн.");
 
     workSum += vents * s42 * workInflation;
     textObject = returnObject(
@@ -314,7 +305,6 @@ fetch(
       "",
       Math.round(vents * s42 * workInflation) + " грн."
     );
-    console.log(Math.round(vents * s42 * workInflation) + " грн.");
     $("#workList").append(textObject);
 
     workSum += electricity * s42;
