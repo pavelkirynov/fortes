@@ -1,3 +1,5 @@
+import throttle from "lodash.throttle";
+
 abstract class Utils {
   private static readonly alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -42,17 +44,27 @@ abstract class Utils {
     }
   }
 
-  public static throttle(fun: Function, delay: number): Function {
-    let flag = true;
-
-    return function () {
-      if (flag) {
-        fun();
-        flag = false;
-
-        setTimeout(() => (flag = true), delay);
-      }
-    };
+  /**
+   * Throttles an async function in a way that can be awaited.
+   * By default throttle doesn't return a promise for async functions unless it's invoking them immediately. See CUR-4769 for details.
+   * @param func async function to throttle calls for.
+   * @param wait same function as lodash.throttle's wait parameter.
+   *             Call this function at most this often.
+   * @returns a promise which will be resolved/ rejected only if the function is executed, with the result of the underlying call.
+   */
+  public static asyncThrottle<F extends (...args: any[]) => Promise<any>>(
+    func: F,
+    wait?: number
+  ) {
+    const throttled = throttle((resolve, reject, args: Parameters<F>) => {
+      func(...args)
+        .then(resolve)
+        .catch(reject);
+    }, wait);
+    return (...args: Parameters<F>): ReturnType<F> =>
+      new Promise((resolve, reject) => {
+        throttled(resolve, reject, args);
+      }) as ReturnType<F>;
   }
 }
 

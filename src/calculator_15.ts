@@ -1,3 +1,4 @@
+import { throttle } from "lodash.throttle";
 import { Cell } from "./models/Cell";
 import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
@@ -6,7 +7,6 @@ import { Formatter } from "./utils/Formatter";
 import { LocalStorageHandler } from "./utils/LocalStoragehandler";
 
 import * as $ from "jquery";
-import debounce from "lodash.debounce";
 
 $(function () {
   fetch(
@@ -197,10 +197,10 @@ $(function () {
   });
 
   function calculate() {
-    const callback = debounce(function () {
+    const callback = Utils.asyncThrottle(async function () {
       updateUserData();
 
-      fetch("https://api.fortes.agency/calc", {
+      return fetch("https://api.fortes.agency/calc", {
         body: storage.storageToRequestBody(localStorage),
         headers: {
           "Content-Type": "application/json",
