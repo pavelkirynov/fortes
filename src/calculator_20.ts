@@ -1,4 +1,3 @@
-import { throttle } from "lodash.throttle";
 import { Cell } from "./models/Cell";
 import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
