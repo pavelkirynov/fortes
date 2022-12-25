@@ -43,5 +43,51 @@ fetch(
     console.log(table.getCell("M45").numeric());
     console.log(table.getCell("O45").numeric());
     console.log(table.getCell("Q45").numeric());
-    //table.getCell(`${letter}42`).numeric();
+    let amountOfRooms = 2;
+    let amountOfBathrooms = 1;
+    let space = 50;
+    let bath = true;
+    let shower = false;
+    const workInflation = table.getCell("S44").numeric();
+    const s42 = table.getCell("S42").numeric();
+
+    let water =
+      2523 *
+      ((amountOfRooms > 0 ? 6 : 0) +
+        (bath ? 2 : 0) +
+        (shower ? 2 : 0) +
+        amountOfBathrooms * 2) *
+      //inflation
+      workInflation;
+    let canalisation =
+      1974 *
+      ((amountOfRooms > 0 ? 3 : 0) +
+        (bath ? 1 : 0) +
+        (shower ? 1 : 0) +
+        amountOfBathrooms * 2) *
+      //inflation
+      workInflation;
+    let vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98);
+
+    console.log(water);
+    console.log(canalisation);
+    console.log(vents);
+    let letter = "I";
+
+    console.log(
+      Math.round(
+        water * s42 +
+          ((bath
+            ? amountOfBathrooms * table.getCell(`${letter}47`).numeric()
+            : 0) +
+            (shower
+              ? amountOfBathrooms * table.getCell(`${letter}46`).numeric()
+              : 0)) *
+            s42 -
+          (800 + 950) * workInflation
+      ) + " грн."
+    );
+
+    console.log(Math.round(canalisation * s42) + " грн.");
+    console.log(Math.round(vents * s42 * workInflation) + " грн.");
   });
