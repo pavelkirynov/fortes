@@ -197,27 +197,29 @@ $(function () {
   });
 
   function calculate() {
-    const callback = debounce(async function () {
+    const callback = debounce(function () {
       updateUserData();
 
-      const response = await fetch("https://api.fortes.agency/calc", {
+      fetch("https://api.fortes.agency/calc", {
         body: storage.storageToRequestBody(localStorage),
         headers: {
           "Content-Type": "application/json",
         },
         method: "POST",
-      });
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          const cost = parseFloat(json.cost_per_meter);
 
-      const cost = parseFloat((await response.json()).cost_per_meter);
+          storage.set("costPerMetre", cost);
+          storage.set("summedPrice", storage.get("space"));
 
-      storage.set("costPerMetre", cost);
-      storage.set("summedPrice", storage.get("space"));
-
-      $("#total").html(Formatter.formatCurrency(cost));
-      $("#totalWhole").html(
-        Formatter.formatCurrency(cost * storage.get("space"))
-      );
-    }, 150);
+          $("#total").html(Formatter.formatCurrency(cost));
+          $("#totalWhole").html(
+            Formatter.formatCurrency(cost * storage.get("space"))
+          );
+        });
+    }, 300);
 
     callback();
   }
