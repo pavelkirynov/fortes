@@ -254,7 +254,6 @@ $(function () {
     storage.set("entrance_doors", $("#doors").is(":checked"));
     storage.set("ceiling", $(":radio[name='ceiling']:checked").val());
     storage.set("flooring", $(":radio[name='flooring']:checked").val());
-
     storage.set("color", $(".div-block-14 .color-tab.active").index());
   }
 });

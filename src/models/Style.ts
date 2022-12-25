@@ -8,15 +8,15 @@ enum DesignStyle {
 
 namespace DesignStyle {
   export function fromString(name: string): DesignStyle {
-    if (style === "cozy") {
+    if (name === "cozy") {
       return DesignStyle.Cozy;
-    } else if (style === "japandi") {
+    } else if (name === "japandi") {
       return DesignStyle.Japandi;
-    } else if (style === "neoclassic") {
+    } else if (name === "neoclassic") {
       return DesignStyle.NeoClassic;
-    } else if (style === "modern") {
+    } else if (name === "modern") {
       return DesignStyle.Modern;
-    } else if (style === "fusion") {
+    } else if (name === "fusion") {
       return DesignStyle.Fusion;
     } else {
       return DesignStyle.Cozy;
