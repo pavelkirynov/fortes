@@ -261,7 +261,7 @@ fetch(
       66,
     ];
 
-    const s42 = table.getCell(`${letter}42`).numeric();
+    const s42 = table.getCell("S42").numeric();
 
     workSum +=
       water * s42 +
@@ -531,9 +531,9 @@ fetch(
     $("#workList").append(textObject);
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
       .getCell("F214")
-      .value()}</span><span class=\'list-text amount\'>${table.getCell(
-      `${letter}214`
-    )} грн./місяць</span><span class=\'list-text\'>${Math.round(
+      .value()}</span><span class=\'list-text amount\'>${table
+      .getCell(`${letter}214`)
+      .numeric()} грн./місяць</span><span class=\'list-text\'>${Math.round(
       months * table.getCell(`${letter}214`).numeric()
     )} грн.</span></div></div>`;
     $("#workList").append(textObject);
@@ -549,11 +549,11 @@ fetch(
         );
 
       appendFurnitureOption(
-        table.getCell("F127"),
+        table.getCell("F127").value(),
         table.getCell(`${letterModel}127`),
         1,
         table.getCell(`${letterModel}127`).numeric(),
-        table.getCell("G120")
+        table.getCell("G120").value()
       );
 
       furnitureSum +=
@@ -589,7 +589,7 @@ fetch(
         table.getCell(letterModel + "130").numeric(),
         1,
         table.getCell(`${letter}130`).numeric(),
-        table.getCell("G130")
+        table.getCell("G130").value()
       );
       appendFurnitureOption(
         table.getCell("F131").value(),

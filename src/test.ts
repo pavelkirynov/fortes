@@ -43,4 +43,5 @@ fetch(
     console.log(table.getCell("M45").numeric());
     console.log(table.getCell("O45").numeric());
     console.log(table.getCell("Q45").numeric());
+    table.getCell(`${letter}42`).numeric();
   });
