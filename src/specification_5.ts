@@ -178,8 +178,12 @@ fetch(
           amountOfBathrooms * 2) *
         //inflation
         workInflation,
-      vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98),
-      electricity = table.getCell(`${letter}45`).numeric * space;
+      vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98);
+    console.log(`${letter}45`);
+    console.log(table.getCell(`${letter}45`));
+    console.log(table.getCell(`${letter}45`).value);
+    console.log(table.getCell(`${letter}45`).numeric);
+    const electricity = table.getCell(`${letter}45`).numeric * space;
 
     const workPriceArray = [
       space *
