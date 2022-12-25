@@ -35,5 +35,10 @@ fetch(
         .reduce((pv, cv) => [...pv, ...cv])
     );
 
-    console.log(table.getCell("I36"));
+    console.log(JSON.stringify(table.cells));
+    console.log(table.getCell("I45").value());
+    console.log(table.getCell("K45").value());
+    console.log(table.getCell("M45").value());
+    console.log(table.getCell("O45").value());
+    console.log(table.getCell("Q45").value());
   });
