@@ -1,4 +1,4 @@
-import { get } from "./../node_modules/@jridgewell/set-array/src/set-array";
+import { get } from "@jridgewell/set-array/src/set-array";
 import { Cell } from "./models/Cell";
 import { Table } from "./models/Table";
 import { ResponseRow } from "./interfaces/Row";
