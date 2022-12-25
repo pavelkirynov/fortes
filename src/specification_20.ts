@@ -590,38 +590,38 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F130").value(),
-        table.getCell(`${letterModel}130`).value(),
+        table.getCell(`${letterModel}130`)?.value(),
         1,
-        table.getCell(`${letter}130`).numeric(),
-        table.getCell("G130").value()
+        table.getCell(`${letter}130`)?.numeric(),
+        table.getCell("G130")?.value()
       );
       appendFurnitureOption(
         table.getCell("F131").value(),
-        table.getCell(letterModel + "131").value(),
+        table.getCell(letterModel + "131")?.value(),
         1,
-        table.getCell(`${letter}131`).numeric(),
-        table.getCell("G131").value()
+        table.getCell(`${letter}131`)?.numeric(),
+        table.getCell("G131")?.value()
       );
       appendFurnitureOption(
         table.getCell("F132").value(),
-        table.getCell(letterModel + "132").value(),
+        table.getCell(letterModel + "132")?.value(),
         1,
-        table.getCell(`${letter}132`).numeric(),
-        table.getCell("G132").value()
+        table.getCell(`${letter}132`)?.numeric(),
+        table.getCell("G132")?.value()
       );
       appendFurnitureOption(
         table.getCell("F133").value(),
-        table.getCell(letterModel + "133").value(),
+        table.getCell(letterModel + "133")?.value(),
         4,
-        table.getCell(`${letter}133`).numeric(),
-        table.getCell("G133").value()
+        table.getCell(`${letter}133`)?.numeric(),
+        table.getCell("G133")?.value()
       );
       appendFurnitureOption(
         table.getCell("F134").value(),
-        table.getCell(letterModel + "134").value(),
+        table.getCell(letterModel + "134")?.value(),
         1,
-        table.getCell(`${letter}134`).numeric(),
-        table.getCell("G134").value()
+        table.getCell(`${letter}134`)?.numeric(),
+        table.getCell("G134")?.value()
       );
 
       appendObject(
@@ -635,17 +635,17 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F138").value(),
-        table.getCell(letterModel + "138").value(),
+        table.getCell(letterModel + "138")?.value(),
         1,
-        table.getCell(`${letter}138`).numeric(),
-        table.getCell("G138").value()
+        table.getCell(`${letter}138`)?.numeric(),
+        table.getCell("G138")?.value()
       );
       appendFurnitureOption(
         table.getCell("F139").value(),
-        table.getCell(letterModel + "139").value(),
+        table.getCell(letterModel + "139")?.value(),
         1,
-        table.getCell(`${letter}139`).numeric(),
-        table.getCell("G139").value()
+        table.getCell(`${letter}139`)?.numeric(),
+        table.getCell("G139")?.value()
       );
 
       appendObject(
@@ -659,46 +659,46 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F141").value(),
-        table.getCell(letterModel + "141").value(),
+        table.getCell(letterModel + "141")?.value(),
         1,
-        table.getCell(`${letter}141`).numeric(),
-        table.getCell("G141").value()
+        table.getCell(`${letter}141`)?.numeric(),
+        table.getCell("G141")?.value()
       );
       appendFurnitureOption(
         table.getCell("F142").value(),
-        table.getCell(letterModel + "142").value(),
+        table.getCell(letterModel + "142")?.value(),
         1,
-        table.getCell(`${letter}142`).numeric(),
-        table.getCell("G142").value()
+        table.getCell(`${letter}142`)?.numeric(),
+        table.getCell("G142")?.value()
       );
       appendFurnitureOption(
         table.getCell("F143").value(),
-        table.getCell(letterModel + "143").value(),
+        table.getCell(letterModel + "143")?.value(),
         2,
-        table.getCell(`${letter}143`).numeric(),
-        table.getCell("G143").value()
+        table.getCell(`${letter}143`)?.numeric(),
+        table.getCell("G143")?.value()
       );
 
       appendFurnitureOption(
         table.getCell("F144").value(),
-        table.getCell(letterModel + "144").value(),
+        table.getCell(letterModel + "144")?.value(),
         1,
-        table.getCell(`${letter}144`).numeric(),
-        table.getCell("G144").value()
+        table.getCell(`${letter}144`)?.numeric(),
+        table.getCell("G144")?.value()
       );
       appendFurnitureOption(
         table.getCell("F145").value(),
-        table.getCell(letterModel + "145").value(),
+        table.getCell(letterModel + "145")?.value(),
         1,
-        table.getCell(`${letter}145`).numeric(),
-        table.getCell("G145").value()
+        table.getCell(`${letter}145`)?.numeric(),
+        table.getCell("G145")?.value()
       );
       appendFurnitureOption(
         table.getCell("F146").value(),
-        table.getCell(letterModel + "146").value(),
+        table.getCell(letterModel + "146")?.value(),
         1,
-        table.getCell(`${letter}146`).numeric(),
-        table.getCell("G146").value()
+        table.getCell(`${letter}146`)?.numeric(),
+        table.getCell("G146")?.value()
       );
 
       appendObject(
@@ -713,53 +713,53 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F148").value(),
-        table.getCell(letterModel + "148").value(),
+        table.getCell(letterModel + "148")?.value(),
         Math.ceil(space * 0.48),
-        table.getCell(`${letter}148`).numeric(),
-        table.getCell("G148").value()
+        table.getCell(`${letter}148`)?.numeric(),
+        table.getCell("G148")?.value()
       );
       appendFurnitureOption(
         table.getCell("F149").value(),
-        table.getCell(letterModel + "149").value(),
+        table.getCell(letterModel + "149")?.value(),
         1,
-        table.getCell(`${letter}149`).numeric(),
-        table.getCell("G149").value()
+        table.getCell(`${letter}149`)?.numeric(),
+        table.getCell("G149")?.value()
       );
       appendFurnitureOption(
         table.getCell("F151").value(),
-        table.getCell(letterModel + "151").value(),
+        table.getCell(letterModel + "151")?.value(),
         1,
-        table.getCell(`${letter}151`).numeric(),
-        table.getCell("G151").value()
+        table.getCell(`${letter}151`)?.numeric(),
+        table.getCell("G151")?.value()
       );
       appendFurnitureOption(
         table.getCell("F153").value(),
-        table.getCell(letterModel + "153").value(),
+        table.getCell(letterModel + "153")?.value(),
         1,
-        table.getCell(`${letter}153`).numeric(),
-        table.getCell("G153").value()
+        table.getCell(`${letter}153`)?.numeric(),
+        table.getCell("G153")?.value()
       );
       appendFurnitureOption(
         table.getCell("F154").value(),
-        table.getCell(letterModel + "154").value(),
+        table.getCell(letterModel + "154")?.value(),
         1,
-        table.getCell(`${letter}154`).numeric(),
-        table.getCell("G154").value()
+        table.getCell(`${letter}154`)?.numeric(),
+        table.getCell("G154")?.value()
       );
 
       appendFurnitureOption(
         table.getCell("F150").value(),
-        table.getCell(letterModel + "150").value(),
+        table.getCell(letterModel + "150")?.value(),
         amountOfRooms > 1 ? 1 : 0,
-        table.getCell(`${letter}150`).numeric(),
-        table.getCell("G150").value()
+        table.getCell(`${letter}150`)?.numeric(),
+        table.getCell("G150")?.value()
       );
       appendFurnitureOption(
         table.getCell("F152").value(),
-        table.getCell(letterModel + "152").value(),
+        table.getCell(letterModel + "152")?.value(),
         2,
-        table.getCell(`${letter}152`).numeric(),
-        table.getCell("G152").value()
+        table.getCell(`${letter}152`)?.numeric(),
+        table.getCell("G152")?.value()
       );
 
       $("#furnitureList").append(
@@ -773,39 +773,39 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F156").value(),
-        table.getCell(letterModel + "156").value(),
+        table.getCell(letterModel + "156")?.value(),
         amountOfRooms,
-        table.getCell(`${letter}156`).numeric(),
-        table.getCell("G156").value()
+        table.getCell(`${letter}156`)?.numeric(),
+        table.getCell("G156")?.value()
       );
       appendFurnitureOption(
         table.getCell("F157").value(),
-        table.getCell(letterModel + "157").value(),
+        table.getCell(letterModel + "157")?.value(),
         amountOfRooms,
-        table.getCell(`${letter}157`).numeric(),
-        table.getCell("G157").value()
+        table.getCell(`${letter}157`)?.numeric(),
+        table.getCell("G157")?.value()
       );
       appendFurnitureOption(
         table.getCell("F158").value(),
-        table.getCell(letterModel + "158").value(),
+        table.getCell(letterModel + "158")?.value(),
         amountOfRooms,
-        table.getCell(`${letter}158`).numeric(),
-        table.getCell("G158").value()
+        table.getCell(`${letter}158`)?.numeric(),
+        table.getCell("G158")?.value()
       );
 
       appendFurnitureOption(
         table.getCell("F159").value(),
-        table.getCell(letterModel + "159").value(),
+        table.getCell(letterModel + "159")?.value(),
         1,
-        table.getCell(`${letter}159`).numeric(),
-        table.getCell("G159").value()
+        table.getCell(`${letter}159`)?.numeric(),
+        table.getCell("G159")?.value()
       );
       appendFurnitureOption(
         table.getCell("F160").value(),
-        table.getCell(letterModel + "160").value(),
+        table.getCell(letterModel + "160")?.value(),
         amountOfRooms - 1,
-        table.getCell(`${letter}160`).numeric(),
-        table.getCell("G160").value()
+        table.getCell(`${letter}160`)?.numeric(),
+        table.getCell("G160")?.value()
       );
 
       appendObject(
@@ -963,7 +963,7 @@ fetch(
         $furniture,
         '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
       );
-      if (!manufacturer) {
+      if (manufacturer === null) {
         appendObject(
           $("#materialsList .option-block .list-option-container").last(),
           `<span class=\'name\'>${name}</span><span class=\'list-text\'>${amount} ${dim} </span>`
