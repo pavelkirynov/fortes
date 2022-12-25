@@ -6,6 +6,7 @@ import { Formatter } from "./utils/Formatter";
 import { LocalStorageHandler } from "./utils/LocalStoragehandler";
 
 import * as $ from "jquery";
+import debounce from "lodash.debounce";
 
 $(function () {
   fetch(
@@ -196,7 +197,7 @@ $(function () {
   });
 
   function calculate() {
-    const callback = Utils.throttle(async () => {
+    const callback = debounce(async function () {
       updateUserData();
 
       const response = await fetch("https://api.fortes.agency/calc", {
