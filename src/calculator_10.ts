@@ -44,6 +44,7 @@ $(function () {
     });
 
   const storage: LocalStorageHandler = new LocalStorageHandler();
+  $("#space").val(50);
   storage.init();
   calculate();
 
