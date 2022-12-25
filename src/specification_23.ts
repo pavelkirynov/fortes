@@ -7,7 +7,7 @@ import { Utils } from "./utils/Utils";
 import { Formatter } from "./utils/Formatter";
 
 fetch(
-  "https://docs.google.com/spreadsheets/d/1KkkpKbytztt48mwP1RGgpVFpfke8-IqB0KLWA8Sn2FE/gviz/tq?tqx=out:json"
+  "https://docs.google.com/spreadsheets/d/1KkkpKbytztt48mwP1RGgpVFpfke8-IqB0KLWA8Sn2FE/gviz/tq?tqx=out:json?tq=SELECT *"
 )
   .then((res: Response) => res.text())
   .then((text: string) => {
@@ -1036,13 +1036,13 @@ fetch(
             );
         }
         sum += table.getCell("D" + (array[0] + i)).numeric();
-        sum += table.getCell("G37").numeric();
+        sum += table.getCell("G36").numeric();
         quantity++;
       }
 
       if (appliancesBoolTotal) {
-        const g37 = table.getCell("G37").numeric();
-        sum += g37;
+        const g36 = table.getCell("G36").numeric();
+        sum += g36;
         $appliancesList.append(
           '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
         );
@@ -1050,7 +1050,7 @@ fetch(
           .last()
           .append(
             `<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${
-              quantity * g37
+              quantity * g36
             } грн.</span>`
           );
         $appliances.append(
@@ -1060,7 +1060,7 @@ fetch(
           .last()
           .append(
             `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${
-              quantity * g37
+              quantity * g36
             } грн.</span>`
           );
         $appliancesList.append(
