@@ -68,10 +68,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@splidejs/splide@^4.1.4":
-  version "4.1.4"
-  resolved "https://registry.npmjs.org/@splidejs/splide/-/splide-4.1.4.tgz"
-  integrity sha512-5I30evTJcAJQXt6vJ26g2xEkG+l1nXcpEw4xpKh0/FWQ8ozmAeTbtniVtVmz2sH1Es3vgfC4SS8B2X4o5JMptA==
+"@splidejs/splide@3.5.8":
+  version "3.5.8"
+  resolved "https://registry.npmjs.org/@splidejs/splide/-/splide-3.5.8.tgz"
+  integrity sha512-/jkXAy+ayD8imvQDaeQUFvTVW2YyXFXlHNQBsjJPPxlYO67ZsL8JKwJIIPpkdsnBKsBkMwMfHtQg+dl8LvDtXQ==
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
@@ -891,11 +891,6 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
-
-lodash.debounce@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
-  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
 lru-cache@^6.0.0:
   version "6.0.0"

@@ -27,8 +27,7 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "@splidejs/splide": "^4.1.4",
-    "jquery": "^3.6.3",
-    "lodash.debounce": "^4.0.8"
+    "@splidejs/splide": "3.5.8",
+    "jquery": "^3.6.3"
   }
 }

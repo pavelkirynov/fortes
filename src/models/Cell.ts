@@ -13,12 +13,16 @@ class Cell {
     return this._value !== null && this._value.length > 0;
   }
 
-  public value(): string {
+  public get value(): string {
     return this._value;
   }
 
+  public get numeric(): number {
+    return parseFloat(this._value);
+  }
+
   public formattedNumerical(): string {
-    return Formatter.formatCurrency(parseFloat(this.value()));
+    return Formatter.formatCurrency(parseFloat(this.value));
   }
 }
 
