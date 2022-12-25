@@ -925,7 +925,7 @@ fetch(
         returnObject(
           table.getCell("F" + optionsAdressesArray[i])?.value() +
             ", " +
-            table.getCell(letterModel + optionsAdressesArray[i])?.value(),
+            table.getCell(`${letterModel}${optionsAdressesArray[i]}`)?.value(),
           "",
           Math.round(price) + " грн."
         )
