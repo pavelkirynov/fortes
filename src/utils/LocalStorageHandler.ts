@@ -1,6 +1,10 @@
 class LocalStorageHandler {
   get(name: string): any {
-    return JSON.parse(localStorage.getItem(name));
+    try {
+      return JSON.parse(localStorage.getItem(name));
+    } catch {
+      return localStorage.getItem(name);
+    }
   }
 
   set(name: string, value: any): void {
