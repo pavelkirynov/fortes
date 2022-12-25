@@ -43,17 +43,24 @@ $(function () {
     });
 
   initStorage();
+  calculate();
 
   $("#space").val(50);
 
   $(".calculator input")
     .not(".form-2 input")
-    .on("change", function () {
+    .on("change", () => {
       updateUserData();
       calculate();
     });
+
   $("#space").on("focusout", function () {
-    $(this).val(($(this).val() as string).match(/\d*\.?\d+/));
+    $(this).val(
+      $(this)
+        .val()
+        .toString()
+        .match(/\d*\.?\d+/)
+    );
     setStorage("space", $("#space").val());
     if (storage("space") === 0 || storage("amount_of_rooms") === 0) {
       $("#total").html("0");
@@ -250,7 +257,7 @@ $(function () {
   }
 
   function setStorage(name: string, value: any): void {
-    setStorage(name, value.toString());
+    localStorage.setItem(name, value.toString());
   }
 
   function initStorage(): void {
@@ -273,6 +280,4 @@ $(function () {
     setStorage("furniture_bool", true);
     setStorage("space", 50);
   }
-
-  calculate();
 });
