@@ -93,23 +93,25 @@ $(function () {
         () => {
           $(".splide__list").css(
             "height",
-            $(".splide__slide.is-active .active img").height()
+            $(".splide__slide.is-active .active img").attr("height")
           );
         },
-        vw > 480 ? 650 : 750
+        vw > 480 ? 550 : 750
       )
     );
 
     $(".splide__list").css(
       "height",
-      $(".splide__slide.is-active .active img").height()
+      $(".splide__slide.is-active .active img").attr("height")
     );
 
     $(".slick-btn-prev, .slick-btn-next").on("click", function () {
-      let index = splide.index,
-        textPrev,
-        textNext;
+      let index: number = splide.index;
+      let textPrev: string = "";
+      let textNext: string = "";
+
       $(".slick-btn-prev, .slick-btn-next").removeClass("disabled");
+
       if ($(this).index() == 0) {
         splide.go("<");
         if (index-- - 1 == 0) {

@@ -45,9 +45,8 @@ $(function () {
 
   const storage: LocalStorageHandler = new LocalStorageHandler();
   storage.init();
-  calculate();
-
   $("#space").val(50);
+  calculate();
 
   $(".calculator input")
     .not(".form-2 input")
