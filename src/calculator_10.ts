@@ -195,23 +195,28 @@ $(function () {
     }
   });
 
-  async function calculate() {
-    updateUserData();
+  function calculate() {
+    Utils.throttle(async () => {
+      updateUserData();
 
-    let response = await fetch("https://api.fortes.agency/calc", {
-      body: storage.storageToRequestBody(localStorage),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-    let result = await response.json();
-    const cost = parseFloat(result.cost_per_meter);
+      const response = await fetch("https://api.fortes.agency/calc", {
+        body: storage.storageToRequestBody(localStorage),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
 
-    $("#total").html(Formatter.formatCurrency(cost));
-    $("#totalWhole").html(
-      Formatter.formatCurrency(cost * parseFloat(storage.get("space")))
-    );
+      const cost = parseFloat((await response.json()).cost_per_meter);
+
+      storage.set("costPerMetre", cost);
+      storage.set("summedPrice", storage.get("space"));
+
+      $("#total").html(Formatter.formatCurrency(cost));
+      $("#totalWhole").html(
+        Formatter.formatCurrency(cost * storage.get("space"))
+      );
+    }, 150);
   }
 
   if ($(window).width() < 992) {
@@ -248,6 +253,8 @@ $(function () {
     storage.set("entrance_doors", $("#doors").is(":checked"));
     storage.set("ceiling", $(":radio[name='ceiling']:checked").val());
     storage.set("flooring", $(":radio[name='flooring']:checked").val());
+
+    storage.set("color", $(".div-block-14 .color-tab.active").index());
   }
 
   function getUserStyle(number: number): void {
