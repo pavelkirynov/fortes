@@ -142,7 +142,7 @@ $(function () {
   });
 
   $(".calculatecozy").on("click", function () {
-    storage.set("style", "cozy");
+    storage.set("style", DesignStyle.Cozy);
     $("calculator-tab.w--current").removeClass("w--current");
     $(".wrap-border.calculator-tab .custom-style").css("color", "black");
     $(".wrap-border.calculator-tab .custom-style").css("background", "white");
@@ -197,29 +197,27 @@ $(function () {
   });
 
   function calculate() {
-    Utils.asyncThrottle(async function () {
-      updateUserData();
+    updateUserData();
 
-      return fetch("https://api.fortes.agency/calc", {
-        body: storage.storageToRequestBody(localStorage),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          const cost = parseFloat(json.cost_per_meter);
+    return fetch("https://api.fortes.agency/calc", {
+      body: storage.storageToRequestBody(localStorage),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        const cost = parseFloat(json.cost_per_meter);
 
-          storage.set("costPerMetre", cost);
-          storage.set("summedPrice", storage.get("space"));
+        storage.set("costPerMetre", cost);
+        storage.set("summedPrice", storage.get("space"));
 
-          $("#total").html(Formatter.formatCurrency(cost));
-          $("#totalWhole").html(
-            Formatter.formatCurrency(cost * storage.get("space"))
-          );
-        });
-    }, 1000).call(this);
+        $("#total").html(Formatter.formatCurrency(cost));
+        $("#totalWhole").html(
+          Formatter.formatCurrency(cost * storage.get("space"))
+        );
+      });
   }
 
   if ($(window).width() < 992) {
@@ -235,7 +233,7 @@ $(function () {
     $(".calculator-tab:eq(1), .slider-tab:eq(1)").toggleClass("w--current");
     $(".header-japandi").toggle(true);
 
-    storage.set("style", "japandi");
+    storage.set("style", DesignStyle.Japandi);
     calculate();
   }
 
@@ -258,19 +256,5 @@ $(function () {
     storage.set("flooring", $(":radio[name='flooring']:checked").val());
 
     storage.set("color", $(".div-block-14 .color-tab.active").index());
-  }
-
-  function getUserStyle(number: number): void {
-    if (number == 0) {
-      storage.set("style", "cozy");
-    } else if (number == 2) {
-      storage.set("style", "fusion");
-    } else if (number == 1) {
-      storage.set("style", "japandi");
-    } else if (number == 3) {
-      storage.set("style", "modern");
-    } else if (number == 4) {
-      storage.set("style", "neoclassic");
-    }
   }
 });
