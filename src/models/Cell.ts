@@ -18,7 +18,7 @@ class Cell {
   }
 
   public get numeric(): number {
-    return parseFloat(this._value.replace(/,/g, "."));
+    return parseFloat(this._value);
   }
 
   public formattedNumerical(): string {
