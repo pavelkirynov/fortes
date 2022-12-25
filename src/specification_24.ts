@@ -554,7 +554,7 @@ fetch(
 
       appendFurnitureOption(
         table.getCell("F127").value(),
-        table.getCell(`${letterModel}127`),
+        table.getCell(`${letterModel}127`)?.value(),
         1,
         table.getCell(`${letter}127`).numeric(),
         table.getCell("G120").value()
@@ -569,11 +569,10 @@ fetch(
       $("#furnitureList .option-block .list-option-container")
         .last()
         .append(
-          `<span class=\'name\'>${table
-            .getCell("F127")
-            .value()}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Formatter.formatCurrency(
-            table.getCell(`${letter}128`).numeric() * furnitureRate
-          )} грн.</span>`
+          `<span class=\'name\'>${table.getCell("F127").value()}
+						</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Formatter.formatCurrency(
+              table.getCell(`${letter}128`).numeric() * furnitureRate
+            )} грн.</span>`
         );
       $furniture.append(
         '<div class="option-block"><div class="division-block pricelist small-heading"></div><div class="list-option-container"></div></div>'
