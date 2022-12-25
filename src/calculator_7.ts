@@ -69,10 +69,12 @@ $(function () {
     }
     calculate();
   });
+
   $(".slider-tab").on("click", function () {
     getUserStyle($(this).data("slider-index"));
     calculate();
   });
+
   $("#space").on("focusout", function () {
     if (parseInt($(this).val().toString()) < 30 || !$(this).val()) {
       $(this).val(30);
@@ -81,6 +83,7 @@ $(function () {
       calculate();
     }
   });
+
   $(".increment-field .increment").on("click", function (e) {
     e.preventDefault();
     $(this)
@@ -108,14 +111,16 @@ $(function () {
     }
     calculate();
   });
+
   $(".calculator-tab, .tab-new").on("click", function () {
     const num: number = parseInt($(this).data("slider-index"));
     getUserStyle(num);
 
     calculate();
   });
+
   $("#calculate").on("click", function () {
-    let slideNumber = parseInt(
+    const slideNumber: number = parseInt(
       $(".slider-tab.w--current").data("slider-index")
     );
     getUserStyle(slideNumber);
@@ -131,6 +136,7 @@ $(function () {
     $(".calculator-slider-option.active").removeClass("active");
     $(".calculator-slider-option:eq(0)").addClass("active");
   });
+
   $(".calculatecozy").on("click", function () {
     setStorage("style", "cozy");
     $("calculator-tab.w--current").removeClass("w--current");
@@ -146,6 +152,7 @@ $(function () {
     $(".calculator-slider-option.active").removeClass("active");
     $(".calculator-slider-option:eq(0)").addClass("active");
   });
+
   $(".choice").on("click", function () {
     if ($("#node").is(":checked")) {
       $(".choiceActiveBorder").removeClass("choiceActiveBorder");
@@ -291,8 +298,15 @@ $(function () {
 
       if (String(storage[key]) === "true") {
         result[key] = "1";
+        continue;
       } else if (String(storage[key]) === "false") {
         result[key] = "0";
+        continue;
+      }
+
+      if (isFinite(Number(storage[key]))) {
+        result[key] = Number(storage[key]);
+        continue;
       }
 
       result[key] = storage[key];
