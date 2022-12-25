@@ -131,10 +131,9 @@ $(function () {
       "w--current"
     );
     calculate();
-    //$(".calculator-slider-side").slick("slickGoTo", 0);
     $(".calculator-slide").toggle(false);
     $(".calculator-slide.main").toggle(true);
-    $(".calculator-slide." + style).toggle(true);
+    $(".calculator-slide." + storage.get("style")).toggle(true);
     $(".calculator-slider-option.active").removeClass("active");
     $(".calculator-slider-option:eq(0)").addClass("active");
   });
