@@ -196,7 +196,7 @@ $(function () {
   });
 
   function calculate() {
-    Utils.throttle(async () => {
+    const callback = Utils.throttle(async () => {
       updateUserData();
 
       const response = await fetch("https://api.fortes.agency/calc", {
@@ -217,6 +217,8 @@ $(function () {
         Formatter.formatCurrency(cost * storage.get("space"))
       );
     }, 150);
+
+    callback();
   }
 
   if ($(window).width() < 992) {
