@@ -1,10 +1,7 @@
 import Splide from "@splidejs/splide";
 
 $(function () {
-  const vw: number = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  );
+  const vw: number = $(window).width();
   const emailRegex: RegExp =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -38,9 +35,9 @@ $(function () {
         return;
       }
 
-      rmActive($(".fact-container.active"));
+      $(".fact-container.active").removeClass("active");
       setActive($(".fact-container").eq($(this).index()));
-      rmActive($(".fact-link.active"));
+      $(".fact-link.active").removeClass("active");
       setActive($(this));
     });
 
@@ -51,31 +48,30 @@ $(function () {
 
       let index = $(this).index();
 
-      rmActive($(".tab-new.active"));
+      $(".tab-new.active").removeClass("active");
       setActive($(this));
-      rmActive($(".slider-image-new"));
+      $(".slider-image-new").removeClass("active");
       $(".slider-image-new").each(function () {
         if ($(this).index() == index) setActive($(this));
       });
 
       let style = getStyle(index);
 
-      hide(
-        $(
-          ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
-        )
-      );
-      show(
-        $(
-          ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
-            `.${style}, .specification-${style}.color-1`
-        )
-      );
-      show($(".calculator-slide.splide__slide .calculator-slide").eq(index));
+      $(
+        ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
+      ).toggle(false);
+
+      $(
+        ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
+          `.${style}, .specification-${style}.color-1`
+      ).toggle(true);
+      $(".calculator-slide.splide__slide .calculator-slide")
+        .eq(index)
+        .toggle(true);
       $(".calculator-tab.w--current").removeClass("w--current");
       $(`.calculator-tab`).eq(index).addClass("w--current");
 
-      rmActive($(".color-tab.active, .slide-nav.active"));
+      $(".color-tab.active, .slide-nav.active").removeClass("active");
       $(".div-block-14 .color-tab").each(function () {
         if ($(this).index() == 0) {
           setActive($(this));
@@ -156,22 +152,21 @@ $(function () {
     let index = $(this).index();
     let style = getStyle(index);
 
-    hide(
-      $(
-        ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
-      )
-    );
-    show(
-      $(
-        ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
-          `.${style}, .specification-${style}.color-1`
-      )
-    );
-    show($(".calculator-slide.splide__slide .calculator-slide").eq(index));
+    $(
+      ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
+    ).toggle(false);
+
+    $(
+      ".calculator-slide.splide__slide .calculator-slide .color-1, .calculator-slide" +
+        `.${style}, .specification-${style}.color-1`
+    ).toggle(true);
+    $(".calculator-slide.splide__slide .calculator-slide")
+      .eq(index)
+      .toggle(true);
     $(".calculator-tab.w--current").removeClass("w--current");
     $(`.calculator-tab:eq(${index})`).addClass("w--current");
 
-    rmActive($(".color-tab.active, .slide-nav.active"));
+    $(".color-tab.active, .slide-nav.active").removeClass("active");
     $(".tab-new").eq(index).trigger("click");
     $(".div-block-14 .color-tab").each(function () {
       if ($(this).index() == 0) {
@@ -223,21 +218,21 @@ $(function () {
 
   $("#wf-form-consult").on("submit", (e) => {
     if (!$("#agreementCheckbox").is(":checked")) {
-      show($(".warning.agreementcheckbox"));
+      $(".warning.agreementcheckbox").toggle(true);
     } else {
-      hide($(".warning.agreementcheckbox"));
+      $(".warning.agreementcheckbox").toggle(false);
     }
 
     if (!$("#phone").val()) {
-      show($(".warning.inputs.phone"));
+      $(".warning.inputs.phone").toggle(true);
     } else {
-      hide($(".warning.inputs.phone"));
+      $(".warning.inputs.phone").toggle(false);
     }
 
     if (!$("#name").val()) {
-      show($(".warning.inputs.name"));
+      $(".warning.inputs.name").toggle(true);
     } else {
-      hide($(".warning.inputs.name"));
+      $(".warning.inputs.name").toggle(false);
     }
 
     if ($(".warning").is(":visible")) {
@@ -335,7 +330,7 @@ $(function () {
         },
         200,
         function () {
-          hide(obj.siblings(".hover-modal"));
+          obj.siblings(".hover-modal").toggle(false);
         }
       );
     }
@@ -549,7 +544,7 @@ $(function () {
       },
       200,
       function () {
-        hide(obj.parent(".hover-modal"));
+        obj.parent(".hover-modal").toggle(false);
       }
     );
   });
@@ -582,28 +577,27 @@ $(function () {
       let style = getStyle(number);
 
       if ($(this).not(".active")) {
-        rmActive($(".color-tab.active"));
+        $(".color-tab.active").removeClass("active");
         $(".div-block-14 .color-tab").each(function () {
           if ($(this).index() == index) {
             setActive($(this));
           }
         });
 
-        hide($(".color-var, .wrap-border.calculator-btn"));
-        show(
-          $(
-            `.calculator-slide .color-${
-              index + 1
-            }, .wrap-border.calculator-btn.specification-${style}.color-${
-              index + 1
-            }`
-          )
-        );
+        $(".color-var, .wrap-border.calculator-btn").toggle(false);
+
+        $(
+          `.calculator-slide .color-${
+            index + 1
+          }, .wrap-border.calculator-btn.specification-${style}.color-${
+            index + 1
+          }`
+        ).toggle(true);
       }
     });
 
     $(".calculator-slider-option").on("click", function () {
-      rmActive($(".calculator-slider-option.active"));
+      $(".calculator-slider-option.active").removeClass("active");
       setActive($(this));
       splideCalc.go(parseInt($(this).data("slider-index")));
     });
@@ -615,7 +609,7 @@ $(function () {
         splideCalc.go("<");
       }
 
-      rmActive($(".calculator-slider-option.active"));
+      $(".calculator-slider-option.active").removeClass("active");
       setActive($(`.calculator-slider-option:eq(${splideCalc.index})`));
     });
 
@@ -629,23 +623,23 @@ $(function () {
   if (vw <= 767) {
     $(".star").on("mouseleave", function () {
       $(this).removeClass("hidden");
-      rmActive($(this).siblings(".image-price"));
+      $(this).siblings(".image-price").removeClass("active");
     });
 
     $(".image-price").on("click", function () {
       if ($(this).is(".active")) {
         $(this).siblings(".star").removeClass("hidden");
-        rmActive($(this));
+        $(this).removeClass("active");
       }
     });
 
     $(".star").on("click", function () {
       if ($(this).is(".hidden")) {
         $(this).removeClass("hidden");
-        rmActive($(this).siblings(".image-price"));
+        $(this).siblings(".image-price").removeClass("active");
       } else {
         $(this).addClass("hidden");
-        setActive($(this).siblings(".image-price"));
+        $(this).siblings(".image-price").removeClass("active");
       }
     });
   }
@@ -664,18 +658,6 @@ $(function () {
 
   function setActive(obj: JQuery<HTMLElement>) {
     obj.addClass("active");
-  }
-
-  function rmActive(obj: JQuery<HTMLElement>) {
-    obj.removeClass("active");
-  }
-
-  function hide(obj: JQuery<HTMLElement>) {
-    obj.toggle(false);
-  }
-
-  function show(obj: JQuery<HTMLElement>) {
-    obj.toggle(true);
   }
 
   function getData(obj: JQuery<HTMLElement>, dataVal: string): string | number {
@@ -698,7 +680,7 @@ $(function () {
     return `${object.is(":checked")}`;
   }
 
-  function isInViewport(element: HTMLElement) {
+  function isInViewport(element: HTMLElement): boolean {
     const rect = element.getBoundingClientRect();
     return (
       rect.top >= 0 &&

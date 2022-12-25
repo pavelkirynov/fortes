@@ -1,27 +1,34 @@
 const path = require("path");
-
+const fs = require("fs");
 const NodemonPlugin = require("nodemon-webpack-plugin");
 const ForkTsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 
-const BUNDLE = {
-  entry: {
-    calculator: "./calculator.ts",
-    specification: "./specification.ts",
-    specificationPortugal: "./specification_portugal.ts",
-    calculatorPortugal: "./calculator_portugal.ts",
-    logics: "./logics.ts",
-    course: "./course.ts",
-  },
+const entries = {
+  calculator: "./src/calculator.ts",
+  specification: "./src/specification.ts",
+  specification_portugal: "./src/specification_portugal.ts",
+  calculator_portugal: "./src/calculator_portugal.ts",
+  course: "./src/course.ts",
+};
+
+//dynamically read contents of /src/ folder and create entries
+fs.readdirSync("./src/")
+  .filter((file) => {
+    return file.match(/logics[_0-9]*.ts$/);
+  })
+  .forEach((f) => {
+    entries[f.replace(/\.ts$/, "")] = ["./src/" + f];
+  });
+
+module.exports = {
+  stats: "errors-only",
+  target: "node",
+  entry: entries,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
+    clean: true,
   },
-};
-
-module.exports = {
-  target: "node",
-  entry: BUNDLE.entry,
-  stats: "errors-only",
   module: {
     rules: [
       {
@@ -39,5 +46,4 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"],
   },
-  output: BUNDLE.output,
 };
