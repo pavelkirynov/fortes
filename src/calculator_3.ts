@@ -4,27 +4,7 @@ import { Table } from "./models/Table";
 import { Utils } from "./helpers/Utils";
 
 import * as $ from "jquery";
-
-let data = {
-  style: "cozy",
-  bath: 1,
-  shower: 0,
-  ceiling: "stretch ceiling",
-  flooring: "laminat",
-  hygienic_shower: 0,
-  second_gypsum_layer: 0,
-  floor_screed: 0,
-  heated_flooring: 0,
-  denoising: 0,
-  entrance_doors: 0,
-  conditioning: 0,
-  amount_of_rooms: 2,
-  amount_of_bathrooms: 1,
-  appliances: "gorenje",
-  appliances_bool_total: 0,
-  furniture_bool: 1,
-  space: 50,
-};
+import { Formatter } from "./helpers/Formatter";
 
 $(function () {
   fetch(
@@ -62,36 +42,36 @@ $(function () {
       $("#dollarCourse").html(table.getCell("G6").formattedNumerical());
     });
 
-  let style = "cozy";
-  let appliancesCookie = "";
+  initStorage();
+
   $("#space").val(50);
 
   $(".calculator input")
     .not(".form-2 input")
     .on("change", function () {
       updateUserData();
-      returnValue(data.space);
+      calculate();
     });
   $("#space").on("focusout", function () {
     $(this).val(($(this).val() as string).match(/\d*\.?\d+/));
-    data.space = +$("#space").val();
-    if (data.space == 0 || data.amount_of_rooms == 0) {
+    setStorage("space", $("#space").val());
+    if (storage("space") === 0 || storage("amount_of_rooms") === 0) {
       $("#total").html("0");
       $("#totalWhole").html("0");
       return;
     }
-    returnValue(data.space);
+    calculate();
   });
   $(".slider-tab").on("click", function () {
     getUserStyle($(this).data("slider-index"));
-    returnValue(data.space);
+    calculate();
   });
   $("#space").on("focusout", function () {
-    console.log(parseInt($(this).val() as string));
-    if (parseInt($(this).val() as string) < 30 || !$(this).val()) {
+    if (parseInt($(this).val().toString()) < 30 || !$(this).val()) {
       $(this).val(30);
-      data.space = +$("#space").val();
-      returnValue(30);
+      setStorage("space", $("#space").val());
+
+      calculate();
     }
   });
   $(".increment-field .increment").on("click", function (e) {
@@ -114,18 +94,18 @@ $(function () {
     ) {
       $(this).siblings(".disabled").toggleClass("disabled");
     }
-    if (data.amount_of_rooms == 0) {
+    if (storage("amount_of_rooms") == 0) {
       $("#total").html("0");
       $("#totalWhole").html("0");
       return;
     }
-    returnValue(data.space);
+    calculate();
   });
   $(".calculator-tab, .tab-new").on("click", function () {
     const num: number = parseInt($(this).data("slider-index"));
     getUserStyle(num);
 
-    returnValue(data.space);
+    calculate();
   });
   $("#calculate").on("click", function () {
     let slideNumber = parseInt(
@@ -136,7 +116,7 @@ $(function () {
     $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass(
       "w--current"
     );
-    returnValue(data.space);
+    calculate();
     //$(".calculator-slider-side").slick("slickGoTo", 0);
     $(".calculator-slide").toggle(false);
     $(".calculator-slide.main").toggle(true);
@@ -145,16 +125,15 @@ $(function () {
     $(".calculator-slider-option:eq(0)").addClass("active");
   });
   $(".calculatecozy").on("click", function () {
-    data.style = "cozy";
-    style = "cozy;";
+    setStorage("style", "cozy");
     $("calculator-tab.w--current").removeClass("w--current");
     $(".wrap-border.calculator-tab .custom-style").css("color", "black");
     $(".wrap-border.calculator-tab .custom-style").css("background", "white");
     $("calculator-tab:eq(0)").addClass("w--current");
     $(".calculator-tab").removeClass("w--current");
     $(".calculator-tab:eq(0)").addClass("w--current");
-    returnValue(data.space);
-    //$(".calculator-slider-side").slick("slickGoTo", 0);
+    calculate();
+
     $(".calculator-slide").toggle(false);
     $(".calculator-slide.main, .calculator-slide.cozy").toggle(true);
     $(".calculator-slider-option.active").removeClass("active");
@@ -168,31 +147,36 @@ $(function () {
       $("#node").siblings("div").removeClass("w--redirected-checked");
       $("#appliancesBool").siblings("div").addClass("w--redirected-checked");
     }
-    data.appliances_bool_total = 1;
-    data.appliances = $(this).data("appliances");
-    returnValue(data.space);
+
+    setStorage("appliances_bool_total", true);
+    setStorage("appliances", $(this).data("appliances"));
+    calculate();
   });
+
   $("#node").on("click", function () {
-    data.appliances_bool_total = 0;
-    returnValue(data.space);
+    setStorage("appliances_bool_total", false);
+    calculate();
   });
+
   $("#appliancesBool").on("click", function () {
     if (!$(this).is(":checked")) {
       return;
     }
     if (!document.querySelector(".choiceActiveBorder")) {
-      data.appliances_bool_total = 1;
-      data.appliances = "gorenje";
-      returnValue(data.space);
+      localStorage.seetItem("appliances_bool_total", 1);
+      localStorage.seetItem("appliances", "gorenje");
+      calculate();
     }
   });
+
   $("#appliancesBool").on("change", function () {
     if ($(this).is(":checked")) {
-      data.appliances_bool_total = 1;
-      returnValue(data.space);
+      setStorage("appliances_bool_total", true);
+      calculate();
     }
   });
-  async function returnValue(multiplier) {
+
+  async function calculate() {
     updateUserData();
 
     let response = await fetch("https://api.fortes.agency/calc", {
@@ -203,16 +187,12 @@ $(function () {
       method: "POST",
     });
     let result = await response.json();
-    let price = result.cost_per_meter;
+    const cost = parseFloat(result.cost_per_meter);
 
-    $("#total").html(numberWithSpaces(Math.round(parseFloat(price))));
+    $("#total").html(Formatter.formatCurrency(cost));
     $("#totalWhole").html(
-      numberWithSpaces(Math.round(parseFloat(price) * parseFloat(multiplier)))
+      Formatter.formatCurrency(cost * parseFloat(storage("space")))
     );
-
-    function numberWithSpaces(num) {
-      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
   }
 
   if ($(window).width() < 992) {
@@ -227,48 +207,72 @@ $(function () {
     ).toggle(true);
     $(".calculator-tab:eq(1), .slider-tab:eq(1)").toggleClass("w--current");
     $(".header-japandi").toggle(true);
-    style = "japandi";
-    data.style = "japandi";
-    returnValue(data.space);
+
+    setStorage("style", "japandi");
+    calculate();
   }
 
   function updateUserData() {
-    data.space = +$("#space").val();
-    data.amount_of_rooms = +$("#amountOfRooms").val();
-    data.amount_of_bathrooms = +$("#amountOfBathrooms").val();
-    data.heated_flooring = +$("#heatedFlooring").val();
-    data.conditioning = +$("#conditioning").val();
-    data.hygienic_shower = +$("#hygienicShower").is(":checked");
-    data.second_gypsum_layer = +$("#secondGypsumLayer").is(":checked");
-    data.furniture_bool = +$("#furnitureBool").is(":checked");
-    data.bath = +$("#bathtub").is(":checked");
-    data.shower = +$("#shower").is(":checked");
-    data.appliances_bool_total = +$("#appliancesBool").is(":checked");
-    data.floor_screed = +$("#floorscreed").is(":checked");
-    data.denoising = +$("#noise").is(":checked");
-    data.entrance_doors = +$("#doors").is(":checked");
-    data.ceiling = $(":radio[name='ceiling']:checked").val() as string;
-    data.flooring = $(":radio[name='flooring']:checked").val() as string;
+    setStorage("space", $("#space").val());
+    setStorage("amount_of_rooms", $("#amountOfRooms").val());
+    setStorage("amount_of_bathrooms", $("#amountOfBathrooms").val());
+    setStorage("heated_flooring", $("#heatedFlooring").val());
+    setStorage("conditioning", $("#conditioning").val());
+    setStorage("hygienic_shower", $("#hygienicShower").is(":checked"));
+    setStorage("second_gypsum_layer", $("#secondGypsumLayer").is(":checked"));
+    setStorage("furniture_bool", $("#furnitureBool").is(":checked"));
+    setStorage("bath", $("#bathtub").is(":checked"));
+    setStorage("shower", $("#shower").is(":checked"));
+    setStorage("appliances_bool_total", $("#appliancesBool").is(":checked"));
+    setStorage("floor_screed", $("#floorscreed").is(":checked"));
+    setStorage("denoising", $("#noise").is(":checked"));
+    setStorage("entrance_doors", $("#doors").is(":checked"));
+    setStorage("ceiling", $(":radio[name='ceiling']:checked").val());
+    setStorage("flooring", $(":radio[name='flooring']:checked").val());
   }
 
   function getUserStyle(number: number): void {
     if (number == 0) {
-      style = "cozy";
-      data.style = "cozy";
+      setStorage("style", "cozy");
     } else if (number == 2) {
-      style = "fusion";
-      data.style = "fusion";
+      setStorage("style", "fusion");
     } else if (number == 1) {
-      style = "japandi";
-      data.style = "japandi";
+      setStorage("style", "japandi");
     } else if (number == 3) {
-      style = "modern";
-      data.style = "modern";
+      setStorage("style", "modern");
     } else if (number == 4) {
-      style = "neoclassic";
-      data.style = "neoclassic";
+      setStorage("style", "neoclassic");
     }
   }
 
-  returnValue(data.space);
+  function storage(name: string): any {
+    return JSON.parse(localStorage.getItem(name));
+  }
+
+  function setStorage(name: string, value: any): void {
+    setStorage(name, value.toString());
+  }
+
+  function initStorage(): void {
+    setStorage("style", "cozy");
+    setStorage("bath", true);
+    setStorage("shower", false);
+    setStorage("ceiling", "stretch ceiling");
+    setStorage("flooring", "laminat");
+    setStorage("hygienic_shower", false);
+    setStorage("second_gypsum_layer", false);
+    setStorage("floor_screed", false);
+    setStorage("heated_flooring", false);
+    setStorage("denoising", false);
+    setStorage("entrance_doors", false);
+    setStorage("conditioning", false);
+    setStorage("amount_of_rooms", 2);
+    setStorage("amount_of_bathrooms", 1);
+    setStorage("appliances", "gorenje");
+    setStorage("appliances_bool_total", false);
+    setStorage("furniture_bool", true);
+    setStorage("space", 50);
+  }
+
+  calculate();
 });

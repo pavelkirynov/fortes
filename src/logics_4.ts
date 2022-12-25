@@ -632,16 +632,16 @@ $(function () {
     });
   }
 
-  function getStyle(number: number): DesignStyle {
+  function getStyle(number: number): string {
     return number === 0
-      ? DesignStyle.Cozy
+      ? "cozy"
       : number === 1
-      ? DesignStyle.Japandi
+      ? "japandi"
       : number === 2
-      ? DesignStyle.Fusion
+      ? "fusion"
       : number === 3
-      ? DesignStyle.Modern
-      : DesignStyle.NeoClassic;
+      ? "modern"
+      : "neoclassic";
   }
 
   function getData(obj: JQuery<HTMLElement>, dataVal: string): string | number {
