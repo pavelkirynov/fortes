@@ -30,7 +30,7 @@ fetch(
 
               return new Cell(
                 `${Utils.numberToEncodedLetter(index + 1)}${outerIndex + 1}`,
-                cell.v
+                cell.v ?? cell.f
               );
             })
             .filter((cell) => cell != null);
