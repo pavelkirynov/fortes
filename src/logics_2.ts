@@ -36,9 +36,9 @@ $(function () {
       }
 
       $(".fact-container.active").removeClass("active");
-      setActive($(".fact-container").eq($(this).index()));
+      $(".fact-container").eq($(this).index()).addClass("active");
       $(".fact-link.active").removeClass("active");
-      setActive($(this));
+      $(this).addClass("active");
     });
 
     $(".tab-new").on("click", function () {
@@ -49,10 +49,12 @@ $(function () {
       let index = $(this).index();
 
       $(".tab-new.active").removeClass("active");
-      setActive($(this));
+      $(this).addClass("active");
       $(".slider-image-new").removeClass("active");
       $(".slider-image-new").each(function () {
-        if ($(this).index() == index) setActive($(this));
+        if ($(this).index() == index) {
+          $(this).addClass("active");
+        }
       });
 
       let style = getStyle(index);
@@ -74,7 +76,7 @@ $(function () {
       $(".color-tab.active, .slide-nav.active").removeClass("active");
       $(".div-block-14 .color-tab").each(function () {
         if ($(this).index() == 0) {
-          setActive($(this));
+          $(this).addClass("active");
         }
       });
 
@@ -170,7 +172,7 @@ $(function () {
     $(".tab-new").eq(index).trigger("click");
     $(".div-block-14 .color-tab").each(function () {
       if ($(this).index() == 0) {
-        setActive($(this));
+        $(this).addClass("active");
       }
     });
 
@@ -340,19 +342,6 @@ $(function () {
     e.preventDefault();
   });
 
-  //form logics
-  $(".form-2 :radio").on("change", function () {
-    if ($(".form-2 :radio:checked").is("#sEmailCheckbox")) {
-      $("#sEmail").toggle(true);
-      $("#sPhone").toggle(false);
-      $("#sPhone").val("");
-    } else {
-      $("#sPhone").toggle(true);
-      $("#sEmail").toggle(false);
-      $("#sEmail").val("");
-    }
-  });
-
   $(".form-2").on("submit", async function (e) {
     e.preventDefault();
 
@@ -362,22 +351,25 @@ $(function () {
       $(".warning.agreementcheckbox").toggle(false);
     }
     if (!$("#sPhone").val() && !$("#sEmail").val()) {
-      $(".warning.inputs.second").toggle(true);
+      $(".warning.inputs.phone").toggle(true);
     } else {
-      $(".warning.inputs.second").toggle(false);
+      $(".warning.inputs.phone").toggle(false);
     }
     if (!$("#sName").val()) {
-      $(".warning.inputs.first").toggle(true);
+      $(".warning.inputs.name").toggle(true);
     } else {
-      $(".warning.inputs.first").toggle(false);
+      $(".warning.inputs.name").toggle(false);
     }
-    if (
-      !!$("#sEmail").val() &&
-      !emailRegex.test($("#sEmail").val() as string)
-    ) {
-      $(".warning.inputs.email").toggle(true);
+
+    if (($("#sEmail").val() as string).length == 0) {
+      $(".warning.inputs.wrongEmail").toggle(false);
+      $(".warning.inputs.emptyEmail").toggle(true);
+    } else if (!emailRegex.test($("#sEmail").val() as string)) {
+      $(".warning.inputs.wrongEmail").toggle(true);
+      $(".warning.inputs.emptyEmail").toggle(false);
     } else {
-      $(".warning.inputs.email").toggle(false);
+      $(".warning.inputs.wrongEmail").toggle(false);
+      $(".warning.inputs.emptyEmail").toggle(false);
     }
 
     if ($(".warning").is(":visible")) {
@@ -576,7 +568,7 @@ $(function () {
         $(".color-tab.active").removeClass("active");
         $(".div-block-14 .color-tab").each(function () {
           if ($(this).index() == index) {
-            setActive($(this));
+            $(this).addClass("active");
           }
         });
 
@@ -594,7 +586,7 @@ $(function () {
 
     $(".calculator-slider-option").on("click", function () {
       $(".calculator-slider-option.active").removeClass("active");
-      setActive($(this));
+      $(this).addClass("active");
       splideCalc.go(parseInt($(this).data("slider-index")));
     });
 
@@ -606,7 +598,7 @@ $(function () {
       }
 
       $(".calculator-slider-option.active").removeClass("active");
-      setActive($(`.calculator-slider-option:eq(${splideCalc.index})`));
+      $(`.calculator-slider-option:eq(${splideCalc.index})`).addClass("active");
     });
 
     $("form input").on("keydown", (e) => {
@@ -650,10 +642,6 @@ $(function () {
       : number === 3
       ? DesignStyle.Modern
       : DesignStyle.NeoClassic;
-  }
-
-  function setActive(obj: JQuery<HTMLElement>) {
-    obj.addClass("active");
   }
 
   function getData(obj: JQuery<HTMLElement>, dataVal: string): string | number {

@@ -37,7 +37,7 @@ $(function () {
           .reduce((pv, cv) => [...pv, ...cv])
       );
 
-      $("#dollarCourse").html(table.getCell("C6").formattedNumerical);
+      $("#dollarCourse").html(table.getCell("C6").formattedNumerical());
     });
 
   let style = "cozy";

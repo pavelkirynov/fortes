@@ -4,17 +4,15 @@ const NodemonPlugin = require("nodemon-webpack-plugin");
 const ForkTsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 
 const entries = {
-  calculator: "./src/calculator.ts",
   specification: "./src/specification.ts",
   specification_portugal: "./src/specification_portugal.ts",
   calculator_portugal: "./src/calculator_portugal.ts",
-  course: "./src/course.ts",
 };
 
 //dynamically read contents of /src/ folder and create entries
 fs.readdirSync("./src/")
   .filter((file) => {
-    return file.match(/logics[_0-9]*.ts$/);
+    return file.match(/(logics|calculator|calculator_portugal)[_0-9]*.ts$/);
   })
   .forEach((f) => {
     entries[f.replace(/\.ts$/, "")] = ["./src/" + f];
