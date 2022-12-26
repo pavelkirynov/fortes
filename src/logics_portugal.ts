@@ -358,7 +358,9 @@ $(function () {
 
     fetch(scriptURL, {
       method: "POST",
-      body: new FormData($("#wf-form-client-info").get(0) as HTMLFormElement),
+      body: new FormData(
+        document.getElementById("#wf-form-client-info") as HTMLFormElement
+      ),
     });
 
     const fd = new FormData();

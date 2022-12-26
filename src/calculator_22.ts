@@ -3,7 +3,7 @@ import { ResponseRow } from "./interfaces/Row";
 import { Table } from "./models/Table";
 import { Utils } from "./utils/Utils";
 import { Formatter } from "./utils/Formatter";
-import { LocalStorageHandler } from "./utils/LocalStoragehandler";
+import { LocalStorageHandler } from "./utils/LocalStorageHandler";
 
 import * as $ from "jquery";
 
@@ -63,11 +63,14 @@ $(function () {
         .match(/\d*\.?\d+/)
     );
     storage.set("space", $("#space").val());
+
     if (storage.get("space") === 0 || storage.get("amount_of_rooms") === 0) {
       $("#total").html("0");
       $("#totalWhole").html("0");
+
       return;
     }
+
     calculate();
   });
 
@@ -180,6 +183,7 @@ $(function () {
     if (!$(this).is(":checked")) {
       return;
     }
+
     if (!document.querySelector(".choiceActiveBorder")) {
       storage.set("appliances_bool_total", 1);
       storage.set("appliances", "gorenje");

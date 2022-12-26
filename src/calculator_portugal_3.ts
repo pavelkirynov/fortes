@@ -1,5 +1,5 @@
 import { Formatter } from "./utils/Formatter";
-import { LocalStorageHandler } from "./utils/LocalStoragehandler";
+import { LocalStorageHandler } from "./utils/LocalStorageHandler";
 
 import * as $ from "jquery";
 
@@ -50,22 +50,19 @@ $(function () {
   $(".increment-field .increment").on("click", function (e) {
     e.preventDefault();
 
-    $(this)
-      .siblings(".increment-input")
-      .val(
-        parseInt($(this).siblings(".increment-input").val() as string) +
-          parseInt($(this).val() as string)
-      );
+    const input = $(this).siblings(".increment-input");
 
-    if ($(this).siblings(".increment-input").val() === "0") {
+    input.val(
+      parseInt(input.val() as string) + parseInt($(this).val() as string)
+    );
+
+    if (input.val() === "0") {
       if ($(this).val() === "1") {
         $(this).siblings(".increment").toggleClass("disabled");
       } else {
         $(this).toggleClass("disabled");
       }
-    } else if (
-      parseInt($(this).siblings(".increment-input").val() as string) > 0
-    ) {
+    } else if (parseInt(input.val() as string) > 0) {
       $(this).siblings(".disabled").toggleClass("disabled");
     }
 
@@ -75,7 +72,9 @@ $(function () {
       return;
     }
 
-    calculate();
+    if (!input.is("#distance")) {
+      calculate();
+    }
   });
 
   $(".calculator-tab, .tab-new").on("click", function () {
@@ -157,28 +156,32 @@ $(function () {
     }
   });
 
-  function calculate() {
+  async function calculate() {
     updateUserData();
 
-    return fetch("https://api.fortes.agency/calc?country=portugal", {
-      body: storage.storageToRequestBody(localStorage),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        const cost = parseFloat(json.cost_per_meter);
+    const result = await fetch(
+      "https://api.fortes.agency/calc?country=portugal",
+      {
+        body: storage.storageToRequestBody(localStorage),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      }
+    );
 
-        storage.set("costPerMetre", cost);
-        storage.set("summedPrice", json.cost_per_meter * storage.get("space"));
+    const json = await result.json();
+    const cost = parseFloat(json.cost_per_meter);
 
-        $("#total").html(Formatter.formatCurrency(cost));
-        $("#totalWhole").html(
-          Formatter.formatCurrency(cost * storage.get("space"))
-        );
-      });
+    storage.set("costPerMetre", cost);
+    storage.set("summedPrice", cost * storage.get("space"));
+
+    $("#total").html(Formatter.formatCurrency(cost));
+    $("#totalWhole").html(
+      Formatter.formatCurrency(cost * storage.get("space"))
+    );
+
+    return;
   }
 
   if ($(window).width() < 992) {
