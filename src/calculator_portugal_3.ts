@@ -211,10 +211,8 @@ $(function () {
     storage.set("bath", $("#bathtub").is(":checked"));
     storage.set("shower", $("#shower").is(":checked"));
     storage.set("appliances_bool_total", $("#appliancesBool").is(":checked"));
-    storage.set("floor_screed", $("#floorscreed").is(":checked"));
     storage.set("denoising", $("#noise").is(":checked"));
     storage.set("entrance_doors", $("#doors").is(":checked"));
-    storage.set("ceiling", $(":radio[name='ceiling']:checked").val());
     storage.set("flooring", $(":radio[name='flooring']:checked").val());
   }
 });

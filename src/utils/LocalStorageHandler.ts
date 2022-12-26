@@ -40,7 +40,6 @@ class LocalStorageHandler {
     this.set("hygienic_shower", false);
     this.set("demontage", false);
     this.set("windows_installtion", 0);
-    this.set("floor_screed", false);
     this.set("heated_flooring", false);
     this.set("denoising", false);
     this.set("entrance_doors", false);
