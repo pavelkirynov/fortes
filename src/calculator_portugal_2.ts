@@ -1,7 +1,3 @@
-import { Cell } from "./models/Cell";
-import { ResponseRow } from "./interfaces/Row";
-import { Table } from "./models/Table";
-import { Utils } from "./utils/Utils";
 import { Formatter } from "./utils/Formatter";
 import { LocalStorageHandler } from "./utils/LocalStoragehandler";
 
@@ -11,7 +7,7 @@ $(function () {
   const storage: LocalStorageHandler = new LocalStorageHandler();
 
   $("#space").val(50);
-  storage.init();
+  storage.initPortugal();
   calculate();
 
   $(".calculator input")

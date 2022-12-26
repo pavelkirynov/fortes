@@ -32,6 +32,27 @@ class LocalStorageHandler {
     this.set("space", 50);
   }
 
+  initPortugal(): void {
+    this.set("style", "cozy");
+    this.set("bath", true);
+    this.set("shower", false);
+    this.set("flooring", "laminat");
+    this.set("hygienic_shower", false);
+    this.set("demontage", false);
+    this.set("windows_installtion", 0);
+    this.set("floor_screed", false);
+    this.set("heated_flooring", false);
+    this.set("denoising", false);
+    this.set("entrance_doors", false);
+    this.set("conditioning", false);
+    this.set("amount_of_rooms", 2);
+    this.set("amount_of_bathrooms", 1);
+    this.set("appliances", "gorenje");
+    this.set("appliances_bool_total", false);
+    this.set("furniture_bool", true);
+    this.set("space", 50);
+  }
+
   storageToRequestBody(storage: Storage): string {
     const result = {};
 
