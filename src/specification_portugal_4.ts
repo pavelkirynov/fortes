@@ -110,56 +110,21 @@ fetch(
       letter = "Q";
       letterModel = "E";
     }
-    let ceilingPrice = 0,
-      flooringPrice = 0;
+    let flooringPrice = 0;
     let flooringNum, ceilingNum, flooringNum2, mouldings;
 
     if (flooring == "laminat") {
-      flooringNum = "60";
-      flooringNum2 = "91";
+      flooringNum = "61";
+      flooringNum2 = "87";
       flooringPrice = space * (space <= 70 ? 201.26 : 198.81) * workInflation;
     } else if (flooring == "vynil") {
       flooringNum = "61";
-      flooringNum2 = "92";
+      flooringNum2 = "87";
       flooringPrice = space * (space <= 70 ? 220.33 : 161.8) * workInflation;
     } else if (flooring == "parket") {
       flooringNum = "62";
-      flooringNum2 = "93";
+      flooringNum2 = "87";
       flooringPrice = space * (space <= 80 ? 369.96 : 240.31) * workInflation;
-    }
-
-    if (ceiling == "stretch ceiling") {
-      ceilingNum = "56";
-      mouldings = 0;
-      ceilingPrice = table.getCell(`${letter}56`).numeric() * space;
-    } else if (ceiling == "gapless") {
-      ceilingNum = "57";
-      mouldings = 0;
-      ceilingPrice =
-        space *
-        (space <= 60
-          ? 611.64
-          : space <= 95
-          ? 548.9
-          : space <= 1000
-          ? 581.94
-          : 0) *
-        workInflation *
-        1.65;
-    } else if (ceiling == "gypsum") {
-      ceilingNum = "58";
-      mouldings = 1;
-      ceilingPrice =
-        space *
-        (space <= 60
-          ? 283.08
-          : space <= 95
-          ? 281.22
-          : space <= 125
-          ? 338.33
-          : 362.47) *
-        1.35 *
-        workInflation;
     }
 
     let $work = $("#workList");
@@ -182,14 +147,6 @@ fetch(
       workInflation;
     let vents = space * amountOfBathrooms * (space <= 100 ? 83.2 : 33.98);
     const electricity = table.getCell(`${letter}45`).numeric() * space;
-    console.log(`inflation: ${workInflation}`);
-    console.log(`rooms: ${amountOfRooms}`);
-    console.log(`baths: ${amountOfBathrooms}`);
-    console.log(`bath: ${bath}`);
-    console.log(`shower: ${shower}`);
-    console.log(`vents: ${vents}`);
-    console.log(`canalisation: ${canalisation}`);
-    console.log(`water: ${water}`);
 
     const workPriceArray = [
       space *
@@ -234,7 +191,7 @@ fetch(
           : 481.67) *
         (ceiling == "gypsum" ? 1 : 0) *
         workInflation,
-      ceilingPrice,
+
       flooringPrice,
       space * (space <= 70 ? 114.47 : 86.84) * workInflation,
       space *
@@ -252,20 +209,8 @@ fetch(
       1,
       1,
       1,
-      1,
     ];
-    const workAdressesArray = [
-      48,
-      49,
-      50,
-      52,
-      54,
-      53,
-      ceilingNum,
-      flooringNum,
-      64,
-      66,
-    ];
+    const workAdressesArray = [48, 49, 50, 52, 54, 53, flooringNum, 60, 60];
 
     workSum +=
       water * s42 +
@@ -373,21 +318,21 @@ fetch(
       table.getCell(`${letter}73`).numeric(),
       table.getCell(`${letter}74`).numeric(),
       table.getCell(`${letter}75`).numeric(),
-      table.getCell(`${letter}76`).numeric(),
+      table.getCell(`${letter}77`).numeric(), //76
       table.getCell(`${letter}77`).numeric(),
       table.getCell(`${letter}79`).numeric(),
       table.getCell(`${letter}80`).numeric(),
       table.getCell(`${letter}81`).numeric(),
       table.getCell(`${letter}82`).numeric(),
       table.getCell(`${letter}83`).numeric(),
-      table.getCell(`${letter}84`).numeric(),
+      table.getCell(`${letter}85`).numeric(), //84
       table.getCell(`${letter}85`).numeric(),
       table.getCell(`${letter}86`).numeric(),
       table.getCell(`${letter}87`).numeric(),
-      table.getCell(`${letter}88`).numeric(),
-      table.getCell(`${letter}89`).numeric(),
+      table.getCell(`${letter}87`).numeric(), //88
+      table.getCell(`${letter}87`).numeric(), //89
       table.getCell(`${letter + flooringNum2}`).numeric(),
-      space * 100 * table.getCell("S74").numeric(),
+      space * 100 * table.getCell("S72").numeric(),
     ];
     let materialsAmountArray = [
       amountOfBathrooms + amountOfRooms,
