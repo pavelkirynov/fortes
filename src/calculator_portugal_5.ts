@@ -35,7 +35,7 @@ $(function () {
   });
 
   $(".slider-tab").on("click", function () {
-    getUserStyle($(this).data("slider-index"));
+    storage.set("style", DesignStyle.fromNumber($(this).data("slider-index")));
     calculate();
   });
 
@@ -80,7 +80,7 @@ $(function () {
 
   $(".calculator-tab, .tab-new").on("click", function () {
     const num: number = parseInt($(this).data("slider-index"));
-    getUserStyle(num);
+    storage.set("style", DesignStyle.fromNumber(num));
 
     calculate();
   });
@@ -89,7 +89,7 @@ $(function () {
     const slideNumber: number = parseInt(
       $(".slider-tab.w--current").data("slider-index")
     );
-    getUserStyle(slideNumber);
+    storage.set("style", DesignStyle.fromNumber(slideNumber));
     $(".calculator-tab").removeClass("w--current");
     $(".calculator-tab[data-slider-index='" + slideNumber + "']").addClass(
       "w--current"
