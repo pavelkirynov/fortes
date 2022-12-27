@@ -449,63 +449,12 @@ $(function () {
       }
     );
 
-    localStorage.setItem("convert_id", "false");
-
     window.open(
       $('.calculator-btn:not([style*="display: none"]) a').data("href"),
       "_blank"
     );
 
     $(".modal-note").html("Зачекайте...");
-
-    while (localStorage.getItem("convert_id") == "false") {
-      await new Promise((r) => setTimeout(r, 200));
-    }
-
-    if (localStorage.getItem("convert_id") != "") {
-      const convertId = localStorage.getItem("convert_id");
-
-      /*if ($("#telegram").is(":checked")) {
-        const telegramLink = `https://t.me/fortesagency_bot/?start=${convertId}_${(
-          $("#sPhone").val() as string
-        )
-          .replace(new RegExp(/[+() ]/, "g"), "")
-          .trim()}-${data.style}`;
-
-        $(".wrap-border.telegram").toggle();
-        $(".modal-note").html(
-          `Для того, аби отримати специфікацію, перейдіть за посиланням до нашого бота.`
-        );
-        $(".final-btn.telegram").attr("href", telegramLink);
-        $(".final-btn.telegram").attr("target", "_blank");
-        $(".final-btn.telegram").on("click", () => {
-          window.open(telegramLink);
-          localStorage.clear();
-          window.location.assign("/sdyakuiemo");
-        });
-      } else {*/
-      $(".modal-note").html(
-        "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
-      );
-
-      fetch("https://api.fortes.agency/mail", {
-        method: "POST",
-        body: JSON.stringify({
-          fileId: convertId,
-          fileName: storage.get("style"),
-          recipientMail: $("#sEmail").val(),
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).finally(() => {
-        setTimeout(() => {
-          localStorage.clear();
-          window.location.assign("/sdyakuiemo");
-        }, 2000);
-      });
-      //}
-    }
   });
 
   $(".closing-btn").on("click", function () {
