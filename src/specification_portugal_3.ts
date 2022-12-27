@@ -358,22 +358,6 @@ fetch(
 
       $("#workList").append(textObject);
     }
-    textObject = returnObject(
-      table.getCell("F66").value(),
-      "",
-      Math.round(workSum * 0.022 * s42) + " грн."
-    );
-    $("#workList").append(textObject);
-    workSum += workSum * 0.022 * s42;
-
-    textObject = returnObject(
-      table.getCell("F67").value(),
-      "",
-      Math.round((months * 2 * 1200 + 3000 + space * 100 + space * 120) * s42) +
-        " грн."
-    );
-    $("#workList").append(textObject);
-    workSum += (months * 2 * 1200 + 3000 + space * 100) * s42;
 
     $("#workList").append(
       '</div><div class="list-option-container margined"></div>'
