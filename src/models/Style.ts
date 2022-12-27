@@ -1,4 +1,4 @@
-enum DesignStyle {
+export enum DesignStyle {
   Cozy = "cozy",
   Japandi = "japandi",
   Modern = "modern",
@@ -6,7 +6,7 @@ enum DesignStyle {
   NeoClassic = "neoclassic",
 }
 
-namespace DesignStyle {
+export namespace DesignStyle {
   export function fromString(name: string): DesignStyle {
     if (name === "cozy") {
       return DesignStyle.Cozy;
@@ -35,5 +35,3 @@ namespace DesignStyle {
       : DesignStyle.NeoClassic;
   }
 }
-
-export { DesignStyle };

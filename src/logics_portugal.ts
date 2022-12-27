@@ -1,3 +1,4 @@
+import { DesignStyle } from "./models/Style";
 import Splide from "@splidejs/splide";
 import { LocalStorageHandler } from "./utils/LocalStoragehandler";
 
