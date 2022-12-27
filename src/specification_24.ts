@@ -557,7 +557,7 @@ fetch(
         table.getCell(`${letterModel}127`)?.value(),
         1,
         table.getCell(`${letter}127`).numeric(),
-        table.getCell("G120").value()
+        table.getCell("G127").value()
       );
 
       furnitureSum +=
