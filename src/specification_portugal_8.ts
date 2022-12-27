@@ -913,13 +913,13 @@ fetch(
             );
         }
         sum += table.getCell("D" + (array[0] + i)).numeric();
-        sum += table.getCell("G36").numeric();
+        sum += table.getCell("G33").numeric();
         quantity++;
       }
 
       if (appliancesBoolTotal) {
-        const g36 = table.getCell("G36").numeric();
-        sum += g36;
+        const g33 = table.getCell("G33").numeric();
+        sum += g33;
         $appliancesList.append(
           '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
         );
@@ -927,7 +927,7 @@ fetch(
           .last()
           .append(
             `<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${
-              quantity * g36
+              quantity * g33
             } грн.</span>`
           );
         $appliances.append(
@@ -937,7 +937,7 @@ fetch(
           .last()
           .append(
             `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${
-              quantity * g36
+              quantity * g33
             } грн.</span>`
           );
         $appliancesList.append(
