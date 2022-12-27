@@ -48,6 +48,7 @@ fetch(
     $("#course").html(Formatter.formatCurrency(hrnCourse));
 
     const style: string = storage.get("style");
+    const styleLetter = getRightStyleLetter(style);
     let appliancesBoolTotal = Boolean(storage.get("appliances_bool_total")),
       furnitureBool: boolean = Boolean(storage.get("furniture_bool")),
       space: number = storage.get("space"),
@@ -70,8 +71,8 @@ fetch(
       furnitureSum = 0,
       $furniture = $("#furnitureList");
 
-    const furnitureRate = 1 + table.getCell("S164").numeric() / 100;
-    const conditionerRate = 1 + table.getCell("S120").numeric() / 100;
+    const furnitureRate = table.getCell("T147").numeric();
+    const conditionerRate = 1 + table.getCell("S111").numeric() / 100;
     let months =
       space <= 40
         ? 3
@@ -474,7 +475,8 @@ fetch(
       let price =
         materialsPriceArray[i] *
         materialsAmountArray[i] *
-        table.getCell("S72").numeric();
+        table.getCell("S72").numeric() *
+        table.getCell("S70").numeric();
 
       if (price === 0 || isNaN(price)) {
         continue;
@@ -497,22 +499,29 @@ fetch(
     $("#workList .list-option-container")
       .last()
       .append(
-        `<h4 class=\"pricelist-header small no-padding\">Витрати компанії</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Ціна</span>`
+        `<h4 class=\"pricelist-header small no-padding\">${table
+          .getCell("F92")
+          .value()}</h4><span class=\'notation amount\'>Кількість</span><span class=\'notation\'>Price</span>`
       );
     textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
-      .getCell("F100")
-      .value()}</span><span class=\'list-text amount\'>${months} міс.</span><span class=\'list-text\'> </span></div></div>`;
+      .getCell("F93")
+      .value()}</span><span class=\'list-text amount\'>${months} months</span><span class=\'list-text\'> </span></div></div>`;
     $("#workList").append(textObject);
 
     const casualtiesPriceArray = [
-      table.getCell(`${letter}101`).numeric(),
-      table.getCell(`${letter}102`).numeric(),
+      ((41000 * Math.round((months + 1) / 5) * workInflation * s42) /
+        1.35 /
+        2 /
+        1.5) *
+        100 *
+        space,
+      workSum * 0.022 * workInflation,
+      months * 2 * 1200 + 3000 + space * 220 * s42 * workInflation,
     ];
-    const casualtiesAmountArray = [months, months];
-    const casualtiesAdressesArray = [101, 102];
+    const casualtiesAdressesArray = [94, 95, 96];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
-      let price = casualtiesPriceArray[i] * casualtiesAmountArray[i];
+      const price = casualtiesPriceArray[i];
       workSum += price;
       textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
         .getCell(`F${casualtiesAdressesArray[i]}`)
@@ -520,26 +529,9 @@ fetch(
         price / months
       )} грн./місяць</span><span class=\'list-text\'>${Math.round(
         price
-      )} грн.</span></div></div>`;
+      )} €</span></div></div>`;
       $("#workList").append(textObject);
     }
-    workSum +=
-      hrnCourse * space * table.getCell("G37").numeric() +
-      months * table.getCell(`${letter}214`).numeric();
-    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>
-		${table.getCell(`F212`).value()}
-			</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
-        hrnCourse * table.getCell("G37").numeric() * space
-      )} грн.</span></div></div>`;
-    $("#workList").append(textObject);
-    textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
-      .getCell("F214")
-      .value()}</span><span class=\'list-text amount\'>${table
-      .getCell(`${letter}214`)
-      .numeric()} грн./місяць</span><span class=\'list-text\'>${Math.round(
-      months * table.getCell(`${letter}214`).numeric()
-    )} грн.</span></div></div>`;
-    $("#workList").append(textObject);
 
     if (furnitureBool) {
       $("#furnitureList").append(
@@ -971,7 +963,7 @@ fetch(
       appendObject(
         $("#furnitureList .option-block .list-option-container").last(),
         `<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Formatter.formatCurrency(
-          price * amount * (1 + table.getCell("S164").numeric() / 100)
+          price * amount * table.getCell("T147").numeric()
         )} грн.</span>`
       );
     }
@@ -1086,8 +1078,6 @@ fetch(
     if (!appliancesBoolTotal) {
       $("#appliancesListTotal").toggle(false);
     }
-
-    const styleLetter = getRightStyleLetter(style);
 
     function returnObject(line1: string, line2: string, line3: string) {
       return `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${line1}</span><span class=\'list-text amount\'>${line2}</span><span class=\'list-text\'>${line3}</span></div></div>`;
