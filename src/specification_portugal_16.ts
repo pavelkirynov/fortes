@@ -859,8 +859,8 @@ fetch(
     );
     let sum = 0;
 
-    let $appliancesList = $("#appliancesList");
-    let $appliancesListTotal = $("#appliancesListTotal");
+    const $appliancesList = $("#appliancesList");
+    const $appliancesListTotal = $("#appliancesListTotal");
     const appliancesTuple: number[] = [];
 
     if (appliances === "gorenje") {
@@ -873,7 +873,6 @@ fetch(
       appliancesTuple.push(...[151, 9]);
     }
 
-    //let appliancesString: string = "";
     if (appliancesBoolTotal) {
       let appliancesListString: string = "";
       let appliancesListTotalString: string = "";
@@ -893,22 +892,36 @@ fetch(
           .getCell("E" + (appliancesTuple[0] + i))
           .value()}</span><span class=\'list-text amount\'>1 piece</span><span class=\'list-text\'>${Formatter.formatCurrency(
           table.getCell("D" + (appliancesTuple[0] + i)).numeric() * 0.9
-        )} €</span></div></div>`;
+        )}€</span></div></div>`;
 
         sum += table.getCell("D" + (appliancesTuple[0] + i)).numeric() * 0.9;
       }
 
       const g33 = table.getCell("G33").numeric();
-      sum += g33;
+      const e5 = table.getCell("E5").numeric();
+      sum += ((appliancesTuple[1] * g33) / e5) * 0.9;
+
       appliancesListTotalString += `<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"><span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
-        ((appliancesTuple[1] * g33) / table.getCell("E5").numeric()) * 0.9
+        ((appliancesTuple[1] * g33) / e5) * 0.9
+      )} €</span></div></div>`;
+
+      appliancesListTotalString += `<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"><span class=\'name\'>${table
+        .getCell("F162")
+        .value()}</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
+        sum * 0.2
       )} €</span></div></div>`;
 
       appliancesListString += `<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"><span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${Formatter.formatCurrency(
-        ((appliancesTuple[1] * g33) / table.getCell("E5").numeric()) * 0.9
+        ((appliancesTuple[1] * g33) / e5) * 0.9
       )} €</span></div></div>`;
 
-      sum += ((appliancesTuple[1] * g33) / table.getCell("E5").numeric()) * 0.9;
+      appliancesListString += `<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"><span class=\'name white\'>${table
+        .getCell("F162")
+        .value()}</span><span class=\'list-text white\'>${Formatter.formatCurrency(
+        sum * 0.2
+      )} €</span></div></div>`;
+
+      sum *= 1.2;
 
       appliancesListTotalString += `<div class="division-block pricelist"></div><div class="list-option-container summary"></div><span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
         sum
@@ -918,10 +931,10 @@ fetch(
       $appliancesList.append(appliancesListString);
       $appliancesListTotal.append(appliancesListTotalString);
     } else {
-      $("#appliancesListTotal").toggle(false);
+      $appliancesListTotal.toggle(false);
     }
 
-    function returnObject(line1: string, line2: string, line3: string) {
+    function returnObject(line1: string, line2: string, line3: string): string {
       return `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${line1}</span><span class=\'list-text amount\'>${line2}</span><span class=\'list-text\'>${line3}</span></div></div>`;
     }
 
