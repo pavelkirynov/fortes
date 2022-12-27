@@ -19,6 +19,7 @@
   "homepage": "https://github.com/alverone/fortes#readme",
   "devDependencies": {
     "@types/jquery": "^3.5.14",
+    "@types/webpack-env": "^1.18.0",
     "esbuild-loader": "^2.20.0",
     "fork-ts-checker-webpack-plugin": "^7.2.14",
     "nodemon-webpack-plugin": "^4.8.1",
