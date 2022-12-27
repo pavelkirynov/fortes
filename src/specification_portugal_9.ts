@@ -38,14 +38,11 @@ fetch(
     );
 
     //first cell of furniture price column + amount of items to count
-    const gorenje: [number, number] = [168, 9];
-    const bosch: [number, number] = [182, 10];
-    const miele: [number, number] = [197, 9];
+    const gorenje: [number, number] = [151, 9];
+    const bosch: [number, number] = [166, 9];
+    const miele: [number, number] = [182, 9];
     const storage = new LocalStorageHandler();
     let appliances = storage.get("appliances");
-
-    const hrnCourse = table.getCell("G7").numeric();
-    $("#course").html(Formatter.formatCurrency(hrnCourse));
 
     const style: string = storage.get("style");
     const styleLetter = getRightStyleLetter(style);
@@ -1019,12 +1016,11 @@ fetch(
     //$("#totalPriceTotal").html(Formatter.formatCurrency(Math.round(workSum) + " грн. *"));
     //} else {
 
-    if (storage.get("summedPrice") * hrnCourse < workSum) {
+    if (storage.get("summedPrice") < workSum) {
       $("#totalPriceTotal").html(Formatter.formatCurrency(workSum) + " грн. *");
     } else {
       $("#totalPriceTotal").html(
-        Formatter.formatCurrency(storage.get("summedPrice") * hrnCourse) +
-          " грн. *"
+        Formatter.formatCurrency(storage.get("summedPrice"))
       );
     }
     //}
