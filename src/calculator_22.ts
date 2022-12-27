@@ -258,5 +258,20 @@ $(function () {
     storage.set("ceiling", $(":radio[name='ceiling']:checked").val());
     storage.set("flooring", $(":radio[name='flooring']:checked").val());
     storage.set("color", $(".div-block-14 .color-tab.active").index());
+    storage.set("style", "cozy");
+  }
+
+  function getUserStyle(num: number) {
+    if (num == 0) {
+      storage.set("style", "cozy");
+    } else if (num == 2) {
+      storage.set("style", "fusion");
+    } else if (num == 1) {
+      storage.set("style", "japandi");
+    } else if (num == 3) {
+      storage.set("style", "modern");
+    } else if (num == 4) {
+      storage.set("style", "neoclassic");
+    }
   }
 });
