@@ -57,7 +57,7 @@ $(function () {
         }
       });
 
-      const style: DesignStyle = DesignStyle.fromNumber(index);
+      const style: string = DesignStyle.fromNumber(index).toString();
 
       $(
         ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
