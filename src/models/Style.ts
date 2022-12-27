@@ -35,3 +35,5 @@ namespace DesignStyle {
       : DesignStyle.NeoClassic;
   }
 }
+
+export { DesignStyle };

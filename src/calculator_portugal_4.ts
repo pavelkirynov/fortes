@@ -1,3 +1,4 @@
+import { DesignStyle } from "./models/Style";
 import { Formatter } from "./utils/Formatter";
 import { LocalStorageHandler } from "./utils/LocalStorageHandler";
 

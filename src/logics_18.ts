@@ -1,5 +1,6 @@
 import Splide from "@splidejs/splide";
 import { LocalStorageHandler } from "./utils/LocalStoragehandler";
+import { DesignStyle } from "./models/Style";
 
 $(function () {
   const vw: number = $(window).width();
@@ -57,7 +58,7 @@ $(function () {
         }
       });
 
-      const style: string = DesignStyle.fromNumber(index).toString();
+      const style = DesignStyle.fromNumber(index);
 
       $(
         ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
@@ -154,7 +155,7 @@ $(function () {
 
   $(".calculator-tab").on("click", function () {
     const index: number = $(this).index();
-    const style: DesignStyle = DesignStyle.fromNumber(index);
+    const style = DesignStyle.fromNumber(index);
 
     $(
       ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
@@ -357,7 +358,7 @@ $(function () {
     $(".color-tab").on("click", function () {
       let index = $(this).index();
       let number = $(".calculator-tab.w--current").index();
-      const style: DesignStyle = DesignStyle.fromNumber(number);
+      const style = DesignStyle.fromNumber(number);
 
       if ($(this).not(".active")) {
         $(".color-tab.active").removeClass("active");

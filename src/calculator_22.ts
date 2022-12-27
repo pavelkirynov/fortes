@@ -6,6 +6,7 @@ import { Formatter } from "./utils/Formatter";
 import { LocalStorageHandler } from "./utils/LocalStorageHandler";
 
 import * as $ from "jquery";
+import { DesignStyle } from "./models/Style";
 
 $(function () {
   fetch(
