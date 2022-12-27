@@ -37,10 +37,6 @@ fetch(
         .reduce((pv, cv) => [...pv, ...cv])
     );
 
-    //first cell of furniture price column + amount of items to count
-    const gorenje: [number, number] = [151, 9];
-    const bosch: [number, number] = [166, 9];
-    const miele: [number, number] = [182, 9];
     const storage = new LocalStorageHandler();
     let appliances = storage.get("appliances");
 
@@ -231,7 +227,7 @@ fetch(
               : 0)) *
             s42 -
           (800 + 950) * workInflation
-      ) + " €."
+      ) + " €"
     );
     $("#workList").append(textObject);
 
@@ -239,7 +235,7 @@ fetch(
     textObject = returnObject(
       table.getCell("F43").value(),
       "",
-      Math.round(canalisation * s42) + " €."
+      Math.round(canalisation * s42) + " €"
     );
     $("#workList").append(textObject);
 
@@ -247,7 +243,7 @@ fetch(
     textObject = returnObject(
       table.getCell("F44").value(),
       "",
-      Math.round(vents * s42 * workInflation) + " €."
+      Math.round(vents * s42 * workInflation) + " €"
     );
     $("#workList").append(textObject);
 
@@ -255,7 +251,7 @@ fetch(
     textObject = returnObject(
       table.getCell("F45").value(),
       "",
-      Math.round(electricity * s42) + " €."
+      Math.round(electricity * s42) + " €"
     );
     $("#workList").append(textObject);
 
@@ -267,7 +263,7 @@ fetch(
         table
           .getCell(getRightStyleLetter(style) + 46)
           .numeric()
-          .toString() + " €."
+          .toString() + " €"
       );
       $("#workList").append(textObject);
     }
@@ -280,7 +276,7 @@ fetch(
         table
           .getCell(getRightStyleLetter(style) + 47)
           .numeric()
-          .toString() + " €."
+          .toString() + " €"
       );
       $("#workList").append(textObject);
     }
@@ -296,7 +292,7 @@ fetch(
       textObject = returnObject(
         table.getCell("F" + workAdressesArray[i]).value(),
         "",
-        Math.round(price) + " €."
+        Math.round(price) + " €"
       );
 
       $("#workList").append(textObject);
@@ -413,7 +409,7 @@ fetch(
       textObject = returnObject(
         table.getCell("F" + materialsAdressesArray[i]).value(),
         "",
-        Math.round(price) + " €."
+        Math.round(price) + " €"
       );
 
       $("#workList").append(textObject);
@@ -454,7 +450,7 @@ fetch(
         .getCell(`F${casualtiesAdressesArray[i]}`)
         .value()}</span><span class=\'list-text amount\'>${Math.round(
         price / months
-      )} €./місяць</span><span class=\'list-text\'>${Math.round(
+      )} €/місяць</span><span class=\'list-text\'>${Math.round(
         price
       )} €</span></div></div>`;
       $("#workList").append(textObject);
@@ -490,7 +486,7 @@ fetch(
           `<span class=\'name\'>${table.getCell("F118").value()}
 						</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Formatter.formatCurrency(
               table.getCell(`${letter}119`).numeric() * furnitureRate
-            )} €.</span>`
+            )} €</span>`
         );
       $furniture.append(
         '<div class="option-block"><div class="division-block pricelist small-heading"></div><div class="list-option-container"></div></div>'
@@ -502,7 +498,7 @@ fetch(
             .getCell("F119")
             .value()}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Formatter.formatCurrency(
             table.getCell(`${letter}120`).numeric() * furnitureRate
-          )} €.</span>`
+          )} €</span>`
         );
 
       appendObject(
@@ -687,7 +683,7 @@ fetch(
         returnObject(
           table.getCell("F144").value(),
           " ",
-          Math.round(furnitureSum * 0.03 * furnitureRate) + " €."
+          Math.round(furnitureSum * 0.03 * furnitureRate) + " €"
         )
       );
       furnitureSum += furnitureSum * 0.03 * furnitureRate;
@@ -699,7 +695,7 @@ fetch(
         $("#furnitureList .list-option-container").last(),
         `<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
           Math.round(furnitureSum)
-        )} €.</span>`
+        )} €</span>`
       );
     }
 
@@ -801,7 +797,7 @@ fetch(
             ", " +
             table.getCell(`${letterModel}${optionsAdressesArray[i]}`)?.value(),
           "",
-          Math.round(price) + " €."
+          Math.round(price) + " €"
         )
       );
     }
@@ -821,7 +817,7 @@ fetch(
       $("#workList .list-option-container").last(),
       `<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
         workSum
-      )} €.</span>`
+      )} €</span>`
     );
 
     function appendFurnitureOption(name, manufacturer, amount, price, dim) {
@@ -848,7 +844,7 @@ fetch(
         $("#furnitureList .option-block .list-option-container").last(),
         `<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Formatter.formatCurrency(
           price * amount * table.getCell("T147").numeric()
-        )} €.</span>`
+        )} €</span>`
       );
     }
     appendObject(
@@ -859,106 +855,106 @@ fetch(
       $("#materialsList .list-option-container").last(),
       `<span class=\'name summary\'>Всього по будівельній частині:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
         workSum
-      )} €.</span>`
+      )} €</span>`
     );
     let sum = 0;
 
     let $appliances = $("#appliancesList");
     let $appliancesList = $("#appliancesListTotal");
-    let array;
+    const appliancesTuple: number[] = [];
 
     if (appliances === "gorenje") {
-      array = gorenje;
+      appliancesTuple.push(...[151, 8]);
     } else if (appliances === "bosch") {
-      array = bosch;
-    } else if (appliances === "miele") {
-      array = miele;
+      appliancesTuple.push(...[166, 9]);
+    } else if (appliances === "smeg") {
+      appliancesTuple.push(...[182, 8]);
+    } else {
+      appliancesTuple.push(...[151, 9]);
     }
-    let quantity = 0;
-    if (appliances !== "undefined") {
-      quantity = 1;
-      for (let i = 0; i < array[1]; i++) {
-        $appliances.append(
-          '<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"></div></div>'
-        );
-        $("#appliancesList .option-block .list-option-container.appliances")
-          .last()
-          .append(
-            `<span class=\'name white\'>${table
-              .getCell("F" + (array[0] + i))
-              .value()} ${table
-              .getCell("E" + (array[0] + i))
-              .value()}</span><span class=\'list-text white\'>${Formatter.formatCurrency(
-              table.getCell("D" + (array[0] + i)).numeric()
-            )} €.</span>`
-          );
 
-        if (appliancesBoolTotal) {
-          $appliancesList.append(
-            '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
-          );
-          $("#appliancesListTotal .option-block .list-option-container")
-            .last()
-            .append(
-              `<span class=\'name\'>${table
-                .getCell("F" + (array[0] + i))
-                .value()} ${table
-                .getCell("E" + (array[0] + i))
-                .value()}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Formatter.formatCurrency(
-                table.getCell("D" + (array[0] + i)).numeric()
-              )} €.</span>`
-            );
-        }
-        sum += table.getCell("D" + (array[0] + i)).numeric();
-        sum += table.getCell("G33").numeric();
-        quantity++;
-      }
+    //let appliancesString: string = "";
+
+    for (let i = 0; i < appliancesTuple[1]; i++) {
+      $appliances.append(
+        '<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"></div></div>'
+      );
+      $("#appliancesList .option-block .list-option-container.appliances")
+        .last()
+        .append(
+          `<span class=\'name white\'>${table
+            .getCell("F" + (appliancesTuple[0] + i))
+            .value()} ${table
+            .getCell("E" + (appliancesTuple[0] + i))
+            .value()}</span><span class=\'list-text white\'>${Formatter.formatCurrency(
+            table.getCell("D" + (appliancesTuple[0] + i)).numeric()
+          )} €</span>`
+        );
 
       if (appliancesBoolTotal) {
-        const g33 = table.getCell("G33").numeric();
-        sum += g33;
         $appliancesList.append(
           '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
         );
         $("#appliancesListTotal .option-block .list-option-container")
           .last()
           .append(
-            `<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${
-              quantity * g33
-            } €.</span>`
-          );
-        $appliances.append(
-          '<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"></div></div>'
-        );
-        $("#appliancesList .option-block .list-option-container.appliances")
-          .last()
-          .append(
-            `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${
-              quantity * g33
-            } €.</span>`
-          );
-        $appliancesList.append(
-          '<div class="division-block pricelist"></div><div class="list-option-container summary"></div>'
-        );
-        $("#appliancesTotal").html(Formatter.formatCurrency(sum));
-        $("#appliancesTotalDiscount").html(Formatter.formatCurrency(sum * 0.9));
-
-        $("#appliancesListTotal .list-option-container")
-          .last()
-          .append(
-            `<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
-              sum
-            )} €.</span>`
-          );
-        $("#appliancesListTotal .list-option-container")
-          .last()
-          .append(
-            `<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
-              sum * 0.9
-            )} €.</span>`
+            `<span class=\'name\'>${table
+              .getCell("F" + (appliancesTuple[0] + i))
+              .value()} ${table
+              .getCell("E" + (appliancesTuple[0] + i))
+              .value()}</span><span class=\'list-text amount\'>1 шт.</span><span class=\'list-text\'>${Formatter.formatCurrency(
+              table.getCell("D" + (appliancesTuple[0] + i)).numeric()
+            )} €</span>`
           );
       }
+      sum += table.getCell("D" + (appliancesTuple[0] + i)).numeric();
+      sum += table.getCell("G33").numeric();
     }
+
+    if (appliancesBoolTotal) {
+      const g33 = table.getCell("G33").numeric();
+      sum += g33;
+      $appliancesList.append(
+        '<div class="option-block"><div class="division-block pricelist"></div><div class="list-option-container"></div></div>'
+      );
+      $("#appliancesListTotal .option-block .list-option-container")
+        .last()
+        .append(
+          `<span class=\'name\'>Доставка техніки</span><span class=\'list-text amount\'></span><span class=\'list-text\'>${Formatter.formatCurrency(
+            (appliancesTuple[1] * g33) / table.getCell("E5").numeric()
+          )} €</span>`
+        );
+      $appliances.append(
+        '<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"></div></div>'
+      );
+      $("#appliancesList .option-block .list-option-container.appliances")
+        .last()
+        .append(
+          `<span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${Formatter.formatCurrency(
+            (appliancesTuple[1] * g33) / table.getCell("E5").numeric()
+          )} €</span>`
+        );
+      $appliancesList.append(
+        '<div class="division-block pricelist"></div><div class="list-option-container summary"></div>'
+      );
+      $("#appliancesTotal").html(Formatter.formatCurrency(sum));
+
+      $("#appliancesListTotal .list-option-container")
+        .last()
+        .append(
+          `<span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
+            sum
+          )} €</span>`
+        );
+      $("#appliancesListTotal .list-option-container")
+        .last()
+        .append(
+          `<span class=\'name summary\'><b>Всього по техніці, зі знижкою</b>:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
+            sum * 0.9
+          )} €</span>`
+        );
+    }
+
     if (!appliancesBoolTotal) {
       $("#appliancesListTotal").toggle(false);
     }
@@ -994,32 +990,23 @@ fetch(
     const kitchenDelivery = table.getCell(`${styleLetter}120`).numeric();
     const kitchenTotal = kitchenMontage + kitchenPrice + kitchenDelivery;
 
-    $("#kitchenPrice").html(Formatter.formatCurrency(kitchenPrice) + " €.");
-    $("#kitchenMontage").html(Formatter.formatCurrency(kitchenMontage) + " €.");
+    $("#kitchenPrice").html(Formatter.formatCurrency(kitchenPrice) + " €");
+    $("#kitchenMontage").html(Formatter.formatCurrency(kitchenMontage) + " €");
     $("#kitchenDelivery").html(
-      Formatter.formatCurrency(kitchenDelivery) + " €."
+      Formatter.formatCurrency(kitchenDelivery) + " €"
     );
     $("#kitchenTotal").html(Formatter.formatCurrency(kitchenTotal) + " €");
-    $("#kitchenTotalPrice").html(Formatter.formatCurrency(sum) + " €.");
+    $("#kitchenTotalPrice").html(Formatter.formatCurrency(sum) + " €");
     if (furnitureBool) {
       furnitureSum = 0;
     }
     $("#kitchenTotalPriceDiscount").html(Formatter.formatCurrency(sum * 0.9));
-    $("#discountTotal").html(
-      `<span class='bold-text-7'>${Formatter.formatCurrency(
-        sum - sum * 0.9
-      )} €.</span>`
-    );
-    //if (!furnitureBool && !appliancesBoolTotal) {
-    //$("#totalPriceTotal").html(Formatter.formatCurrency(Math.round(workSum) + " €. *"));
-    //} else {
 
     if (storage.get("summedPrice") < workSum) {
-      $("#totalPriceTotal").html(Formatter.formatCurrency(workSum) + " €. *");
+      $("#totalPriceTotal").html(Formatter.formatCurrency(workSum) + " € *");
     } else {
       $("#totalPriceTotal").html(
         Formatter.formatCurrency(storage.get("summedPrice"))
       );
     }
-    //}
   });
