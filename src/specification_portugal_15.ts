@@ -864,11 +864,11 @@ fetch(
     const appliancesTuple: number[] = [];
 
     if (appliances === "gorenje") {
-      appliancesTuple.push(...[151, 8]);
+      appliancesTuple.push(...[151, 9]);
     } else if (appliances === "bosch") {
-      appliancesTuple.push(...[166, 9]);
+      appliancesTuple.push(...[166, 10]);
     } else if (appliances === "smeg") {
-      appliancesTuple.push(...[182, 8]);
+      appliancesTuple.push(...[182, 9]);
     } else {
       appliancesTuple.push(...[151, 9]);
     }
@@ -904,7 +904,7 @@ fetch(
         ((appliancesTuple[1] * g33) / table.getCell("E5").numeric()) * 0.9
       )} €</span></div></div>`;
 
-      appliancesListString += `<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances">span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${Formatter.formatCurrency(
+      appliancesListString += `<div class="option-block"><div class="division-block white"></div><div class="list-option-container appliances"><span class=\'name white\'>Доставка техніки</span><span class=\'list-text white\'>${Formatter.formatCurrency(
         ((appliancesTuple[1] * g33) / table.getCell("E5").numeric()) * 0.9
       )} €</span></div></div>`;
 
