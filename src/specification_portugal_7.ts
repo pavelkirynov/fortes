@@ -725,7 +725,7 @@ fetch(
         );
     }
 
-    const optionInflation = table.getCell("T109").numeric();
+    const optionInflation = table.getCell("T103").numeric();
 
     let optionsPriceArray = [
       space * table.getCell(`${letter}103`).numeric() * 1.25,
