@@ -312,6 +312,8 @@ $(function () {
   });
 
   $(".submit-container .button").on("click", function (e) {
+    e.preventDefault();
+
     window.open(
       $('.calculator-btn:not([style*="display: none"]) a').data("href"),
       "_blank"
