@@ -1065,7 +1065,7 @@ fetch(
         $appliancesList.append(
           '<div class="division-block pricelist"></div><div class="list-option-container summary"></div>'
         );
-        $("#appliancesTotal").html(Formatter.formatCurrency(sum));
+
         $("#appliancesTotalDiscount").html(Formatter.formatCurrency(sum * 0.9));
 
         $("#appliancesListTotal .list-option-container")

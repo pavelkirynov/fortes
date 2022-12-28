@@ -912,8 +912,6 @@ fetch(
       appliancesListTotalString += `<div class="division-block pricelist"></div><div class="list-option-container summary"></div><span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
         applianceSum
       )} €</span>`;
-      document.getElementById("appliancesTotal").innerHTML =
-        Formatter.formatCurrency(applianceSum);
 
       $appliancesList.append(appliancesListString);
       $appliancesListTotal.append(appliancesListTotalString);
