@@ -828,7 +828,7 @@ fetch(
       appendObject(
         $("#furnitureList .option-block .list-option-container").last(),
         `<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Formatter.formatCurrency(
-          price * amount * table.getCell("T147").numeric()
+          price
         )} €</span>`
       );
     }
@@ -909,12 +909,12 @@ fetch(
 
       applianceSum *= 1.2;
 
-      appliancesListTotalString += `<div class="division-block pricelist"></div><div class="list-option-container summary"></div><span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
+      appliancesListTotalString += `<div class="division-block pricelist"></div>< div class="list-option-container summary"></><span class=\'name summary\'>Всього по техніці:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
         applianceSum
       )} €</span>`;
 
-      $appliancesList.append(appliancesListString);
-      $appliancesListTotal.append(appliancesListTotalString);
+      $appliancesList.innerHTML = appliancesListString;
+      $appliancesListTotal.innerHTML = appliancesListTotalString;
     } else {
       $appliancesListTotal.style.display = "none";
     }
