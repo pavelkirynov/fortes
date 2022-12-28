@@ -674,7 +674,7 @@ fetch(
           Math.round(furnitureSum * 0.3) + "€"
         )
       );
-      furnitureSum *= 0.3;
+      furnitureSum *= 1.3;
       appendObject(
         $("#furnitureList"),
         '<div class="division-block pricelist"></div><div class="list-option-container summary"></div>'
@@ -682,7 +682,7 @@ fetch(
       appendObject(
         $("#furnitureList .list-option-container").last(),
         `<span class=\'name summary\'>Всього по меблях:</span><span class=\'list-text summary work\'>${Formatter.formatCurrency(
-          Math.round(furnitureSum)
+          furnitureSum
         )} €</span>`
       );
     }
@@ -828,7 +828,7 @@ fetch(
       appendObject(
         $("#furnitureList .option-block .list-option-container").last(),
         `<span class=\'name\'>${name}, ${manufacturer}</span><span class=\'list-text amount\'>${amount} ${dim}</span><span class=\'list-text\'>${Formatter.formatCurrency(
-          price
+          price * amount
         )} €</span>`
       );
     }
