@@ -709,7 +709,7 @@ fetch(
         table.getCell(`${letter}104`).numeric(),
         table.getCell(`${letter}105`).numeric(),
         table.getCell(`${letter}106`).numeric(),
-        (space <= 60
+        ((space <= 60
           ? 90.02
           : space <= 95
           ? 60.78
@@ -717,7 +717,17 @@ fetch(
           ? 58.29
           : space >= 125
           ? 79.01
-          : 0) * space,
+          : 0) +
+          (space <= 60
+            ? 60.91
+            : space <= 95
+            ? 64.57
+            : space < 125
+            ? 63.87
+            : space >= 125
+            ? 66.24
+            : 0)) *
+          space,
         table.getCell(`${letter}108`).numeric(),
         table.getCell(`${letter}110`).numeric() * space,
         table.getCell(`${letter}111`).numeric(),
@@ -769,9 +779,7 @@ fetch(
         appendObject(
           $work,
           returnObject(
-            table.getCell("F112")?.value() +
-              ", " +
-              table.getCell(`${letterModel}112`)?.value(),
+            table.getCell("F112")?.value(),
             "",
             Formatter.formatCurrency(conditioningDelivery) + "€"
           )
