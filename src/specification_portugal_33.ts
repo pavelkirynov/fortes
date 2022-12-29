@@ -429,7 +429,11 @@ fetch(
     $("#workList").append(textObject);
 
     const casualtiesPriceArray = [
-      ((41000 * Math.ceil((months + 1) / 5)) / 1.35 / 2 / 1.5 + 100 * space) *
+      ((41000 * Math.ceil((table.getCell("G18").numeric() + 1 + 1) / 5)) /
+        1.35 /
+        2 /
+        1.5 +
+        100 * space) *
         s42 *
         workInflation,
       workSum * 0.022 * workInflation,
