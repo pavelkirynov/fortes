@@ -772,10 +772,11 @@ fetch(
 
       if (conditioning > 0) {
         const conditioningDelivery =
-          (conditioning *
+          ((conditioning *
             table.getCell("I111").numeric() *
             ((1 + table.getCell("S111").numeric()) / 100)) /
-          41;
+            41) *
+          0.05;
         appendObject(
           $work,
           returnObject(
