@@ -429,16 +429,11 @@ fetch(
     $("#workList").append(textObject);
 
     const casualtiesPriceArray = [
-      (((41000 * Math.round((months + 1) / 5) * workInflation * s42) /
-        1.35 /
-        2 /
-        1.5 +
-        100 * space) /
-        table.getCell("E5").numeric()) *
+      ((41000 * Math.round((months + 1) / 5)) / 1.35 / 2 / 1.5 + 100 * space) *
         s42 *
         workInflation,
       workSum * 0.022 * workInflation,
-      months * 2 * 1200 + 3000 + space * 220 * s42 * workInflation,
+      (months * 2 * 1200 + 3000 + space * 220) * s42 * workInflation,
     ];
     const casualtiesAdressesArray = [94, 95, 96];
 
