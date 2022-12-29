@@ -730,7 +730,6 @@ fetch(
           space,
         table.getCell(`${letter}108`).numeric(),
         table.getCell(`${letter}110`).numeric() * space,
-        table.getCell(`${letter}111`).numeric(),
       ];
       const optionsAmountArray: number[] = [
         demontage ? 1 : 0,
@@ -740,10 +739,9 @@ fetch(
         denoising ? 1 : 0,
         entranceDoors ? 1 : 0,
         conditioning,
-        conditioning,
       ];
       const optionsAdressesArray: number[] = [
-        103, 104, 105, 106, 107, 108, 110, 111,
+        103, 104, 105, 106, 107, 108, 110,
       ];
 
       for (let i = 0; i < optionsAdressesArray.length; i++) {
@@ -771,13 +769,22 @@ fetch(
       }
 
       if (conditioning > 0) {
-        const conditioningDelivery =
-          ((conditioning *
-            table.getCell("I111").numeric() *
+        const conditioningAppl =
+          (conditioning *
+            table.getCell(`${letter}111`).numeric() *
             ((1 + table.getCell("S111").numeric()) / 100)) /
-            41) *
-          0.05 *
-          table.getCell("T103").numeric();
+          table.getCell("E5").numeric();
+        const conditioningDelivery =
+          conditioningAppl * 0.05 * table.getCell("T103").numeric();
+
+        appendObject(
+          $work,
+          returnObject(
+            table.getCell("F111")?.value(),
+            "",
+            Formatter.formatCurrency(conditioningAppl) + "€"
+          )
+        );
         appendObject(
           $work,
           returnObject(
@@ -787,7 +794,7 @@ fetch(
           )
         );
 
-        workSum += conditioningDelivery;
+        workSum += conditioningDelivery + conditioningAppl;
       }
     }
 
