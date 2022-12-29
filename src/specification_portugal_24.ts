@@ -776,7 +776,8 @@ fetch(
             table.getCell("I111").numeric() *
             ((1 + table.getCell("S111").numeric()) / 100)) /
             41) *
-          0.05;
+          0.05 *
+          table.getCell("T103").numeric();
         appendObject(
           $work,
           returnObject(
