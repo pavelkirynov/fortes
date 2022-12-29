@@ -429,20 +429,19 @@ fetch(
     $("#workList").append(textObject);
 
     const casualtiesPriceArray = [
-      (((41000 * Math.round((months + 1) / 5) * workInflation * s42) /
+      ((41000 * Math.round((months + 1) / 5) * workInflation * s42) /
         1.35 /
         2 /
         1.5) *
         100 *
-        space) /
-        table.getCell("E5").numeric(),
+        space,
       workSum * 0.022 * workInflation,
       months * 2 * 1200 + 3000 + space * 220 * s42 * workInflation,
     ];
     const casualtiesAdressesArray = [94, 95, 96];
 
     for (let i = 0; i < casualtiesAdressesArray.length; i++) {
-      const price = casualtiesPriceArray[i];
+      const price = casualtiesPriceArray[i] / table.getCell("E5").numeric();
       workSum += price;
       textObject = `<div class=\"option-block\"><div class=\"division-block pricelist\"></div><div class=\"list-option-container\"><span class=\'name\'>${table
         .getCell(`F${casualtiesAdressesArray[i]}`)
