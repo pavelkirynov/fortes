@@ -38,5 +38,5 @@ fetch(
     console.log(response.table.cols);
 
     console.log(table.cells.filter((cell) => cell.address.includes("S")));
-    console.log(table.getCell("S111"));
+    console.log(table.getCell("I111"));
   });
