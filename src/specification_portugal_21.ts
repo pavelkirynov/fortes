@@ -53,7 +53,6 @@ fetch(
       letterModel: string = "",
       ceiling: string = storage.get("ceiling"),
       hygienicShower: boolean = storage.get("hygienic_shower"),
-      secondGypsumLayer: boolean = storage.get("second_gypsum_layer"),
       demontage: boolean = storage.get("demontage"),
       windows: number = storage.get("windows_installtion"),
       heatedFlooring: number = storage.get("heated_flooring"),
@@ -408,13 +407,12 @@ fetch(
       textObject = returnObject(
         table.getCell("F" + materialsAdressesArray[i]).value(),
         "",
-        Math.round(price) + " €"
+        Math.round(price) + "€"
       );
 
       $("#workList").append(textObject);
     }
 
-    /////
     $("#workList").append(
       '</div><div class="list-option-container margined"></div>'
     );
@@ -674,6 +672,7 @@ fetch(
           Math.round(furnitureSum * 0.3) + "€"
         )
       );
+
       furnitureSum *= 1.3;
       appendObject(
         $("#furnitureList"),
@@ -689,9 +688,9 @@ fetch(
 
     if (
       hygienicShower ||
-      secondGypsumLayer ||
+      windows ||
       demontage ||
-      heatedFlooring ||
+      heatedFlooring > 0 ||
       denoising ||
       entranceDoors ||
       conditioning
@@ -704,90 +703,82 @@ fetch(
         .append(
           `<h4 class=\"pricelist-header small no-padding\"> Опції</h4><span class=\'notation amount\'> </span><span class=\'notation\'>Ціна</span>`
         );
-    }
 
-    const optionInflation = table.getCell("T103").numeric();
-
-    let optionsPriceArray = [
-      space * table.getCell(`${letter}103`).numeric() * 1.25,
-      +hygienicShower * table.getCell(`${letter}104`).numeric() * 1.25,
-      table.getCell(`${letter}105`).numeric() * 1.25,
-      space *
-        1.25 *
+      const optionsPriceArray: number[] = [
+        table.getCell(`${letter}103`).numeric() * space,
+        table.getCell(`${letter}104`).numeric(),
+        table.getCell(`${letter}105`).numeric(),
+        table.getCell(`${letter}106`).numeric(),
         (space <= 60
-          ? 306.26
+          ? 90.02
           : space <= 95
-          ? 246.43
-          : space <= 125
-          ? 221.2
-          : 277.29) *
-        optionInflation,
-      (+denoising + mouldings == 2 ? 1 : 0) *
-        space *
-        1.25 *
-        (space <= 60
-          ? 60.91
-          : space <= 95
-          ? 64.57
-          : space <= 125
-          ? 63.87
-          : 66.24) *
-        optionInflation +
-        (+denoising + mouldings === 1 ? 1 : 0) *
-          space *
-          table.getCell(`${letter}105`).numeric() *
-          1.25,
-      +denoising > 0
-        ? space *
-          1.25 *
-          (space <= 60
-            ? 90.02
-            : space <= 95
-            ? 60.78
-            : space <= 125
-            ? 58.29
-            : 79.01) *
-          optionInflation
-        : 0,
-      table.getCell(`${letter}104`).numeric() * 1.1 +
-        table.getCell(`${letter}104`).numeric() * 1.25,
-      table.getCell(`${letter}104`).numeric() * space * 1.25 +
-        table.getCell(`${letter}104`).numeric() * conditionerRate * 1.05,
-    ];
-    let optionsAmountArray = [
-      1,
-      hygienicShower ? amountOfBathrooms : 0,
-      heatedFlooring,
-      secondGypsumLayer,
-      denoising,
-      denoising,
-      entranceDoors,
-      conditioning,
-    ];
-    let optionsAdressesArray = [103, 104, 105, 106, 107, 108, 110, 111];
+          ? 60.78
+          : space < 125
+          ? 58.29
+          : space >= 125
+          ? 79.01
+          : 0) * space,
+        table.getCell(`${letter}108`).numeric(),
+        table.getCell(`${letter}110`).numeric() * space,
+        table.getCell(`${letter}111`).numeric(),
+      ];
+      const optionsAmountArray: number[] = [
+        demontage ? 1 : 0,
+        windows,
+        hygienicShower ? 1 : 0,
+        heatedFlooring,
+        denoising ? 1 : 0,
+        entranceDoors ? 1 : 0,
+        conditioning,
+        conditioning,
+      ];
+      const optionsAdressesArray: number[] = [
+        103, 104, 105, 106, 107, 108, 110, 111,
+      ];
 
-    for (let i = 0; i < optionsAdressesArray.length; i++) {
-      let price = optionsPriceArray[i] * Number(optionsAmountArray[i]);
-      if (
-        price === 0 ||
-        isNaN(price) ||
-        optionsAmountArray[i] == 0 ||
-        optionsAdressesArray[i] == null
-      ) {
-        continue;
+      for (let i = 0; i < optionsAdressesArray.length; i++) {
+        const price =
+          optionsPriceArray[i] *
+          optionsAmountArray[i] *
+          table.getCell("S103").numeric();
+        if (price === 0 || optionsAmountArray[i] == 0) {
+          continue;
+        }
+
+        workSum += price;
+        appendObject(
+          $work,
+          returnObject(
+            table.getCell("F" + optionsAdressesArray[i])?.value() +
+              ", " +
+              table
+                .getCell(`${letterModel}${optionsAdressesArray[i]}`)
+                ?.value(),
+            "",
+            Formatter.formatCurrency(price) + "€"
+          )
+        );
       }
 
-      workSum += price;
-      appendObject(
-        $work,
-        returnObject(
-          table.getCell("F" + optionsAdressesArray[i])?.value() +
-            ", " +
-            table.getCell(`${letterModel}${optionsAdressesArray[i]}`)?.value(),
-          "",
-          Math.round(price) + " €"
-        )
-      );
+      if (conditioning > 0) {
+        const conditioningDelivery =
+          (conditioning *
+            table.getCell("I111").numeric() *
+            ((1 + table.getCell("S111").numeric()) / 100)) /
+          41;
+        appendObject(
+          $work,
+          returnObject(
+            table.getCell("F112")?.value() +
+              ", " +
+              table.getCell(`${letterModel}112`)?.value(),
+            "",
+            Formatter.formatCurrency(conditioningDelivery) + "€"
+          )
+        );
+
+        workSum += conditioningDelivery;
+      }
     }
 
     if (!appliancesBoolTotal) {
