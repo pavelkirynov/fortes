@@ -14,8 +14,8 @@ fs.readdirSync("./src/")
       /(logics|calculator|calculator_portugal|specification|specification_portugal)[_0-9]*.ts$/
     );
   })
-  .forEach((f) => {
-    entries[f.replace(/\.ts$/, "")] = ["./src/" + f];
+  .forEach((file) => {
+    entries[file.replace(/\.ts$/, "")] = ["./src/" + file];
   });
 
 module.exports = {

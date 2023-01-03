@@ -259,7 +259,6 @@ $(function () {
     storage.set("ceiling", $(":radio[name='ceiling']:checked").val());
     storage.set("flooring", $(":radio[name='flooring']:checked").val());
     storage.set("color", $(".div-block-14 .color-tab.active").index());
-    storage.set("style", "cozy");
   }
 
   function getUserStyle(num: number) {
