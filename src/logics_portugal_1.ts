@@ -94,7 +94,7 @@ $(function () {
         () => {
           $(".splide__list").css(
             "height",
-            $(".splide__slide.is-active .active img").attr("height")
+            $(".splide__slide.is-active .active img").css("height")
           );
         },
         vw > 480 ? 550 : 750
@@ -103,7 +103,7 @@ $(function () {
 
     $(".splide__list").css(
       "height",
-      $(".splide__slide.is-active .active img").attr("height")
+      $(".splide__slide.is-active .active img").css("height")
     );
 
     $(".slick-btn-prev, .slick-btn-next").on("click", function () {
