@@ -1,6 +1,6 @@
 import { DesignStyle } from "./models/Style";
 import Splide from "@splidejs/splide";
-import { LocalStorageHandler } from "./utils/LocalStoragehandler";
+import { LocalStorageHandler } from "./utils/LocalStorageHandler";
 
 $(function () {
   const vw: number = $(window).width();
@@ -128,22 +128,22 @@ $(function () {
       switch (index) {
         case 0:
           textPrev = "";
-          textNext = "Дивитись спальню";
+          textNext = "Bedroom";
           break;
         case 1:
-          textPrev = "Дивитись вітальню";
-          textNext = "Дивитись кухню";
+          textPrev = "Living room";
+          textNext = "Kitchen";
           break;
         case 2:
-          textPrev = "Дивитись спальню";
-          textNext = "Дивитись душ";
+          textPrev = "Bedroom";
+          textNext = "Shower";
           break;
         case 3:
-          textPrev = "Дивитись кухню";
-          textNext = "Дивитись ванну";
+          textPrev = "Kitchen";
+          textNext = "Bathroom";
           break;
         case 4:
-          textPrev = "Дивитись душ";
+          textPrev = "Shower";
           textNext = "";
           break;
         default:
