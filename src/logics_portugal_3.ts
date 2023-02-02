@@ -1,11 +1,9 @@
-import { DesignStyle } from "./models/Style";
 import Splide from "@splidejs/splide";
 import { LocalStorageHandler } from "./utils/LocalStorageHandler";
+import { DesignStyle } from "./models/Style";
 
 $(function () {
   const vw: number = $(window).width();
-  const emailRegex: RegExp =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   $(".choiceactive.card").toggleClass("choiceActiveBorder");
   $("#laminat").prop("checked", true);
@@ -60,7 +58,7 @@ $(function () {
         }
       });
 
-      const style: DesignStyle = DesignStyle.fromNumber(index);
+      const style = DesignStyle.fromNumber(index);
 
       $(
         ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
@@ -157,7 +155,7 @@ $(function () {
 
   $(".calculator-tab").on("click", function () {
     const index: number = $(this).index();
-    const style: DesignStyle = DesignStyle.fromNumber(index);
+    const style = DesignStyle.fromNumber(index);
 
     $(
       ".calculator-slide.splide__slide .calculator-slide, .calculator-slide .color-var, .wrap-border.calculator-btn"
@@ -258,7 +256,7 @@ $(function () {
       $(this).parent().addClass("choiceActiveBorder");
 
       if ($("#node").is(":checked")) {
-        $("#appliances").prop("checked", true);
+        $("#appliances").prop("checked", "checked");
       }
     }
   });
@@ -314,201 +312,11 @@ $(function () {
 
   $(".submit-container .button").on("click", function (e) {
     e.preventDefault();
-  });
-
-  $(".form-2").on("submit", async function (e) {
-    e.preventDefault();
-
-    if (!$("#agreementCheckbox").is(":checked")) {
-      $(".warning.agreementcheckbox").toggle(true);
-    } else {
-      $(".warning.agreementcheckbox").toggle(false);
-    }
-    if (!$("#sPhone").val() && !$("#sEmail").val()) {
-      $(".warning.inputs.phone").toggle(true);
-    } else {
-      $(".warning.inputs.phone").toggle(false);
-    }
-    if (!$("#sName").val()) {
-      $(".warning.inputs.name").toggle(true);
-    } else {
-      $(".warning.inputs.name").toggle(false);
-    }
-
-    if (($("#sEmail").val() as string).length == 0) {
-      $(".warning.inputs.wrongEmail").toggle(false);
-      $(".warning.inputs.emptyEmail").toggle(true);
-    } else if (!emailRegex.test($("#sEmail").val() as string)) {
-      $(".warning.inputs.wrongEmail").toggle(true);
-      $(".warning.inputs.emptyEmail").toggle(false);
-    } else {
-      $(".warning.inputs.wrongEmail").toggle(false);
-      $(".warning.inputs.emptyEmail").toggle(false);
-    }
-
-    if ($(".warning").is(":visible")) {
-      e.preventDefault();
-      return false;
-    }
-
-    $("#wf-form-client-info").toggle(false);
-    $(".specification-modal .modal-success").toggle(true);
-
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbzymV7zIns6N9AdE882E44BwQAFZ_wy0JNIahqsoDWx3kqLi-U/exec";
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: new FormData(
-        document.getElementById("#wf-form-client-info") as HTMLFormElement
-      ),
-    });
-
-    const fd = new FormData();
-    const space: number = storage.get("space");
-    const style: string = storage.get("style");
-    const ukrStyle =
-      storage.get("style") === "cozy"
-        ? "Козі"
-        : style === "japandi"
-        ? "Джапанді"
-        : style === "fusion"
-        ? "Фьюжн"
-        : style === "modern"
-        ? "Модерн"
-        : "Нео Класика";
-
-    let months =
-      space < 60
-        ? 4
-        : space <= 80
-        ? 5
-        : space <= 100
-        ? 6
-        : space <= 130
-        ? 7
-        : space <= 150
-        ? 8
-        : space <= 175
-        ? 9
-        : 10;
-
-    fd.append("Стиль", ukrStyle);
-    fd.append("Ціна за метр", $("#total").html());
-    fd.append("Загальна ціна", $("#totalWhole").html());
-    fd.append("Площа", val($("#space")).toString());
-    fd.append("Кількість кімнат", val($("#amountOfRooms")).toString());
-    fd.append("Кількість санвузлів", val($("#amountOfBathrooms")).toString());
-    fd.append("Ванна", $("#bathtub").is(":checked").toString());
-    fd.append("Душ", $("#shower").is(":checked").toString());
-
-    let ceiling =
-        $(":radio[name='ceiling']:checked").val() == "stretch ceiling"
-          ? "Натяжна матова"
-          : $(":radio[name='ceiling']:checked").val() == "gapless"
-          ? "Натяжна бесщелева матова"
-          : "Гіпсокартон",
-      flooring =
-        $(":radio[name='flooring']:checked").val() == "laminat"
-          ? "Ламінат"
-          : $(":radio[name='flooring']:checked").val() == "vynil"
-          ? "Вінілова підлога"
-          : "Паркет",
-      appliances =
-        getData($(".choiceActiveBorder"), "appliances") == undefined
-          ? "Не обрано"
-          : (getData($(".choiceActiveBorder"), "appliances") as string)
-              .substring(0, 1)
-              .toUpperCase() +
-            (
-              getData($(".choiceActiveBorder"), "appliances") as string
-            ).substring(1);
-
-    fd.append("Стеля", ceiling);
-    fd.append("Підлогове покриття", flooring);
-    fd.append("Стяжка підлоги", $("#floorscreed").is(":checked").toString());
-    fd.append("Шумоізоляція", $("#noise").is(":checked").toString());
-    fd.append("Вхідні двері", $("#doors").is(":checked").toString());
-    fd.append(
-      "Другий шар гіпсокартону",
-      $("#secondGypsumLayer").is(":checked").toString()
-    );
-    fd.append(
-      "Гігієнічний душ",
-      $("#hygienicShower").is(":checked").toString()
-    );
-    fd.append("Тепла підлога", `${val($("#heatedFlooring"))}`);
-    fd.append("Кондиціювання", `${val($("#conditioning"))}`);
-    fd.append("Меблі", $("#furnitureBool").is(":checked").toString());
-    fd.append("Техніка", appliances);
-    fd.append("Термін виконання робіт", `${months}`);
-
-    fetch(
-      //"https://script.google.com/macros/s/AKfycbxiJPHg5oz88UhS0apuylDhgjLskSLo-Dt2mvF6VA/exec",
-      "https://script.google.com/macros/s/AKfycbyt7QOcA0Dp_2voHy2w1rVGCllwvW_SX_V8iDTD5E7zJohqH0C4/exec",
-      {
-        method: "POST",
-        body: fd,
-      }
-    );
-
-    localStorage.setItem("convert_id", "false");
 
     window.open(
       $('.calculator-btn:not([style*="display: none"]) a').data("href"),
       "_blank"
     );
-
-    $(".modal-note").html("Зачекайте...");
-
-    while (localStorage.getItem("convert_id") == "false") {
-      await new Promise((r) => setTimeout(r, 200));
-    }
-
-    if (localStorage.getItem("convert_id") != "") {
-      const convertId = localStorage.getItem("convert_id");
-
-      /*if ($("#telegram").is(":checked")) {
-        const telegramLink = `https://t.me/fortesagency_bot/?start=${convertId}_${(
-          $("#sPhone").val() as string
-        )
-          .replace(new RegExp(/[+() ]/, "g"), "")
-          .trim()}-${data.style}`;
-
-        $(".wrap-border.telegram").toggle();
-        $(".modal-note").html(
-          `Для того, аби отримати специфікацію, перейдіть за посиланням до нашого бота.`
-        );
-        $(".final-btn.telegram").attr("href", telegramLink);
-        $(".final-btn.telegram").attr("target", "_blank");
-        $(".final-btn.telegram").on("click", () => {
-          window.open(telegramLink);
-          localStorage.clear();
-          window.location.assign("/sdyakuiemo");
-        });
-      } else {*/
-      $(".modal-note").html(
-        "Ми надіслали вам лист на електронну пошту. Якщо ви не бачите його у списку, перевірте папку Спам або зачекайте декілька хвилин."
-      );
-
-      fetch("https://api.fortes.agency/mail", {
-        method: "POST",
-        body: JSON.stringify({
-          fileId: convertId,
-          fileName: storage.get("style"),
-          recipientMail: $("#sEmail").val(),
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).finally(() => {
-        setTimeout(() => {
-          localStorage.clear();
-          window.location.assign("/sdyakuiemo");
-        }, 2000);
-      });
-      //}
-    }
   });
 
   $(".closing-btn").on("click", function () {
@@ -550,7 +358,7 @@ $(function () {
     $(".color-tab").on("click", function () {
       let index = $(this).index();
       let number = $(".calculator-tab.w--current").index();
-      const style: DesignStyle = DesignStyle.fromNumber(number);
+      const style = DesignStyle.fromNumber(number);
 
       if ($(this).not(".active")) {
         $(".color-tab.active").removeClass("active");
