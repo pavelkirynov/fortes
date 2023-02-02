@@ -1,5 +1,5 @@
 import Splide from "@splidejs/splide";
-import { LocalStorageHandler } from "./utils/LocalStoragehandler";
+import { LocalStorageHandler } from "./utils/LocalStorageHandler";
 import { DesignStyle } from "./models/Style";
 
 $(function () {

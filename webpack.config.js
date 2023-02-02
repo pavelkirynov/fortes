@@ -11,7 +11,7 @@ const entries = {
 fs.readdirSync("./src/")
   .filter((file) => {
     return file.match(
-      /(logics|calculator|calculator_portugal|specification|specification_portugal)[_0-9]*.ts$/
+      /(logics|logics_portugal|calculator|calculator_portugal|specification|specification_portugal)[_0-9]*.ts$/
     );
   })
   .forEach((file) => {
