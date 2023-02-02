@@ -56,7 +56,7 @@ class LocalStorageHandler {
     const result = {};
 
     for (const key in storage) {
-      if (key === "length") {
+      if (key === "length" || key == "costPerMetre") {
         continue;
       }
 
